@@ -1,0 +1,31 @@
+{
+  "name": "co-financing-app",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rkrohne1991/co-financing-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rkrohne1991/co-financing-app/issues"
+  },
+  "homepage": "https://github.com/rkrohne1991/co-financing-app#readme",
+  "devDependencies": {
+    "webpack": "^5.76.3",
+    "webpack-cli": "^5.0.1",
+    "standard": "^17.0.0",
+    "stylelint": "^15.3.0",
+    "stylelint-config-recommended": "^11.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
