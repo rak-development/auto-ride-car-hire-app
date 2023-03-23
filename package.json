@@ -20,6 +20,7 @@
   "homepage": "https://github.com/rkrohne1991/co-financing-app#readme",
   "devDependencies": {
     "css-loader": "^6.7.3",
+    "html-webpack-plugin": "^5.5.0",
     "standard": "^17.0.0",
     "style-loader": "^3.3.2",
     "stylelint": "^15.3.0",
