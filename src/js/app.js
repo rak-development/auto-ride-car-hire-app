@@ -1,6 +1,7 @@
-// import '../scss/app.scss'
+import AppLayout from './components/AppLayout/AppLayout'
 
-/* Your JS Code goes here */
+const appLayout = new AppLayout()
 
-/* Demo JS */
-import './demo.js'
+window.onload = async () => {
+  appLayout.start()
+}
