@@ -1,9 +1,10 @@
-const AppLayout = () => {
+const template = (headerTemplate, footerTemplate) => {
+  console.log(headerTemplate)
   return `
-    <header>Header</header>
+    ${headerTemplate.outerHTML}
     <main><h1>Hello World</h1></main>
-    <footer>Footer</footer>
+    ${footerTemplate.outerHTML}
   `
 }
 
-export default AppLayout
+export default template
