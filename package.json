@@ -1,21 +1,28 @@
 {
-  "name": "co-financing-app",
+  "name": "auto-ride-car-hire-app",
   "version": "1.0.0",
   "description": "",
   "private": true,
+  "browserslist": [
+    "last 2 versions",
+    "> 5%"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --watch",
-    "start": "webpack serve --open --config webpack.dev.js",
-    "server": "node server.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config configuration/webpack.dev.config.js --mode=development",
+    "watch": "webpack --config configuration/webpack.dev.config.js --mode=development --watch",
+    "bundle": "npm install && npm run watch",
+    "dev": "webpack serve --config configuration/webpack.dev.config.js --mode=development",
+    "production": "webpack --config configuration/webpack.prod.config.js --mode=production",
+    "lint:sass": "sass-lint -v -q",
+    "lint:js": "eslint --ext .js src/js/",
+    "stats": "webpack --config configuration/webpack.prod.config.js --mode=production --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rkrohne1991/co-financing-app.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Rafal Krohne",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rkrohne1991/co-financing-app/issues"
@@ -25,9 +32,14 @@
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
     "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
+    "css-minimizer-webpack-plugin": "^4.2.2",
     "express": "^4.18.2",
     "html-webpack-plugin": "^5.5.0",
+    "image-minimizer-webpack-plugin": "^3.8.2",
+    "mini-css-extract-plugin": "^2.7.5",
     "standard": "^17.0.0",
     "style-loader": "^3.3.2",
     "stylelint": "^15.3.0",
