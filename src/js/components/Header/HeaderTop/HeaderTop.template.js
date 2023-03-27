@@ -1,6 +1,10 @@
 const template = () => {
   return `
-    <div>Contact Details</div>
+    <div>
+      <i class="fa-solid fa-location-dot"></i>
+      <i class="fa-solid fa-mobile-screen-button"></i>
+      <i class="fa-regular fa-clock"></i>
+    </div>
     <div>Social Details</div>
   `
 }
