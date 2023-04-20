@@ -1,11 +1,7 @@
-const template = () => {
+const template = (headerTopSocial, headerTopContactDetails) => {
   return `
-    <div>
-      <i class="fa-solid fa-location-dot"></i>
-      <i class="fa-solid fa-mobile-screen-button"></i>
-      <i class="fa-regular fa-clock"></i>
-    </div>
-    <div>Social Details</div>
+    ${headerTopContactDetails.outerHTML}
+    ${headerTopSocial.outerHTML}
   `
 }
 export default template
