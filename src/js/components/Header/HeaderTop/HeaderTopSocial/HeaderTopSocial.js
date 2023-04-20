@@ -1,4 +1,5 @@
 import template from './HeaderTopSocial.template'
+import styles from './HeaderTopSocial.module.scss'
 
 class HeaderTopSocial {
   constructor () {
@@ -10,7 +11,7 @@ class HeaderTopSocial {
     return this.el
   }
 
-  render = () => { this.el.innerHTML = template() }
+  render = () => { this.el.innerHTML = template(styles) }
 }
 
 export default HeaderTopSocial

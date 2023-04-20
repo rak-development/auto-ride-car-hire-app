@@ -2,13 +2,14 @@ import HeaderTopSocial from "./HeaderTopSocial/HeaderTopSocial"
 import HeaderTopContactDetails from './HeaderTopContactDetails/HeaderTopContactDetails'
 
 import template from './HeaderTop.template'
+import styles from './HeaderTop.module.scss'
 
 class HeaderTop {
   constructor () {
     this.headerTopSocial = new HeaderTopSocial()
     this.headerTopContactDetails = new HeaderTopContactDetails()
     this.el = document.createElement('div')
-    this.el.className = 'header-top container d-flex justify-content-between'
+    this.el.className = 'header-top bg-light'
   }
 
   getEl = () => {
@@ -18,7 +19,8 @@ class HeaderTop {
 
   render = () => { this.el.innerHTML = template(
       this.headerTopSocial.getEl(),
-      this.headerTopContactDetails.getEl()
+      this.headerTopContactDetails.getEl(),
+      styles
     ) 
   }
 }

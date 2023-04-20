@@ -1,0 +1,18 @@
+.header-top__social {
+  &__el {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 10px 5px 0px;
+  }
+
+  &__icon {
+    font-size: 16px;
+  }
+
+  a {
+    color: #778591;
+  }
+}
