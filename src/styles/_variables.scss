@@ -14,3 +14,13 @@ $gray-700: #556677 !default;
 // Font, line-height, and color for body text, headings, and more.
 $font-family-sans-serif:      "Lato";
 $font-family-monospace:       "Lato";
+
+// Links
+//
+// Style anchor elements.
+
+$link-color:                              $gray-700 !default;
+$link-decoration:                         none !default;
+$link-shade-percentage:                   20% !default;
+$link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;
+$link-hover-decoration:                   none !default;

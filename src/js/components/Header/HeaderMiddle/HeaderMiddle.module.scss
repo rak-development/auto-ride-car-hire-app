@@ -1,0 +1,33 @@
+.header-middle {
+  &__logo {
+    max-width: 235px;
+    max-height: 110px;
+
+    &-container {
+      margin-right: 20px;
+      display: block;
+    }
+  }
+
+  &__nav {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    &-item {
+      margin-right: 45px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    &-link {
+      text-transform: uppercase;
+      line-height: 26px;
+      color: #556677;
+      font-size: 16px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+}

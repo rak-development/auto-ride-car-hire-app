@@ -1,4 +1,5 @@
 import template from './HeaderMiddle.template'
+import styles from './HeaderMiddle.module.scss'
 
 class HeaderMiddle {
   constructor () {
@@ -11,7 +12,7 @@ class HeaderMiddle {
     return this.el
   }
 
-  render = () => { this.el.innerHTML = template() }
+  render = () => { this.el.innerHTML = template(styles) }
 }
 
 export default HeaderMiddle
