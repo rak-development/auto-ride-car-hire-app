@@ -1,0 +1,18 @@
+@import '../../../styles/variables';
+
+.booking-reservation {
+  &__box {
+    border-right: 1px solid $gray-200;
+    border-bottom: 1px solid $gray-200;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  &__label {
+    color: #778591;
+  }
+}
