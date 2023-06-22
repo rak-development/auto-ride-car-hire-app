@@ -1,6 +1,6 @@
 import template from './HeaderTopContactDetails.template'
 
-import styles from "./HeaderTopContactDetails.module.scss"
+import styles from './HeaderTopContactDetails.module.scss'
 
 class HeaderTopContactDetails {
   constructor () {
