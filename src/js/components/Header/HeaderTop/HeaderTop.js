@@ -1,4 +1,4 @@
-import HeaderTopSocial from "./HeaderTopSocial/HeaderTopSocial"
+import HeaderTopSocial from './HeaderTopSocial/HeaderTopSocial'
 import HeaderTopContactDetails from './HeaderTopContactDetails/HeaderTopContactDetails'
 
 import template from './HeaderTop.template'
@@ -17,11 +17,12 @@ class HeaderTop {
     return this.el
   }
 
-  render = () => { this.el.innerHTML = template(
+  render = () => {
+    this.el.innerHTML = template(
       this.headerTopSocial.getEl(),
       this.headerTopContactDetails.getEl(),
       styles
-    ) 
+    )
   }
 }
 
