@@ -1,17 +1,17 @@
-@import '../../../../../styles/variables';
+@import '/src/styles/_variables';
 
-.header-top__social {
+.social-icons {
   &__el {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5px 10px 5px 0px;
+    margin: 0.3125rem 0.625rem 0.3125rem 0rem;
   }
 
   &__icon {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   a {

@@ -1,4 +1,4 @@
-import HeaderTopSocial from './HeaderTopSocial/HeaderTopSocial'
+import SocialIcons from '../../SocialIcons/SocialIcons'
 import HeaderTopContactDetails from './HeaderTopContactDetails/HeaderTopContactDetails'
 
 import template from './HeaderTop.template'
@@ -6,7 +6,7 @@ import styles from './HeaderTop.module.scss'
 
 class HeaderTop {
   constructor () {
-    this.headerTopSocial = new HeaderTopSocial()
+    this.SocialIcons = new SocialIcons()
     this.headerTopContactDetails = new HeaderTopContactDetails()
     this.el = document.createElement('div')
     this.el.className = 'header-top bg-light'
@@ -19,7 +19,7 @@ class HeaderTop {
 
   render = () => {
     this.el.innerHTML = template(
-      this.headerTopSocial.getEl(),
+      this.SocialIcons.getEl(),
       this.headerTopContactDetails.getEl(),
       styles
     )
