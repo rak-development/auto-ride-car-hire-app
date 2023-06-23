@@ -1,7 +1,7 @@
-import template from './HeaderTopSocial.template'
-import styles from './HeaderTopSocial.module.scss'
+import template from './SocialIcons.template'
+import styles from './SocialIcons.module.scss'
 
-class HeaderTopSocial {
+class SocialIcons {
   constructor () {
     this.el = document.createElement('div')
   }
@@ -14,4 +14,4 @@ class HeaderTopSocial {
   render = () => { this.el.innerHTML = template(styles) }
 }
 
-export default HeaderTopSocial
+export default SocialIcons
