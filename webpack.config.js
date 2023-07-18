@@ -9,6 +9,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 const environment = require('./configuration/environment')
 
@@ -148,7 +149,8 @@ module.exports = {
     new CleanWebpackPlugin({
       verbose: true,
       cleanOnceBeforeBuildPatterns: ['**/*', '!stats.json']
-    })
+    }),
+    new ESLintPlugin()
     // new CopyWebpackPlugin({
     // patterns: [
     //   {

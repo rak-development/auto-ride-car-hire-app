@@ -1,23 +1,14 @@
-import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
-
-import template from './AppLayout.template'
-
+import '../Header/HeaderLayout'
 import '../../../styles/Base.scss'
 
-class AppLayout {
-  constructor () {
-    this.headerTemplate = new Header()
-    this.footerTemplate = new Footer()
-  }
-
-  start = () => this.render()
-  render = () => {
-    document.body.insertAdjacentHTML('afterbegin', template(
-      this.headerTemplate.getEl(),
-      this.footerTemplate.getEl()
-    ))
+class AppLayout extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+      <div>
+        <header-layout></header-layout>
+      </div>
+    `
   }
 }
 
-export default AppLayout
+customElements.define('app-layout', AppLayout)

@@ -1,9 +1,8 @@
-const template = (headerTemplate, footerTemplate) => {
-  console.log(headerTemplate)
+const template = () => {
   return `
-    ${headerTemplate.outerHTML}
+    <header>Header</header>
     <main><h1>Hello World</h1></main>
-    ${footerTemplate.outerHTML}
+    <footer>Footer</footer>
   `
 }
 

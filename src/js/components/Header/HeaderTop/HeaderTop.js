@@ -1,29 +1,17 @@
-import SocialIcons from '../../SocialIcons/SocialIcons'
-import HeaderTopContactDetails from './HeaderTopContactDetails/HeaderTopContactDetails'
+import './HeaderTopContactDetails/HeaderTopContactDetails'
+import '../../SocialIcons/SocialIcons'
 
-import template from './HeaderTop.template'
-import styles from './HeaderTop.module.scss'
-
-class HeaderTop {
-  constructor () {
-    this.SocialIcons = new SocialIcons()
-    this.headerTopContactDetails = new HeaderTopContactDetails()
-    this.el = document.createElement('div')
-    this.el.className = 'header-top bg-light'
-  }
-
-  getEl = () => {
-    this.render()
-    return this.el
-  }
-
-  render = () => {
-    this.el.innerHTML = template(
-      this.SocialIcons.getEl(),
-      this.headerTopContactDetails.getEl(),
-      styles
-    )
+class HeaderTop extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+      <div class='header-top bg-light'>
+        <div class='container d-flex justify-content-between align-items-center'>
+          <header-top-contact-details></header-top-contact-details>
+          <social-icons></social-icons>
+        </div>
+      </div>
+    `
   }
 }
 
-export default HeaderTop
+customElements.define('header-top', HeaderTop)
