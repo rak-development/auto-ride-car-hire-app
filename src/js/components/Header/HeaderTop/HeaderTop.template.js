@@ -1,8 +1,10 @@
-const template = (socialIcons, headerTopContactDetails, styles) => {
+const template = () => {
   return `
-    <div class='${styles['header-top__container']} container d-flex justify-content-between align-items-center'>
-      ${headerTopContactDetails.outerHTML}
-      ${socialIcons.outerHTML}
+    <div class='header-top bg-light'>
+      <div class='container d-flex justify-content-between align-items-center'>
+        <header-top-contact-details></header-top-contact-details>
+        <social-icons></social-icons>
+      </div>
     </div>
   `
 }

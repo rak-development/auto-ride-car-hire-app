@@ -2,7 +2,8 @@
   "parser": "@babel/eslint-parser",
   "extends": "eslint:recommended",
   "rules": {
-    "max-len": [1, 120, 2, { "ignoreComments": true }]
+    "max-len": [1, 120, 2, { "ignoreComments": true }],
+    "eol-last": 1
   },
   "env": {
     "browser": true,
