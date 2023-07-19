@@ -1,8 +1,9 @@
 import template from './HeaderTopContactDetails.template'
+import styles from './HeaderTopContactDetails.module.scss'
 
 class HeaderTopContactDetails extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = template()
+    this.innerHTML = template(styles)
   }
 }
 
