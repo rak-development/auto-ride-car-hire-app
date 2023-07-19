@@ -1,9 +1,5 @@
 const template = () => {
-  return `
-    <div>
-      <header-layout></header-layout>
-    </div>
-  `
+  return `<header-layout></header-layout>`
 }
 
 export default template
