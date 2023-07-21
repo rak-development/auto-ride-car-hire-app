@@ -6,13 +6,17 @@ const template = styles => {
           <div class='row'>
             <div class="col-3 p-0">
               <div class='${styles['booking-reservation__box']}'>
-                <label for="pickupLocation" class="form-label ${styles['booking-reservation__label']}">Pickup Location</label>
+                <label for="pickupLocation" class="form-label ${styles['booking-reservation__label']}">
+                  Pickup Location
+                </label>
                 <input type="text" class="form-control" id="pickupLocation">
               </div>
             </div>
             <div class="col-3 p-0">
               <div class='${styles['booking-reservation__box']}'>
-                <label for="dropOffLocation" class="form-label ${styles['booking-reservation__label']}">Drop-off Location</label>
+                <label for="dropOffLocation" class="form-label ${styles['booking-reservation__label']}">
+                  Drop-off Location
+                </label>
                 <input type="text" class="form-control" id="dropOffLocation">
               </div>
             </div>

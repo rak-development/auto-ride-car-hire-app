@@ -1,17 +1,7 @@
 import template from './FooterMiddle.template'
 
-class FooterMiddle {
-  constructor () {
-    this.el = document.createElement('div')
-    this.el.className = 'footer-middle'
+export class FooterMiddle extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = template()
   }
-
-  getEl = () => {
-    this.render()
-    return this.el
-  }
-
-  render = () => { this.el.innerHTML = template() }
 }
-
-export default FooterMiddle

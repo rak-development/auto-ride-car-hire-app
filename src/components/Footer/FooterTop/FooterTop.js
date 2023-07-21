@@ -1,17 +1,7 @@
 import template from './FooterTop.template'
 
-class FooterTop {
-  constructor () {
-    this.el = document.createElement('div')
-    this.el.className = 'footer-top'
+export class FooterTop extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = template()
   }
-
-  getEl = () => {
-    this.render()
-    return this.el
-  }
-
-  render = () => { this.el.innerHTML = template() }
 }
-
-export default FooterTop

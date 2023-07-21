@@ -1,17 +1,8 @@
 import template from './BookingReservation.template'
 import styles from './BookingReservation.module.scss'
 
-class BookingReservation {
-  constructor () {
-    this.el = document.createElement('div')
+export class BookingReservation extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = template(styles)
   }
-
-  getEl = () => {
-    this.render()
-    return this.el
-  }
-
-  render = () => { this.el.innerHTML = template(styles) }
 }
-
-export default BookingReservation

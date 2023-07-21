@@ -1,5 +1,3 @@
-import '../../SocialIcons/SocialIcons'
-
 import template from './HeaderTop.template'
 import styles from './HeaderTop.module.scss'
 

@@ -1,4 +1,4 @@
-const logo = require('../../../../assets/images/AutoRide-Logo.png')
+const logo = require('/src/assets/images/AutoRide-Logo.png')
 
 const template = styles => {
   return `
