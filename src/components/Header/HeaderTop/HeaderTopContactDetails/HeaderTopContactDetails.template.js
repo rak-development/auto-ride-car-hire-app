@@ -7,7 +7,7 @@ const template = styles => {
       </div>
       <div class='${styles['header-top__contact-details__el']}'>
         <i class='${styles['header-top__contact-details__icon']} fa-solid fa-mobile-screen-button'></i>
-        660 505 474
+        123 456 789
       </div>
       <div class='${styles['header-top__contact-details__el']}'>
         <i class='${styles['header-top__contact-details__icon']} fa-regular fa-clock'></i>
