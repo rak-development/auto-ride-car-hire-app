@@ -1,0 +1,41 @@
+.footer-top {
+  background-color: #EAECEE;
+  padding-top: 80px;
+}
+
+.footer-contact-box {
+  &__icon {
+    position: relative;
+    width: 48px;
+    height: 48px;
+
+    span {
+      background-color: #FFFFFF;
+      z-index: 1;
+      width: 48px;
+      height: 48px;
+      display: block;
+      border-radius: 50%;
+    }
+  }
+
+  &__title {
+    font-family: 'Lato';
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 24px;
+    letter-spacing: 2px;
+    color: #778591;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  &__text {
+    font-size: 18px;
+    font-family: 'Lato';
+    font-weight: 700;
+    text-transform: none;
+    line-height: 1.66666em;
+    color: #2C3E50;
+  }
+}
