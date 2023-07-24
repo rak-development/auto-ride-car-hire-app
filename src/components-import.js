@@ -15,6 +15,7 @@ import { FooterBottom } from './components/Footer/FooterBottom/FooterBottom'
 // Global Components
 import { SocialIcons } from './components/SocialIcons/SocialIcons'
 import { BookingReservation } from './components/BookingReservation/BookingReservation'
+import { ContactBox } from './components/ContactBox/ContactBox'
 
 // Layout Elements
 customElements.define('app-layout', AppLayout)
@@ -33,3 +34,4 @@ customElements.define('footer-bottom', FooterBottom)
 // Global Elements
 customElements.define('social-icons', SocialIcons)
 customElements.define('booking-reservation', BookingReservation)
+customElements.define('contact-box', ContactBox)
