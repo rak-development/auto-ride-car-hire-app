@@ -1,0 +1,8 @@
+@import '/src/global-styles/_variables';
+
+.footer-bottom {
+  &__wrapper {
+    padding-top: 1.5625rem;
+    padding-bottom: 2.5rem;
+  }
+}

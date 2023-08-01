@@ -9,6 +9,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 const environment = require('./configuration/environment')
 
@@ -28,7 +29,7 @@ const htmlPluginEntries = templateFiles.map((template) => new HTMLWebpackPlugin(
 
 module.exports = {
   entry: {
-    app: path.resolve(environment.paths.source, 'js', 'app.js')
+    app: path.resolve(environment.paths.source, 'app.js')
   },
   output: {
     filename: 'js/[name].js',
@@ -92,11 +93,9 @@ module.exports = {
             // if you use postcss 7.x skip the key
             postcssOptions: {
               // postcss plugins, can be exported to postcss.config.js
-              plugins: function () {
-                return [
-                  require('autoprefixer')
-                ]
-              }
+              plugins: () =>  [
+                require('autoprefixer')
+              ]
             }
           }
         }, {
@@ -148,7 +147,8 @@ module.exports = {
     new CleanWebpackPlugin({
       verbose: true,
       cleanOnceBeforeBuildPatterns: ['**/*', '!stats.json']
-    })
+    }),
+    new ESLintPlugin()
     // new CopyWebpackPlugin({
     // patterns: [
     //   {
