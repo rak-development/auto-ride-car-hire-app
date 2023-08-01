@@ -1,7 +1,9 @@
 const template = () => {
   return `
     <header-layout></header-layout>
-    <main><h1>Hello World</h1></main>
+    <main>
+      <key-features></key-features>
+    </main>
     <footer-layout></footer-layout>
   `
 }
