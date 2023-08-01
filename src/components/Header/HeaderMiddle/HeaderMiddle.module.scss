@@ -1,10 +1,10 @@
 .header-middle {
   &__logo {
-    max-width: 235px;
-    max-height: 110px;
+    max-width: 14.6875rem;
+    max-height: 6.875rem;
 
     &-container {
-      margin-right: 20px;
+      margin-right: 1.25rem;
       display: block;
     }
   }
@@ -15,7 +15,7 @@
     list-style-type: none;
 
     &-item {
-      margin-right: 45px;
+      margin-right: 2.8125rem;
 
       &:last-child {
         margin-right: 0;
@@ -23,11 +23,11 @@
     }
     &-link {
       text-transform: uppercase;
-      line-height: 26px;
+      line-height: 1.625rem;
       color: #556677;
-      font-size: 16px;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      font-size: 1rem;
+      padding-top: 0.625rem;
+      padding-bottom: 0.625rem;
       text-decoration: none;
     }
   }
