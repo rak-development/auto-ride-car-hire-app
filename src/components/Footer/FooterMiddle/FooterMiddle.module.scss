@@ -3,11 +3,11 @@
 
   &__content-box {
     color: #556677;
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
 
     p {
       margin: 0;
-      padding: 10px 0;
+      padding: 0.625rem 0;
 
       &:first-of-type {
         padding-top: 0;
@@ -16,26 +16,26 @@
   }
 
   &__title-box {
-    font-size: 16px;
+    font-size: 1rem;
     font-family: 'Lato';
     font-weight: 400;
     text-transform: uppercase;
     line-height: 1.54545em;
     color: #2C3E50;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 
     span {
-      height: 1px;
-      width: 50px;
+      height: 0.0625rem;
+      width: 3.125rem;
       display: block;
-      margin-top: 10px;
+      margin-top: 0.625rem;
       background-color: #FF700A;
     }
   }
 
   &__logo {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 1.875rem;
+    margin-bottom: 1.875rem;
     height: auto;
     display: block;
     max-width: 100%;
@@ -49,12 +49,12 @@
 
     &-element {
       font-family: 'Lato';
-      font-size: 16px;
+      font-size: 1rem;
       font-weight: 300;
-      line-height: 26px;
+      line-height: 1.625rem;
       display: flex;
       align-items: center;
-      padding-top: 10px;
+      padding-top: 0.625rem;
 
       &:first-of-type {
         padding-top: 0;
@@ -62,7 +62,7 @@
     }
 
     &-icon {
-      padding-right: 22px;
+      padding-right: 1.375rem;
     }
   }
 }
