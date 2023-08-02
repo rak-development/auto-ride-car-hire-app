@@ -1,11 +1,9 @@
-import template from './KeyFeatures.template'
-import styles from './KeyFeatures.module.scss'
-
-import SectionTemplate from '../SectionTemplate/SectionTemplate'
+import template from './KeyFeatures.template';
+import styles from './KeyFeatures.module.scss';
 
 export class KeyFeatures extends HTMLElement {
   constructor() {
-    super()
+    super();
 
     this.keyFeaturesData = [
       {
@@ -36,11 +34,15 @@ export class KeyFeatures extends HTMLElement {
       header: 'Make Your Trip Your Way With Us',
       sectionContent: template(styles, this.keyFeaturesData)
     }
-
-    this.sectionTemplate = new SectionTemplate(this.sectionData)
   }
 
   connectedCallback() {
-    this.innerHTML = this.sectionTemplate.getEl().innerHTML
+    const { bgMode, subheader, header, sectionContent } = this.sectionData;
+    this.innerHTML = `<section-template 
+                        data-bgMode="${bgMode}" 
+                        data-subheader="${subheader}" 
+                        data-header="${header}">
+                            ${sectionContent}
+                      </section-template>`;
   }
 }

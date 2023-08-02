@@ -1,16 +1,15 @@
 import template from './SectionTemplate.template'
 import styles from './SectionTemplate.module.scss'
 
-export default class SectionTemplate {
-  constructor(sectionData) {
-    this.sectionData = sectionData
-    this.el = document.createElement('div')
+export class SectionTemplate extends HTMLElement {
+  constructor() {
+    super();
   }
 
-  getEl = () => {
+  connectedCallback() {
     this.render()
-    return this.el
   }
 
-  render = () => { this.el.innerHTML = template(styles, this.sectionData) }
+  render = () => {
+    this.innerHTML = template(styles, this.dataset, this.children) }
 }
