@@ -1,0 +1,110 @@
+.testimonials {
+  background-color: #F6F6F6;
+
+  &__carousel {
+    overflow: hidden;
+
+    &-wrapper {
+      padding: 100px 80px;
+    }
+
+    &-slides {
+      overflow-x: hidden;
+    }
+
+    & > a {
+      width: 1.5rem;
+      height: 1.5rem;
+      background: white;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin: 0 0 0.5rem 0;
+
+      &:active {
+        top: 1px;
+      }
+
+      &:focus {
+        background: #000;
+      }
+    }
+  }
+
+  &__nav {
+    list-style-type: none;
+
+    &-el {
+      padding: 0 9px;
+    }
+
+    &-button {
+      opacity: 0.4;
+      font-size: 0;
+      cursor: pointer;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 11px;
+      padding: 3px 3px 2px 2px;
+      background-color: #9EA8B2;
+      color: #9EA8B2;
+      border-color: #9EA8B2;
+    }
+  }
+
+  &__slide {
+    &-wrapper {
+      height: 300px;
+      background: #eee;
+      transform-origin: center center;
+      transform: scale(1);
+      transition: transform 0.5s;
+      padding: 10px 0;
+    }
+
+    &-icon {
+      color: #FF700A;
+      width: 3rem;
+      height: 3rem;
+      z-index: 2;
+      top: -0.625rem;
+      left: -0.625rem;
+
+      &-wrapper {
+        span {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    &-body {
+      font-size: 22px;
+      font-family: 'Lato';
+      font-weight: 300;
+      line-height: 1.63636em;
+      padding: 10px 0px;
+    }
+
+    &-author {
+      font-size: 14px;
+      font-family: 'Lato';
+      font-weight: 400;
+      text-transform: uppercase;
+      line-height: 18px;
+      letter-spacing: 2px;
+      margin-top: 30px;
+      color: #778591;
+    }
+  }
+
+  &__image {
+    padding: 120px 0;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+}
+
