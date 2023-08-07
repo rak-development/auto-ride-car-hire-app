@@ -1,10 +1,5 @@
-const chevronRight =
-    '<svg viewBox="0 0 24 24"><path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"/></svg>'
-const chevronLeft =
-    '<svg viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>'
-
 export class Carousel {
-  #slides = null
+  #slidesData = null
   #configuration = null
   #parent = null
   #mainContainer = null
@@ -13,14 +8,16 @@ export class Carousel {
   #autoTransitionIntervalId = null
   #swipe = { active: false, threshold: 75, offset: 0 }
   #classNames = {
-    wrapper: "carousel-wrapper",
-    slide: "carousel-slide",
-    active: "slide-active",
+    wrapper: 'carousel-wrapper',
+    slide: 'carousel-slide',
+    slideWrapper: 'carousel-slide__wrapper',
+    slideBody: 'carousel-slide__body',
+    slideFooter: 'carousel-slide__footer',
+    iconWrapper: 'carousel-slide__icon-wrapper',
+    icon: 'carousel-slide__icon',
+    active: 'slide-active',
     navigation: {
-        dots: "carousel-dots",
-        arrows: "carousel-arrow",
-        leftArrow: "left-arrow",
-        rightArrow: "right-arrow"
+        dots: 'carousel-dots',
     }
   }
 
@@ -28,8 +25,8 @@ export class Carousel {
     return this.#currentIndex
   }
 
-  constructor(slides, configuration, parent = document.body) {
-    this.#slides = slides
+  constructor(slidesData, configuration, parent = document.body) {
+    this.#slidesData = slidesData
     this.#configuration = configuration
     this.#parent = parent
     this.#init()
@@ -54,14 +51,14 @@ export class Carousel {
     if (this.#configuration.infinite) {
         this.#currentIndex =
             direction === 1
-                ? (this.#currentIndex + 1) % this.#slides.length
+                ? (this.#currentIndex + 1) % this.#slidesData.length
                 : this.#currentIndex === 0
-                ? this.#slides.length - 1
+                ? this.#slidesData.length - 1
                 : this.#currentIndex - 1
     } else {
         this.#currentIndex =
             direction === 1
-                ? this.#currentIndex < this.#slides.length - 1
+                ? this.#currentIndex < this.#slidesData.length - 1
                     ? this.#currentIndex + 1
                     : this.#currentIndex
                 : this.#currentIndex > 0
@@ -96,7 +93,6 @@ export class Carousel {
      */
     #setNavigation() {
         this.#setDotsNavigation()
-        this.#setArrowsNavigation()
         this.#setPointerEvents()
     }
 
@@ -104,10 +100,10 @@ export class Carousel {
      * Sets the pointer events
      */
     #setPointerEvents() {
-        this.#mainContainer.addEventListener("pointerdown", (e) =>
+        this.#mainContainer.addEventListener('pointerdown', (e) =>
             this.#handlePointerDown(e)
         )
-        this.#mainContainer.addEventListener("pointerup", (e) =>
+        this.#mainContainer.addEventListener('pointerup', (e) =>
             this.#handlePointerUp(e)
         )
     }
@@ -118,17 +114,17 @@ export class Carousel {
     #setDotsNavigation() {
         if (!this.#configuration.dots) return
 
-        const dotsNavigation = document.createElement("div")
+        const dotsNavigation = document.createElement('div')
         dotsNavigation.classList.add(this.#classNames.navigation.dots)
 
-        this.#slides.forEach((slide, i) => {
-            const button = document.createElement("button")
+        this.#slidesData.forEach((slide, i) => {
+            const button = document.createElement('button')
 
             if (i === this.#currentIndex)
                 button.classList.add(this.#classNames.active)
 
             button.title = `See ${slide.title}`
-            button.addEventListener("pointerdown", () => this.#goToSlide(i))
+            button.addEventListener('pointerdown', () => this.#goToSlide(i))
 
             dotsNavigation.append(button)
         })
@@ -137,67 +133,49 @@ export class Carousel {
     }
 
     /**
-     * Sets arrows navigation
-     */
-    #setArrowsNavigation() {
-        if (!this.#configuration.arrows) return
-
-        const arrows = [
-            {
-                id: "prev",
-                icon: chevronLeft,
-                className: this.#classNames.navigation.leftArrow,
-                label: "Go to previous slide",
-                action: () => this.#navigate(-1)
-            },
-            {
-                id: "next",
-                icon: chevronRight,
-                className: this.#classNames.navigation.rightArrow,
-                label: "Go to next slide",
-                action: () => this.#navigate(1)
-            }
-        ]
-
-        arrows.forEach((arrow) => {
-            const button = document.createElement("button")
-
-            button.classList = `${this.#classNames.navigation.arrows} ${
-                arrow.className
-            }`
-            button.innerHTML = arrow.icon
-            button.title = arrow.label
-            button.addEventListener("pointerdown", arrow.action)
-            this.#mainContainer.append(button)
-        })
-    }
-
-    /**
      * Sets the slides
      */
     #setSlides() {
-        this.#slides.forEach((slide, i) => {
-            const slideDiv = document.createElement("div")
+        this.#slidesData.forEach(({text, author}, i) => {
 
-            slideDiv.classList.add(this.#classNames.slide)
-            slideDiv.setAttribute("data-slide", i)
+            // main wrapper
+            const mainWrapper = document.createElement('div')
+            mainWrapper.classList.add(this.#classNames.slide)
+            mainWrapper.setAttribute('data-slide', i)
 
-            if (slide.backgroundColor)
-                slideDiv.style.backgroundColor = slide.backgroundColor
-            if (slide.backgroundImage)
-                slideDiv.style.backgroundImage = `url(${slide.backgroundImage})`
+            if (i === 0) mainWrapper.classList.add(this.#classNames.active)
 
-            if (i === 0) slideDiv.classList.add(this.#classNames.active)
+            // slide wrapper
+            const slideWrapper = document.createElement('div')
+            slideWrapper.classList.add(this.#classNames.slideWrapper)
 
-            const slideText = document.createElement("div")
-            const h1 = document.createElement("h1")
-            const p = document.createElement("p")
+            // icon wrapper
+            const iconWrapper = document.createElement('div')
+            iconWrapper.classList.add(this.#classNames.iconWrapper, 'position-relative', 'd-inline-block')
 
-            h1.innerText = slide.title
-            p.innerText = slide.paragraph
-            slideText.append(h1, p)
-            slideDiv.append(slideText)
-            this.#mainContainer.append(slideDiv)
+            // icon
+            const icon = document.createElement('div')
+            icon.classList.add('fa-regular', 'fa-comments', this.#classNames.icon)
+
+            // icon span
+            const iconSpan = document.createElement('span')
+            iconSpan.classList.add('bg-white', 'd-block')
+
+            // slide body
+            const slideBody = document.createElement('div')
+            slideBody.classList.add(this.#classNames.slideBody)
+            slideBody.innerText = text
+
+            // slide footer
+            const slideFooter = document.createElement('div')
+            slideFooter.classList.add(this.#classNames.slideFooter)
+            slideFooter.innerText = author
+
+            // append elements
+            iconWrapper.append(icon, iconSpan)
+            slideWrapper.append(iconWrapper, slideBody, slideFooter)
+            mainWrapper.append(slideWrapper)
+            this.#mainContainer.append(mainWrapper)
         })
     }
 
@@ -205,8 +183,7 @@ export class Carousel {
      * Sets the carousel wrapper
      */
     #setCarouselWrapper() {
-        const div = document.createElement("div")
-
+        const div = document.createElement('div')
         div.classList.add(this.#classNames.wrapper)
         this.#parent.append(div)
         this.#mainContainer = div
@@ -278,7 +255,7 @@ export class Carousel {
      */
     #setOffsetCustomProperty(value) {
         this.#mainContainer.style.setProperty(
-            "--revealSlideOffset",
+            '--revealSlideOffset',
             `${value}px`
         )
     }
@@ -299,11 +276,11 @@ export class Carousel {
      */
     #setSizeCustomProperties() {
         this.#mainContainer.style.setProperty(
-            "--slider-width",
+            '--slider-width',
             this.#configuration.width
         )
         this.#mainContainer.style.setProperty(
-            "--slider-height",
+            '--slider-height',
             this.#configuration.height
         )
     }

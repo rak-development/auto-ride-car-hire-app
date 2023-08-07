@@ -31,40 +31,9 @@ export class Testimonials extends HTMLElement {
         author: 'Mia Wong'
       },
     ]
-
-    this.slides = [
-      {
-          title: "Slide 1",
-          paragraph: "Lorem ipsum dolor sit amet...",
-          backgroundImage:
-              // eslint-disable-next-line max-len
-              "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"
-      },
-      {
-          title: "Slide 2",
-          paragraph: "Lorem ipsum dolor sit amet...",
-          backgroundImage:
-              // eslint-disable-next-line max-len
-              "https://images.unsplash.com/photo-1466853817435-05b43fe45b39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2198&q=80"
-      },
-      {
-          title: "Slide 3",
-          paragraph: "Lorem ipsum dolor sit amet...",
-          backgroundImage:
-              // eslint-disable-next-line max-len
-              "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"
-      },
-      {
-          title: "Slide 4",
-          paragraph: "Lorem ipsum dolor sit amet...",
-          backgroundImage:
-              // eslint-disable-next-line max-len
-              "https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2842&q=80"
-      }
-    ];
   }
 
   connectedCallback() {
-    this.innerHTML = template(styles, this.slides)
+    this.innerHTML = template(styles, this.testimonialsData)
   }
 }
