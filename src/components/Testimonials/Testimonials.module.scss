@@ -5,7 +5,7 @@
     overflow: hidden;
 
     &-wrapper {
-      padding: 100px 80px;
+      padding: 6.25rem 5rem;
     }
 
     &-slides {
@@ -23,7 +23,7 @@
       margin: 0 0 0.5rem 0;
 
       &:active {
-        top: 1px;
+        top: 0.0625rem;
       }
 
       &:focus {
@@ -36,17 +36,17 @@
     list-style-type: none;
 
     &-el {
-      padding: 0 9px;
+      padding: 0 0.5625rem;
     }
 
     &-button {
       opacity: 0.4;
       font-size: 0;
       cursor: pointer;
-      border-width: 2px;
+      border-width: 0.125rem;
       border-style: solid;
-      border-radius: 11px;
-      padding: 3px 3px 2px 2px;
+      border-radius: 0.6875rem;
+      padding: 0.1875rem 0.1875rem 0.125rem 0.125rem;
       background-color: #9EA8B2;
       color: #9EA8B2;
       border-color: #9EA8B2;
@@ -55,12 +55,12 @@
 
   &__slide {
     &-wrapper {
-      height: 300px;
+      height: 18.75rem;
       background: #eee;
       transform-origin: center center;
       transform: scale(1);
       transition: transform 0.5s;
-      padding: 10px 0;
+      padding: 0.625rem 0;
     }
 
     &-icon {
@@ -81,27 +81,27 @@
     }
 
     &-body {
-      font-size: 22px;
+      font-size: 1.375rem;
       font-family: 'Lato';
       font-weight: 300;
       line-height: 1.63636em;
-      padding: 10px 0px;
+      padding: 0.625rem 0;
     }
 
     &-author {
-      font-size: 14px;
+      font-size: 0.875rem;
       font-family: 'Lato';
       font-weight: 400;
       text-transform: uppercase;
-      line-height: 18px;
-      letter-spacing: 2px;
-      margin-top: 30px;
+      line-height: 1.125rem;
+      letter-spacing: 0.125rem;
+      margin-top: 1.875rem;
       color: #778591;
     }
   }
 
   &__image {
-    padding: 120px 0;
+    padding: 7.5rem 0;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

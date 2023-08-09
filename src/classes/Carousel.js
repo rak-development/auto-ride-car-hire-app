@@ -123,7 +123,6 @@ export class Carousel {
             if (i === this.#currentIndex)
                 button.classList.add(this.#classNames.active)
 
-            button.title = `See ${slide.title}`
             button.addEventListener('pointerdown', () => this.#goToSlide(i))
 
             dotsNavigation.append(button)
@@ -147,7 +146,13 @@ export class Carousel {
 
             // slide wrapper
             const slideWrapper = document.createElement('div')
-            slideWrapper.classList.add(this.#classNames.slideWrapper)
+            slideWrapper.classList.add(
+                this.#classNames.slideWrapper, 
+                'w-100', 
+                'text-center', 
+                'position-absolute', 
+                'start-50'
+            )
 
             // icon wrapper
             const iconWrapper = document.createElement('div')
@@ -155,7 +160,7 @@ export class Carousel {
 
             // icon
             const icon = document.createElement('div')
-            icon.classList.add('fa-regular', 'fa-comments', this.#classNames.icon)
+            icon.classList.add('fa-regular', 'fa-comments', this.#classNames.icon, 'position-absolute')
 
             // icon span
             const iconSpan = document.createElement('span')
