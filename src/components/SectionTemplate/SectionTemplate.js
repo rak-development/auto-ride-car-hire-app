@@ -4,6 +4,8 @@ import styles from './SectionTemplate.module.scss'
 export class SectionTemplate extends HTMLElement {
   constructor() {
     super();
+    this.attachShadow({ mode: 'open'});
+     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   connectedCallback() {
@@ -11,5 +13,6 @@ export class SectionTemplate extends HTMLElement {
   }
 
   render = () => {
-    this.innerHTML = template(styles, this.dataset, this.children) }
+    this.innerHTML = template(styles, this.dataset, this.children) 
+  }
 }
