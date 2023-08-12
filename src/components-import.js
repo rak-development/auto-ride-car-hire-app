@@ -17,7 +17,8 @@ import { SocialIcons } from './components/SocialIcons/SocialIcons'
 import { BookingReservation } from './components/BookingReservation/BookingReservation'
 import { ContactBox } from './components/ContactBox/ContactBox'
 import { KeyFeatures } from './components/KeyFeatures/KeyFeatures'
-import { SectionTemplate } from './components/SectionTemplate/SectionTemplate';
+import { SectionTemplate } from './components/SectionTemplate/SectionTemplate'
+import { WhyChooseUs } from './components/WhyChooseUs/WhyChooseUs'
 
 // Layout Elements
 customElements.define('app-layout', AppLayout)
@@ -39,4 +40,4 @@ customElements.define('booking-reservation', BookingReservation)
 customElements.define('contact-box', ContactBox)
 customElements.define('key-features', KeyFeatures)
 customElements.define('section-template', SectionTemplate)
-
+customElements.define('why-choose-us', WhyChooseUs)
