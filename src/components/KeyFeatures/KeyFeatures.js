@@ -56,8 +56,8 @@ export class KeyFeatures extends HTMLElement {
     // `;
     this.innerHTML = `
       <section-template>
-        <div>
-          <div slot="subheader"><b>ID:</b> 238</div>
+        <div slot="subheader">
+          <div><b>ID:</b> 238</div>
         </div>
         </section-template>
     `;
