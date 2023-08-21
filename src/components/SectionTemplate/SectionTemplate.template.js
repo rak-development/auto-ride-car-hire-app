@@ -1,8 +1,9 @@
 const template = () => {
   return `
-    <div>
-      Section Template
-      <slot name='subheader'></slot>
+    <div class='section-template'>
+      <slot class='section-subheader' name='subheader'></slot>
+      <slot class='section-header' name='header'></slot>
+      <slot name='content'></slot>
     </div>
   `;
 };
