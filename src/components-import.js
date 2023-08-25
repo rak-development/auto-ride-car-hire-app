@@ -18,6 +18,7 @@ import { BookingReservation } from './components/BookingReservation/BookingReser
 import { ContactBox } from './components/ContactBox/ContactBox'
 import { KeyFeatures } from './components/KeyFeatures/KeyFeatures'
 import { SectionTemplate } from './components/SectionTemplate/SectionTemplate';
+import { Testimonials } from './components/Testimonials/Testimonials'
 
 // Layout Elements
 customElements.define('app-layout', AppLayout)
@@ -40,3 +41,4 @@ customElements.define('contact-box', ContactBox)
 customElements.define('key-features', KeyFeatures)
 customElements.define('section-template', SectionTemplate)
 
+customElements.define('testimonials-section', Testimonials)
