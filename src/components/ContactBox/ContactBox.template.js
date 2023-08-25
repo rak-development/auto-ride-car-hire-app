@@ -6,7 +6,7 @@ const template = (styles, contactData) => {
           <div class='${styles['contact-box']} d-flex'>
             <div class='${styles['contact-box__icon-container']}'>
               <i class='${icon} ${styles['contact-box__icon']}'></i>
-              <span></span>
+              <span class='bg-white'></span>
             </div>
             <div class='${styles['contact-box__content']}'>
               <div class='${styles['contact-box__title']}'>${title}</div>

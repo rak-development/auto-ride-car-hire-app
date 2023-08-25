@@ -1,3 +1,5 @@
+@import '/src/global-styles/_variables';
+
 .header-middle {
   &__logo {
     max-width: 14.6875rem;
@@ -23,8 +25,8 @@
     }
     &-link {
       text-transform: uppercase;
-      line-height: 1.625rem;
-      color: #556677;
+      line-height: $secondary-line-height;
+      color: $gray-700;
       font-size: 1rem;
       padding-top: 0.625rem;
       padding-bottom: 0.625rem;
