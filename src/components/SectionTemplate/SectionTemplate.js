@@ -8,7 +8,6 @@ const styles = `
   .section-subheader {
     ont-size: 1.125rem;
     color: #FF700A;
-    font-family: 'Lato';
     font-weight: 700;
     text-transform: uppercase;
     line-height: 1.66666em;
@@ -18,9 +17,8 @@ const styles = `
     font-size: 2.5rem;
     margin-top: 0.625rem;
     color: #2C3E50;
-    font-family: 'Lato';
     font-weight: 300;
-    line-height: 1.4em;
+    line-height: 1.4rem;
   }
 `
 const sheet = new CSSStyleSheet();

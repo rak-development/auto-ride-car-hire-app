@@ -1,5 +1,7 @@
+@import '/src/global-styles/_variables';
+
 .header-top__container {
   font-weight: 400;
-  line-height: 1.5rem;
+  line-height: $primary-line-height;
   padding: 0.5rem 0;
 }

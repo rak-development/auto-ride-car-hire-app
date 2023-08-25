@@ -3,7 +3,8 @@
   "extends": "eslint:recommended",
   "rules": {
     "max-len": [1, 120, 2, { "ignoreComments": true }],
-    "eol-last": 1
+    "eol-last": 1,
+    "quotes": [0, "single", { "avoidEscape": true }]
   },
   "env": {
     "browser": true,
