@@ -48,27 +48,33 @@ export class Carousel {
  * @param {1 | -1} direction The direction
  */
   #navigate(direction) {
+    if (direction !== 1) return
     if (this.#configuration.infinite) {
-        this.#currentIndex =
-            direction === 1
-                ? (this.#currentIndex + 1) % this.#slidesData.length
-                : this.#currentIndex === 0
-                ? this.#slidesData.length - 1
-                : this.#currentIndex - 1
+        // this.#currentIndex =
+        //     direction === 1
+        //         ? (this.#currentIndex + 1) % this.#slidesData.length
+        //         : this.#currentIndex === 0
+        //         ? this.#slidesData.length - 1
+        //         : this.#currentIndex - 1
+
+        this.#currentIndex = (this.#currentIndex + 1) % this.#slidesData.length
     } else {
-        this.#currentIndex =
-            direction === 1
-                ? this.#currentIndex < this.#slidesData.length - 1
-                    ? this.#currentIndex + 1
-                    : this.#currentIndex
-                : this.#currentIndex > 0
-                ? this.#currentIndex - 1
-                : this.#currentIndex
+        // this.#currentIndex =
+        //     direction === 1
+        //         ? this.#currentIndex < this.#slidesData.length - 1
+        //             ? this.#currentIndex + 1
+        //             : this.#currentIndex
+        //         : this.#currentIndex > 0
+        //         ? this.#currentIndex - 1
+        //         : this.#currentIndex
+
+        this.#currentIndex = 
+            (this.#currentIndex < this.#slidesData.length - 1) 
+            ? this.#currentIndex + 1 
+            : this.#slidesData.length - 1
     }
 
-    this.#setOffsetCustomProperty(
-        direction === 1 ? this.#revealOffset : -this.#revealOffset
-    )
+    this.#setOffsetCustomProperty(this.#revealOffset * direction)
     this.#setCurrentSlide(this.#currentIndex)
     this.#setActiveDot(this.#currentIndex)
   }
@@ -137,14 +143,12 @@ export class Carousel {
     #setSlides() {
         this.#slidesData.forEach(({text, author}, i) => {
 
-            // main wrapper
             const mainWrapper = document.createElement('div')
             mainWrapper.classList.add(this.#classNames.slide)
             mainWrapper.setAttribute('data-slide', i)
 
             if (i === 0) mainWrapper.classList.add(this.#classNames.active)
 
-            // slide wrapper
             const slideWrapper = document.createElement('div')
             slideWrapper.classList.add(
                 this.#classNames.slideWrapper, 
@@ -154,29 +158,23 @@ export class Carousel {
                 'start-50'
             )
 
-            // icon wrapper
             const iconWrapper = document.createElement('div')
             iconWrapper.classList.add(this.#classNames.iconWrapper, 'position-relative', 'd-inline-block')
 
-            // icon
             const icon = document.createElement('div')
             icon.classList.add('fa-regular', 'fa-comments', this.#classNames.icon, 'position-absolute')
 
-            // icon span
             const iconSpan = document.createElement('span')
             iconSpan.classList.add('bg-white', 'd-block')
 
-            // slide body
             const slideBody = document.createElement('div')
             slideBody.classList.add(this.#classNames.slideBody)
             slideBody.innerText = text
 
-            // slide footer
             const slideFooter = document.createElement('div')
             slideFooter.classList.add(this.#classNames.slideFooter)
             slideFooter.innerText = author
 
-            // append elements
             iconWrapper.append(icon, iconSpan)
             slideWrapper.append(iconWrapper, slideBody, slideFooter)
             mainWrapper.append(slideWrapper)
