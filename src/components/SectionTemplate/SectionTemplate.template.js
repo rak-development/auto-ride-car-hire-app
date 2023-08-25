@@ -1,12 +1,11 @@
-const template = (styles, sectionData) => {
+const template = () => {
   return `
-    <div class='${styles['section-template']} ${sectionData.bgMode} text-center'>
-      <div class='container'>
-        <div class='${styles['section-template__subheader']}'>${sectionData.subheader}</div>
-        <div class='${styles['section-template__header']}'>${sectionData.header}</div>
-        ${sectionData.sectionContent}
-      </div>
+    <div class='section-template'>
+      <slot class='section-subheader' name='subheader'></slot>
+      <slot class='section-header' name='header'></slot>
+      <slot name='content'></slot>
     </div>
-  `
-}
-export default template
+  `;
+};
+
+export default template;

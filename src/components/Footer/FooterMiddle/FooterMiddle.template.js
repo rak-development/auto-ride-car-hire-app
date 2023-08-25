@@ -1,4 +1,4 @@
-const logo = require('/src/assets/images/AutoRide-Footer-Logo.png')
+import logo from '/src/assets/images/AutoRide-Footer-Logo.png';
 
 const template = (styles, servicesList, contactList) => {
   return `
