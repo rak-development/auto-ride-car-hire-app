@@ -37,29 +37,13 @@ export class KeyFeatures extends HTMLElement {
   }
 
   connectedCallback() {
-    // const { bgMode, subheader, header } = this.sectionData;
-    // this.innerHTML = `
-    //   <section-template 
-    //     data-bgMode='${bgMode}'
-    //     data-subheader='${subheader}'
-    //     data-header='${header}'>
-    //       <div></div>
-    //       <div slot="content"><b>Email:</b> lcrystal34@gmail.com</div>
-    //   </section-template>
-    // `;
-    // this.innerHTML = `
-    //   <employee-card name="Leah Crystal" avatar=image.png></employee-card>
-    //   <div slot="id"><b>ID:</b> 238</div>
-    //   <div slot="job title"><b>Job Title:</b> Database Administrator</div>
-    //   <div slot="email"><b>Email:</b> lcrystal34@gmail.com</div>
-    //   <div slot="phone"><b>Phone:</b> 292-856-410</div>
-    // `;
+    const { subheader, header, sectionContent } = this.sectionData;
     this.innerHTML = `
       <section-template>
-        <div>
-          <div slot="subheader"><b>ID:</b> 238</div>
-        </div>
-        </section-template>
+        <div class='container text-center' slot='subheader'>${subheader}</div>
+        <div class='container text-center' slot='header'>${header}</div>
+        <div class='container' slot='content'>${sectionContent}</div>
+      </section-template>
     `;
   }
 }

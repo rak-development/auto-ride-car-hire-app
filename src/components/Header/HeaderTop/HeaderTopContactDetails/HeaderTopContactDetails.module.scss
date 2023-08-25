@@ -1,14 +1,16 @@
+@import '/src/global-styles/_variables';
+
 .header-top__contact-details {
-  color: #778591;
-  font-size: 0.9375rem;
+  color: $gray-600;
+  font-size: $spacing09375;
 
   &__el {
-    padding-right: 0.9375rem;
+    padding-right: $spacing09375;
     margin-right: 1.5625rem;
   }
 
   &__icon {
     font-size: 1rem;
-    padding-right: 0.9375rem;
+    padding-right: $spacing09375;
   }
 }

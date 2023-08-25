@@ -1,8 +1,10 @@
+@import '/src/global-styles/_variables';
+
 .footer-middle {
-  background-color: #EAECEE;
+  background-color: $gray-200;
 
   &__content-box {
-    color: #556677;
+    color: $gray-700;
     margin-bottom: 2.5rem;
 
     p {
@@ -17,25 +19,24 @@
 
   &__title-box {
     font-size: 1rem;
-    font-family: 'Lato';
     font-weight: 400;
     text-transform: uppercase;
-    line-height: 1.54545em;
-    color: #2C3E50;
-    margin-bottom: 1.875rem;
+    line-height: $primary-line-height;
+    color: $gray-800;
+    margin-bottom: $spacing1875;
 
     span {
       height: 0.0625rem;
       width: 3.125rem;
       display: block;
       margin-top: 0.625rem;
-      background-color: #FF700A;
+      background-color: $primary;
     }
   }
 
   &__logo {
-    margin-top: 1.875rem;
-    margin-bottom: 1.875rem;
+    margin-top: $spacing1875;
+    margin-bottom: $spacing1875;
     height: auto;
     display: block;
     max-width: 100%;
@@ -48,10 +49,9 @@
     
 
     &-element {
-      font-family: 'Lato';
       font-size: 1rem;
       font-weight: 300;
-      line-height: 1.625rem;
+      line-height: $secondary-line-height;
       display: flex;
       align-items: center;
       padding-top: 0.625rem;

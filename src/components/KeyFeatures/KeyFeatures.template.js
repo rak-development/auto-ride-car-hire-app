@@ -1,6 +1,6 @@
 const template = (styles, keyFeaturesData) => {
   return `
-    <div class='${styles['key-features']}'>
+    <div class='${styles['key-features']} text-center'>
       <div class='row'>
         ${keyFeaturesData.map(({icon, header, body}) => `
           <div class='col-md-3'>

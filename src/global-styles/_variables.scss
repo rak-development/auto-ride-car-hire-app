@@ -9,6 +9,7 @@ $gray-100: #f6f6f6 !default;
 $gray-200: #eaecee !default;
 $gray-600: #778591 !default;
 $gray-700: #556677 !default;
+$gray-800: #2C3E50 !default;
 
 // scss-docs-start theme-color-variables
 $primary:       #FF700A !default;
@@ -26,6 +27,11 @@ $h2-font-size:                $h1-font-size !default;
 $h5-font-size:                $font-size-base * 1.125 !default;
 
 $headings-line-height:        1.5 !default;
+$primary-line-height:         1.5rem !default;
+$secondary-line-height:       1.66rem !default;
+
+$spacing1875:                 1.875rem !default;
+$spacing09375:                 0.9375rem !default;
 
 // Links
 //
