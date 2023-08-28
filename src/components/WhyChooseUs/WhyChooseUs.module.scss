@@ -36,17 +36,45 @@
     flex-direction: column;
     justify-content: center;
 
-    &-content {
+    &-item {
       top: 50%;
       left: 50%;
       z-index: 2;
-      width: 375px;
+      width: 100%;
       margin-top: -30px;
       margin-left: -30px;
       position: absolute;
-      display: table-row;
-      transform: rotate(25deg) translate(0,-255px) rotate(-25deg);
       text-align: left;
+      display: flex;
+      align-items: center;
+
+      &-circle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 50%;
+        background-color: #FFFFFF;
+        border-color: #EAECEE;
+      }
+
+      &-icon {
+        width: 28px;
+        height: 28px;
+        display: block;
+        color: #FF700A;
+      }
+
+      &-label {
+        padding-left: 40px;
+        color: #2C3E50;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
     }
 
     &:first-child {
