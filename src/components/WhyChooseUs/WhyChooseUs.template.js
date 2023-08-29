@@ -1,5 +1,76 @@
 const template = (styles, sectionData) => {
   return `
+    <style>
+
+      .circle-item {
+        position: absolute;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        z-index: 1;
+      }
+
+      .circle-item__circle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 50%;
+        background-color: #FFFFFF;
+        border-color: #EAECEE;
+      }
+
+      .circle-item__icon {
+        width: 28px;
+        height: 28px;
+        display: block;
+        color: #FF700A;
+      }
+
+      .circle-item__label {
+        padding-left: 40px;
+        color: #2C3E50;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .circle-item__text-left {
+        justify-content: end;
+
+        .circle-item__circle { order: 1 }
+        .circle-item__label { 
+          order: 0;
+          padding-right: 40px;
+          padding-left: 0;
+        }
+      }
+
+      .circle-item__text-top {
+        flex-direction: column;
+
+        .circle-item__circle { order: 1 }
+        .circle-item__label { 
+          order: 0;
+          padding-right: 0;
+          padding-left: 0;
+          padding-bottom: 40px;
+        }
+      }
+
+      .circle-item__text-bottom {
+        flex-direction: column;
+        .circle-item__label {
+          padding-top: 40px;
+          padding-right: 0;
+          padding-left: 0;
+        }
+      }
+
+    </style>
     <div class='${styles['section-template']} ${sectionData.bgMode} text-center'>
       <div class='container'>
         <div class='${styles['section-template__subheader']}'>${sectionData.subheader}</div>
@@ -8,67 +79,10 @@ const template = (styles, sectionData) => {
       <div class='container'>
         <div class='${styles['core-values__container']} position-relative'>
           <div class='${styles['core-values__circle']}'>
-            <span class='d-block'>7 CORE VALUES</span>
+            <span class='d-block'>${sectionData.valueNumber} CORE VALUES</span>
             <span class='d-block'>That make us the best transportation company in the area</span>
           </div>
-          <div class='${styles['core-values__circle']}'>
-            <div 
-              class='${styles['core-values__circle-item']}' 
-              style='transform: rotate(25deg) translate(0,-255px) rotate(-25deg);'>
-              <span class='${styles['core-values__circle-item-circle']}'>
-                <i class='${styles['core-values__circle-item-icon']} fa-solid fa-check'></i>
-              </span>
-              <span class='${styles['core-values__circle-item-label']}'>FIRST-RATE CUSTOMER SERVICE</span>
-            </div>
-            <div 
-              class='${styles['core-values__circle-item']}'
-              style='transform: rotate(76.42857142857143deg) translate(0,-255px) rotate(-76.42857142857143deg'>
-              <span class='${styles['core-values__circle-item-circle']}'>
-                <i class='${styles['core-values__circle-item-icon']} fa-solid fa-check'></i>
-              </span>
-              <span class='${styles['core-values__circle-item-label']}'>CLEAN AND WELL-MAINTAINED VEHICLES</span>
-            </div>
-            <div 
-              class='${styles['core-values__circle-item']}'
-              style='transform:rotate(127.85714285714286deg) translate(0,-255px) rotate(-127.85714285714286deg'>
-              <span class='${styles['core-values__circle-item-circle']}'>
-                <i class='${styles['core-values__circle-item-icon']} fa-solid fa-check'></i>
-              </span>
-              <span class='${styles['core-values__circle-item-label']}'>INNOVATIVE USE OF TECHNOLOGY</span>
-            </div>
-            <div 
-              class='${styles['core-values__circle-item']}'
-              style='transform:rotate(179.28571428571428deg) translate(0,-255px) rotate(-179.28571428571428deg'>
-              <span class='${styles['core-values__circle-item-circle']}'>
-                <i class='${styles['core-values__circle-item-icon']} fa-solid fa-check'></i>
-              </span>
-              <span class='${styles['core-values__circle-item-label']}'>PUNCTUALITY AND VERACITY</span>
-            </div>
-            <div 
-              class='${styles['core-values__circle-item']}'
-              style='transform: rotate(230.714deg) translate(0px, -255px) rotate(-230.714deg); margin-left: -438px;'>
-              <span class='${styles['core-values__circle-item-label']}'>PURSUIT OF CONTINUOUS IMPROVEMENT</span>
-              <span class='${styles['core-values__circle-item-circle']}'>
-                <i class='${styles['core-values__circle-item-icon']} fa-solid fa-check'></i>
-              </span>
-            </div>
-            <div 
-              class='${styles['core-values__circle-item']}'
-              style='transform: rotate(282.143deg) translate(0px, -255px) rotate(-282.143deg); margin-left: -378px;'>
-              <span class='${styles['core-values__circle-item-label']}'>SAFETY AS OUR HIGHEST PRIORITY</span>
-              <span class='${styles['core-values__circle-item-circle']}'>
-                <i class='${styles['core-values__circle-item-icon']} fa-solid fa-check'></i>
-              </span>
-            </div>
-            <div 
-              class='${styles['core-values__circle-item']}'
-              style='transform: rotate(333.571deg) translate(0px, -255px) rotate(-333.571deg); margin-left: -450px;'>
-              <span class='${styles['core-values__circle-item-label']}'>HIGHLY TRAINED PROFESSIONAL DRIVERS</span>
-              <span class='${styles['core-values__circle-item-circle']}'>
-                <i class='${styles['core-values__circle-item-icon']} fa-solid fa-check'></i>
-              </span>
-            </div>
-          </div>
+          <div id='content-circle' class='${styles['core-values__circle']}'></div>
           <div class='${styles['core-values__circle']}'></div>
         </div>
       </div>
