@@ -20,6 +20,7 @@ import { KeyFeatures } from './components/KeyFeatures/KeyFeatures'
 import { SectionTemplate } from './components/SectionTemplate/SectionTemplate'
 import { WhyChooseUs } from './components/WhyChooseUs/WhyChooseUs'
 import { Testimonials } from './components/Testimonials/Testimonials'
+import { OurFleet } from './components/OurFleet/OurFleet'
 
 // Layout Elements
 customElements.define('app-layout', AppLayout)
@@ -43,3 +44,4 @@ customElements.define('key-features', KeyFeatures)
 customElements.define('section-template', SectionTemplate)
 customElements.define('why-choose-us', WhyChooseUs)
 customElements.define('testimonials-section', Testimonials)
+customElements.define('our-fleet', OurFleet)

@@ -1,4 +1,4 @@
-import logo from '/src/assets/images/AutoRide-Logo.png';
+import logo from '/src/assets/images/AutoRide-Logo.png'
 
 const template = styles => {
   return `

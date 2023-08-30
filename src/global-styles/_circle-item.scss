@@ -35,8 +35,9 @@
   &__text {
     &-left {
       justify-content: end;
-      .circle-item__circle { order: 1 }
-      .circle-item__label { 
+      .circle-item__circle { -ms-order: 1; order: 1 }
+      .circle-item__label {
+        -ms-order: 0; 
         order: 0;
         padding-right: 2.5rem;
         padding-left: 0;
@@ -45,8 +46,9 @@
 
     &-top {
       flex-direction: column;
-      .circle-item__circle { order: 1 }
+      .circle-item__circle { -ms-order: 1; order: 1;  }
       .circle-item__label { 
+        -ms-order: 0;
         order: 0;
         padding-right: 0;
         padding-left: 0;

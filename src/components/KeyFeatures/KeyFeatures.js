@@ -1,9 +1,9 @@
-import template from './KeyFeatures.template';
-import styles from './KeyFeatures.module.scss';
+import template from './KeyFeatures.template'
+import styles from './KeyFeatures.module.scss'
 
 export class KeyFeatures extends HTMLElement {
   constructor() {
-    super();
+    super()
 
     this.keyFeaturesData = [
       {
@@ -37,13 +37,13 @@ export class KeyFeatures extends HTMLElement {
   }
 
   connectedCallback() {
-    const { subheader, header, sectionContent } = this.sectionData;
+    const { subheader, header, sectionContent } = this.sectionData
     this.innerHTML = `
       <section-template>
         <div class='container text-center' slot='subheader'>${subheader}</div>
         <div class='container text-center' slot='header'>${header}</div>
         <div class='container' slot='content'>${sectionContent}</div>
       </section-template>
-    `;
+    `
   }
 }
