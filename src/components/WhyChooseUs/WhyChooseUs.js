@@ -16,7 +16,7 @@ const buildCircleContent = circleContentData => {
     circleItem.className = 'circle-item';
 
     const itemIconContainer = document.createElement('span')
-    itemIconContainer.className = 'circle-item__circle';
+    itemIconContainer.className = 'circle-item__circle bg-white';
 
     const itemIcon = document.createElement('i')
     itemIcon.className = 'fa-solid fa-check circle-item__icon';
