@@ -21,6 +21,7 @@ import { SectionTemplate } from './components/SectionTemplate/SectionTemplate'
 import { WhyChooseUs } from './components/WhyChooseUs/WhyChooseUs'
 import { Testimonials } from './components/Testimonials/Testimonials'
 import { OurFleet } from './components/OurFleet/OurFleet'
+import { WhatWeOffer } from './components/WhatWeOffer/WhatWeOffer'
 
 // Layout Elements
 customElements.define('app-layout', AppLayout)
@@ -45,3 +46,4 @@ customElements.define('section-template', SectionTemplate)
 customElements.define('why-choose-us', WhyChooseUs)
 customElements.define('testimonials-section', Testimonials)
 customElements.define('our-fleet', OurFleet)
+customElements.define('what-we-offer', WhatWeOffer)
