@@ -25,7 +25,7 @@ const quoteRow = (styles, quote) => {
     <div class='row'>
       <div class='col'>
         <div class='${styles['introduction__quote']} text-center'>
-          <i class="fa-solid fa-quote-left ${styles['introduction__quote-icon']}"></i>
+          <i class='fa-solid fa-quote-left ${styles['introduction__quote-icon']}'></i>
           <blockquote class='${styles['introduction__blockquote']}'>${quote[0].text}</blockquote>
           <div class='${styles['introduction__quote-author']}'>${quote[0].author}</div>
         </div>

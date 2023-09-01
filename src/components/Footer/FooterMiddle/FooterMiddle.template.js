@@ -13,7 +13,7 @@ const template = (styles, servicesList, contactList) => {
                 Ut sodales libero et varius commodo. Phasellus tristique magna sit amet aliquet mollis.
               </p>
               <p>
-                <img src="${logo}" id="logo" class="${styles['footer-middle__logo']}" alt="AutoRide-Logo" />
+                <img src='${logo}' id='logo' class='${styles['footer-middle__logo']}' alt='AutoRide-Logo' />
               </p>
             </div>
           </div>

@@ -5,8 +5,8 @@ const template = (styles, testimonialsData) => {
 
   window.onload = function() {
     new Carousel(testimonialsData, {
-      width: "clamp(320px, 75vw, 100%)",
-      height: "clamp(240px, 75vh, 400px)",
+      width: 'clamp(320px, 75vw, 100%)',
+      height: 'clamp(240px, 75vh, 400px)',
       infinite: true,
       dots: true,
       autoTransition: true,
