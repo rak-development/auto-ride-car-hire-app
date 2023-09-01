@@ -5,7 +5,7 @@ const template = () => {
       <slot class='section-header' name='header'></slot>
       <slot name='content'></slot>
     </div>
-  `;
-};
+  `
+}
 
-export default template;
+export default template

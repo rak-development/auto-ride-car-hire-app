@@ -3,7 +3,7 @@ import styles from './Testimonials.module.scss'
 
 export class Testimonials extends HTMLElement {
   constructor() {
-    super();
+    super()
 
     this.testimonialsData = [
       {

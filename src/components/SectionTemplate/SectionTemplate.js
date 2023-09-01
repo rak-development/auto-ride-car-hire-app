@@ -21,13 +21,13 @@ const styles = `
     line-height: 1.4rem;
   }
 `
-const sheet = new CSSStyleSheet();
-sheet.replaceSync(styles);
+const sheet = new CSSStyleSheet()
+sheet.replaceSync(styles)
 
 export class SectionTemplate extends HTMLElement {
   constructor() {
-    super();
-    this.attachShadow({ mode: 'open'});
+    super()
+    this.attachShadow({ mode: 'open'})
   }
 
   connectedCallback() {
@@ -36,6 +36,6 @@ export class SectionTemplate extends HTMLElement {
 
   render = () => {
     this.shadowRoot.innerHTML = template(styles)
-    this.shadowRoot.adoptedStyleSheets = [sheet];
+    this.shadowRoot.adoptedStyleSheets = [sheet]
   }
 }

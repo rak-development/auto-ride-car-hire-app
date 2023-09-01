@@ -1,5 +1,5 @@
 import image from '/src/assets/images/AutoRide-Testimonials.jpeg'
-import { Carousel } from '../../classes/Carousel';
+import { Carousel } from '../../classes/Carousel'
 
 const template = (styles, testimonialsData) => {
 
