@@ -2,6 +2,7 @@ const template = () => {
   return `
     <header-layout></header-layout>
     <main>
+      <what-we-offer></what-we-offer>
       <why-choose-us></why-choose-us>
       <testimonials-section></testimonials-section>
       <key-features></key-features>
