@@ -4,7 +4,7 @@ const template = styles => {
       <form class='${styles['booking-reservation__form']} bg-white'>
         <div class='container'>
           <div class='row'>
-            <div class='col-3 p-0'>
+            <div class='col-md-6 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <label for='pickupLocation' class='form-label ${styles['booking-reservation__label']}'>
                   Pickup Location
@@ -12,7 +12,7 @@ const template = styles => {
                 <input type='text' class='form-control' id='pickupLocation'>
               </div>
             </div>
-            <div class='col-3 p-0'>
+            <div class='col-md-6 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <label for='dropOffLocation' class='form-label ${styles['booking-reservation__label']}'>
                   Drop-off Location
@@ -20,15 +20,15 @@ const template = styles => {
                 <input type='text' class='form-control' id='dropOffLocation'>
               </div>
             </div>
-            <div class='col-2 p-0'>
+            <div class='col-md-6 col-lg-3 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <label for='pickupDate' class='form-label ${styles['booking-reservation__label']}'>Date From</label>
                 <input type='date' class='form-control' id='pickupDate'>
               </div>
             </div>
-            <div class='col-1 p-0'>
+            <div class='col-md-6 col-lg-3 p-0'>
               <div class='${styles['booking-reservation__box']}'>
-                <select name='pickupTime' id='pickupTime'>
+                <select class='form-select' name='pickupTime' id='pickupTime'>
                   <option value='9:00'>9:00</option>
                   <option value='10:00'>10:00</option>
                   <option value='11:00'>11:00</option>
@@ -36,15 +36,15 @@ const template = styles => {
                 </select>
               </div>
             </div>
-            <div class='col-2 p-0'>
+            <div class='col-md-6 col-lg-3 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <label for='dropOffDate' class='form-label ${styles['booking-reservation__label']}'>Date To</label>
                 <input type='date' class='form-control' id='dropOffDate'>
               </div>
             </div>
-            <div class='col-1 p-0'>
+            <div class='col-md-6 col-lg-3 p-0'>
               <div class='${styles['booking-reservation__box']} border-end-0'>
-                <select name='dropOffTime' id='dropOffTime'>
+                <select class='form-select' name='dropOffTime' id='dropOffTime'>
                   <option value='9:00'>9:00</option>
                   <option value='10:00'>10:00</option>
                   <option value='11:00'>11:00</option>
@@ -52,7 +52,7 @@ const template = styles => {
                 </select>
               </div>
             </div>
-            <div class='col-4 p-0'>
+            <div class='col-md-4 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <div class='form-check mb-0'>
                   <input class='form-check-input' type='checkbox' value='' id='differentLocation'>
@@ -62,7 +62,7 @@ const template = styles => {
                 </div>
               </div>
             </div>
-            <div class='col-4 p-0'>
+            <div class='col-md-4 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <div class='form-check mb-0'>
                   <input class='form-check-input' type='checkbox' value='' id='over25'>
@@ -72,7 +72,7 @@ const template = styles => {
                 </div>
               </div>
             </div>
-            <div class='col-4 p-0'>
+            <div class='col-md-4 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <div class='form-check mb-0'>
                   <input class='form-check-input' type='checkbox' value='' id='discountCodeCheck'>
@@ -85,9 +85,12 @@ const template = styles => {
                 </div>
               </div>
             </div>
-            <div class='col-2 p-0'>
+            <div class='col p-0'>
               <div class='${styles['booking-reservation__box']} border-0'>
-                <button type='submit' class='btn btn-primary text-white text-uppercase'>Find Cars</button>
+                <button 
+                  type='submit' 
+                  class='btn btn-primary text-uppercase ${styles['booking-reservation__submit']}'
+                >Find Cars</button>
               </div>
             </div>
           </div>

@@ -1,3 +1,5 @@
+// @import "bootstrap/scss/functions";
+// @import "bootstrap/scss/variables";
 @import '/src/global-styles/_variables';
 
 .booking-reservation {
@@ -14,5 +16,23 @@
 
   &__label {
     color: $gray-600;
+  }
+
+  &__submit {
+    font-size: 0.875rem;
+    font-weight: 400;
+    border-width: 0.125rem;
+    border-radius: 90px;
+    padding: 16px 32px;
+    background-color: $primary;
+    border-color: $primary;
+    max-width: 160px;
+    color: #fff;
+
+    &:hover {
+      background-color: #fff;
+      color: $primary;
+      border-color: $primary;
+    }
   }
 }

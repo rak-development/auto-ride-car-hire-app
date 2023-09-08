@@ -36,7 +36,6 @@ const quoteRow = (styles, quote) => {
 
 const template = (styles, introductionData) => { 
   const { title, content, images, quote } = introductionData
-  console.log(styles)
   return `
     <div class='container ${styles.introduction}'>
       <div class='row ${styles['introduction__row']}'>
