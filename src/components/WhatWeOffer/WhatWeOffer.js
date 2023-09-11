@@ -39,7 +39,7 @@ export class WhatWeOffer extends HTMLElement {
       {
         id: 5,
         colSize: 3,
-        title: 'Special Event Limousine',
+        title: 'Special Event',
         image: specialEventLimousine,
       },
     ]

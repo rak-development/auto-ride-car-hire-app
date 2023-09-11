@@ -4,7 +4,7 @@ const imagesRow = (styles, images, content) => {
       ${images.map(({ id, image }) => {
         const colSize = content.length === 1 ? 12 : 6 
         return `
-          <div class='col-md-${colSize}'>
+          <div class='col-${colSize}'>
             <img 
               class='
                 img-fluid 

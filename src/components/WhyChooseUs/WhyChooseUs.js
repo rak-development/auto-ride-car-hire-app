@@ -2,7 +2,8 @@ import template from './WhyChooseUs.template'
 import styles from './WhyChooseUs.module.scss'
 
 const buildCircleContent = circleContentData => {
-  const { length } = circleContentData
+  const { coreValues: data } = circleContentData
+  const { length } = data
   const div = 360 / length
   const radius = 255
   const contentCircle = document.querySelector('#content-circle')
@@ -11,7 +12,7 @@ const buildCircleContent = circleContentData => {
   const totalOffset = offsetToParentCenter - offsetToChildCenter
 
   for (var i = 0; i < length; ++i) {
-    const { title } = circleContentData[i]
+    const { title } = data[i]
     const circleItem = document.createElement('div')
     circleItem.className = 'circle-item'
 
@@ -70,42 +71,46 @@ export class WhyChooseUs extends HTMLElement {
   constructor() {
     super()
 
-    this.circleContent = [
-      {
-        id: 1,
-        title: 'FIRST-RATE CUSTOMER SERVICE'
-      },
-      {
-        id: 2,
-        title: 'CLEAN AND WELL-MAINTAINED VEHICLES'
-      },
-      {
-        id: 3,
-        title: 'INNOVATIVE USE OF TECHNOLOGY'
-      },
-      {
-        id: 4,
-        title: 'PUNCTUALITY AND VERACITY'
-      },
-      {
-        id: 5,
-        title: 'PURSUIT OF CONTINUOUS IMPROVEMENT'
-      },
-      {
-        id: 6,
-        title: 'SAFETY AS OUR HIGHEST PRIORITY'
-      },
-      {
-        id: 7,
-        title: 'HIGHLY TRAINED PROFESSIONAL DRIVERS'
-      },
-    ]
+    this.circleContent = {
+      header: 'Core Values',
+      subheader: 'That make us the best transportation company in the area',
+      coreValues: [
+        {
+          id: 1,
+          title: 'FIRST-RATE CUSTOMER SERVICE'
+        },
+        {
+          id: 2,
+          title: 'CLEAN AND WELL-MAINTAINED VEHICLES'
+        },
+        {
+          id: 3,
+          title: 'INNOVATIVE USE OF TECHNOLOGY'
+        },
+        {
+          id: 4,
+          title: 'PUNCTUALITY AND VERACITY'
+        },
+        {
+          id: 5,
+          title: 'PURSUIT OF CONTINUOUS IMPROVEMENT'
+        },
+        {
+          id: 6,
+          title: 'SAFETY AS OUR HIGHEST PRIORITY'
+        },
+        {
+          id: 7,
+          title: 'HIGHLY TRAINED PROFESSIONAL DRIVERS'
+        },
+      ]
+    }
 
     this.sectionData = {
       bgMode: 'bg-white',
       subheader: 'Why Choose Us',
       header: 'Proudly Serving the Oakland Area Since 2007',
-      valueNumber: this.circleContent.length
+      content: this.circleContent
     }
   }
 
