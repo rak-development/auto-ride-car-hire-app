@@ -1,11 +1,19 @@
 @import '/src/global-styles/_variables';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 .key-features {
   padding-top: 6.875rem;
 
   &__container {
-    padding-left: $spacing1875;
-    padding-right: $spacing1875;
+    margin-bottom: 2.8125rem;
+
+    @include media-breakpoint-up(lg) {
+      padding-left: $spacing1875;
+      padding-right: $spacing1875;
+      margin-bottom: 2.8125rem;
+    }
   }
 
   &__icon {
@@ -32,13 +40,17 @@
   }
 
   &__header {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 700;
     text-transform: none;
     line-height: $secondary-line-height;
     margin-top: $spacing1875;
     margin-bottom: $spacing09375;
     color: $gray-800;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 1.125rem;
+    }
   }
 
   &__body {

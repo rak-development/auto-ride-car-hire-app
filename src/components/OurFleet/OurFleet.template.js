@@ -8,7 +8,7 @@ const template = (styles, sectionData) => {
         <div class='${styles['section-template__header']}'>${header}</div>
       </div>
       <div class='${styles['our-fleet']} container'>
-        <div class='row row-cols-3 row-cols-md-3 g-4'>
+        <div class='row row-cols-md-3 g-5 g-md-4'>
           ${ourFleetData.map(({ title, image, passengerNumber, luggageNumber }) => `
             <div class='col'>
               <div class='card bg-dark text-white rounded-0 border-0'>

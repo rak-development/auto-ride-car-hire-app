@@ -1,4 +1,7 @@
 @import '/src/global-styles/_variables';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 .contact-box {
   margin-bottom: 2.5rem;
@@ -13,7 +16,11 @@
     position: absolute;
     z-index: 2;
     top: -0.625rem;
-    left: -0.625rem;
+    left: 0;
+
+    @include media-breakpoint-up(md) {
+      left: -0.625rem;
+    }
 
     &-container {
       position: relative;
@@ -24,25 +31,36 @@
         height: 3rem;
         display: block;
         border-radius: 50%;
+        position: relative;
+        left: 0.625rem;
+
+        @include media-breakpoint-up(md) {
+          left: 0
+        }
+
       }
     }
   }
 
   &__title {
+    font-size: 0.875rem;
     font-weight: 400;
     text-transform: uppercase;
     line-height: $primary-line-height;
     letter-spacing: 0.125rem;
     color: $gray-600;
-    text-transform: uppercase;
     margin-bottom: 0.625rem;
   }
 
   &__text {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 700;
     text-transform: none;
     line-height: $secondary-line-height;
     color: $gray-800;
+
+    @include media-breakpoint-up(md) {
+      font-size: 1.125rem;
+    }
   }
 }
