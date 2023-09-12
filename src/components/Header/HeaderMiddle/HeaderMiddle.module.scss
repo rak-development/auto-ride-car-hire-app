@@ -1,14 +1,12 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 @import '/src/global-styles/_variables';
 
 .header-middle {
   &__logo {
     max-width: 14.6875rem;
     max-height: 6.875rem;
-
-    &-container {
-      margin-right: 1.25rem;
-      display: block;
-    }
   }
 
   &__nav {
@@ -16,13 +14,30 @@
     padding: 0;
     list-style-type: none;
 
-    &-item {
-      margin-right: 2.8125rem;
+    &-toggler {
+      width: 2.875rem;
+      height: 2.875rem;
+      border-width: 0.125rem;
+      border-color: $gray-200;
 
-      &:last-child {
-        margin-right: 0;
+      &:focus {
+        box-shadow: none;
       }
     }
+
+    &-item {
+      padding: 0.9375rem 0;
+
+      @include media-breakpoint-up(xl) {
+        padding: 0 1.4063rem;
+  
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+
+    }
+
     &-link {
       text-transform: uppercase;
       line-height: $secondary-line-height;

@@ -1,4 +1,7 @@
 @import '/src/global-styles/_variables';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 .testimonials {
   background-color: $gray-100;
@@ -7,7 +10,11 @@
     overflow: hidden;
 
     &-wrapper {
-      padding: 6.25rem 5rem;
+      padding: 3.125rem 1rem;
+
+      @include media-breakpoint-up(lg) {
+        padding: 6.25rem 5rem;
+      }
     }
 
     &-slides {

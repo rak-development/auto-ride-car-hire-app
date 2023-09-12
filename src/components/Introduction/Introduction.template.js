@@ -4,7 +4,7 @@ const imagesRow = (styles, images, content) => {
       ${images.map(({ id, image }) => {
         const colSize = content.length === 1 ? 12 : 6 
         return `
-          <div class='col-md-${colSize}'>
+          <div class='col-${colSize}'>
             <img 
               class='
                 img-fluid 
@@ -25,7 +25,7 @@ const quoteRow = (styles, quote) => {
     <div class='row'>
       <div class='col'>
         <div class='${styles['introduction__quote']} text-center'>
-          <i class="fa-solid fa-quote-left ${styles['introduction__quote-icon']}"></i>
+          <i class='fa-solid fa-quote-left ${styles['introduction__quote-icon']}'></i>
           <blockquote class='${styles['introduction__blockquote']}'>${quote[0].text}</blockquote>
           <div class='${styles['introduction__quote-author']}'>${quote[0].author}</div>
         </div>
@@ -36,7 +36,6 @@ const quoteRow = (styles, quote) => {
 
 const template = (styles, introductionData) => { 
   const { title, content, images, quote } = introductionData
-  console.log(styles)
   return `
     <div class='container ${styles.introduction}'>
       <div class='row ${styles['introduction__row']}'>
