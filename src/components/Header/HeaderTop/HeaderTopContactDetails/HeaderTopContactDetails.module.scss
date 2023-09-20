@@ -1,7 +1,4 @@
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import '/src/global-styles/_variables';
+@import '/src/global-styles/Base';
 
 .header-top__contact-details {
   color: $gray-600;

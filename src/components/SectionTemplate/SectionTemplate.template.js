@@ -1,4 +1,5 @@
 const template = () => {
+  // background section to be added
   return `
     <div class='section-template'>
       <slot class='section-subheader' name='subheader'></slot>

@@ -61,11 +61,18 @@ export class OurFleet extends HTMLElement {
       bgMode: 'bg-gray-light',
       subheader: 'Our Fleet',
       header: 'Browse Our Limos',
-      ourFleetData: this.ourFleetData
+      sectionContent: template(styles, this.ourFleetData)
     }
   }
 
   connectedCallback() {
-    this.innerHTML = template(styles, this.sectionData)
+    const { subheader, header, sectionContent } = this.sectionData
+    this.innerHTML = `
+      <section-template>
+        <div class='container text-center' slot='subheader'>${subheader}</div>
+        <div class='container text-center' slot='header'>${header}</div>
+        <div class='container' slot='content'>${sectionContent}</div>
+      </section-template>
+    `
   }
 }

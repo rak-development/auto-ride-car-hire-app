@@ -1,6 +1,11 @@
 import template from './WhyChooseUs.template'
 import styles from './WhyChooseUs.module.scss'
 
+// TO:DO refactor
+// Funkcja zwracająca tablicę
+// Funkcja do DOM
+// Osobny template
+
 const buildCircleContent = circleContentData => {
   const { coreValues: data } = circleContentData
   const { length } = data
@@ -71,7 +76,7 @@ export class WhyChooseUs extends HTMLElement {
   constructor() {
     super()
 
-    this.circleContent = {
+    this.circleContentData = {
       header: 'Core Values',
       subheader: 'That make us the best transportation company in the area',
       coreValues: [
@@ -110,12 +115,19 @@ export class WhyChooseUs extends HTMLElement {
       bgMode: 'bg-white',
       subheader: 'Why Choose Us',
       header: 'Proudly Serving the Oakland Area Since 2007',
-      content: this.circleContent
+      sectionContent: template(styles, this.circleContentData)
     }
   }
 
   connectedCallback() {
-    this.innerHTML = template(styles, this.sectionData)
-    buildCircleContent(this.circleContent)
+    const { subheader, header, sectionContent } = this.sectionData
+    this.innerHTML = `
+      <section-template>
+        <div class='container text-center' slot='subheader'>${subheader}</div>
+        <div class='container text-center' slot='header'>${header}</div>
+        <div class='container' slot='content'>${sectionContent}</div>
+      </section-template>
+    `
+    buildCircleContent(this.circleContentData)
   }
 }

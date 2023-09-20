@@ -3,6 +3,9 @@ import template from './SectionTemplate.template'
 const styles = `
   .section-template {
     padding: 6.25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
   }
 
   .section-subheader {
