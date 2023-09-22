@@ -6,72 +6,6 @@ import styles from './WhyChooseUs.module.scss'
 // Funkcja do DOM
 // Osobny template
 
-const buildCircleContent = circleContentData => {
-  const { coreValues: data } = circleContentData
-  const { length } = data
-  const div = 360 / length
-  const radius = 255
-  const contentCircle = document.querySelector('#content-circle')
-  const offsetToParentCenter = parseInt(contentCircle.offsetWidth / 2)
-  const offsetToChildCenter = 32
-  const totalOffset = offsetToParentCenter - offsetToChildCenter
-
-  for (var i = 0; i < length; ++i) {
-    const { title } = data[i]
-    const circleItem = document.createElement('div')
-    circleItem.className = 'circle-item'
-
-    const itemIconContainer = document.createElement('span')
-    itemIconContainer.className = 'circle-item__circle bg-white'
-
-    const itemIcon = document.createElement('i')
-    itemIcon.className = 'fa-solid fa-check circle-item__icon'
-
-    const itemLabel = document.createElement('span')
-    itemLabel.className = 'circle-item__label'
-    itemLabel.innerText = title
-    
-    const y = Math.sin((div * i) * (Math.PI / 180)) * radius
-    const x = Math.cos((div * i) * (Math.PI / 180)) * radius
-
-    const isOffsetLeftOrRight = x + totalOffset >= offsetToParentCenter
-    const isOffsetTopBelow0 = y + totalOffset <= 0
-    const isOffsetBottom90 = y + totalOffset >= (90 / 100) * contentCircle.offsetHeight
-
-    const textTopClass = 'circle-item__text-top'
-    const textBottomClass = 'circle-item__text-bottom'
-    const textLeftClass = 'circle-item__text-left'
-    const textRightClass = 'circle-item__text-right'
-
-    let textClassPosition
-    if (isOffsetTopBelow0) {
-      textClassPosition = textTopClass
-    } else if (isOffsetBottom90) {
-      textClassPosition = textBottomClass
-    } else {
-      textClassPosition = isOffsetLeftOrRight ? textRightClass : textLeftClass
-    }
-    circleItem.classList.add(textClassPosition)
-
-    circleItem.style.top = (y + totalOffset).toString() + 'px'
-    if (circleItem.classList.contains(textLeftClass)) {
-      circleItem.style.left = (x - totalOffset).toString() + 'px'
-    } else if (circleItem.classList.contains(textBottomClass)) {
-      circleItem.style.left = (x).toString() + 'px'
-    } else if (circleItem.classList.contains(textTopClass)) {
-      circleItem.style.top = (y + (totalOffset - 60)).toString() + 'px'
-      circleItem.style.left = (x).toString() + 'px'
-    } else {
-      circleItem.style.left = (x + totalOffset).toString() + 'px'
-    }
-
-    itemIconContainer.appendChild(itemIcon)
-    circleItem.appendChild(itemIconContainer)
-    circleItem.appendChild(itemLabel)
-    contentCircle.appendChild(circleItem)
-  }
-}
-
 export class WhyChooseUs extends HTMLElement {
   constructor() {
     super()
@@ -128,6 +62,5 @@ export class WhyChooseUs extends HTMLElement {
         <div class='container' slot='content'>${sectionContent}</div>
       </section-template>
     `
-    buildCircleContent(this.circleContentData)
   }
 }
