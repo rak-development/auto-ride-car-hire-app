@@ -10,6 +10,7 @@ const template = () => {
       <our-fleet></our-fleet>
     </main>
     <footer-layout></footer-layout>
+    <scroll-to-top></scroll-to-top>
   `
 }
 export default template
