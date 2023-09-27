@@ -23,8 +23,8 @@ const htmlPluginEntries = templateFiles.map((template) => new HTMLWebpackPlugin(
   inject: true,
   hash: false,
   filename: template.output,
-  template: path.resolve(environment.paths.source, template.input)
-  // favicon: path.resolve(environment.paths.source, 'images', 'favicon.ico')
+  template: path.resolve(environment.paths.source, template.input),
+  favicon: path.resolve(environment.paths.source, 'assets/images', 'AutoRide-Logo-Favicon.png')
 }))
 
 module.exports = {
