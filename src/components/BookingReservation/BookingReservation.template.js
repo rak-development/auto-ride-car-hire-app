@@ -1,7 +1,26 @@
+(() => {
+  'use strict'
+  setTimeout(() => {
+    const form = document.querySelector('#bookingReservation')
+    form.addEventListener('submit', event => {
+      console.log('submit: ', event)
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  }, 2000)
+})()
+
 const template = styles => {
   return `
     <div class='${styles['booking-reservation__wrapper']}'>
-      <form class='${styles['booking-reservation__form']} bg-white'>
+      <form 
+        id='bookingReservation' 
+        class='${styles['booking-reservation__form']} bg-white needs-validation' 
+        novalidate>
         <div class='container'>
           <div class='row'>
             <div class='col-md-6 p-0'>
@@ -9,7 +28,15 @@ const template = styles => {
                 <label for='pickupLocation' class='form-label ${styles['booking-reservation__label']}'>
                   Pickup Location
                 </label>
-                <input type='text' class='form-control' id='pickupLocation'>
+                <div class='input-group has-validation'>
+                  <input type='text' class='form-control' id='pickupLocation' required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class='invalid-feedback'>
+                    Please enter pickup location.
+                  </div>
+                </div>
               </div>
             </div>
             <div class='col-md-6 p-0'>
@@ -17,39 +44,73 @@ const template = styles => {
                 <label for='dropOffLocation' class='form-label ${styles['booking-reservation__label']}'>
                   Drop-off Location
                 </label>
-                <input type='text' class='form-control' id='dropOffLocation'>
+                <div class='input-group has-validation'>
+                  <input type='text' class='form-control' id='dropOffLocation' required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class='invalid-feedback'>
+                    Please enter drop-off location.
+                  </div>
+                </div>
               </div>
             </div>
             <div class='col-md-6 col-lg-3 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <label for='pickupDate' class='form-label ${styles['booking-reservation__label']}'>Date From</label>
-                <input type='date' class='form-control' id='pickupDate'>
+                <div class='input-group has-validation'>
+                  <input type='date' class='form-control' id='pickupDate' required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class='invalid-feedback'>
+                    Please enter pickup date.
+                  </div>
+                </div>
               </div>
             </div>
             <div class='col-md-6 col-lg-3 p-0'>
               <div class='${styles['booking-reservation__box']}'>
-                <select class='form-select' name='pickupTime' id='pickupTime'>
-                  <option value='9:00'>9:00</option>
-                  <option value='10:00'>10:00</option>
-                  <option value='11:00'>11:00</option>
-                  <option value='12:00'>12:00</option>
-                </select>
+                <div class='input-group has-validation'>
+                  <select class='form-select' name='pickupTime' id='pickupTime'>
+                    <option value='9:00'>9:00</option>
+                    <option value='10:00'>10:00</option>
+                    <option value='11:00'>11:00</option>
+                    <option value='12:00'>12:00</option>
+                  </select>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
               </div>
             </div>
             <div class='col-md-6 col-lg-3 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <label for='dropOffDate' class='form-label ${styles['booking-reservation__label']}'>Date To</label>
-                <input type='date' class='form-control' id='dropOffDate'>
+                <div class='input-group has-validation'>
+                  <input type='date' class='form-control' id='dropOffDate' required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class='invalid-feedback'>
+                    Please enter drop-off date.
+                  </div>
+                </div>
               </div>
             </div>
             <div class='col-md-6 col-lg-3 p-0'>
               <div class='${styles['booking-reservation__box']} border-end-0'>
-                <select class='form-select' name='dropOffTime' id='dropOffTime'>
-                  <option value='9:00'>9:00</option>
-                  <option value='10:00'>10:00</option>
-                  <option value='11:00'>11:00</option>
-                  <option value='12:00'>12:00</option>
-                </select>
+                <div class='input-group has-validation'>
+                  <select class='form-select' name='dropOffTime' id='dropOffTime'>
+                    <option value='9:00'>9:00</option>
+                    <option value='10:00'>10:00</option>
+                    <option value='11:00'>11:00</option>
+                    <option value='12:00'>12:00</option>
+                  </select>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
               </div>
             </div>
             <div class='col-md-4 p-0'>
