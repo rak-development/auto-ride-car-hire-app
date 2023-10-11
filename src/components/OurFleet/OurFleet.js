@@ -69,9 +69,9 @@ export class OurFleet extends HTMLElement {
     const { subheader, header, sectionContent } = this.sectionData
     this.innerHTML = `
       <section-template>
-        <div class='container text-center' slot='subheader'>${subheader}</div>
-        <div class='container text-center' slot='header'>${header}</div>
-        <div class='container' slot='content'>${sectionContent}</div>
+        <p class='container text-center mb-0' slot='subheader'>${subheader}</p>
+        <header class='container text-center' slot='header'>${header}</header>
+        <figure class='container' slot='content'>${sectionContent}</figure>
       </section-template>
     `
   }
