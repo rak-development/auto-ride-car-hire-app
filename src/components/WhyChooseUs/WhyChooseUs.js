@@ -1,11 +1,6 @@
 import template from './WhyChooseUs.template'
 import styles from './WhyChooseUs.module.scss'
 
-// TO:DO refactor
-// Funkcja zwracająca tablicę
-// Funkcja do DOM
-// Osobny template
-
 export class WhyChooseUs extends HTMLElement {
   constructor() {
     super()
