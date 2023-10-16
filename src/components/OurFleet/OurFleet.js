@@ -58,14 +58,21 @@ export class OurFleet extends HTMLElement {
     ]
 
     this.sectionData = {
-      bgMode: 'bg-gray-light',
+      bgMode: 'bg-light',
       subheader: 'Our Fleet',
       header: 'Browse Our Limos',
-      ourFleetData: this.ourFleetData
+      sectionContent: template(styles, this.ourFleetData)
     }
   }
 
   connectedCallback() {
-    this.innerHTML = template(styles, this.sectionData)
+    const { subheader, header, sectionContent, bgMode } = this.sectionData
+    this.innerHTML = `
+      <section-template class='d-block ${bgMode}'>
+        <p class='container text-center mb-0' slot='subheader'>${subheader}</p>
+        <header class='container text-center' slot='header'>${header}</header>
+        <figure class='container' slot='content'>${sectionContent}</figure>
+      </section-template>
+    `
   }
 }

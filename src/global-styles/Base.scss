@@ -11,6 +11,10 @@
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/utilities";
 
+@import "./variables";
+@import "./carousel";
+@import "./circle-item";
+
 // Layout & components
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/reboot";
@@ -50,7 +54,3 @@
 // Utilities
 @import "~bootstrap/scss/utilities/api";
 // scss-docs-end import-stack
-
-@import "./variables";
-@import "./carousel";
-@import "./circle-item";

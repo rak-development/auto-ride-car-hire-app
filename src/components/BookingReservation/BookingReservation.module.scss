@@ -27,10 +27,10 @@
     background-color: $primary;
     border-color: $primary;
     max-width: 10rem;
-    color: #fff;
+    color:  var(--bs-white);
 
     &:hover {
-      background-color: #fff;
+      background-color: var(--bs-white);
       color: $primary;
       border-color: $primary;
     }
