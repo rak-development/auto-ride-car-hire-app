@@ -3,6 +3,11 @@
 @import '/src/global-styles/_variables';
 
 .booking-reservation {
+
+  &__form, &__wrapper {
+    position: relative;
+  }
+
   &__box {
     border-right: 0.0625rem solid $gray-200;
     border-bottom: 0.0625rem solid $gray-200;

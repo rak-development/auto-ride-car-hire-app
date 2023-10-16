@@ -1,6 +1,11 @@
 (() => {
   'use strict'
   setTimeout(() => {
+    const differentLocation = document.querySelector('#differentLocation');
+    differentLocation.addEventListener('change', event => {
+      console.log(event, ' change')
+    });
+
     const form = document.querySelector('#bookingReservation')
     form.addEventListener('submit', event => {
       console.log('submit: ', event)
