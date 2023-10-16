@@ -1,3 +1,4 @@
+import './components-import'
 import './style-imports'
 import './script-imports'
-import './components-import'
+import './script-custom'

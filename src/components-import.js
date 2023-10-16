@@ -23,6 +23,7 @@ import { Testimonials } from './components/Testimonials/Testimonials'
 import { OurFleet } from './components/OurFleet/OurFleet'
 import { WhatWeOffer } from './components/WhatWeOffer/WhatWeOffer'
 import { Introduction } from './components/Introduction/Introduction'
+import { ScrollToTop } from './components/ScrollToTop/ScrollToTop'
 
 // Layout Elements
 customElements.define('app-layout', AppLayout)
@@ -49,3 +50,4 @@ customElements.define('testimonials-section', Testimonials)
 customElements.define('our-fleet', OurFleet)
 customElements.define('what-we-offer', WhatWeOffer)
 customElements.define('introduction-template', Introduction)
+customElements.define('scroll-to-top', ScrollToTop)
