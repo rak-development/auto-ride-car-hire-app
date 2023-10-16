@@ -1,7 +1,6 @@
 @import '/src/global-styles/Base';
 
 .scroll-to-top {
-  opacity: 0;
   z-index: 99;
   right: 1.875rem;
   width: 3rem;
@@ -10,6 +9,7 @@
   border-radius: 50%;
   background: rgba(133,140,146,0.4);
   transition: all 200ms ease;
+  display: none;
 
   &:hover {
     background: rgba(133,140,146,0.6);
