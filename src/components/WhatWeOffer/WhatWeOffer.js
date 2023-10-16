@@ -45,7 +45,7 @@ export class WhatWeOffer extends HTMLElement {
     ]
 
     this.sectionData = {
-      bgMode: 'bg-gray-light',
+      bgMode: 'bg-light',
       subheader: 'What We Offer',
       header: 'See What We Can Do for You',
       sectionContent: template(styles, this.whatWeOfferData)
@@ -55,12 +55,10 @@ export class WhatWeOffer extends HTMLElement {
   connectedCallback() {
     const { subheader, header, sectionContent, bgMode } = this.sectionData
     this.innerHTML = `
-      <section-template>
-        <div slot='wrapper' class='${bgMode}'>
-          <p class='container text-center mb-0' slot='subheader'>${subheader}</p>
-          <header class='container text-center' slot='header'>${header}</header>
-          <figure class='container' slot='content'>${sectionContent}</figure>
-        </div>
+      <section-template class='d-block ${bgMode}'>
+        <p class='container text-center mb-0' slot='subheader'>${subheader}</p>
+        <header class='container text-center' slot='header'>${header}</header>
+        <figure class='container' slot='content'>${sectionContent}</figure>
       </section-template>
     `
   }
