@@ -4,15 +4,17 @@ const prepareInitialPositions = (index, coreValues) => {
   const offsetToParentCenter = 255
   const offsetToChildCenter = 32
   const totalOffset = offsetToParentCenter - offsetToChildCenter
+  const contentCircleSize = 510
+  const tenPercentOfCircleSize = 90 / 100;
 
   const y = Math.sin((div * index) * (Math.PI / 180)) * radius
   const x = Math.cos((div * index) * (Math.PI / 180)) * radius
 
-  const isOffsetLeftOrRight = x + totalOffset >= offsetToParentCenter
+  const isOffsetRight = x + totalOffset >= offsetToParentCenter
   const isOffsetTopBelow0 = y + totalOffset <= 0
-  const isOffsetBottom90 = y + totalOffset >= (90 / 100) * 510
+  const isOffsetBottom90 = y + totalOffset >= (tenPercentOfCircleSize) * contentCircleSize
 
-  return { totalOffset, x, y, isOffsetLeftOrRight, isOffsetTopBelow0, isOffsetBottom90 }
+  return { totalOffset, x, y, isOffsetRight, isOffsetTopBelow0, isOffsetBottom90 }
 }
 
 const textPositionClasses = {
@@ -22,19 +24,20 @@ const textPositionClasses = {
   textRightClass: 'circle-item__text-right'
 }
 
-const prepareTextPosition = (isOffsetTopBelow0, isOffsetBottom90, isOffsetLeftOrRight) => {
+const prepareTextPosition = (isOffsetTopBelow0, isOffsetBottom90, isOffsetRight) => {
   const { textTopClass, textBottomClass, textLeftClass, textRightClass } = textPositionClasses
 
-  let textClassPosition
   if (isOffsetTopBelow0) {
-    textClassPosition = textTopClass
-  } else if (isOffsetBottom90) {
-    textClassPosition = textBottomClass
-  } else {
-    textClassPosition = isOffsetLeftOrRight ? textRightClass : textLeftClass
+    return textTopClass
+  } 
+  if (isOffsetBottom90) {
+      return textBottomClass
+  }
+  if(isOffsetRight) {
+    return textRightClass
   }
 
-  return textClassPosition
+  return textLeftClass
 }
 
 const prepareElementPosition = (totalOffset, x, y, textClassPosition) => {
@@ -59,17 +62,18 @@ const prepareElementPosition = (totalOffset, x, y, textClassPosition) => {
   return `top: ${customY}px; left: ${customX}px`
 }
 
-const setElementPosition = (index, coreValues) => {
+const getElementPosition = (index, coreValues) => {
   const { 
     totalOffset, 
     x, 
     y, 
-    isOffsetLeftOrRight, 
+    isOffsetRight, 
     isOffsetTopBelow0, 
     isOffsetBottom90 
   } = prepareInitialPositions(index, coreValues)
 
-  const textClassPosition = prepareTextPosition(isOffsetTopBelow0, isOffsetBottom90, isOffsetLeftOrRight)
+  
+  const textClassPosition = prepareTextPosition(isOffsetTopBelow0, isOffsetBottom90, isOffsetRight)
   const elementPosition = prepareElementPosition(totalOffset, x, y, textClassPosition)
 
   return { textClassPosition, elementPosition }
@@ -86,7 +90,7 @@ const template = (styles, circleContentData) => {
         </div>
         <div id='content-circle' class='${styles['core-values__circle']}'>
           ${coreValues.map((el, index) => {
-            const { textClassPosition, elementPosition } = setElementPosition(index, coreValues)
+            const { textClassPosition, elementPosition } = getElementPosition(index, coreValues)
             return `
               <div 
                 class='circle-item ${textClassPosition}'

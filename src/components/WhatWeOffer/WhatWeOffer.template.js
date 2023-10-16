@@ -7,13 +7,13 @@ const template = (styles, whatWeOfferData) => {
             <div class='card bg-dark text-white rounded-0 border-0'>
               <img class='${styles['what-we-offer__card-img']}' src='${image}' class='card-im g-top' alt='${title}'>
               <div class='${styles['what-we-offer__card-overlay']} card-img-overlay rounded-0 d-flex align-items-end'>
-                <h5 class='
+                <h4 class='
                   card-title 
                   ${styles['what-we-offer__card-title']} 
                   position-relative 
                   text-start
                   text-uppercase
-                '>${title}</h5>
+                '>${title}</h4>
               </div>
             </div>
           </div>
