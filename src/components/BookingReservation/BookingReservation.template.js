@@ -7,13 +7,13 @@ const template = styles => {
         novalidate>
         <div class='container'>
           <div class='row'>
-            <div class='question-col col-12 p-0'>
+            <div class='question-col col-md-6 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <label for='pickupLocation' class='form-label ${styles['booking-reservation__label']}'>
                   Pickup/Drop-off Location
                 </label>
                 <div class='input-group has-validation'>
-                  <input type='text' class='form-control' id='pickupLocation' required>
+                  <input name='pickupLocation' type='text' class='form-control' id='pickupLocation' required>
                   <div class='valid-feedback'>
                     Looks good!
                   </div>
@@ -23,13 +23,13 @@ const template = styles => {
                 </div>
               </div>
             </div>
-            <div class='question-col col-md-6 p-0 d-none'>
+            <div class='question-col col-md-6 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <label for='dropOffLocation' class='form-label ${styles['booking-reservation__label']}'>
                   Drop-off Location
                 </label>
                 <div class='input-group has-validation'>
-                  <input type='text' class='form-control' id='dropOffLocation' required>
+                  <input name='dropOffLocation' type='text' class='form-control' id='dropOffLocation' required>
                   <div class='valid-feedback'>
                     Looks good!
                   </div>
@@ -43,7 +43,7 @@ const template = styles => {
               <div class='${styles['booking-reservation__box']}'>
                 <label for='pickupDate' class='form-label ${styles['booking-reservation__label']}'>Date From</label>
                 <div class='input-group has-validation'>
-                  <input type='date' class='form-control' id='pickupDate' required>
+                  <input name='pickupDate' type='date' class='form-control' id='pickupDate' required>
                   <div class='valid-feedback'>
                     Looks good!
                   </div>
@@ -72,7 +72,7 @@ const template = styles => {
               <div class='${styles['booking-reservation__box']}'>
                 <label for='dropOffDate' class='form-label ${styles['booking-reservation__label']}'>Date To</label>
                 <div class='input-group has-validation'>
-                  <input type='date' class='form-control' id='dropOffDate' required>
+                  <input name='dropOffDate' type='date' class='form-control' id='dropOffDate' required>
                   <div class='valid-feedback'>
                     Looks good!
                   </div>
@@ -100,17 +100,7 @@ const template = styles => {
             <div class='question-col col-md-4 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <div class='form-check mb-0'>
-                  <input class='form-check-input' type='checkbox' id='differentLocation'>
-                  <label class='form-check-label' for='differentLocation'>
-                    Pick different drop off location
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class='question-col col-md-4 p-0'>
-              <div class='${styles['booking-reservation__box']}'>
-                <div class='form-check mb-0'>
-                  <input class='form-check-input' type='checkbox' id='over25'>
+                  <input name='over25' class='form-check-input' type='checkbox' value='false' id='over25'>
                   <label class='form-check-label' for='over25'>
                     Is driver over 25 years old?
                   </label>
@@ -120,7 +110,12 @@ const template = styles => {
             <div class='question-col col-md-4 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <div class='form-check mb-0'>
-                  <input class='form-check-input' type='checkbox' id='discountCodeCheck'>
+                  <input
+                    name='discountCodeCheck'
+                    class='form-check-input'
+                    type='checkbox'
+                    value='false'
+                    id='discountCodeCheck'>
                   <label class='form-check-label' for='discountCodeCheck'>
                     I have discount code
                   </label>
@@ -131,12 +126,17 @@ const template = styles => {
               <div class='${styles['booking-reservation__box']}'>
                 <div class='mb-0'>
                   <div class='booking-reservation__discount-wrapper'>
-                    <input id='discountCode' type='text' placeholder='Discount Code' class='form-control'>
+                    <input
+                      name='discountCode'
+                      id='discountCode'
+                      type='text'
+                      placeholder='Discount Code'
+                      class='form-control'>
                   </div>
                 </div>
               </div>
             </div>
-            <div class='question-col col p-0'>
+            <div class='question-col col-12 p-0'>
               <div class='${styles['booking-reservation__box']} border-0'>
                 <button 
                   type='submit' 
@@ -147,6 +147,26 @@ const template = styles => {
           </div>
         </div>
       </form>
+    </div>
+
+    <div
+      class="modal fade" 
+      id="submittedDetailsModal" 
+      tabindex="-1" 
+      aria-labelledby="submittedDetailsModalLabel" 
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="submittedDetailsModalLabel">Your submitted details</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body"><div class="container-fluid"></div></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
   `
 }
