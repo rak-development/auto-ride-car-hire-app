@@ -125,6 +125,7 @@ export class Carousel {
 
         this.#slidesData.forEach((slide, i) => {
             const button = document.createElement('button')
+            button.setAttribute('aria-label', 'carousel-dot-button')
 
             if (i === this.#currentIndex)
                 button.classList.add(this.#classNames.active)

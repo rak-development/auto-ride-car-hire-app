@@ -7,7 +7,7 @@ const template = (styles, ourFleetData) => {
             <div class='card bg-dark text-white rounded-0 border-0'>
               <img class='${styles['our-fleet__card-img']}' src='${image}' class='card-im g-top' alt='${title}'>
               <div class='${styles['our-fleet__card-overlay']} card-img-overlay rounded-0 d-flex align-items-end'>
-                <h5 class='card-title'>${title}</h5>
+                <h4 class='card-title'>${title}</h4>
               </div>
               <div class='card-body bg-white text-black d-flex justify-content-center'>
                 <div class='px-2 d-flex align-items-center'>
