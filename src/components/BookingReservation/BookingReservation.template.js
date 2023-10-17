@@ -55,6 +55,9 @@ const template = styles => {
             </div>
             <div class='question-col col-md-6 col-lg-3 p-0'>
               <div class='${styles['booking-reservation__box']}'>
+              <label for='pickupTime' class='form-label ${styles['booking-reservation__label']}'>
+                Pick-up Time
+              </label>
                 <div class='input-group has-validation'>
                   <select class='form-select' name='pickupTime' id='pickupTime'>
                     <option value='9:00'>9:00</option>
@@ -84,6 +87,9 @@ const template = styles => {
             </div>
             <div class='question-col col-md-6 col-lg-3 p-0'>
               <div class='${styles['booking-reservation__box']} border-end-0'>
+                <label for='dropOffTime' class='form-label ${styles['booking-reservation__label']}'>
+                  Drop-off Time
+                </label>
                 <div class='input-group has-validation'>
                   <select class='form-select' name='dropOffTime' id='dropOffTime'>
                     <option value='9:00'>9:00</option>

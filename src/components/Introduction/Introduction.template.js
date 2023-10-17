@@ -46,7 +46,7 @@ const template = (styles, introductionData) => {
           const colSize = content.length === 1 ? 8 : 4 
           return `
             <div class='col-md-${colSize} ${styles['introduction__col']} ${styles['introduction__content']}'>
-              <h3 class='${styles['introduction__content-title']}'>${title}</h3>
+              <h2 class='${styles['introduction__content-title']}'>${title}</h2>
               <div>${text}</div>
             </div>  
         `}).join('')}
