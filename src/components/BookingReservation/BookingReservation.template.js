@@ -100,7 +100,7 @@ const template = styles => {
             <div class='question-col col-md-4 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <div class='form-check mb-0'>
-                  <input name='over25' class='form-check-input' type='checkbox' value='false' id='over25'>
+                  <input name='over25' class='form-check-input' type='checkbox' id='over25'>
                   <label class='form-check-label' for='over25'>
                     Is driver over 25 years old?
                   </label>
@@ -114,7 +114,6 @@ const template = styles => {
                     name='discountCodeCheck'
                     class='form-check-input'
                     type='checkbox'
-                    value='false'
                     id='discountCodeCheck'>
                   <label class='form-check-label' for='discountCodeCheck'>
                     I have discount code
@@ -150,20 +149,20 @@ const template = styles => {
     </div>
 
     <div
-      class="modal fade" 
-      id="submittedDetailsModal" 
-      tabindex="-1" 
-      aria-labelledby="submittedDetailsModalLabel" 
-      aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="submittedDetailsModalLabel">Your submitted details</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      class='modal fade' 
+      id='submittedDetailsModal' 
+      tabindex='-1' 
+      aria-labelledby='submittedDetailsModalLabel' 
+      aria-hidden='true'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <h1 class='modal-title fs-5' id='submittedDetailsModalLabel'>Your submitted details</h1>
+            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
           </div>
-          <div class="modal-body"><div class="container-fluid"></div></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <div class='modal-body'></div>
+          <div class='modal-footer'>
+            <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
           </div>
         </div>
       </div>
