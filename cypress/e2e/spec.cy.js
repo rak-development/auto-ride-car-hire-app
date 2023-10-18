@@ -14,42 +14,47 @@ describe('The Home Page', () => {
     cy.window().its('scrollY').should('equal', 0)
   })
 
-  it('should find the Pickup Location label and fill the input ', () => {
-    cy.findByLabelText('Pickup Location').type('Warsaw')
-  })
+  it('should fill-in the form, submit data and display the modal', () => {
+    const pickupLocation = 'Warsaw'
+    const dropOffLocation = 'Krakow'
+    const dateFrom = '2023-12-01'
+    const pickupTime = '10:00'
+    const dateTo = '2023-12-10'
+    const dropOffTime = '11:00'
+    const isOver25 = 'Yes'
+    const discountCode = 'A1B2B3'
 
-  it('should find the Drop-off Location label and fill the input ', () => {
-    cy.findByLabelText('Drop-off Location').type('Warsaw')
-  })
+    cy.get('#submittedDetailsModal').should('not.be.visible')
 
-  it('should find the Date From label and fill the input ', () => {
-    cy.findByLabelText('Date From').type('2023-12-01')
-  })
-
-  it('should find the Pick-up Time label and select value ', () => {
-    cy.findByLabelText('Pick-up Time').select('10:00')
-  })
-
-  it('should find the Date To label and fill the input ', () => {
-    cy.findByLabelText('Date To').type('2023-12-10')
-  })
-
-  it('should find the Drop-off Time label and select value ', () => {
-    cy.findByLabelText('Drop-off Time').select('10:00')
-  })
-
-  it('should find the Is driver over 25 years old? and check the input ', () => {
+    cy.findByLabelText('Pickup Location').should('be.visible').type(pickupLocation)
+    cy.findByLabelText('Drop-off Location').type(dropOffLocation)
+    cy.findByLabelText('Date From').type(dateFrom)
+    cy.findByLabelText('Pick-up Time').select(pickupTime)
+    cy.findByLabelText('Date To').type(dateTo)
+    cy.findByLabelText('Drop-off Time').select(dropOffTime)
     cy.findByLabelText('Is driver over 25 years old?').check()
-  })
 
-  it('should find the I have discount code and check the input ', () => {
-    cy.findByLabelText('I have discount code').check()
-  })
-
-  it('should find the Discount Code input and fill the input ', () => {
     cy.findByPlaceholderText('Discount Code').should('not.be.visible')
     cy.findByLabelText('I have discount code').check()
-    cy.findByPlaceholderText('Discount Code').should('be.visible').type('A1B2B3')
+    cy.findByPlaceholderText('Discount Code').should('be.visible').type(discountCode)
+
+    cy.get('#bookingReservation')
+      .findByRole('button', {name: /Find Cars/i})
+      .should('exist')
+
+    cy.get('#bookingReservation').submit()
+
+    cy.get('#submittedDetailsModal').should('be.visible')
+    cy.get('#submittedDetailsModal').within(() => {
+      cy.contains(pickupLocation)
+      cy.contains(dropOffLocation)
+      cy.contains(dateFrom)
+      cy.contains(pickupTime)
+      cy.contains(dateTo)
+      cy.contains(dropOffTime)
+      cy.contains(isOver25)
+      cy.contains(discountCode)
+    })
   })
 
 })
