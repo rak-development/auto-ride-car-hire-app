@@ -27,8 +27,8 @@
 describe('The Home Page', () => {
   beforeEach(() => {
     cy.visit('/')
-    // cy.injectAxe()
-    // cy.checkA11y()
+    cy.injectAxe()
+    cy.checkA11y()
   })
 
   it('should show scroll-to-top button and scroll the page to top on click', () => {
@@ -116,11 +116,11 @@ describe('The Home Page', () => {
   })
 
   // Basic usage
-  it('Has no detectable a11y violations on load', () => {
-    // Test the page at initial load
-    cy.visit('/')
-    cy.injectAxe()
-    cy.checkA11y()
-  })
+  // it('Has no detectable a11y violations on load', () => {
+  //   // Test the page at initial load
+  //   cy.visit('/')
+  //   cy.injectAxe()
+  //   cy.checkA11y()
+  // })
 
 })

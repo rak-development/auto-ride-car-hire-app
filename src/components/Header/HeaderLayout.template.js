@@ -1,8 +1,10 @@
 const template = () => {
   return `
-    <header-top></header-top>
-    <header-middle></header-middle>
-    <header-bottom></header-bottom>
+    <header>
+      <header-top></header-top>
+      <header-middle></header-middle>
+      <header-bottom></header-bottom>
+    </header>
   `
 }
 export default template
