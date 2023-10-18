@@ -57,13 +57,12 @@ describe('The Home Page', () => {
     })
   })
 
-  it('should throw validation error during submitting the form', () => {
+  it('should fill-in the form, submit data and not display the modal if there is a field missing', () => {
     const pickupLocation = 'Warsaw'
     const dateFrom = '2023-12-01'
     const pickupTime = '10:00'
     const dateTo = '2023-12-10'
     const dropOffTime = '11:00'
-    const isOver25 = 'Yes'
     const discountCode = 'A1B2B3'
 
     cy.get('#submittedDetailsModal').should('not.be.visible')
@@ -85,16 +84,7 @@ describe('The Home Page', () => {
 
     cy.get('#bookingReservation').submit()
 
-    cy.get('#submittedDetailsModal').should('be.visible')
-    cy.get('#submittedDetailsModal').within(() => {
-      cy.contains(pickupLocation)
-      cy.contains(dateFrom)
-      cy.contains(pickupTime)
-      cy.contains(dateTo)
-      cy.contains(dropOffTime)
-      cy.contains(isOver25)
-      cy.contains(discountCode)
-    })
+    cy.get('#submittedDetailsModal').should('not.be.visible')
   })
 
 })
