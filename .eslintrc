@@ -1,6 +1,9 @@
 {
   "parser": "@babel/eslint-parser",
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:cypress/recommended"
+  ],
   "rules": {
     "max-len": [1, 120, 2, { "ignoreComments": true }],
     "eol-last": 1,

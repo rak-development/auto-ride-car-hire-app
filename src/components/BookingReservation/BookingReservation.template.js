@@ -10,7 +10,7 @@ const template = styles => {
             <div class='question-col col-md-6 p-0'>
               <div class='${styles['booking-reservation__box']}'>
                 <label for='pickupLocation' class='form-label ${styles['booking-reservation__label']}'>
-                  Pickup/Drop-off Location
+                  Pickup Location
                 </label>
                 <div class='input-group has-validation'>
                   <input name='pickupLocation' type='text' class='form-control' id='pickupLocation' required>
