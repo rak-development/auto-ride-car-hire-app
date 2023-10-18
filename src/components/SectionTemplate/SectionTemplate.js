@@ -10,7 +10,7 @@ const styles = `
 
   .section-subheader {
     font-size: 1rem;
-    color: #C25508;
+    color: #8A3C05;
     font-weight: 700;
     text-transform: uppercase;
     line-height: 1.66666em;

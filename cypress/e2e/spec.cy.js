@@ -1,6 +1,34 @@
+// // Define at the top of the spec file or just import it
+// function terminalLog(violations) {
+//   cy.task(
+//     'log',
+//     `${violations.length} accessibility violation${
+//       violations.length === 1 ? '' : 's'
+//     } ${violations.length === 1 ? 'was' : 'were'} detected`
+//   )
+//   // pluck specific keys to keep the table readable
+//   const violationData = violations.map(
+//     ({ id, impact, description, nodes }) => ({
+//       id,
+//       impact,
+//       description,
+//       nodes: nodes.length
+//     })
+//   )
+
+//   cy.task('table', violationData)
+// }
+
+// // Then in your test...
+// it('Logs violations to the terminal', () => {
+//   cy.checkA11y(null, null, terminalLog)
+// })
+
 describe('The Home Page', () => {
   beforeEach(() => {
     cy.visit('/')
+    // cy.injectAxe()
+    // cy.checkA11y()
   })
 
   it('should show scroll-to-top button and scroll the page to top on click', () => {
@@ -85,6 +113,14 @@ describe('The Home Page', () => {
     cy.get('#bookingReservation').submit()
 
     cy.get('#submittedDetailsModal').should('not.be.visible')
+  })
+
+  // Basic usage
+  it('Has no detectable a11y violations on load', () => {
+    // Test the page at initial load
+    cy.visit('/')
+    cy.injectAxe()
+    cy.checkA11y()
   })
 
 })
