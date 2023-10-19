@@ -8,10 +8,10 @@ const template = (styles, contactData) => {
               <i class='${icon} ${styles['contact-box__icon']}'></i>
               <span class='bg-white'></span>
             </div>
-            <div class='${styles['contact-box__content']}'>
+            <section class='${styles['contact-box__content']}' aria-label='${title}'>
               <div class='${styles['contact-box__title']}'>${title}</div>
               <div class='${styles['contact-box__text']}'>${text}</div>
-            </div>
+            </section>
           </div>
         </div>
       `).join('')}

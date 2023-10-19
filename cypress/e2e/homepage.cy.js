@@ -1,4 +1,4 @@
-describe('The Home Page', () => {
+describe('The Home Page Functionality', () => {
   beforeEach(() => {
     cy.visit('/')
   })
@@ -86,5 +86,4 @@ describe('The Home Page', () => {
 
     cy.get('#submittedDetailsModal').should('not.be.visible')
   })
-
 })
