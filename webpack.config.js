@@ -30,11 +30,11 @@ const htmlPluginEntries = templateFiles.map((template) => new HTMLWebpackPlugin(
 
 module.exports = {
   entry: {
-    app: path.resolve(environment.paths.source, 'Index.tsx')
+    app: path.resolve(environment.paths.source, 'index.tsx')
   },
   devtool: 'inline-source-map',
   output: {
-    filename: 'js/[name].tsx',
+    filename: 'js/[name].js',
     path: environment.paths.output
   },
   module: {
