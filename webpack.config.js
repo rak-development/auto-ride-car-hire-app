@@ -4,6 +4,7 @@
 
 const path = require('path')
 const fs = require('fs')
+const webpack = require('webpack') 
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
@@ -42,7 +43,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
-        test: /\.m?js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -109,6 +110,9 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+  },
   optimization: {
     minimizer: [
       '...',
@@ -148,7 +152,8 @@ module.exports = {
       verbose: true,
       cleanOnceBeforeBuildPatterns: ['**/*', '!stats.json']
     }),
-    new ESLintPlugin()
+    new ESLintPlugin(),
+    new webpack.HotModuleReplacementPlugin()
     // new CopyWebpackPlugin({
     // patterns: [
     //   {
