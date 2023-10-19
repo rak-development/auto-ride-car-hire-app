@@ -1,10 +1,9 @@
 const template = styles => {
   return `
     <div class='${styles['booking-reservation__wrapper']}'>
-      <div 
+      <form 
         id='bookingReservation' 
-        class='${styles['booking-reservation__form']} bg-white needs-validation' 
-        role='form' 
+        class='${styles['booking-reservation__form']} bg-white needs-validation'
         aria-labelledby='findCar'>
         <fieldset>
           <div class='container'>
@@ -155,7 +154,7 @@ const template = styles => {
             </div>
           </div>
         </fieldset>
-      </div>
+      </form>
     </div>
 
     <div
