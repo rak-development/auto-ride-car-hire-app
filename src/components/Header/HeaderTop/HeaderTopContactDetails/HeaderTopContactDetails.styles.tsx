@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ContactContainer = styled.div`
-  color: #343a40;
+  color: var(--bs-gray-800);
   font-size: 0.9375rem;
 `;
 
