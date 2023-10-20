@@ -1,4 +1,4 @@
-import './App.scss';
+import './app.scss';
 
 function MyButton({ title }: { title: string }) {
   return (

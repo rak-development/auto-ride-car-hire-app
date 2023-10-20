@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { device } from '../../../devicesBreakpoints';
 
 export const HeaderTopContainer = styled.div`
   font-weight: 400;
