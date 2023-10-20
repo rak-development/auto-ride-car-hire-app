@@ -1,4 +1,4 @@
-import { Wrapper } from "./HeaderBottom.styles"
+import { Wrapper } from "./header-bottom.styles"
 
 const HeaderBottom: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
-import HeaderTopContactDetails from "./HeaderTopContactDetails/HeaderTopContactDetails.component";
+import HeaderTopContactDetails from "./HeaderTopContactDetails/header-top-contact-details.component";
 import SocialIcons from "../../SocialIcons/SocialIcons.components";
 
-import { HeaderTopContainer } from "./HeaderTop.styles";
+import { HeaderTopContainer } from "./header-top.styles";
 
 const HeaderTop: React.FC = () => {
   return (

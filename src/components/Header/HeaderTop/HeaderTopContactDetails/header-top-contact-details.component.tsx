@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faMobileScreenButton, faClock } from '@fortawesome/free-solid-svg-icons'
 
-import { ContactContainer, ContactElement } from './HeaderTopContactDetails.styles';
+import { ContactContainer, ContactElement } from './header-top-contact-details.styles';
 
 const HeaderTopContactDetails: React.FC = () => {
   return (

@@ -1,4 +1,4 @@
-import { Logo, NavToggler, Nav, NavItem, NavItemLink } from "./HeaderMiddle.styles";
+import { Logo, NavToggler, Nav, NavItem, NavItemLink } from "./header-middle.styles";
 
 import logoSrc from '/src/assets/images/AutoRide-Logo.png'
 
