@@ -1,6 +1,6 @@
-import HeaderTop from "./HeaderTop/header-top.component";
-import HeaderMiddle from "./HeaderMiddle/header-middle.component";
-import HeaderBottom from "./HeaderBottom/header-bottom.component";
+import HeaderTop from "./header-top/header-top.component";
+import HeaderMiddle from "./header-middle/header-middle.component";
+import HeaderBottom from "./header-bottom/header-bottom.component";
 
 const HeaderLayout: React.FC = () => {
   return (

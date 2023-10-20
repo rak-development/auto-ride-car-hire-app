@@ -1,4 +1,4 @@
-import HeaderLayout from "./components/Header/header-layout.component";
+import HeaderLayout from "./components/header/header-layout.component";
 
 import './app.scss';
 

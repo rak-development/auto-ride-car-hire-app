@@ -14,10 +14,10 @@ export const SocialIcon = styled.div`
 `;
 
 export const SocialLink = styled.a`
-  color: #2C3E50;
+  color: var(--bs-gray-800);
   transition: all 200ms ease;
 
   &:hover {
-    color: #556677;
+    color: var(--bs-gray-700);
   }
 `

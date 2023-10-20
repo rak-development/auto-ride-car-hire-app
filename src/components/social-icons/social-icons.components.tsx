@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
-import { SocialIcon, SocialLink } from './SocialIcons.styles';
+import { SocialIcon, SocialLink } from './social-icons.styles';
 
 const SocialIcons: React.FC = () => {
   return (

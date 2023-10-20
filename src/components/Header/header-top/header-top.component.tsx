@@ -1,5 +1,5 @@
-import HeaderTopContactDetails from "./HeaderTopContactDetails/header-top-contact-details.component";
-import SocialIcons from "../../SocialIcons/SocialIcons.components";
+import HeaderTopContactDetails from "./header-top-contact-details/header-top-contact-details.component";
+import SocialIcons from "../../social-icons/social-icons.components";
 
 import { HeaderTopContainer } from "./header-top.styles";
 
