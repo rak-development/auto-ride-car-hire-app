@@ -4,6 +4,7 @@
 
 const path = require('path')
 const fs = require('fs')
+const webpack = require('webpack') 
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
@@ -29,8 +30,9 @@ const htmlPluginEntries = templateFiles.map((template) => new HTMLWebpackPlugin(
 
 module.exports = {
   entry: {
-    app: path.resolve(environment.paths.source, 'app.js')
+    app: path.resolve(environment.paths.source, 'index.tsx')
   },
+  devtool: 'inline-source-map',
   output: {
     filename: 'js/[name].js',
     path: environment.paths.output
@@ -42,7 +44,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
-        test: /\.m?js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -52,6 +54,11 @@ module.exports = {
             ]
           }
         }
+      },
+      {
+        test: /\.(ts|tsx)$/, 
+        loader: "ts-loader",
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|gif|jpe?g|svg)$/i,
@@ -109,6 +116,9 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: [".*", ".js", ".jsx", ".ts", ".tsx"],
+  },
   optimization: {
     minimizer: [
       '...',
@@ -148,7 +158,8 @@ module.exports = {
       verbose: true,
       cleanOnceBeforeBuildPatterns: ['**/*', '!stats.json']
     }),
-    new ESLintPlugin()
+    new ESLintPlugin(),
+    new webpack.HotModuleReplacementPlugin()
     // new CopyWebpackPlugin({
     // patterns: [
     //   {
