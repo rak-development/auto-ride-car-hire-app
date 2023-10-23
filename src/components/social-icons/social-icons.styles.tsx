@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled'
 
 export const SocialIcon = styled.div`
   width: 2.5rem;

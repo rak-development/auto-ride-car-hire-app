@@ -1,3 +1,4 @@
+import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faMobileScreenButton, faClock } from '@fortawesome/free-solid-svg-icons'
 
@@ -5,7 +6,7 @@ import { ContactContainer, ContactElement } from './header-top-contact-details.s
 
 const HeaderTopContactDetails: React.FC = () => {
   return (
-    <div className='container'>
+    <Container>
       <ContactContainer className='d-md-flex justify-content-md-between justify-content-lg-start'>
         <ContactElement>
           <FontAwesomeIcon icon={faLocationDot} />
@@ -20,7 +21,7 @@ const HeaderTopContactDetails: React.FC = () => {
           24/7
         </ContactElement>
       </ContactContainer>
-    </div>
+    </Container>
   )
 }
 

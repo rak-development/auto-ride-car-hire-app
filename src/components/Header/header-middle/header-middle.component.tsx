@@ -1,17 +1,21 @@
-import { Logo, NavToggler, Nav, NavItem, NavItemLink } from "./header-middle.styles";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
-import logoSrc from '/src/assets/images/AutoRide-Logo.png'
+import LogoComponent from '../../logo-component/logo-component.component';
+
+import { NavItem, NavToggler } from './header-middle.styles';
 
 const HeaderTopContactDetails: React.FC = () => {
   return (
     <>
-      <nav className='navbar navbar-expand-xl bg-white py-0'>
-        <div className='container'>
-          <a className='navbar-brand py-0 me-0 d-block' href='#' title='Homepage'>
-            <Logo id='logo' src={logoSrc} alt='AutoRide-Logo' />
-          </a>
+      <Navbar expand='xl' className='navbar bg-white py-0'>
+        <Container>
+          <Navbar.Brand className='py-0 me-0 d-block' href='#'>
+            <LogoComponent />
+          </Navbar.Brand>
           <NavToggler 
-            className='navbar-toggler rounded-circle p-0' 
+            className='rounded-circle p-0' 
             type='button' 
             data-bs-toggle='collapse' 
             data-bs-target='#navbarNav' 
@@ -20,30 +24,18 @@ const HeaderTopContactDetails: React.FC = () => {
             aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon'></span>
           </NavToggler>
-          <div className='collapse navbar-collapse justify-content-end' id='navbarNav'>
-            <Nav className='navbar-nav'>
-              <NavItem className='nav-item'>
-                <NavItemLink className='nav-link active p-0' aria-current='page' href='#'>Home</NavItemLink>
-              </NavItem>
-              <NavItem className='nav-item'>
-                <NavItemLink className='nav-link p-0' href='#'>Our Fleet</NavItemLink>
-              </NavItem>
-              <NavItem className='nav-item'>
-                <NavItemLink className='nav-link p-0' href='#'>Service Rates</NavItemLink>
-              </NavItem>  
-              <NavItem className='nav-item'>
-                <NavItemLink className='nav-link p-0' href='#'>News</NavItemLink>
-              </NavItem>
-              <NavItem className='nav-item'>
-                <NavItemLink className='nav-link p-0' href='#'>About Us</NavItemLink>
-              </NavItem>
-              <NavItem className='nav-item'>
-                <NavItemLink className='nav-link p-0' href='#'>Contact Us</NavItemLink>
-              </NavItem>
+          <Navbar.Collapse id='navbarNav' className='justify-content-end' >
+            <Nav>
+              <NavItem className='active' aria-current='page' href='#'>Home</NavItem>
+              <NavItem href='#'>Our Fleet</NavItem>
+              <NavItem href='#'>Service Rates</NavItem>
+              <NavItem href='#'>News</NavItem>
+              <NavItem href='#'>About Us</NavItem>
+              <NavItem href='#'>Contact Us</NavItem>
             </Nav>
-          </div>
-        </div>
-      </nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </>
   )
 }

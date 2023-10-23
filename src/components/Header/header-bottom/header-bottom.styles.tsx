@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled'
 
 import bannerSrc from './../../../assets/images/AutoRide-Banner.jpeg'
 
-export const Wrapper = styled.div`
+export const HeaderBottomWrapper = styled.div`
     padding-top: 7.5rem;
     padding-bottom: 7.5rem;
     background-image: url(${bannerSrc});
