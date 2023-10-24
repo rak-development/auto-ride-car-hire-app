@@ -4,7 +4,7 @@ import { faLocationDot, faMobileScreenButton, faClock } from '@fortawesome/free-
 
 import { ContactContainer, ContactElement } from './header-top-contact-details.styles';
 
-const HeaderTopContactDetails: React.FC = () => {
+export const HeaderTopContactDetails: React.FC = () => {
   return (
     <Container>
       <ContactContainer className='d-md-flex justify-content-md-between justify-content-lg-start'>
@@ -24,5 +24,3 @@ const HeaderTopContactDetails: React.FC = () => {
     </Container>
   )
 }
-
-export default HeaderTopContactDetails;

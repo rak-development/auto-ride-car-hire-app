@@ -3,7 +3,7 @@ import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 import { SocialIcon, SocialLink } from './social-icons.styles';
 
-const SocialIcons: React.FC = () => {
+export const SocialIcons: React.FC = () => {
   return (
     <div className='
         d-flex 
@@ -23,5 +23,3 @@ const SocialIcons: React.FC = () => {
       </div>
   )
 }
-
-export default SocialIcons;

@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 
 import { HeaderBottomWrapper } from './header-bottom.styles'
 
-const HeaderBottom: React.FC = () => {
+export const HeaderBottom: React.FC = () => {
   return (
     <HeaderBottomWrapper>
       <Container>
@@ -19,5 +19,3 @@ const HeaderBottom: React.FC = () => {
     </HeaderBottomWrapper>
   )
 }
-
-export default HeaderBottom

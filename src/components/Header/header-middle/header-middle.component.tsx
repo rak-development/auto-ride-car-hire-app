@@ -6,7 +6,7 @@ import LogoComponent from '../../logo-component/logo-component.component';
 
 import { NavItem, NavToggler } from './header-middle.styles';
 
-const HeaderTopContactDetails: React.FC = () => {
+export const HeaderMiddle: React.FC = () => {
   return (
     <>
       <Navbar expand='xl' className='navbar bg-white py-0'>
@@ -39,5 +39,3 @@ const HeaderTopContactDetails: React.FC = () => {
     </>
   )
 }
-
-export default HeaderTopContactDetails;

@@ -1,9 +1,9 @@
-import HeaderTopContactDetails from "./header-top-contact-details/header-top-contact-details.component";
-import SocialIcons from "../../social-icons/social-icons.components";
+import { HeaderTopContactDetails } from "./header-top-contact-details/header-top-contact-details.component";
+import { SocialIcons } from "../../social-icons/social-icons.components";
 
 import { HeaderTopContainer } from "./header-top.styles";
 
-const HeaderTop: React.FC = () => {
+export const HeaderTop: React.FC = () => {
   return (
     <div className='header-top bg-light'>
       <HeaderTopContainer
@@ -14,5 +14,3 @@ const HeaderTop: React.FC = () => {
     </div>
   )
 }
-
-export default HeaderTop;
