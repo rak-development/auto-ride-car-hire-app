@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-import LogoComponent from '../../logo-component/logo-component.component';
+import { LogoComponent } from '../../logo-component/logo-component.component';
 
 import { NavItem, NavToggler } from './header-middle.styles';
 
