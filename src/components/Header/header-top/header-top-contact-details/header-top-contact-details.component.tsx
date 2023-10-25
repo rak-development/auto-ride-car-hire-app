@@ -1,13 +1,48 @@
 import Container from 'react-bootstrap/Container';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import styled from '@emotion/styled'
 import { faLocationDot, faMobileScreenButton, faClock } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { ContactContainer, ContactElement } from './header-top-contact-details.styles';
+import { device } from '../../../../devices-breakpoints';
 
-export const HeaderTopContactDetails: React.FC = () => {
+const ContactContainer = styled.div`
+  color: var(--bs-gray-800);
+  font-size: 0.9375rem;
+
+  @media ${device.md} { 
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media ${device.lg} { 
+    justify-content: start;
+  }
+`;
+
+const ContactElement = styled.div`
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+
+  svg {
+    font-size: 1rem;
+
+    @media ${device.md} { 
+      padding-right: 0.9375rem;
+    }
+  }
+
+  @media ${device.md} { 
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0.9375rem;
+    margin-right: 1.5625rem;
+  }
+`;
+
+export const HeaderTopContactDetails = () => {
   return (
     <Container>
-      <ContactContainer className='d-md-flex justify-content-md-between justify-content-lg-start'>
+      <ContactContainer>
         <ContactElement>
           <FontAwesomeIcon icon={faLocationDot} />
           Jasionka 942, 36-002 Jasionka

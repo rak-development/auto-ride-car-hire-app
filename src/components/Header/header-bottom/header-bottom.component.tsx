@@ -1,21 +1,53 @@
 import Container from 'react-bootstrap/Container';
 
-import { HeaderBottomWrapper } from './header-bottom.styles'
+import styled from '@emotion/styled'
 
-export const HeaderBottom: React.FC = () => {
+import bannerSrc from './../../../assets/images/AutoRide-Banner.jpeg'
+
+const HeaderBottomBanner = styled.div`
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
+    background-image: url(${bannerSrc});
+    background-repeat: no-repeat;
+    background-size: cover;
+`;
+
+const HeaderBottomContainer = styled(Container)`
+  color: var(--bs-white);
+  display: flex;
+  flex-direction: column;
+`
+
+const MainHeader = styled.h1`
+  margin-top: 1rem;
+  margin-bottom: 0;
+  order: 1;
+`
+
+const SecondHeader = styled.h2`
+  margin-bottom: 3rem;
+  order: 2;
+`
+
+const SubHeader = styled.h5`
+  margin-bottom: 0;
+  order: 0;
+`
+
+export const HeaderBottom = () => {
   return (
-    <HeaderBottomWrapper>
-      <Container>
-        <h5 className='mb-0 text-white' role='heading' aria-label='Subheader'>
-          BOOK SMART. BOOK EARLY
-        </h5>
-        <h1 className='mb-0 mt-3 text-white' role='heading' aria-label='Main Header'>
+    <HeaderBottomBanner>
+      <HeaderBottomContainer>
+        <MainHeader aria-label='Main Header'>
           Better journeys, by AutoRide
-        </h1>
-        <h2 className='mb-5 text-white' role='heading' aria-label='Second Header'>
+        </MainHeader>
+        <SecondHeader aria-label='Second Header'>
           Make the most of your car hire
-        </h2>
-      </Container>
-    </HeaderBottomWrapper>
+        </SecondHeader>
+        <SubHeader aria-label='Subheader'>
+          BOOK SMART. BOOK EARLY
+        </SubHeader>
+      </HeaderBottomContainer>
+    </HeaderBottomBanner>
   )
 }

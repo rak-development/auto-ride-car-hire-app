@@ -1,8 +1,13 @@
-import { Logo } from './logo-component.styles'
+import styled from '@emotion/styled'
 
 import logoSrc from '/src/assets/images/AutoRide-Logo.png'
 
-export const LogoComponent: React.FC = () => {
+const Logo = styled.img`
+  max-width: 14.6875rem;
+  max-height: 6.875rem;
+`;
+
+export const LogoComponent = () => {
   return (
     <>
       <Logo id='logo' src={logoSrc} alt='AutoRide-Logo' />

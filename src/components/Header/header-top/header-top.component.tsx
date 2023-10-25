@@ -1,16 +1,33 @@
-import { HeaderTopContactDetails } from "./header-top-contact-details/header-top-contact-details.component";
-import { SocialIcons } from "../../social-icons/social-icons.components";
+import styled from '@emotion/styled'
+import Container from 'react-bootstrap/Container';
 
-import { HeaderTopContainer } from "./header-top.styles";
+import { HeaderTopContactDetails } from './header-top-contact-details/header-top-contact-details.component';
+import { SocialIcons } from '../../social-icons/social-icons.components';
+import { device } from '../../../devices-breakpoints';
 
-export const HeaderTop: React.FC = () => {
+const HeaderTopWrapper = styled.div`
+  background-color: var(--bs-gray-100);
+`
+
+const HeaderTopContainer = styled(Container)`
+  font-weight: 400;
+  line-height: 1.5rem;
+  padding: 0.5rem 0;
+
+  @media ${device.md} { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+export const HeaderTop = () => {
   return (
-    <div className='header-top bg-light'>
-      <HeaderTopContainer
-        className="container d-md-flex justify-content-md-between align-items-md-center">
+    <HeaderTopWrapper>
+      <HeaderTopContainer>
         <HeaderTopContactDetails />
         <SocialIcons />
       </HeaderTopContainer>
-    </div>
+    </HeaderTopWrapper>
   )
 }
