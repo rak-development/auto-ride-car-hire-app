@@ -1,8 +1,8 @@
 import { FooterTop } from "./footer-top/footer-top.component"
 import { FooterBottom } from "./footer-bottom/footer-bottom.component"
-import { FooterMiddle } from "./FooterMiddle/footer-middle.component"
+import { FooterMiddle } from "./footer-middle/footer-middle.component"
 
-export const FooterLayout: React.FC = () => {
+export const Footer: React.FC = () => {
   return (
     <footer>
       <FooterTop />
