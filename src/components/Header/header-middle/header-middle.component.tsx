@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 import styled from '@emotion/styled'
 
-import { LogoComponent } from '../../logo-light/logo-light.component';
+import { LogoLight } from '../../logo-light/logo-light.component';
 
 const NavbarContainer = styled(Navbar)`
   background-color: var(--bs-white);
@@ -55,7 +55,7 @@ export const HeaderMiddle = () => {
     <NavbarContainer expand='xl'>
       <Container>
         <HomeButton href='#'>
-          <LogoComponent />
+          <LogoLight />
         </HomeButton>
         <NavToggler
           type='button' 
