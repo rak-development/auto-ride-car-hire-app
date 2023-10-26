@@ -1,8 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import styled from "@emotion/styled"
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+
 import { FooterList } from '../../../../types/footerListTypes'
+import { FooterMiddleListElementIcon } from './footer-middle-list-element-icon.component/footer-middle-list-element-icon.component'
 
 const FooterMiddleListContainer = styled.ul`
   margin: 0;
@@ -23,10 +22,6 @@ const FooterMiddleListElement = styled.li`
   }
 `
 
-const FooterMiddleListElementIcon = styled(FontAwesomeIcon)`
-  padding-right: 1.375rem;
-`
-
 interface FooterMiddleListProps {
   list: FooterList[];
 }
@@ -34,11 +29,13 @@ interface FooterMiddleListProps {
 export const FooterMiddleList: React.FC<FooterMiddleListProps> = ({ list }) => {
   return (
     <FooterMiddleListContainer>
-      {list.map((el: any) => (
-        <FooterMiddleListElement key = {el.text}>
-          <FooterMiddleListElementIcon icon={faChevronRight} />
-          {el.text}
-        </FooterMiddleListElement>)
+      {list.map(({ text, icon } : FooterList) => {
+        return (
+          <FooterMiddleListElement key={text}>
+            <FooterMiddleListElementIcon icon={icon} />
+            {text}
+          </FooterMiddleListElement>
+        )}
         )
       }
     </FooterMiddleListContainer>
