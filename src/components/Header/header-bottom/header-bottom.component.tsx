@@ -29,7 +29,8 @@ const SecondHeader = styled.h2`
   order: 2;
 `
 
-const SubHeader = styled.h5`
+const SubHeader = styled.h3`
+  font-size: 1.125rem;
   margin-bottom: 0;
   order: 0;
 `
