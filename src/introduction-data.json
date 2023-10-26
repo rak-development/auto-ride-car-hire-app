@@ -1,0 +1,15 @@
+{
+  "title": "From Sedans <br>to Coach <br>Buses.",
+  "content": [
+    {
+      "id": 1,
+      "title": "Expect the Best",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in metus nibh. Suspendisse imperdiet, nulla ut dictum venenatis, nunc velit rhoncus neque, eu commodo augue sapien quis ipsum."
+    },
+    {
+      "id": 2,
+      "title": "Travel in Comfort",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in metus nibh. Suspendisse imperdiet, nulla ut dictum venenatis, nunc velit rhoncus neque, eu commodo augue sapien quis ipsum. Vivamus pharetra sagittis dolor sit amet malesuada. Morbi consequat aliquet dignissim."
+    }
+  ]
+}
