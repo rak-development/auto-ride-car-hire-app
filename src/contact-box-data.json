@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Address",
+    "icon": "fa-map-location-dot",
+    "text": "Jasionka 942, 36-002 Jasionka"
+  },
+  {
+    "title": "Phones",
+    "icon": "fa-phone",
+    "text": "BOOK A RIDE: 123 456 789 <br />OFFICE: (+48) 17 123 45 61"
+  },
+  {
+    "title": "Working Hours",
+    "icon": "fa-clock",
+    "text": "24/7"
+  }
+]

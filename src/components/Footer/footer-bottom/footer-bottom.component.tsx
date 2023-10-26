@@ -26,7 +26,7 @@ const FooterBottomRow = styled(Row)`
   }
 `
 
-export const FooterBottom: React.FC = () => {
+export const FooterBottom = () => {
   return (
     <FooterBottomWrapper>
       <Container>

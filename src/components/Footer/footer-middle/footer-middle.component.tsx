@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 import { LogoGrey } from '../../logo-grey/logo-grey.component'
 import { FooterMiddleList } from './footer-middle-list/footer-middle-list.component';
@@ -45,7 +45,7 @@ const TitleBox = styled.div`
   }
 `
 
-export const FooterMiddle: React.FC = () => {
+export const FooterMiddle = () => {
   const servicesList: FooterList[] = SERVICES_LIST_DATA;
   const contactList: FooterList[] = CONTACT_LIST_DATA;
 

@@ -9,7 +9,7 @@ const FooterTopWrapper = styled.div`
   padding-bottom: 2.5rem;
 `
 
-export const FooterTop: React.FC = () => {
+export const FooterTop = () => {
   return (
     <FooterTopWrapper>
       <Container>
