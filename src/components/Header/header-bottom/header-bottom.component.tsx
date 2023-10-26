@@ -39,13 +39,13 @@ export const HeaderBottom = () => {
   return (
     <HeaderBottomBanner>
       <HeaderBottomContainer>
-        <MainHeader aria-label='Main Header'>
+        <MainHeader>
           Better journeys, by AutoRide
         </MainHeader>
-        <SecondHeader aria-label='Second Header'>
+        <SecondHeader>
           Make the most of your car hire
         </SecondHeader>
-        <SubHeader aria-label='Subheader'>
+        <SubHeader>
           BOOK SMART. BOOK EARLY
         </SubHeader>
       </HeaderBottomContainer>
