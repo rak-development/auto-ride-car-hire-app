@@ -17,3 +17,7 @@ node_modules
 !.prettierignore
 
 cypress/screenshots
+
+# Local Netlify folder
+.netlify
+.gitignore

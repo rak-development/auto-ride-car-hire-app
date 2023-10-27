@@ -29,7 +29,8 @@ const SecondHeader = styled.h2`
   order: 2;
 `
 
-const SubHeader = styled.h5`
+const SubHeader = styled.h3`
+  font-size: 1.125rem;
   margin-bottom: 0;
   order: 0;
 `
@@ -38,13 +39,13 @@ export const HeaderBottom = () => {
   return (
     <HeaderBottomBanner>
       <HeaderBottomContainer>
-        <MainHeader aria-label='Main Header'>
+        <MainHeader>
           Better journeys, by AutoRide
         </MainHeader>
-        <SecondHeader aria-label='Second Header'>
+        <SecondHeader>
           Make the most of your car hire
         </SecondHeader>
-        <SubHeader aria-label='Subheader'>
+        <SubHeader>
           BOOK SMART. BOOK EARLY
         </SubHeader>
       </HeaderBottomContainer>

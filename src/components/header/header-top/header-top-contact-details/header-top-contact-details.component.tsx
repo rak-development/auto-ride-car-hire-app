@@ -11,24 +11,18 @@ const ContactContainer = styled.div`
 
   @media ${device.md} { 
     display: flex;
-    justify-content: space-between;
-  }
-
-  @media ${device.lg} { 
-    justify-content: start;
   }
 `;
 
 const ContactElement = styled.div`
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
 
   svg {
     font-size: 1rem;
-
-    @media ${device.md} { 
-      padding-right: 0.9375rem;
-    }
   }
 
   @media ${device.md} { 
@@ -41,21 +35,19 @@ const ContactElement = styled.div`
 
 export const HeaderTopContactDetails = () => {
   return (
-    <Container>
-      <ContactContainer>
-        <ContactElement>
-          <FontAwesomeIcon icon={faLocationDot} />
-          Jasionka 942, 36-002 Jasionka
-        </ContactElement>
-        <ContactElement>
-          <FontAwesomeIcon icon={faMobileScreenButton} />
-          123 456 789
-        </ContactElement>
-        <ContactElement>
-          <FontAwesomeIcon icon={faClock} />
-          24/7
-        </ContactElement>
-      </ContactContainer>
-    </Container>
+    <ContactContainer>
+      <ContactElement>
+        <FontAwesomeIcon icon={faLocationDot} />
+        Jasionka 942, 36-002 Jasionka
+      </ContactElement>
+      <ContactElement>
+        <FontAwesomeIcon icon={faMobileScreenButton} />
+        123 456 789
+      </ContactElement>
+      <ContactElement>
+        <FontAwesomeIcon icon={faClock} />
+        24/7
+      </ContactElement>
+    </ContactContainer>
   )
 }
