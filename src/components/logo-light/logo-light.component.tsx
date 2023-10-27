@@ -7,10 +7,4 @@ const Logo = styled.img`
   max-height: 6.875rem;
 `;
 
-export const LogoLight = () => {
-  return (
-    <>
-      <Logo id='logo' src={logoSrc} alt='AutoRide-Logo' />
-    </>
-  )
-}
+export const LogoLight = () => <Logo id='logo' src={logoSrc} alt='AutoRide-Logo' />
