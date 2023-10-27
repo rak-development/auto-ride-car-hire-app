@@ -21,5 +21,9 @@
       "id": 2,
       "image": "../src/assets/images/AutoRide-Introduction-02.jpeg"
     }
-  ]
+  ],
+  "quote": {
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras condimentum eros et tellus aliquet tincidunt.",
+    "author": "ANNA CRIADO - CHAIRMAN & CEO"
+  }
 }

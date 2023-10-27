@@ -9,8 +9,14 @@ export type IntroductionImagesType = {
   image: string
 }
 
+export type IntroductionQuoteType = {
+  text: string,
+  author: string
+}
+
 export type IntroductionDataType = {
   title: string,
   content: IntroductionContentType[],
-  images: IntroductionImagesType[]
+  images: IntroductionImagesType[],
+  quote: IntroductionQuoteType
 }
