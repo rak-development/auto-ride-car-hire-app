@@ -10,6 +10,7 @@ import INTRODUCTION_DATA from '../../introduction-data.json'
 import { IntroductionContent } from './introduction-content/introduction-content-component'
 
 import { IntroductionDataType } from '../../types/introductionDataTypes'
+import { IntroductionImages } from './introduction-images/introduction-images.component'
 
 const IntroductionContainer = styled(Container)`
   padding-top: 6.25rem;
@@ -18,6 +19,10 @@ const IntroductionContainer = styled(Container)`
 
 const IntroductionRow = styled(Row)`
   margin-bottom: 0.625rem;
+`
+
+const IntroductionCol = styled(Col)`
+  margin-bottom: 2.5rem;
 `
 
 const IntroductionTitle = styled.h1`
@@ -37,15 +42,16 @@ const IntroductionTitle = styled.h1`
 `
 
 export const Introduction = () => {
-  const { title, content }: IntroductionDataType = INTRODUCTION_DATA
+  const { title, content, images }: IntroductionDataType = INTRODUCTION_DATA
   const addLineBreak = title.replace(/<br\s*[\/]?>/gi, '\n')
   return (
     <IntroductionContainer>
       <IntroductionRow>
-        <Col md={4}>
+        <IntroductionCol md={4}>
           <IntroductionTitle>{ addLineBreak }</IntroductionTitle>
-        </Col>
+        </IntroductionCol>
         <IntroductionContent content={content} />
+        <IntroductionImages images={images} />
       </IntroductionRow>
     </IntroductionContainer>
   )

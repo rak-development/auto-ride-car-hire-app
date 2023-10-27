@@ -4,7 +4,13 @@ export type IntroductionContentType = {
   text: string,
 }
 
+export type IntroductionImagesType = {
+  id: number,
+  image: string
+}
+
 export type IntroductionDataType = {
   title: string,
-  content: IntroductionContentType[]
+  content: IntroductionContentType[],
+  images: IntroductionImagesType[]
 }

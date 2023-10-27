@@ -11,5 +11,15 @@
       "title": "Travel in Comfort",
       "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in metus nibh. Suspendisse imperdiet, nulla ut dictum venenatis, nunc velit rhoncus neque, eu commodo augue sapien quis ipsum. Vivamus pharetra sagittis dolor sit amet malesuada. Morbi consequat aliquet dignissim."
     }
+  ],
+  "images": [
+    {
+      "id": 1,
+      "image": "../src/assets/images/AutoRide-Introduction-01.jpeg"
+    },
+    {
+      "id": 2,
+      "image": "../src/assets/images/AutoRide-Introduction-02.jpeg"
+    }
   ]
 }
