@@ -1,4 +1,5 @@
-import { Header } from "./components/header/header.component";
+import { Header } from './components/header/header.component';
+import { WhatWeOffer } from './components/what-we-offer/what-we-offer.component';
 
 import './app.scss';
 
@@ -6,7 +7,9 @@ const App = () => {
   return (
     <>
       <Header />
-      <main>Main</main>
+      <main>
+        <WhatWeOffer />
+      </main>
       <footer>Footer</footer>
       <h1>Welcome to my app</h1>
     </>
