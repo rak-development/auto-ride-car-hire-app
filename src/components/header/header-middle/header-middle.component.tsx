@@ -50,8 +50,8 @@ const NavToggler = styled(Navbar.Toggle)`
   }
 `;
 
-export const HeaderMiddle = () => {
-  return (
+export const HeaderMiddle = () => 
+  (
     <NavbarContainer expand='xl'>
       <Container>
         <HomeButton href='#'>
@@ -79,4 +79,4 @@ export const HeaderMiddle = () => {
       </Container>
     </NavbarContainer>
   )
-}
+

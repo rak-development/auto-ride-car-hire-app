@@ -36,8 +36,8 @@ const SocialLink = styled.a`
   }
 `
 
-export const SocialIcons = () => {
-  return (
+export const SocialIcons = () => 
+  (
     <SocialIconsWrapper>
       <SocialIcon>
         <SocialLink href='https://www.facebook.com/' target='_blank' aria-label='Facebook Link' rel='noopener noreferrer'>
@@ -51,4 +51,4 @@ export const SocialIcons = () => {
       </SocialIcon>
     </SocialIconsWrapper>
   )
-}
+

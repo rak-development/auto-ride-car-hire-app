@@ -1,4 +1,3 @@
-import { type FC } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styled from '@emotion/styled';
@@ -74,38 +73,27 @@ const ContactBoxContentText = styled.div`
   }
 `
 
-interface ContactBoxDataProps {
-  contactBoxData: FooterList[]
-}
-
-const ContactBoxData: FC<ContactBoxDataProps> = ({ contactBoxData }) => {
-  return (
-    contactBoxData.map(({ title, text, icon }: any) => 
-      (
-        <Col md={4} key={title}>
-          <ContactBoxWrapper>
-            <ContactBoxIconSection>
-              <SetIcon icon={icon} />
-              <ContactBoxIconBackground />
-            </ContactBoxIconSection>
-            <ContactBoxContentSection aria-label={title}>
-              <ContactBoxContentTitle>{title}</ContactBoxContentTitle>
-              <ContactBoxContentText>
-                <NewLineText text={text} />
-              </ContactBoxContentText>
-            </ContactBoxContentSection>
-          </ContactBoxWrapper>
-        </Col>
-      )
-    )
-  )
-}
-
 export const ContactBox = () => {
-  const contactBoxData: FooterList[] = CONTACT_BOX_DATA;
   return (
     <Row>
-      <ContactBoxData contactBoxData={contactBoxData} />
+      {CONTACT_BOX_DATA.map(({title,text,icon}: FooterList) => 
+        (
+          <Col md={4} key={title}>
+            <ContactBoxWrapper>
+              <ContactBoxIconSection>
+                <SetIcon icon={icon} />
+                <ContactBoxIconBackground />
+              </ContactBoxIconSection>
+              <ContactBoxContentSection aria-label={title}>
+                <ContactBoxContentTitle>{title}</ContactBoxContentTitle>
+                <ContactBoxContentText>
+                  <NewLineText props={{text}} />
+                </ContactBoxContentText>
+              </ContactBoxContentSection>
+            </ContactBoxWrapper>
+          </Col>
+        )
+      )}
     </Row>
   )
 }

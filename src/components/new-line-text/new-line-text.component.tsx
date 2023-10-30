@@ -1,9 +1,16 @@
-export const NewLineText = (props: { text: string }) => {
+import { type FC } from 'react';
+
+interface Test {
+  props: {
+    text: string
+  }
+}
+
+export const NewLineText: FC<Test> = ({props}) => {
   const text = props.text
   return (
-    text.split('<br />').map(
-      (string: string, index: number, ) =>
-        <div key={ index }>{ string }</div>
+    text.split('\n').map(
+      (text) => <div key={text}>{text}</div>
     )
   )
 }

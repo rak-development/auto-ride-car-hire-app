@@ -3,8 +3,8 @@ import { Footer } from './components/footer/footer.component';
 
 import './app.scss';
 
-const App = () => {
-  return (
+const App = () => 
+  (
     <>
       <Header />
       <main>Main</main>
@@ -12,6 +12,5 @@ const App = () => {
       <Footer />
     </>
   );
-}
 
 export default App;

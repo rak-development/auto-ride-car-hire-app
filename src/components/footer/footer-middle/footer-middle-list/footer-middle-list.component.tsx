@@ -27,18 +27,16 @@ interface FooterMiddleListProps {
   list: FooterList[];
 }
 
-export const FooterMiddleList: FC<FooterMiddleListProps> = ({ list }) => {
-  return (
+export const FooterMiddleList: FC<FooterMiddleListProps> = ({list}) => 
+  (
     <FooterMiddleListContainer>
-      {list.map(({ text, icon }) => {
-        return (
+      {list.map(({text,icon}) => 
+        (
           <FooterMiddleListElement key={text}>
             <SetIcon icon={icon} />
             {text}
           </FooterMiddleListElement>
-        )}
         )
-      }
+      )}
     </FooterMiddleListContainer>
   )
-}

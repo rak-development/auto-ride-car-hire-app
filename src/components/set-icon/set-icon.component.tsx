@@ -40,8 +40,4 @@ interface SetIconProps {
   icon: string | undefined;
 }
 
-export const SetIcon: FC<SetIconProps> = ({ icon }) => {
-  return (
-    <ElementIcon icon={setElementIcon(icon)} />
-  )
-}
+export const SetIcon: FC<SetIconProps> = ({icon}) => <ElementIcon icon={setElementIcon(icon)} />

@@ -32,8 +32,8 @@ const ContactElement = styled.div`
   }
 `;
 
-export const HeaderTopContactDetails = () => {
-  return (
+export const HeaderTopContactDetails = () => 
+  (
     <ContactContainer>
       <ContactElement>
         <FontAwesomeIcon icon={faLocationDot} />
@@ -49,4 +49,3 @@ export const HeaderTopContactDetails = () => {
       </ContactElement>
     </ContactContainer>
   )
-}

@@ -55,7 +55,7 @@ export const FooterMiddle = () => {
         <Row>
           <Col md={4}>
             <ContentBox>
-              <TitleBox>About<span></span></TitleBox>
+              <TitleBox>About<span /></TitleBox>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                 Ut sodales libero et varius commodo. Phasellus tristique magna sit amet aliquet mollis.
@@ -65,13 +65,13 @@ export const FooterMiddle = () => {
           </Col>
           <Col md={4}>
             <ContentBox>
-              <TitleBox>Our Services<span></span></TitleBox>
+              <TitleBox>Our Services<span /></TitleBox>
               <FooterMiddleList list={servicesList} />
             </ContentBox>
           </Col>
           <Col md={4}>
             <ContentBox>
-              <TitleBox>Autoride<span></span></TitleBox>
+              <TitleBox>Autoride<span /></TitleBox>
               <FooterMiddleList list={contactList} />
             </ContentBox>
           </Col>
