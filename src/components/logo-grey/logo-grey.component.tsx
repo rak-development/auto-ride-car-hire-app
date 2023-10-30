@@ -1,6 +1,6 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
-import logoSrc from '/src/assets/images/AutoRide-Footer-Logo.png'
+import logoSrc from '/src/assets/images/AutoRide-Footer-Logo.png';
 
 
 const Logo = styled.img`
@@ -12,10 +12,4 @@ const Logo = styled.img`
 `;
 
 
-export const LogoGrey: React.FC = () => {
-  return (
-    <>
-      <Logo id='logo' src={logoSrc} alt='AutoRide-Logo' />
-    </>
-  )
-}
+export const LogoGrey = () => <Logo id='logo' src={logoSrc} alt='AutoRide-Logo' />

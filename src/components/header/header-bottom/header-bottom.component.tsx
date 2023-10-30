@@ -1,8 +1,8 @@
 import Container from 'react-bootstrap/Container';
 
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
-import bannerSrc from './../../../assets/images/AutoRide-Banner.jpeg'
+import bannerSrc from './../../../assets/images/AutoRide-Banner.jpeg';
 
 const HeaderBottomBanner = styled.div`
     padding-top: 7.5rem;

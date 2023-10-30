@@ -1,4 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { type FC } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faChevronRight,
   faClock,
@@ -7,9 +8,9 @@ import {
   faMapLocationDot,
   faMobileScreenButton,
   faPhone 
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
 
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 const ElementIcon = styled(FontAwesomeIcon)`
   padding-right: 1.375rem;
@@ -17,37 +18,29 @@ const ElementIcon = styled(FontAwesomeIcon)`
 
 // not sure how to solve the type for below
 const setElementIcon = (icon: any) => {
-  let iconProp
   switch(icon) {
     case 'fa-location-dot':
-      iconProp = faLocationDot
-      break;
+      return faLocationDot
     case 'fa-map-location-dot':
-      iconProp = faMapLocationDot
-      break;
+      return faMapLocationDot
     case 'fa-phone':
-      iconProp = faPhone
-      break;
+      return faPhone
     case 'fa-mobile-screen-button':
-      iconProp = faMobileScreenButton
-      break;
+      return faMobileScreenButton
     case 'fa-envelope':
-      iconProp = faEnvelope
-      break;
+      return faEnvelope
     case 'fa-clock':
-      iconProp = faClock
-      break;
+      return faClock
     default:
-      iconProp = faChevronRight
+      return faChevronRight
   }
-  return iconProp
 }
 
 interface SetIconProps {
   icon: string | undefined;
 }
 
-export const SetIcon: React.FC<SetIconProps> = ({ icon }) => {
+export const SetIcon: FC<SetIconProps> = ({ icon }) => {
   return (
     <ElementIcon icon={setElementIcon(icon)} />
   )

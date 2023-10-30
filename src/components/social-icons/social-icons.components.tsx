@@ -1,6 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import styled from '@emotion/styled'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import styled from '@emotion/styled';
 
 import { device } from '../../devices-breakpoints';
 

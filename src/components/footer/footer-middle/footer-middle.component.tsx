@@ -3,13 +3,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styled from '@emotion/styled';
 
-import { LogoGrey } from '../../logo-grey/logo-grey.component'
+import { LogoGrey } from '../../logo-grey/logo-grey.component';
 import { FooterMiddleList } from './footer-middle-list/footer-middle-list.component';
 
-import SERVICES_LIST_DATA from '../../../services-list-data.json'
-import CONTACT_LIST_DATA from '../../../contact-list-data.json'
+import SERVICES_LIST_DATA from '../../../services-list-data.json';
+import CONTACT_LIST_DATA from '../../../contact-list-data.json';
 
-import { FooterList } from '../../../types/footerListTypes';
+import { FooterList } from '../../../types/footer-list-types';
 
 const FooterMiddleWrapper = styled.div`
   background-color: var(--bs-gray-200);

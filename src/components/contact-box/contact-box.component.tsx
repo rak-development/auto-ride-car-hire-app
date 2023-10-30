@@ -1,13 +1,15 @@
-import Row from 'react-bootstrap/Row'
+import { type FC } from 'react';
+import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styled from '@emotion/styled';
 
 import CONTACT_BOX_DATA from '../../contact-box-data.json'
 
 import { device } from '../../devices-breakpoints';
-import { FooterList } from '../../types/footerListTypes';
+import { FooterList } from '../../types/footer-list-types';
 
 import { SetIcon } from '../set-icon/set-icon.component';
+import { NewLineText } from '../new-line-text/new-line-text.component';
 
 const ContactBoxWrapper = styled.div`
   display: flex;
@@ -21,7 +23,7 @@ const ContactBoxIconSection = styled.section`
     width: 3rem;
     height: 3rem;
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     top: -0.625rem;
     left: 0;
     padding-right: 0;
@@ -34,7 +36,6 @@ const ContactBoxIconSection = styled.section`
 
 const ContactBoxIconBackground = styled.div`
   background-color: var(--bs-white);
-  z-index: 1;
   width: 3rem;
   height: 3rem;
   display: block;
@@ -73,13 +74,14 @@ const ContactBoxContentText = styled.div`
   }
 `
 
-export const ContactBox: React.FC = () => {
-  const contactBoxData: FooterList[] = CONTACT_BOX_DATA;
+interface ContactBoxDataProps {
+  contactBoxData: FooterList[]
+}
+
+const ContactBoxData: FC<ContactBoxDataProps> = ({ contactBoxData }) => {
   return (
-    <Row>
-      {contactBoxData.map(({ title, text, icon }: FooterList) => {
-        const addLineBreak = text.replace(/<br\s*[\/]?>/gi, '\n')
-        return (
+    contactBoxData.map(({ title, text, icon }: any) => 
+      (
         <Col md={4} key={title}>
           <ContactBoxWrapper>
             <ContactBoxIconSection>
@@ -88,11 +90,22 @@ export const ContactBox: React.FC = () => {
             </ContactBoxIconSection>
             <ContactBoxContentSection aria-label={title}>
               <ContactBoxContentTitle>{title}</ContactBoxContentTitle>
-              <ContactBoxContentText>{addLineBreak}</ContactBoxContentText>
+              <ContactBoxContentText>
+                <NewLineText text={text} />
+              </ContactBoxContentText>
             </ContactBoxContentSection>
           </ContactBoxWrapper>
-        </Col>)
-      })}
+        </Col>
+      )
+    )
+  )
+}
+
+export const ContactBox = () => {
+  const contactBoxData: FooterList[] = CONTACT_BOX_DATA;
+  return (
+    <Row>
+      <ContactBoxData contactBoxData={contactBoxData} />
     </Row>
   )
 }

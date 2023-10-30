@@ -1,6 +1,6 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
-import logoSrc from '/src/assets/images/AutoRide-Logo.png'
+import logoSrc from '/src/assets/images/AutoRide-Logo.png';
 
 const Logo = styled.img`
   max-width: 14.6875rem;

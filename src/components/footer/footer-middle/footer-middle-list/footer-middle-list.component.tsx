@@ -1,7 +1,8 @@
-import styled from '@emotion/styled'
+import { type FC } from 'react';
+import styled from '@emotion/styled';
 
-import { FooterList } from '../../../../types/footerListTypes'
-import { SetIcon } from '../../../set-icon/set-icon.component'
+import { FooterList } from '../../../../types/footer-list-types';
+import { SetIcon } from '../../../set-icon/set-icon.component';
 
 const FooterMiddleListContainer = styled.ul`
   margin: 0;
@@ -26,10 +27,10 @@ interface FooterMiddleListProps {
   list: FooterList[];
 }
 
-export const FooterMiddleList: React.FC<FooterMiddleListProps> = ({ list }) => {
+export const FooterMiddleList: FC<FooterMiddleListProps> = ({ list }) => {
   return (
     <FooterMiddleListContainer>
-      {list.map(({ text, icon } : FooterList) => {
+      {list.map(({ text, icon }) => {
         return (
           <FooterMiddleListElement key={text}>
             <SetIcon icon={icon} />
