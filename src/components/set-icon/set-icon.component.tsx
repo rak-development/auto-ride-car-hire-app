@@ -1,16 +1,16 @@
-import { type FC } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
+import { type FC } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
   faChevronRight,
   faClock,
   faEnvelope,
   faLocationDot,
   faMapLocationDot,
   faMobileScreenButton,
-  faPhone 
-} from '@fortawesome/free-solid-svg-icons';
+  faPhone,
+} from '@fortawesome/free-solid-svg-icons'
 
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 const ElementIcon = styled(FontAwesomeIcon)`
   padding-right: 1.375rem;
@@ -18,7 +18,7 @@ const ElementIcon = styled(FontAwesomeIcon)`
 
 // not sure how to solve the type for below
 const setElementIcon = (icon: any) => {
-  switch(icon) {
+  switch (icon) {
     case 'fa-location-dot':
       return faLocationDot
     case 'fa-map-location-dot':
@@ -37,7 +37,7 @@ const setElementIcon = (icon: any) => {
 }
 
 interface SetIconProps {
-  icon: string | undefined;
+  icon: string | undefined
 }
 
-export const SetIcon: FC<SetIconProps> = ({icon}) => <ElementIcon icon={setElementIcon(icon)} />
+export const SetIcon: FC<SetIconProps> = ({ icon }) => <ElementIcon icon={setElementIcon(icon)} />

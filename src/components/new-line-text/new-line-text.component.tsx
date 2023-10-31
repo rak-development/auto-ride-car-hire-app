@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import { type FC } from 'react'
 
 interface Test {
   props: {
@@ -6,11 +6,7 @@ interface Test {
   }
 }
 
-export const NewLineText: FC<Test> = ({props}) => {
+export const NewLineText: FC<Test> = ({ props }) => {
   const text = props.text
-  return (
-    text.split('\n').map(
-      (text) => <div key={text}>{text}</div>
-    )
-  )
+  return text.split('\n').map((text) => <div key={text}>{text}</div>)
 }

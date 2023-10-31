@@ -1,10 +1,10 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
 
 import styled from '@emotion/styled'
 
-import { LogoLight } from '../../logo-light/logo-light.component';
+import { LogoLight } from '../../logo-light/logo-light.component'
 
 const NavbarContainer = styled(Navbar)`
   background-color: var(--bs-white);
@@ -48,35 +48,36 @@ const NavToggler = styled(Navbar.Toggle)`
   &:focus {
     box-shadow: none;
   }
-`;
+`
 
-export const HeaderMiddle = () => 
-  (
-    <NavbarContainer expand='xl'>
-      <Container>
-        <HomeButton href='#'>
-          <LogoLight />
-        </HomeButton>
-        <NavToggler
-          type='button' 
-          data-bs-toggle='collapse' 
-          data-bs-target='#navbarNav' 
-          aria-controls='navbarNav' 
-          aria-expanded='false' 
-          aria-label='Toggle navigation'>
-          <span className='navbar-toggler-icon'></span>
-        </NavToggler>
-        <NavbarCollapse id='navbarNav'>
-          <Nav>
-            <NavItem className='active' aria-current='page' href='#'>Home</NavItem>
-            <NavItem href='#'>Our Fleet</NavItem>
-            <NavItem href='#'>Service Rates</NavItem>
-            <NavItem href='#'>News</NavItem>
-            <NavItem href='#'>About Us</NavItem>
-            <NavItem href='#'>Contact Us</NavItem>
-          </Nav>
-        </NavbarCollapse>
-      </Container>
-    </NavbarContainer>
-  )
-
+export const HeaderMiddle = () => (
+  <NavbarContainer expand='xl'>
+    <Container>
+      <HomeButton href='#'>
+        <LogoLight />
+      </HomeButton>
+      <NavToggler
+        type='button'
+        data-bs-toggle='collapse'
+        data-bs-target='#navbarNav'
+        aria-controls='navbarNav'
+        aria-expanded='false'
+        aria-label='Toggle navigation'
+      >
+        <span className='navbar-toggler-icon'></span>
+      </NavToggler>
+      <NavbarCollapse id='navbarNav'>
+        <Nav>
+          <NavItem className='active' aria-current='page' href='#'>
+            Home
+          </NavItem>
+          <NavItem href='#'>Our Fleet</NavItem>
+          <NavItem href='#'>Service Rates</NavItem>
+          <NavItem href='#'>News</NavItem>
+          <NavItem href='#'>About Us</NavItem>
+          <NavItem href='#'>Contact Us</NavItem>
+        </Nav>
+      </NavbarCollapse>
+    </Container>
+  </NavbarContainer>
+)

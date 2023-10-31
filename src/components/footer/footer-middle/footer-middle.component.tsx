@@ -1,15 +1,15 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import styled from '@emotion/styled';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import styled from '@emotion/styled'
 
-import { LogoGrey } from '../../logo-grey/logo-grey.component';
-import { FooterMiddleList } from './footer-middle-list/footer-middle-list.component';
+import { LogoGrey } from '../../logo-grey/logo-grey.component'
+import { FooterMiddleList } from './footer-middle-list/footer-middle-list.component'
 
-import SERVICES_LIST_DATA from '../../../services-list-data.json';
-import CONTACT_LIST_DATA from '../../../contact-list-data.json';
+import SERVICES_LIST_DATA from '../../../services-list-data.json'
+import CONTACT_LIST_DATA from '../../../contact-list-data.json'
 
-import { FooterList } from '../../../types/footer-list-types';
+import { FooterList } from '../../../types/footer-list-types'
 
 const FooterMiddleWrapper = styled.div`
   background-color: var(--bs-gray-200);
@@ -46,8 +46,8 @@ const TitleBox = styled.div`
 `
 
 export const FooterMiddle = () => {
-  const servicesList: FooterList[] = SERVICES_LIST_DATA;
-  const contactList: FooterList[] = CONTACT_LIST_DATA;
+  const servicesList: FooterList[] = SERVICES_LIST_DATA
+  const contactList: FooterList[] = CONTACT_LIST_DATA
 
   return (
     <FooterMiddleWrapper>
@@ -55,23 +55,34 @@ export const FooterMiddle = () => {
         <Row>
           <Col md={4}>
             <ContentBox>
-              <TitleBox>About<span /></TitleBox>
+              <TitleBox>
+                About
+                <span />
+              </TitleBox>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Ut sodales libero et varius commodo. Phasellus tristique magna sit amet aliquet mollis.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sodales libero et varius
+                commodo. Phasellus tristique magna sit amet aliquet mollis.
               </p>
-              <p><LogoGrey /></p>
+              <p>
+                <LogoGrey />
+              </p>
             </ContentBox>
           </Col>
           <Col md={4}>
             <ContentBox>
-              <TitleBox>Our Services<span /></TitleBox>
+              <TitleBox>
+                Our Services
+                <span />
+              </TitleBox>
               <FooterMiddleList list={servicesList} />
             </ContentBox>
           </Col>
           <Col md={4}>
             <ContentBox>
-              <TitleBox>Autoride<span /></TitleBox>
+              <TitleBox>
+                Autoride
+                <span />
+              </TitleBox>
               <FooterMiddleList list={contactList} />
             </ContentBox>
           </Col>

@@ -1,14 +1,14 @@
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import styled from '@emotion/styled';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import styled from '@emotion/styled'
 
 import CONTACT_BOX_DATA from '../../contact-box-data.json'
 
-import { device } from '../../devices-breakpoints';
-import { FooterList } from '../../types/footer-list-types';
+import { device } from '../../devices-breakpoints'
+import { FooterList } from '../../types/footer-list-types'
 
-import { SetIcon } from '../set-icon/set-icon.component';
-import { NewLineText } from '../new-line-text/new-line-text.component';
+import { SetIcon } from '../set-icon/set-icon.component'
+import { NewLineText } from '../new-line-text/new-line-text.component'
 
 const ContactBoxWrapper = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ const ContactBoxIconSection = styled.section`
     left: 0;
     padding-right: 0;
 
-    @media ${device.md} { 
+    @media ${device.md} {
       left: -0.625rem;
     }
   }
@@ -42,8 +42,8 @@ const ContactBoxIconBackground = styled.div`
   position: relative;
   left: 0.625rem;
 
-  @media ${device.md} { 
-    left: 0
+  @media ${device.md} {
+    left: 0;
   }
 `
 
@@ -68,7 +68,7 @@ const ContactBoxContentText = styled.div`
   line-height: 1.66rem;
   color: var(--bs--gray-800);
 
-  @media ${device.md} { 
+  @media ${device.md} {
     font-size: 1.125rem;
   }
 `
@@ -76,24 +76,22 @@ const ContactBoxContentText = styled.div`
 export const ContactBox = () => {
   return (
     <Row>
-      {CONTACT_BOX_DATA.map(({title,text,icon}: FooterList) => 
-        (
-          <Col md={4} key={title}>
-            <ContactBoxWrapper>
-              <ContactBoxIconSection>
-                <SetIcon icon={icon} />
-                <ContactBoxIconBackground />
-              </ContactBoxIconSection>
-              <ContactBoxContentSection aria-label={title}>
-                <ContactBoxContentTitle>{title}</ContactBoxContentTitle>
-                <ContactBoxContentText>
-                  <NewLineText props={{text}} />
-                </ContactBoxContentText>
-              </ContactBoxContentSection>
-            </ContactBoxWrapper>
-          </Col>
-        )
-      )}
+      {CONTACT_BOX_DATA.map(({ title, text, icon }: FooterList) => (
+        <Col md={4} key={title}>
+          <ContactBoxWrapper>
+            <ContactBoxIconSection>
+              <SetIcon icon={icon} />
+              <ContactBoxIconBackground />
+            </ContactBoxIconSection>
+            <ContactBoxContentSection aria-label={title}>
+              <ContactBoxContentTitle>{title}</ContactBoxContentTitle>
+              <ContactBoxContentText>
+                <NewLineText props={{ text }} />
+              </ContactBoxContentText>
+            </ContactBoxContentSection>
+          </ContactBoxWrapper>
+        </Col>
+      ))}
     </Row>
   )
 }

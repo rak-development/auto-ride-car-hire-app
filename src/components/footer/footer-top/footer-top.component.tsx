@@ -1,7 +1,7 @@
-import Container from 'react-bootstrap/Container';
+import Container from 'react-bootstrap/Container'
 import styled from '@emotion/styled'
 
-import { ContactBox } from '../../contact-box/contact-box.component';
+import { ContactBox } from '../../contact-box/contact-box.component'
 
 const FooterTopWrapper = styled.div`
   background-color: var(--bs-gray-200);

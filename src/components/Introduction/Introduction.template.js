@@ -1,9 +1,10 @@
 const imagesRow = (styles, images, content) => {
   return `
     <div class='row g-0 ${styles['introduction__images']}'>
-      ${images.map(({ id, image }) => {
-        const colSize = content.length === 1 ? 12 : 6 
-        return `
+      ${images
+        .map(({ id, image }) => {
+          const colSize = content.length === 1 ? 12 : 6
+          return `
           <div class='col-${colSize}'>
             <img 
               class='
@@ -15,7 +16,9 @@ const imagesRow = (styles, images, content) => {
               alt='AutoRide-Introduction'
               style='${id === 2 ? 'margin-top: 40px' : ''}'>
           </div>
-      `}).join('')}
+      `
+        })
+        .join('')}
     </div>
   `
 }
@@ -34,7 +37,7 @@ const quoteRow = (styles, quote) => {
   `
 }
 
-const template = (styles, introductionData) => { 
+const template = (styles, introductionData) => {
   const { title, content, images, quote } = introductionData
   return `
     <div class='container ${styles.introduction}'>
@@ -42,14 +45,17 @@ const template = (styles, introductionData) => {
         <div class='col-md-4 ${styles['introduction__col']}'>
           <h1 class='${styles['introduction__title']}'>${title}</h1>
         </div>
-        ${content.map(({ title, text }) => {
-          const colSize = content.length === 1 ? 8 : 4 
-          return `
+        ${content
+          .map(({ title, text }) => {
+            const colSize = content.length === 1 ? 8 : 4
+            return `
             <div class='col-md-${colSize} ${styles['introduction__col']} ${styles['introduction__content']}'>
               <h2 class='${styles['introduction__content-title']}'>${title}</h2>
               <div>${text}</div>
             </div>  
-        `}).join('')}
+        `
+          })
+          .join('')}
       </div>
       ${images.length > 0 && imagesRow(styles, images, content)}
       ${quote.length > 0 && quoteRow(styles, quote)}
@@ -57,4 +63,4 @@ const template = (styles, introductionData) => {
   `
 }
 
-export default template;
+export default template
