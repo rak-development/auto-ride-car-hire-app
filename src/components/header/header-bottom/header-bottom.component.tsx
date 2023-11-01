@@ -4,6 +4,8 @@ import styled from '@emotion/styled'
 
 import bannerSrc from './../../../assets/images/AutoRide-Banner.jpeg'
 
+import { BookingReservation } from '../../booking-reservation/booking-reservation.component';
+
 const HeaderBottomBanner = styled.div`
     padding-top: 7.5rem;
     padding-bottom: 7.5rem;
@@ -30,9 +32,13 @@ const SecondHeader = styled.h2`
 `
 
 const SubHeader = styled.h3`
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   margin-bottom: 0;
   order: 0;
+`
+
+const BookingReservationComponent = styled.div`
+  order: 3;
 `
 
 export const HeaderBottom = () => {
@@ -48,6 +54,9 @@ export const HeaderBottom = () => {
         <SubHeader>
           BOOK SMART. BOOK EARLY
         </SubHeader>
+        <BookingReservationComponent>
+          <BookingReservation />
+        </BookingReservationComponent>
       </HeaderBottomContainer>
     </HeaderBottomBanner>
   )

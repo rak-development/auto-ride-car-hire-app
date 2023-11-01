@@ -12,7 +12,8 @@ const HeaderTopWrapper = styled.div`
 const HeaderTopContainer = styled(Container)`
   font-weight: 400;
   line-height: 1.5rem;
-  padding: 0.5rem 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 
   @media ${device.md} { 
     display: flex;
