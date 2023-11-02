@@ -41,12 +41,50 @@ export const BookingReservation = () => {
   const [isDiscountSelected, setDiscountSelected] = useState(false)
   const [isFormValidated, setFormValidated] = useState(false)
 
+  const buildDataObject = (formData: any) => {
+    const pickupLocation = formData.get('pickupLocation')
+    const dropOffLocation = formData.get('dropOffLocation')
+    const pickupDate = formData.get('pickupDate')
+    const pickupTime = formData.get('pickupTime')
+    const dropOffDate = formData.get('dropOffDate')
+    const dropOffTime = formData.get('dropOffTime')
+    const isOver25 = formData.get('over25') ? 'Yes' : 'No'
+    const discountCodeCheck = formData.get('discountCodeCheck')
+    const discountCode = discountCodeCheck ? formData.get('discountCode') : ''
+
+
+
+    console.log({ 
+      pickupLocation,
+      dropOffLocation,
+      pickupDate,
+      pickupTime,
+      dropOffDate,
+      dropOffTime,
+      isOver25,
+      discountCodeCheck,
+      discountCode
+    })
+
+    console.log(
+      new Date(`${pickupDate} ${pickupTime}`)
+    )
+
+    console.log(
+      new Date(`${dropOffDate} ${dropOffTime}`)
+    )
+
+  }
+
   const handleSubmit = (event: React.FormEvent) => {
     const form = (event.currentTarget as HTMLInputElement);
-    if (form.checkValidity() === false) {
+    const formData = new FormData(event.currentTarget as HTMLFormElement)
+    // if (form.checkValidity() === false) {
       event.preventDefault();
-      event.stopPropagation();
-    }
+      // event.stopPropagation();
+    // }
+
+    buildDataObject(formData)
 
     setFormValidated(true);
   };
@@ -58,7 +96,7 @@ export const BookingReservation = () => {
           <BookingReservationFormCol md={6}>
             <BookingReservationFormGroup controlId="pickupLocation">
               <BookingReservationFormLabel>Pickup Location</BookingReservationFormLabel>
-              <Form.Control type='text' required />
+              <Form.Control type='text' name="pickupLocation" required />
               <Form.Control.Feedback type="valid">
                 Looks good!
               </Form.Control.Feedback>
@@ -70,7 +108,7 @@ export const BookingReservation = () => {
           <BookingReservationFormCol md={6}>
             <BookingReservationFormGroup controlId="dropOffLocation">
               <BookingReservationFormLabel>Drop-off Location</BookingReservationFormLabel>
-              <Form.Control type='text' required />
+              <Form.Control type='text' name="dropOffLocation" required />
               <Form.Control.Feedback type="valid">
                 Looks good!
               </Form.Control.Feedback>
@@ -82,7 +120,7 @@ export const BookingReservation = () => {
           <BookingReservationFormCol md={6} lg={3}>
             <BookingReservationFormGroup controlId="pickupDate">
               <BookingReservationFormLabel>Date From</BookingReservationFormLabel>
-              <Form.Control type='date' required />
+              <Form.Control type='date' required name="pickupDate" />
               <Form.Control.Feedback type="valid">
                 Looks good!
               </Form.Control.Feedback>
@@ -109,7 +147,7 @@ export const BookingReservation = () => {
           <BookingReservationFormCol md={6} lg={3}>
             <BookingReservationFormGroup controlId="dropOffDate">
               <BookingReservationFormLabel>Date To</BookingReservationFormLabel>
-              <Form.Control type='date' required />
+              <Form.Control type='date' name="dropOffDate" required />
               <Form.Control.Feedback type="valid">
                 Looks good!
               </Form.Control.Feedback>
@@ -159,7 +197,7 @@ export const BookingReservation = () => {
           </BookingReservationFormCol>
           {isDiscountSelected && <BookingReservationFormCol md={4}>
             <BookingReservationFormGroup controlId="discountCode">
-              <Form.Control placeholder='Discount Code' type='text' required />
+              <Form.Control placeholder='Discount Code' type='text' name="discountCode" required />
               <Form.Control.Feedback type="valid">
                 Looks good!
               </Form.Control.Feedback>
