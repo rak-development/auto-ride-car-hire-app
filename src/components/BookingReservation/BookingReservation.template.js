@@ -1,4 +1,4 @@
-const template = styles => {
+const template = (styles) => {
   return `
     <div class='${styles['booking-reservation__wrapper']}'>
       <form 

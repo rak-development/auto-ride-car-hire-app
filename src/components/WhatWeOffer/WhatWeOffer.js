@@ -48,7 +48,7 @@ export class WhatWeOffer extends HTMLElement {
       bgMode: 'bg-light',
       subheader: 'What We Offer',
       header: 'See What We Can Do for You',
-      sectionContent: template(styles, this.whatWeOfferData)
+      sectionContent: template(styles, this.whatWeOfferData),
     }
   }
 

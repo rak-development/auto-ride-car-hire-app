@@ -1,16 +1,15 @@
-import { Header } from "./components/header/header.component";
+import { Header } from './components/header/header.component'
+import { Footer } from './components/footer/footer.component'
 
-import './app.scss';
+import './app.scss'
 
-const App = () => {
-  return (
-    <>
-      <Header />
-      <main>Main</main>
-      <footer>Footer</footer>
-      <h1>Welcome to my app</h1>
-    </>
-  );
-}
+const App = () => (
+  <>
+    <Header />
+    <main>Main</main>
+    <h1>Welcome to my app</h1>
+    <Footer />
+  </>
+)
 
-export default App;
+export default App

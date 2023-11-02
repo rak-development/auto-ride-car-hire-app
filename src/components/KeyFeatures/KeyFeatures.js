@@ -9,30 +9,30 @@ export class KeyFeatures extends HTMLElement {
       {
         icon: 'fa-solid fa-car',
         header: 'Safety First',
-        body: 'Experienced staff and professionally trained chauffeurs'
+        body: 'Experienced staff and professionally trained chauffeurs',
       },
       {
         icon: 'fa-solid fa-coins',
         header: 'Reasonable Rates',
-        body: 'We can offer you the right vehicle at the right price to fit your budget'
+        body: 'We can offer you the right vehicle at the right price to fit your budget',
       },
       {
         icon: 'fa-solid fa-bus',
         header: 'Largest Fleet',
-        body: 'We offer an extensive fleet of vehicles including sedans, limousines and coach buses'
+        body: 'We offer an extensive fleet of vehicles including sedans, limousines and coach buses',
       },
       {
         icon: 'fa-solid fa-road-circle-exclamation',
         header: 'Nationwide Service',
-        body: 'We provide our transportation services nationwide'
-      }
+        body: 'We provide our transportation services nationwide',
+      },
     ]
 
     this.sectionData = {
       bgMode: 'bg-white',
       subheader: 'Key Features',
       header: 'Make Your Trip Your Way With Us',
-      sectionContent: template(styles, this.keyFeaturesData)
+      sectionContent: template(styles, this.keyFeaturesData),
     }
   }
 

@@ -1,4 +1,4 @@
-const template = styles => {
+const template = (styles) => {
   return `
     <button
       id='scroll-to-top' 

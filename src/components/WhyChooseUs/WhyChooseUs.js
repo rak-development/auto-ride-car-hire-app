@@ -11,40 +11,40 @@ export class WhyChooseUs extends HTMLElement {
       coreValues: [
         {
           id: 1,
-          title: 'FIRST-RATE CUSTOMER SERVICE'
+          title: 'FIRST-RATE CUSTOMER SERVICE',
         },
         {
           id: 2,
-          title: 'CLEAN AND WELL-MAINTAINED VEHICLES'
+          title: 'CLEAN AND WELL-MAINTAINED VEHICLES',
         },
         {
           id: 3,
-          title: 'INNOVATIVE USE OF TECHNOLOGY'
+          title: 'INNOVATIVE USE OF TECHNOLOGY',
         },
         {
           id: 4,
-          title: 'PUNCTUALITY AND VERACITY'
+          title: 'PUNCTUALITY AND VERACITY',
         },
         {
           id: 5,
-          title: 'PURSUIT OF CONTINUOUS IMPROVEMENT'
+          title: 'PURSUIT OF CONTINUOUS IMPROVEMENT',
         },
         {
           id: 6,
-          title: 'SAFETY AS OUR HIGHEST PRIORITY'
+          title: 'SAFETY AS OUR HIGHEST PRIORITY',
         },
         {
           id: 7,
-          title: 'HIGHLY TRAINED PROFESSIONAL DRIVERS'
+          title: 'HIGHLY TRAINED PROFESSIONAL DRIVERS',
         },
-      ]
+      ],
     }
 
     this.sectionData = {
       bgMode: 'bg-white',
       subheader: 'Why Choose Us',
       header: 'Proudly Serving the Oakland Area Since 2007',
-      sectionContent: template(styles, this.circleContentData)
+      sectionContent: template(styles, this.circleContentData),
     }
   }
 

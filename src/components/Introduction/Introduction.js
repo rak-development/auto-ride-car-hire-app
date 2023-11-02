@@ -15,32 +15,33 @@ export class Introduction extends HTMLElement {
           id: 1,
           title: 'Expect the Best',
           // eslint-disable-next-line max-len
-          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in metus nibh. Suspendisse imperdiet, nulla ut dictum venenatis, nunc velit rhoncus neque, eu commodo augue sapien quis ipsum.'
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in metus nibh. Suspendisse imperdiet, nulla ut dictum venenatis, nunc velit rhoncus neque, eu commodo augue sapien quis ipsum.',
         },
         {
           id: 2,
           title: 'Travel in Comfort',
           // eslint-disable-next-line max-len
-          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in metus nibh. Suspendisse imperdiet, nulla ut dictum venenatis, nunc velit rhoncus neque, eu commodo augue sapien quis ipsum. Vivamus pharetra sagittis dolor sit amet malesuada. Morbi consequat aliquet dignissim.'
-        }
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in metus nibh. Suspendisse imperdiet, nulla ut dictum venenatis, nunc velit rhoncus neque, eu commodo augue sapien quis ipsum. Vivamus pharetra sagittis dolor sit amet malesuada. Morbi consequat aliquet dignissim.',
+        },
       ],
       images: [
         {
           id: 1,
-          image: introduction01
+          image: introduction01,
         },
         {
           id: 2,
-          image: introduction02
-        }
+          image: introduction02,
+        },
       ],
-      quote: [{
-        // eslint-disable-next-line max-len
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras condimentum eros et tellus aliquet tincidunt.',
-        author: 'ANNA CRIADO - CHAIRMAN & CEO'
-      }]
+      quote: [
+        {
+          // eslint-disable-next-line max-len
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras condimentum eros et tellus aliquet tincidunt.',
+          author: 'ANNA CRIADO - CHAIRMAN & CEO',
+        },
+      ],
     }
-
   }
 
   connectedCallback() {
