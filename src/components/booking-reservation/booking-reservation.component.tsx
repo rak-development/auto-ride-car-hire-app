@@ -8,16 +8,24 @@ import styled from '@emotion/styled';
 
 const BookingReservationForm = styled(Form)`
   background-color: var(--bs-white);
+  border: 0.0625rem solid var(--bs-gray-200);
+`
+
+const BookingReservationFormCol = styled(Col)`
+  border-right: 0.0625rem solid var(--bs-gray-200);
+  border-bottom: 0.0625rem solid var(--bs-gray-200);
 `
 
 const BookingReservationFormGroup = styled(Form.Group)`
-  /* border-right: 0.0625rem solid var(--bs-gray-200); */
-  /* border-bottom: 0.0625rem solid var(--bs-gray-200); */
   padding: 1.25rem;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+`
+
+const BookingReservationFormButtonGroup = styled.div`
+  padding: 1.25rem;
 `
 
 const BookingReservationFormLabel = styled(Form.Label)`
@@ -33,42 +41,42 @@ export const BookingReservation = () => {
     <BookingReservationForm>
       <Container>
         <Row>
-          <Col md={6}>
+          <BookingReservationFormCol md={6}>
             <BookingReservationFormGroup controlId="pickupLocation">
               <BookingReservationFormLabel>Pickup Location</BookingReservationFormLabel>
               <Form.Control type='text' />
             </BookingReservationFormGroup>
-          </Col>
-          <Col md={6}>
+          </BookingReservationFormCol>
+          <BookingReservationFormCol md={6}>
             <BookingReservationFormGroup controlId="dropOffLocation">
               <BookingReservationFormLabel>Drop-off Location</BookingReservationFormLabel>
               <Form.Control type='text' />
             </BookingReservationFormGroup>
-          </Col>
-          <Col md={6} lg={3}>
+          </BookingReservationFormCol>
+          <BookingReservationFormCol md={6} lg={3}>
             <BookingReservationFormGroup controlId="pickupDate">
               <BookingReservationFormLabel>Date From</BookingReservationFormLabel>
               <Form.Control type='date' />
             </BookingReservationFormGroup>
-          </Col>
-          <Col md={6} lg={3}>
+          </BookingReservationFormCol>
+          <BookingReservationFormCol md={6} lg={3}>
             <BookingReservationFormGroup controlId="pickupTime">
               <BookingReservationFormLabel>Pick-up Time</BookingReservationFormLabel>
               <Form.Select>
                 <option value='9:00'>9:00</option>
                 <option value='10:00'>10:00</option>
-                <option value='11:00'>11:00</option>
-                <option value='12:00'>12:00</option>
+                {/* <option value='11:00'>11:00</option>
+                <option value='12:00'>12:00</option> */}
               </Form.Select>
             </BookingReservationFormGroup>
-          </Col>
-          <Col md={6} lg={3}>
+          </BookingReservationFormCol>
+          <BookingReservationFormCol md={6} lg={3}>
             <BookingReservationFormGroup controlId="dropOffDate">
               <BookingReservationFormLabel>Date To</BookingReservationFormLabel>
               <Form.Control type='date' />
             </BookingReservationFormGroup>
-          </Col>
-          <Col md={6} lg={3}>
+          </BookingReservationFormCol>
+          {/* <BookingReservationFormCol md={6} lg={3}>
             <BookingReservationFormGroup controlId="dropOffTime">
               <BookingReservationFormLabel>Drop-off Time</BookingReservationFormLabel>
               <Form.Select>
@@ -78,8 +86,8 @@ export const BookingReservation = () => {
                 <option value='12:00'>12:00</option>
               </Form.Select>
             </BookingReservationFormGroup>
-          </Col>
-          <Col md={4}>
+          </BookingReservationFormCol> */}
+          <BookingReservationFormCol md={4}>
             <BookingReservationFormGroup controlId="over25">
               <BookingReservationFormCheckbox
                 inline
@@ -89,8 +97,8 @@ export const BookingReservation = () => {
                 id='over25'
               />
             </BookingReservationFormGroup>
-          </Col>
-          <Col md={4}>
+          </BookingReservationFormCol>
+          <BookingReservationFormCol md={4}>
             <BookingReservationFormGroup controlId="discountCodeCheck">
               <BookingReservationFormCheckbox
                 inline
@@ -100,15 +108,17 @@ export const BookingReservation = () => {
                 id='discountCodeCheck'
               />
             </BookingReservationFormGroup>
-          </Col>
-          <Col md={4}>
+          </BookingReservationFormCol>
+          <BookingReservationFormCol md={4}>
             <BookingReservationFormGroup controlId="discountCode">
               <Form.Control placeholder='Discount Code' type='text' />
             </BookingReservationFormGroup>
-          </Col>
-          <Col>
-            <Button type="submit">Find Cars</Button>
-          </Col>
+          </BookingReservationFormCol>
+          <BookingReservationFormCol>
+            <BookingReservationFormButtonGroup>
+              <Button type="submit">Find Cars</Button>
+            </BookingReservationFormButtonGroup>
+          </BookingReservationFormCol>
         </Row>
       </Container>
     </BookingReservationForm>
