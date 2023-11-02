@@ -1,13 +1,14 @@
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col';
-import styled from '@emotion/styled';
+import Col from 'react-bootstrap/Col'
+import styled from '@emotion/styled'
 
 import CONTACT_BOX_DATA from '../../contact-box-data.json'
 
-import { device } from '../../devices-breakpoints';
-import { FooterList } from '../../types/footerListTypes';
+import { device } from '../../devices-breakpoints'
+import { FooterList } from '../../types/footer-list-types'
 
-import { SetIcon } from '../set-icon/set-icon.component';
+import { SetIcon } from '../set-icon/set-icon.component'
+import { NewLineText } from '../new-line-text/new-line-text.component'
 
 const ContactBoxWrapper = styled.div`
   display: flex;
@@ -21,12 +22,12 @@ const ContactBoxIconSection = styled.section`
     width: 3rem;
     height: 3rem;
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     top: -0.625rem;
     left: 0;
     padding-right: 0;
 
-    @media ${device.md} { 
+    @media ${device.md} {
       left: -0.625rem;
     }
   }
@@ -34,7 +35,6 @@ const ContactBoxIconSection = styled.section`
 
 const ContactBoxIconBackground = styled.div`
   background-color: var(--bs-white);
-  z-index: 1;
   width: 3rem;
   height: 3rem;
   display: block;
@@ -42,8 +42,8 @@ const ContactBoxIconBackground = styled.div`
   position: relative;
   left: 0.625rem;
 
-  @media ${device.md} { 
-    left: 0
+  @media ${device.md} {
+    left: 0;
   }
 `
 
@@ -68,18 +68,15 @@ const ContactBoxContentText = styled.div`
   line-height: 1.66rem;
   color: var(--bs--gray-800);
 
-  @media ${device.md} { 
+  @media ${device.md} {
     font-size: 1.125rem;
   }
 `
 
-export const ContactBox: React.FC = () => {
-  const contactBoxData: FooterList[] = CONTACT_BOX_DATA;
+export const ContactBox = () => {
   return (
     <Row>
-      {contactBoxData.map(({ title, text, icon }: FooterList) => {
-        const addLineBreak = text.replace(/<br\s*[\/]?>/gi, '\n')
-        return (
+      {CONTACT_BOX_DATA.map(({ title, text, icon }: FooterList) => (
         <Col md={4} key={title}>
           <ContactBoxWrapper>
             <ContactBoxIconSection>
@@ -88,11 +85,13 @@ export const ContactBox: React.FC = () => {
             </ContactBoxIconSection>
             <ContactBoxContentSection aria-label={title}>
               <ContactBoxContentTitle>{title}</ContactBoxContentTitle>
-              <ContactBoxContentText>{addLineBreak}</ContactBoxContentText>
+              <ContactBoxContentText>
+                <NewLineText props={{ text }} />
+              </ContactBoxContentText>
             </ContactBoxContentSection>
           </ContactBoxWrapper>
-        </Col>)
-      })}
+        </Col>
+      ))}
     </Row>
   )
 }

@@ -1,20 +1,18 @@
-import { Header } from './components/header/header.component';
-import { Footer } from './components/footer/footer.component';
+import { Header } from './components/header/header.component'
+import { Footer } from './components/footer/footer.component'
+import { Introduction } from './components/Introduction/introduction.component'
 
-import './app.scss';
-import { Introduction } from './components/Introduction/introduction.component';
+import './app.scss'
 
-const App = () => {
-  return (
-    <>
-      <Header />
-      <main>
+const App = () => (
+  <>
+    <Header />
+    <main>
         <Introduction />
+        <h1>Welcome to my app</h1>
       </main>
-      <h1>Welcome to my app</h1>
-      <Footer />
-    </>
-  );
-}
+    <Footer />
+  </>
+)
 
-export default App;
+export default App

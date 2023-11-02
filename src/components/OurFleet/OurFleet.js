@@ -18,50 +18,50 @@ export class OurFleet extends HTMLElement {
         image: audiA8,
         title: 'Audi A8',
         passengerNumber: 5,
-        luggageNumber: 6
+        luggageNumber: 6,
       },
       {
         id: 2,
         image: audiQ7,
         title: 'Audi Q7',
         passengerNumber: 7,
-        luggageNumber: 10
+        luggageNumber: 10,
       },
       {
         id: 3,
         image: bmw5,
         title: 'BMW 5',
         passengerNumber: 5,
-        luggageNumber: 5
+        luggageNumber: 5,
       },
       {
         id: 4,
         image: bmwX5,
         title: 'BMW X5',
         passengerNumber: 5,
-        luggageNumber: 8
+        luggageNumber: 8,
       },
       {
         id: 5,
         image: mercedesE,
         title: 'Mercedes E',
         passengerNumber: 5,
-        luggageNumber: 5
+        luggageNumber: 5,
       },
       {
         id: 6,
         image: mercedesGLE,
         title: 'Mercedes GLE',
         passengerNumber: 5,
-        luggageNumber: 8
-      }
+        luggageNumber: 8,
+      },
     ]
 
     this.sectionData = {
       bgMode: 'bg-light',
       subheader: 'Our Fleet',
       header: 'Browse Our Limos',
-      sectionContent: template(styles, this.ourFleetData)
+      sectionContent: template(styles, this.ourFleetData),
     }
   }
 

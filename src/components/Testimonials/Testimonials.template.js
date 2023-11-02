@@ -2,16 +2,19 @@ import image from '/src/assets/images/AutoRide-Testimonials.jpeg'
 import { Carousel } from '../../classes/Carousel'
 
 const template = (styles, testimonialsData) => {
-
-  window.onload = function() {
-    new Carousel(testimonialsData, {
-      width: 'clamp(224px, 75vw, 100%)',
-      height: 'clamp(240px, 75vh, 560px)',
-      infinite: true,
-      dots: true,
-      autoTransition: true,
-      autoTransitionDelay: 3000
-    }, document.getElementById('testimonials__carousel'))
+  window.onload = function () {
+    new Carousel(
+      testimonialsData,
+      {
+        width: 'clamp(224px, 75vw, 100%)',
+        height: 'clamp(240px, 75vh, 560px)',
+        infinite: true,
+        dots: true,
+        autoTransition: true,
+        autoTransitionDelay: 3000,
+      },
+      document.getElementById('testimonials__carousel'),
+    )
   }
 
   return `
@@ -32,7 +35,5 @@ const template = (styles, testimonialsData) => {
     </div>
   `
 }
-
-
 
 export default template

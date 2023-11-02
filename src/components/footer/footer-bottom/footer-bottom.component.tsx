@@ -1,6 +1,6 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import styled from '@emotion/styled'
 
 import { SocialIcons } from '../../social-icons/social-icons.components'
@@ -11,7 +11,7 @@ const FooterBottomWrapper = styled.div`
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 
-  @media ${device.md} { 
+  @media ${device.md} {
     padding-top: 1.5625rem;
     padding-bottom: 2.5rem;
   }
@@ -21,7 +21,7 @@ const FooterBottomRow = styled(Row)`
   align-items: center;
   text-align: center;
 
-  @media ${device.md} { 
+  @media ${device.md} {
     text-align: start;
   }
 `
