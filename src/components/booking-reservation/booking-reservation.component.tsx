@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -37,6 +38,8 @@ const BookingReservationFormCheckbox = styled(Form.Check)`
 `
 
 export const BookingReservation = () => {
+  const [isDiscountSelected, setDiscountSelected] = useState(false)
+
   return (
     <BookingReservationForm>
       <Container>
@@ -60,13 +63,14 @@ export const BookingReservation = () => {
             </BookingReservationFormGroup>
           </BookingReservationFormCol>
           <BookingReservationFormCol md={6} lg={3}>
+            {/* Select element must have an accessible name: Element has no title attributeMicrosoft Edge Tools axe/forms */}
             <BookingReservationFormGroup controlId="pickupTime">
-              <BookingReservationFormLabel>Pick-up Time</BookingReservationFormLabel>
-              <Form.Select>
+              <BookingReservationFormLabel aria-labelledby="Label for select pickup time">Pick-up Time</BookingReservationFormLabel>
+              <Form.Select id="pickupTime" name="pickupTime" aria-labelledby="Select for pickup time" title="Select for pickup time">
                 <option value='9:00'>9:00</option>
                 <option value='10:00'>10:00</option>
-                {/* <option value='11:00'>11:00</option>
-                <option value='12:00'>12:00</option> */}
+                <option value='11:00'>11:00</option>
+                <option value='12:00'>12:00</option>
               </Form.Select>
             </BookingReservationFormGroup>
           </BookingReservationFormCol>
@@ -76,17 +80,18 @@ export const BookingReservation = () => {
               <Form.Control type='date' />
             </BookingReservationFormGroup>
           </BookingReservationFormCol>
-          {/* <BookingReservationFormCol md={6} lg={3}>
+          <BookingReservationFormCol md={6} lg={3}>
+            {/* Select element must have an accessible name: Element has no title attributeMicrosoft Edge Tools axe/forms */}
             <BookingReservationFormGroup controlId="dropOffTime">
-              <BookingReservationFormLabel>Drop-off Time</BookingReservationFormLabel>
-              <Form.Select>
+              <BookingReservationFormLabel aria-labelledby="Label for select drop-off time">Drop-off Time</BookingReservationFormLabel>
+              <Form.Select id="dropOffTime" name="dropOffTime" aria-labelledby="Select for drop-ff time" title="Select for drop-ff time">
                 <option value='9:00'>9:00</option>
                 <option value='10:00'>10:00</option>
                 <option value='11:00'>11:00</option>
                 <option value='12:00'>12:00</option>
               </Form.Select>
             </BookingReservationFormGroup>
-          </BookingReservationFormCol> */}
+          </BookingReservationFormCol>
           <BookingReservationFormCol md={4}>
             <BookingReservationFormGroup controlId="over25">
               <BookingReservationFormCheckbox
@@ -106,15 +111,17 @@ export const BookingReservation = () => {
                 name="discountCodeCheck"
                 type='checkbox'
                 id='discountCodeCheck'
+                checked={isDiscountSelected} 
+                onChange={() => setDiscountSelected(!isDiscountSelected)}
               />
             </BookingReservationFormGroup>
           </BookingReservationFormCol>
-          <BookingReservationFormCol md={4}>
+          {isDiscountSelected && <BookingReservationFormCol md={4}>
             <BookingReservationFormGroup controlId="discountCode">
               <Form.Control placeholder='Discount Code' type='text' />
             </BookingReservationFormGroup>
-          </BookingReservationFormCol>
-          <BookingReservationFormCol>
+          </BookingReservationFormCol>}
+          <BookingReservationFormCol xs={12}>
             <BookingReservationFormButtonGroup>
               <Button type="submit">Find Cars</Button>
             </BookingReservationFormButtonGroup>
