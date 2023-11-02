@@ -39,27 +39,56 @@ const BookingReservationFormCheckbox = styled(Form.Check)`
 
 export const BookingReservation = () => {
   const [isDiscountSelected, setDiscountSelected] = useState(false)
+  const [isFormValidated, setFormValidated] = useState(false)
+
+  const handleSubmit = (event: React.FormEvent) => {
+    const form = (event.currentTarget as HTMLInputElement);
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setFormValidated(true);
+  };
 
   return (
-    <BookingReservationForm>
+    <BookingReservationForm noValidate validated={isFormValidated} onSubmit={handleSubmit}>
       <Container>
         <Row>
           <BookingReservationFormCol md={6}>
             <BookingReservationFormGroup controlId="pickupLocation">
               <BookingReservationFormLabel>Pickup Location</BookingReservationFormLabel>
-              <Form.Control type='text' />
+              <Form.Control type='text' required />
+              <Form.Control.Feedback type="valid">
+                Looks good!
+              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                Please provide a pickup location.
+              </Form.Control.Feedback>
             </BookingReservationFormGroup>
           </BookingReservationFormCol>
           <BookingReservationFormCol md={6}>
             <BookingReservationFormGroup controlId="dropOffLocation">
               <BookingReservationFormLabel>Drop-off Location</BookingReservationFormLabel>
-              <Form.Control type='text' />
+              <Form.Control type='text' required />
+              <Form.Control.Feedback type="valid">
+                Looks good!
+              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                Please provide a drop-off location.
+              </Form.Control.Feedback>
             </BookingReservationFormGroup>
           </BookingReservationFormCol>
           <BookingReservationFormCol md={6} lg={3}>
             <BookingReservationFormGroup controlId="pickupDate">
               <BookingReservationFormLabel>Date From</BookingReservationFormLabel>
-              <Form.Control type='date' />
+              <Form.Control type='date' required />
+              <Form.Control.Feedback type="valid">
+                Looks good!
+              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                Please select pickup date.
+              </Form.Control.Feedback>
             </BookingReservationFormGroup>
           </BookingReservationFormCol>
           <BookingReservationFormCol md={6} lg={3}>
@@ -72,12 +101,21 @@ export const BookingReservation = () => {
                 <option value='11:00'>11:00</option>
                 <option value='12:00'>12:00</option>
               </Form.Select>
+              <Form.Control.Feedback type="valid">
+                Looks good!
+              </Form.Control.Feedback>
             </BookingReservationFormGroup>
           </BookingReservationFormCol>
           <BookingReservationFormCol md={6} lg={3}>
             <BookingReservationFormGroup controlId="dropOffDate">
               <BookingReservationFormLabel>Date To</BookingReservationFormLabel>
-              <Form.Control type='date' />
+              <Form.Control type='date' required />
+              <Form.Control.Feedback type="valid">
+                Looks good!
+              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                Please select drop-off date.
+              </Form.Control.Feedback>
             </BookingReservationFormGroup>
           </BookingReservationFormCol>
           <BookingReservationFormCol md={6} lg={3}>
@@ -90,6 +128,9 @@ export const BookingReservation = () => {
                 <option value='11:00'>11:00</option>
                 <option value='12:00'>12:00</option>
               </Form.Select>
+              <Form.Control.Feedback type="valid">
+                Looks good!
+              </Form.Control.Feedback>
             </BookingReservationFormGroup>
           </BookingReservationFormCol>
           <BookingReservationFormCol md={4}>
@@ -118,7 +159,13 @@ export const BookingReservation = () => {
           </BookingReservationFormCol>
           {isDiscountSelected && <BookingReservationFormCol md={4}>
             <BookingReservationFormGroup controlId="discountCode">
-              <Form.Control placeholder='Discount Code' type='text' />
+              <Form.Control placeholder='Discount Code' type='text' required />
+              <Form.Control.Feedback type="valid">
+                Looks good!
+              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                Please provide a discount code.
+              </Form.Control.Feedback>
             </BookingReservationFormGroup>
           </BookingReservationFormCol>}
           <BookingReservationFormCol xs={12}>
