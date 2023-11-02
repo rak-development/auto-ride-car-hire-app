@@ -1,5 +1,5 @@
+import { type FC } from 'react';
 import styled from '@emotion/styled'
-import React from 'react';
 import Col from 'react-bootstrap/Col'
 
 import { IntroductionContentType } from '../../../types/introductionDataTypes'
@@ -24,8 +24,8 @@ interface IntroductionContentProps {
   content: IntroductionContentType[];
 }
 
-export const IntroductionContent: React.FC<IntroductionContentProps> = ({ content }) => {
-  return (
+export const IntroductionContent: FC<IntroductionContentProps> = ({ content }) => 
+  (
     <>
       {content.map(({ title, text }: IntroductionContentType) => {
         const colSize = content.length === 1 ? 8 : 4 
@@ -38,4 +38,3 @@ export const IntroductionContent: React.FC<IntroductionContentProps> = ({ conten
       })}
     </>
   )
-}

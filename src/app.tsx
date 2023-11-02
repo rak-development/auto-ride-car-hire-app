@@ -1,6 +1,6 @@
 import { Header } from './components/header/header.component'
 import { Footer } from './components/footer/footer.component'
-import { Introduction } from './components/Introduction/introduction.component'
+import { Introduction } from './components/introduction/introduction.component'
 
 import './app.scss'
 

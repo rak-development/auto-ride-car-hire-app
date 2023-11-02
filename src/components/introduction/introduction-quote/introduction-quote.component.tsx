@@ -1,3 +1,4 @@
+import { type FC } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -51,7 +52,7 @@ interface IntroductionQuoteProps {
   quote: IntroductionQuoteType;
 }
 
-export const IntroductionQuote: React.FC<IntroductionQuoteProps> = ({ quote }) => {
+export const IntroductionQuote: FC<IntroductionQuoteProps> = ({ quote }) => {
   return (
     <Row>
       <Col>

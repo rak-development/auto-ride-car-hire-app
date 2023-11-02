@@ -1,3 +1,4 @@
+import { type FC } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
@@ -22,11 +23,11 @@ interface IntroductionContentProps {
 }
 
 // Images are not loading properly
-export const IntroductionImages: React.FC<IntroductionContentProps> = ({ images }) => {
+export const IntroductionImages: FC<IntroductionContentProps> = ({ images }) => {
   return (
     <IntroductionImagesRow>
-      {images.map(({ id, image }: IntroductionImagesType) => {
-        return (
+      {images.map(({ id, image }: IntroductionImagesType) => 
+        (
           <Col key={id}>
             <IntroductionImage  
               style={{ marginTop: id === 2 ? '40px' : '0' }}
@@ -36,7 +37,7 @@ export const IntroductionImages: React.FC<IntroductionContentProps> = ({ images 
             {image}
           </Col>
         )
-      })}
+      )}
     </IntroductionImagesRow>
   )
 }
