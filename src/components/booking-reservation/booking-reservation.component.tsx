@@ -52,6 +52,24 @@ export const BookingReservation = () => {
     const discountCodeCheck = formData.get('discountCodeCheck')
     const discountCode = discountCodeCheck ? formData.get('discountCode') : ''
 
+    const today = new Date()
+    const startDate = new Date(`${pickupDate} ${pickupTime}`)
+    const endDate = new Date(`${dropOffDate} ${dropOffTime}`)
+
+    console.log('today < startDate: ', today < startDate )
+    console.log('startDate < endDate: ', startDate < endDate )
+
+    if (today < startDate) {
+      // needs to be future date
+      setFormValidated(false)
+    } else if (startDate < endDate) {
+      // endData needs to be greater 
+      setFormValidated(false)
+    } else {
+      // good
+      setFormValidated(true)
+    }
+
 
 
     console.log({ 
@@ -77,16 +95,18 @@ export const BookingReservation = () => {
   }
 
   const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
     const form = (event.currentTarget as HTMLInputElement);
     const formData = new FormData(event.currentTarget as HTMLFormElement)
-    // if (form.checkValidity() === false) {
-      event.preventDefault();
+    if (form.checkValidity() === false) {
       // event.stopPropagation();
-    // }
-
+      return
+    }
+    
     buildDataObject(formData)
 
-    setFormValidated(true);
+    // setFormValidated(true);
   };
 
   return (
