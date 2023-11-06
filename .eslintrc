@@ -27,7 +27,13 @@
     "react/react-in-jsx-scope": "off",
     "camelcase": "error",
     "spaced-comment": "error",
-    "no-duplicate-imports": "error"
+    "no-duplicate-imports": "error",
+    "@typescript-eslint/consistent-type-imports": [
+      "error", 
+      {
+        "fixStyle": "inline-type-imports"
+      }
+    ]
   },
   "env": {
     "browser": true,

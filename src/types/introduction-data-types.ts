@@ -6,6 +6,7 @@ export type IntroductionContentType = {
 
 export type IntroductionImagesType = {
   id: number,
+  title: string,
   image: string
 }
 

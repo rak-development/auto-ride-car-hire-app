@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import styled from '@emotion/styled'
 
-import { FooterList } from '../../../../types/footer-list-types'
+import { type FooterList } from '../../../../types/footer-list-types'
 import { SetIcon } from '../../../set-icon/set-icon.component'
 
 const FooterMiddleListContainer = styled.ul`

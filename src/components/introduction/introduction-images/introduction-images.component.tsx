@@ -5,7 +5,7 @@ import Image from 'react-bootstrap/Image';
 
 import styled from '@emotion/styled';
 
-import { IntroductionImagesType } from '../../../types/introductionDataTypes';
+import { type IntroductionImagesType } from '../../../types/introduction-data-types';
 
 const IntroductionImagesRow = styled(Row)`
   --bs-gutter-x: 0;
@@ -26,13 +26,13 @@ interface IntroductionContentProps {
 export const IntroductionImages: FC<IntroductionContentProps> = ({ images }) => {
   return (
     <IntroductionImagesRow>
-      {images.map(({ id, image }: IntroductionImagesType) => 
+      {images.map(({ id, title, image }: IntroductionImagesType) => 
         (
           <Col key={id}>
             <IntroductionImage  
               style={{ marginTop: id === 2 ? '40px' : '0' }}
               src={image}
-              alt='AutoRide-Introduction'
+              alt={`AutoRide ${title}`}
               fluid />
             {image}
           </Col>

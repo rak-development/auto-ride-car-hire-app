@@ -2,7 +2,7 @@ import { type FC } from 'react';
 import styled from '@emotion/styled'
 import Col from 'react-bootstrap/Col'
 
-import { IntroductionContentType } from '../../../types/introductionDataTypes'
+import { type IntroductionContentType } from '../../../types/introduction-data-types'
 
 const IntroductionContentCol = styled(Col)`
   font-size: 1.125rem;

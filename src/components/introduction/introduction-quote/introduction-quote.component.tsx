@@ -8,7 +8,7 @@ import styled from '@emotion/styled';
 
 import { device } from '../../../devices-breakpoints';
 
-import { IntroductionQuoteType } from '../../../types/introductionDataTypes';
+import { type IntroductionQuoteType } from '../../../types/introduction-data-types';
 
 const IntroductionQuoteWrapper = styled.div`
   margin-top: 1.875rem;

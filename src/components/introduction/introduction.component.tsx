@@ -7,8 +7,8 @@ import { device } from '../../devices-breakpoints'
 
 import INTRODUCTION_DATA from '../../introduction-data.json'
 
-import { IntroductionDataType } from '../../types/introductionDataTypes'
-import { IntroductionContent } from './introduction-content/introduction-content-component'
+import { type IntroductionDataType } from '../../types/introduction-data-types'
+import { IntroductionContent } from './introduction-content/introduction-content.component'
 import { IntroductionImages } from './introduction-images/introduction-images.component'
 import { IntroductionQuote } from './introduction-quote/introduction-quote.component'
 import { NewLineText } from '../new-line-text/new-line-text.component'
@@ -49,7 +49,7 @@ export const Introduction = () => {
       <IntroductionRow>
         <IntroductionCol md={4}>
           <IntroductionTitle>
-            <NewLineText props={{ text: title }} />
+            <NewLineText text={title} />
           </IntroductionTitle>
         </IntroductionCol>
         <IntroductionContent content={content} />
