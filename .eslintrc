@@ -33,7 +33,8 @@
       {
         "fixStyle": "inline-type-imports"
       }
-    ]
+    ],
+    "@typescript-eslint/no-var-requires": "off"
   },
   "env": {
     "browser": true,

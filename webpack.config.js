@@ -5,7 +5,7 @@
 const path = require('path')
 const fs = require('fs')
 const webpack = require('webpack') 
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -159,27 +159,12 @@ module.exports = {
       cleanOnceBeforeBuildPatterns: ['**/*', '!stats.json']
     }),
     new ESLintPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-    // new CopyWebpackPlugin({
-    // patterns: [
-    //   {
-    //     from: path.resolve(environment.paths.source, 'images', 'content'),
-    //     to: path.resolve(environment.paths.output, 'images', 'content'),
-    //     toType: 'dir',
-    //     globOptions: {
-    //       ignore: ['*.DS_Store', 'Thumbs.db']
-    //     }
-    //   },
-    //   {
-    //     from: path.resolve(environment.paths.source, 'videos'),
-    //     to: path.resolve(environment.paths.output, 'videos'),
-    //     toType: 'dir',
-    //     globOptions: {
-    //       ignore: ['*.DS_Store', 'Thumbs.db']
-    //     }
-    //   }
-    // ]
-    // })
+    new webpack.HotModuleReplacementPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "src/assets/images", to: "src/assets/images" }
+      ],
+    })
   ].concat(htmlPluginEntries),
   target: 'web'
 }

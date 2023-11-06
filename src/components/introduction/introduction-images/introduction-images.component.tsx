@@ -16,13 +16,13 @@ const IntroductionImagesRow = styled(Row)`
 const IntroductionImage = styled(Image)`
   object-fit: cover;
   object-position: center;
+  width: 100%;
 `
 
 interface IntroductionContentProps {
   images: IntroductionImagesType[];
 }
 
-// Images are not loading properly
 export const IntroductionImages: FC<IntroductionContentProps> = ({ images }) => {
   return (
     <IntroductionImagesRow>
@@ -34,7 +34,6 @@ export const IntroductionImages: FC<IntroductionContentProps> = ({ images }) => 
               src={image}
               alt={`AutoRide ${title}`}
               fluid />
-            {image}
           </Col>
         )
       )}
