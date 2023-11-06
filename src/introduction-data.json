@@ -16,12 +16,12 @@
     {
       "id": 1,
       "title": "Welcome",
-      "image": "../src/assets/images/AutoRide-Introduction-01.jpeg"
+      "image": "/assets/images/AutoRide-Introduction-01.jpeg"
     },
     {
       "id": 2,
       "title": "Car",
-      "image": "../src/assets/images/AutoRide-Introduction-02.jpeg"
+      "image": "/assets/images/AutoRide-Introduction-02.jpeg"
     }
   ],
   "quote": {

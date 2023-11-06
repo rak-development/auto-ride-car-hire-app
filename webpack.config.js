@@ -162,7 +162,10 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new CopyWebpackPlugin({
       patterns: [
-        { from: "src/assets/images", to: "src/assets/images" }
+        {
+          from: path.resolve(environment.paths.source, 'assets'),
+          to: path.resolve(environment.paths.output, 'assets'),
+        }
       ],
     })
   ].concat(htmlPluginEntries),
