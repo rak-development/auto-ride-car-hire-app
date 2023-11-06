@@ -5,7 +5,7 @@ import styled from '@emotion/styled'
 import CONTACT_BOX_DATA from '../../contact-box-data.json'
 
 import { device } from '../../devices-breakpoints'
-import { FooterList } from '../../types/footer-list-types'
+import { type FooterList } from '../../types/footer-list-types'
 
 import { SetIcon } from '../set-icon/set-icon.component'
 import { NewLineText } from '../new-line-text/new-line-text.component'
@@ -86,7 +86,7 @@ export const ContactBox = () => {
             <ContactBoxContentSection aria-label={title}>
               <ContactBoxContentTitle>{title}</ContactBoxContentTitle>
               <ContactBoxContentText>
-                <NewLineText props={{ text }} />
+                <NewLineText text={ text } />
               </ContactBoxContentText>
             </ContactBoxContentSection>
           </ContactBoxWrapper>

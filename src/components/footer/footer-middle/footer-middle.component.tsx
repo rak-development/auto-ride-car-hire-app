@@ -9,7 +9,7 @@ import { FooterMiddleList } from './footer-middle-list/footer-middle-list.compon
 import SERVICES_LIST_DATA from '../../../services-list-data.json'
 import CONTACT_LIST_DATA from '../../../contact-list-data.json'
 
-import { FooterList } from '../../../types/footer-list-types'
+import { type FooterList } from '../../../types/footer-list-types'
 
 const FooterMiddleWrapper = styled.div`
   background-color: var(--bs-gray-200);
