@@ -1,11 +1,11 @@
-import { type FC } from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
+import { type FC } from 'react'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Image from 'react-bootstrap/Image'
 
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
-import { type IntroductionImagesType } from '../../../types/introduction-data-types';
+import { type IntroductionImagesType } from '../../../types/introduction-data-types'
 
 const IntroductionImagesRow = styled(Row)`
   --bs-gutter-x: 0;
@@ -20,23 +20,22 @@ const IntroductionImage = styled(Image)`
 `
 
 interface IntroductionContentProps {
-  images: IntroductionImagesType[];
+  images: IntroductionImagesType[]
 }
 
 export const IntroductionImages: FC<IntroductionContentProps> = ({ images }) => {
   return (
     <IntroductionImagesRow>
-      {images.map(({ id, title, image }) => 
-        (
-          <Col key={id}>
-            <IntroductionImage  
-              style={{ marginTop: id === 2 ? '40px' : '0' }}
-              src={image}
-              alt={`AutoRide ${title}`}
-              fluid />
-          </Col>
-        )
-      )}
+      {images.map(({ id, title, image }) => (
+        <Col key={id}>
+          <IntroductionImage
+            style={{ marginTop: id === 2 ? '40px' : '0' }}
+            src={image}
+            alt={`AutoRide ${title}`}
+            fluid
+          />
+        </Col>
+      ))}
     </IntroductionImagesRow>
   )
 }

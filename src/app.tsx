@@ -8,9 +8,9 @@ const App = () => (
   <>
     <Header />
     <main>
-        <Introduction />
-        <h1>Welcome to my app</h1>
-      </main>
+      <Introduction />
+      <h1>Welcome to my app</h1>
+    </main>
     <Footer />
   </>
 )

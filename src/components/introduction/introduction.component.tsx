@@ -33,11 +33,11 @@ const IntroductionTitle = styled.h1`
   line-height: 1.2em;
   color: var(--bs-primary);
 
-  @media ${device.md} { 
+  @media ${device.md} {
     font-size: 2.875rem;
   }
 
-  @media ${device.lg} { 
+  @media ${device.lg} {
     font-size: 3.125rem;
   }
 `
