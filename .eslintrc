@@ -1,22 +1,52 @@
 {
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "babelOptions": {
-      "presets": ["@babel/preset-react"]
-   }
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "extends": [
     "eslint:recommended",
     "plugin:cypress/recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier"
   ],
   "rules": {
     "max-len": [1, 120, 2, { "ignoreComments": true }],
     "eol-last": 1,
-    "quotes": [0, "single", { "avoidEscape": true }]
+    "quotes": [0, "single", { "avoidEscape": true }],
+    "react/react-in-jsx-scope": "off",
+    "camelcase": "error",
+    "spaced-comment": "error",
+    "no-duplicate-imports": "error",
+    "@typescript-eslint/consistent-type-imports": [
+      "error", 
+      {
+        "fixStyle": "inline-type-imports"
+      }
+    ],
+    "@typescript-eslint/no-var-requires": "off"
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "es2021": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
   }
 }

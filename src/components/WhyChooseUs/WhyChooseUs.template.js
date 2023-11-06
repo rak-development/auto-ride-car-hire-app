@@ -5,14 +5,14 @@ const prepareInitialPositions = (index, coreValues) => {
   const offsetToChildCenter = 32
   const totalOffset = offsetToParentCenter - offsetToChildCenter
   const contentCircleSize = 510
-  const tenPercentOfCircleSize = 90 / 100;
+  const tenPercentOfCircleSize = 90 / 100
 
-  const y = Math.sin((div * index) * (Math.PI / 180)) * radius
-  const x = Math.cos((div * index) * (Math.PI / 180)) * radius
+  const y = Math.sin(div * index * (Math.PI / 180)) * radius
+  const x = Math.cos(div * index * (Math.PI / 180)) * radius
 
   const isOffsetRight = x + totalOffset >= offsetToParentCenter
   const isOffsetTopBelow0 = y + totalOffset <= 0
-  const isOffsetBottom90 = y + totalOffset >= (tenPercentOfCircleSize) * contentCircleSize
+  const isOffsetBottom90 = y + totalOffset >= tenPercentOfCircleSize * contentCircleSize
 
   return { totalOffset, x, y, isOffsetRight, isOffsetTopBelow0, isOffsetBottom90 }
 }
@@ -21,7 +21,7 @@ const textPositionClasses = {
   textTopClass: 'circle-item__text-top',
   textBottomClass: 'circle-item__text-bottom',
   textLeftClass: 'circle-item__text-left',
-  textRightClass: 'circle-item__text-right'
+  textRightClass: 'circle-item__text-right',
 }
 
 const prepareTextPosition = (isOffsetTopBelow0, isOffsetBottom90, isOffsetRight) => {
@@ -29,11 +29,11 @@ const prepareTextPosition = (isOffsetTopBelow0, isOffsetBottom90, isOffsetRight)
 
   if (isOffsetTopBelow0) {
     return textTopClass
-  } 
-  if (isOffsetBottom90) {
-      return textBottomClass
   }
-  if(isOffsetRight) {
+  if (isOffsetBottom90) {
+    return textBottomClass
+  }
+  if (isOffsetRight) {
     return textRightClass
   }
 
@@ -49,30 +49,23 @@ const prepareElementPosition = (totalOffset, x, y, textClassPosition) => {
   switch (textClassPosition) {
     case textLeftClass:
       customX = x - totalOffset
-      break;
+      break
     case textBottomClass:
       customX = x
-      break;
+      break
     case textTopClass:
-      customY = (y + (totalOffset - 60))
+      customY = y + (totalOffset - 60)
       customX = x
-      break;
+      break
   }
 
   return `top: ${customY}px; left: ${customX}px`
 }
 
 const getElementPosition = (index, coreValues) => {
-  const { 
-    totalOffset, 
-    x, 
-    y, 
-    isOffsetRight, 
-    isOffsetTopBelow0, 
-    isOffsetBottom90 
-  } = prepareInitialPositions(index, coreValues)
+  const { totalOffset, x, y, isOffsetRight, isOffsetTopBelow0, isOffsetBottom90 } =
+    prepareInitialPositions(index, coreValues)
 
-  
   const textClassPosition = prepareTextPosition(isOffsetTopBelow0, isOffsetBottom90, isOffsetRight)
   const elementPosition = prepareElementPosition(totalOffset, x, y, textClassPosition)
 
@@ -89,9 +82,10 @@ const template = (styles, circleContentData) => {
           <span class='d-block'>${subheader}</span>
         </div>
         <div id='content-circle' class='${styles['core-values__circle']}'>
-          ${coreValues.map((el, index) => {
-            const { textClassPosition, elementPosition } = getElementPosition(index, coreValues)
-            return `
+          ${coreValues
+            .map((el, index) => {
+              const { textClassPosition, elementPosition } = getElementPosition(index, coreValues)
+              return `
               <div 
                 class='circle-item ${textClassPosition}'
                 id='${el.id}'
@@ -103,7 +97,8 @@ const template = (styles, circleContentData) => {
                 <span class='circle-item__label'>${el.title}</span>
               </div>
             `
-          }).join('')}
+            })
+            .join('')}
         </div>
         <div class='${styles['core-values__circle']}'></div>
       </div>
@@ -113,7 +108,9 @@ const template = (styles, circleContentData) => {
           <span class='text-lowercase'>${subheader}</span>
         </span>
         <ul class='${styles['core-values__list']}'>
-        ${coreValues.map(({title}) => `
+        ${coreValues
+          .map(
+            ({ title }) => `
           <li class='d-flex align-items-center ${styles['core-values__list-el']}'>
             <span class='circle-item__circle circle-item__circle-responsive bg-white'>
               <i class='fa-solid fa-check circle-item__icon circle-item__icon-responsive'></i>
@@ -122,7 +119,9 @@ const template = (styles, circleContentData) => {
               ${title}
             </span>
           </li>
-        `).join('')}
+        `,
+          )
+          .join('')}
       </ul>
       </div>
     </div>

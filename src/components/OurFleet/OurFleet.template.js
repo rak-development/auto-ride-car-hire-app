@@ -2,7 +2,9 @@ const template = (styles, ourFleetData) => {
   return `
     <div class='${styles['our-fleet']} container'>
       <div class='row row-cols-md-3 g-5 g-md-4'>
-        ${ourFleetData.map(({ title, image, passengerNumber, luggageNumber }) => `
+        ${ourFleetData
+          .map(
+            ({ title, image, passengerNumber, luggageNumber }) => `
           <article class='col'>
             <div class='card bg-dark text-white rounded-0 border-0'>
               <img class='${styles['our-fleet__card-img']}' src='${image}' class='card-im g-top' alt='${title}'>
@@ -37,7 +39,9 @@ const template = (styles, ourFleetData) => {
               </div>
             </div>
           </article>
-        `).join('')}
+        `,
+          )
+          .join('')}
     </div>
   `
 }
