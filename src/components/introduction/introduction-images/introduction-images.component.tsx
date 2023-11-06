@@ -26,7 +26,7 @@ interface IntroductionContentProps {
 export const IntroductionImages: FC<IntroductionContentProps> = ({ images }) => {
   return (
     <IntroductionImagesRow>
-      {images.map(({ id, title, image }: IntroductionImagesType) => 
+      {images.map(({ id, title, image }) => 
         (
           <Col key={id}>
             <IntroductionImage  
