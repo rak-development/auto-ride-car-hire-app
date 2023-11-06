@@ -1,14 +1,14 @@
-import { type FC } from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
+import { type FC } from 'react'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
-import { device } from '../../../devices-breakpoints';
+import { device } from '../../../devices-breakpoints'
 
-import { type IntroductionQuoteType } from '../../../types/introduction-data-types';
+import { type IntroductionQuoteType } from '../../../types/introduction-data-types'
 
 const IntroductionQuoteWrapper = styled.div`
   margin-top: 1.875rem;
@@ -28,14 +28,13 @@ const IntroductionQuoteBlockquote = styled.blockquote`
   margin: 0.625rem auto 0;
   max-width: 43.75rem;
 
-  @media ${device.sm} { 
+  @media ${device.sm} {
     font-size: 1.5rem;
   }
 
-  @media ${device.xl} { 
+  @media ${device.xl} {
     font-size: 1.75rem;
   }
-
 `
 
 const IntroductionQuoteAuthor = styled.div`
@@ -49,7 +48,7 @@ const IntroductionQuoteAuthor = styled.div`
 `
 
 interface IntroductionQuoteProps {
-  quote: IntroductionQuoteType;
+  quote: IntroductionQuoteType
 }
 
 export const IntroductionQuote: FC<IntroductionQuoteProps> = ({ quote }) => {

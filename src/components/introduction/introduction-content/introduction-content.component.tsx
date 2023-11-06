@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import { type FC } from 'react'
 import styled from '@emotion/styled'
 import Col from 'react-bootstrap/Col'
 
@@ -21,20 +21,19 @@ const IntroductionContentTitle = styled.h2`
 `
 
 interface IntroductionContentProps {
-  content: IntroductionContentType[];
+  content: IntroductionContentType[]
 }
 
-export const IntroductionContent: FC<IntroductionContentProps> = ({ content }) => 
-  (
-    <>
-      {content.map(({ title, text }) => {
-        const colSize = content.length === 1 ? 8 : 4 
-        return (
-          <IntroductionContentCol md={colSize} key={title}>
-            <IntroductionContentTitle>{title}</IntroductionContentTitle>
-            <div>{text}</div>
-          </IntroductionContentCol>
-        )
-      })}
-    </>
-  )
+export const IntroductionContent: FC<IntroductionContentProps> = ({ content }) => (
+  <>
+    {content.map(({ title, text }) => {
+      const colSize = content.length === 1 ? 8 : 4
+      return (
+        <IntroductionContentCol md={colSize} key={title}>
+          <IntroductionContentTitle>{title}</IntroductionContentTitle>
+          <div>{text}</div>
+        </IntroductionContentCol>
+      )
+    })}
+  </>
+)

@@ -86,7 +86,7 @@ export const ContactBox = () => {
             <ContactBoxContentSection aria-label={title}>
               <ContactBoxContentTitle>{title}</ContactBoxContentTitle>
               <ContactBoxContentText>
-                <NewLineText text={ text } />
+                <NewLineText text={text} />
               </ContactBoxContentText>
             </ContactBoxContentSection>
           </ContactBoxWrapper>
