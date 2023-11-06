@@ -1,6 +1,6 @@
 export type WhatWeOfferDataType = {
-  id: number,
-  colSize: number,
-  title: string,
+  id: number
+  colSize: number
+  title: string
   image: string
 }

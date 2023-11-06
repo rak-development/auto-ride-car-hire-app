@@ -38,7 +38,7 @@ const WhatWeOfferImage = styled(Card.Img)`
 
 const WhatWeOfferOverlay = styled(Card.ImgOverlay)`
   height: 17.1875rem;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 0;
   display: flex;
   align-items: flex-end;
@@ -59,7 +59,7 @@ const WhatWeOfferCardTitle = styled(Card.Title)`
     position: absolute;
   }
 
-  @media ${device.lg} { 
+  @media ${device.lg} {
     font-size: 1.125rem;
   }
 `
@@ -70,7 +70,8 @@ export const WhatWeOffer = () => {
     <SectionTemplate
       subheader='What We Offer'
       header='See What We Can Do for You'
-      bgMode='--bs-gray-100'>
+      bgMode='--bs-gray-100'
+    >
       <WhatWeOfferContainer>
         <WhatWeOfferRow>
           {whatWeOfferData.map(({ id, colSize, title, image }: WhatWeOfferDataType) => {
