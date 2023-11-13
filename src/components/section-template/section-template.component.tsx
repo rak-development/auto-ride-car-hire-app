@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { type FC, type ReactNode } from 'react'
 import Container from 'react-bootstrap/Container'
 
 import styled from '@emotion/styled'
@@ -54,7 +54,7 @@ interface SectionTemplateProps {
   subheader: string
   header: string
   bgMode: string
-  children: string | JSX.Element | JSX.Element[]
+  children: ReactNode
 }
 
 export const SectionTemplate: FC<SectionTemplateProps> = ({
