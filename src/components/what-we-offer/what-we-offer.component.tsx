@@ -60,29 +60,25 @@ const WhatWeOfferCardTitle = styled(Card.Title)`
     font-size: 1.125rem;
   }
 `
-export const WhatWeOffer = () => 
-  (
-    <SectionTemplate
-      subheader='What We Offer'
-      header='See What We Can Do for You'
-      bgMode='--bs-gray-100'
-    >
-      <WhatWeOfferContainer>
-        <WhatWeOfferRow>
-          {WHAT_WE_OFFER_DATA.map(({ id, colSize, title, image }) =>
-            (
-              <Col md={colSize} key={id}>
-                <WhatWeOfferCard bg={'dark'}>
-                  <WhatWeOfferImage variant='top' src={image} alt={title} />
-                  <WhatWeOfferOverlay>
-                    <WhatWeOfferCardTitle>{title}</WhatWeOfferCardTitle>
-                  </WhatWeOfferOverlay>
-                </WhatWeOfferCard>
-              </Col>
-            )
-          )}
-        </WhatWeOfferRow>
-      </WhatWeOfferContainer>
-    </SectionTemplate>
-  )
-
+export const WhatWeOffer = () => (
+  <SectionTemplate
+    subheader='What We Offer'
+    header='See What We Can Do for You'
+    bgMode='--bs-gray-100'
+  >
+    <WhatWeOfferContainer>
+      <WhatWeOfferRow>
+        {WHAT_WE_OFFER_DATA.map(({ id, colSize, title, image }) => (
+          <Col md={colSize} key={id}>
+            <WhatWeOfferCard bg={'dark'}>
+              <WhatWeOfferImage variant='top' src={image} alt={title} />
+              <WhatWeOfferOverlay>
+                <WhatWeOfferCardTitle>{title}</WhatWeOfferCardTitle>
+              </WhatWeOfferOverlay>
+            </WhatWeOfferCard>
+          </Col>
+        ))}
+      </WhatWeOfferRow>
+    </WhatWeOfferContainer>
+  </SectionTemplate>
+)
