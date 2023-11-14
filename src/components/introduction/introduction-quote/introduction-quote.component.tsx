@@ -39,7 +39,7 @@ const IntroductionQuoteBlockquote = styled.blockquote`
 
 const IntroductionQuoteAuthor = styled.div`
   font-size: 0.875rem;
-  color: var(--bs--gray-800);
+  color: var(--bs-gray-800);
   margin-top: 1.875rem;
   font-weight: 400;
   text-transform: uppercase;

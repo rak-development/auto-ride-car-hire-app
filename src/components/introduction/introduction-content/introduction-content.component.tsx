@@ -8,7 +8,7 @@ const IntroductionContentCol = styled(Col)`
   font-size: 1.125rem;
   font-weight: 300;
   line-height: 1.66666;
-  color: var(--bs--gray-700);
+  color: var(--bs-gray-700);
   margin-bottom: 0.625rem;
 `
 
@@ -16,7 +16,7 @@ const IntroductionContentTitle = styled.h2`
   font-size: 1.5rem;
   font-weight: 400;
   line-height: 1.5em;
-  color: var(--bs--gray-800);
+  color: var(--bs-gray-800);
   margin-bottom: 1.875rem;
 `
 
