@@ -1,6 +1,5 @@
-import { Popover } from 'bootstrap';
+import { Popover } from 'bootstrap'
 
-document.querySelectorAll('[data-bs-toggle="collapse"]')
-.forEach(popover => {
+document.querySelectorAll('[data-bs-toggle="collapse"]').forEach((popover) => {
   new Popover(popover)
 })

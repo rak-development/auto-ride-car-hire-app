@@ -3,30 +3,30 @@
     "id": 1,
     "colSize": 6,
     "title": "Airport Transfer",
-    "image": "airportTransfer"
+    "image": "/assets/images/what-we-offer/AutoRide-Airport-Transfer.jpg"
   },
   {
     "id": 2,
     "colSize": 6,
     "title": "Worldwide Transportation",
-    "image": "worldwideTransportation"
+    "image": "/assets/images/what-we-offer/AutoRide-Worldwide-Transportation.jpg"
   },
   {
     "id": 3,
     "colSize": 6,
     "title": "Corporate Travel",
-    "image": "corporateTravel"
+    "image": "/assets/images/what-we-offer/AutoRide-Corporate-Travel.jpg"
   },
   {
     "id": 4,
     "colSize": 3,
     "title": "Charter Service",
-    "image": "charterService"
+    "image": "/assets/images/what-we-offer/AutoRide-Charter-Service.jpg"
   },
   {
     "id": 5,
     "colSize": 3,
     "title": "Special Event",
-    "image": "specialEventLimousine"
+    "image": "/assets/images/what-we-offer/AutoRide-Special-Event-Limousine.jpg"
   }
 ]

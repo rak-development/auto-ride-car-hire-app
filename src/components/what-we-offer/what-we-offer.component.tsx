@@ -9,10 +9,7 @@ import { SectionTemplate } from '../section-template/section-template.component'
 
 import WHAT_WE_OFFER_DATA from '../../what-we-offer-data.json'
 
-import airportTransfer from '/src/assets/images/what-we-offer/AutoRide-Airport-Transfer.jpg'
 import { device } from '../../devices-breakpoints'
-
-import { WhatWeOfferDataType } from '../../types/whatWeOfferTypes'
 
 const WhatWeOfferContainer = styled(Container)`
   margin-top: 5rem;
@@ -38,7 +35,7 @@ const WhatWeOfferImage = styled(Card.Img)`
 
 const WhatWeOfferOverlay = styled(Card.ImgOverlay)`
   height: 17.1875rem;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 0;
   display: flex;
   align-items: flex-end;
@@ -59,34 +56,29 @@ const WhatWeOfferCardTitle = styled(Card.Title)`
     position: absolute;
   }
 
-  @media ${device.lg} { 
+  @media ${device.lg} {
     font-size: 1.125rem;
   }
 `
-
-export const WhatWeOffer = () => {
-  const whatWeOfferData: WhatWeOfferDataType[] = WHAT_WE_OFFER_DATA
-  return (
-    <SectionTemplate
-      subheader='What We Offer'
-      header='See What We Can Do for You'
-      bgMode='--bs-gray-100'>
-      <WhatWeOfferContainer>
-        <WhatWeOfferRow>
-          {whatWeOfferData.map(({ id, colSize, title, image }: WhatWeOfferDataType) => {
-            return (
-              <Col md={colSize} key={id}>
-                <WhatWeOfferCard bg={'dark'}>
-                  <WhatWeOfferImage variant='top' src={airportTransfer} alt={title} />
-                  <WhatWeOfferOverlay>
-                    <WhatWeOfferCardTitle>{title}</WhatWeOfferCardTitle>
-                  </WhatWeOfferOverlay>
-                </WhatWeOfferCard>
-              </Col>
-            )
-          })}
-        </WhatWeOfferRow>
-      </WhatWeOfferContainer>
-    </SectionTemplate>
-  )
-}
+export const WhatWeOffer = () => (
+  <SectionTemplate
+    subheader='What We Offer'
+    header='See What We Can Do for You'
+    bgMode='--bs-gray-100'
+  >
+    <WhatWeOfferContainer>
+      <WhatWeOfferRow>
+        {WHAT_WE_OFFER_DATA.map(({ id, colSize, title, image }) => (
+          <Col md={colSize} key={id}>
+            <WhatWeOfferCard bg={'dark'}>
+              <WhatWeOfferImage variant='top' src={image} alt={title} />
+              <WhatWeOfferOverlay>
+                <WhatWeOfferCardTitle>{title}</WhatWeOfferCardTitle>
+              </WhatWeOfferOverlay>
+            </WhatWeOfferCard>
+          </Col>
+        ))}
+      </WhatWeOfferRow>
+    </WhatWeOfferContainer>
+  </SectionTemplate>
+)
