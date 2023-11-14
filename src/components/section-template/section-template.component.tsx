@@ -64,13 +64,12 @@ export const SectionTemplate: FC<SectionTemplateProps> = ({
   header,
   bgMode,
   children,
-}) => 
-  (
-    <SectionTemplateSection bgMode={bgMode}>
-      <SectionTemplateContainer>
-        <SectionTemplateSubheader>{subheader}</SectionTemplateSubheader>
-        <SectionTemplateHeader>{header}</SectionTemplateHeader>
-      </SectionTemplateContainer>
-      {children}
-    </SectionTemplateSection>
-  )
+}) => (
+  <SectionTemplateSection bgMode={bgMode}>
+    <SectionTemplateContainer>
+      <SectionTemplateSubheader>{subheader}</SectionTemplateSubheader>
+      <SectionTemplateHeader>{header}</SectionTemplateHeader>
+    </SectionTemplateContainer>
+    {children}
+  </SectionTemplateSection>
+)
