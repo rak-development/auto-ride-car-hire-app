@@ -5,7 +5,7 @@ import styled from '@emotion/styled'
 
 import { device } from '../../devices-breakpoints'
 
-type bgModeType = '--bs-gray-100'
+type bgModeType = '--bs-gray-100' | '--bs-white'
 
 type SectionTemplateSectionProps = {
   bgMode: bgModeType

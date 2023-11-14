@@ -13,7 +13,6 @@ const App = () => (
       <Introduction />
       <WhatWeOffer />
       <KeyFeatures />
-      <h1>Welcome to my app</h1>
     </main>
     <Footer />
   </>

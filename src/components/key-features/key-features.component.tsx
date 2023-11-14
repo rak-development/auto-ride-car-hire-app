@@ -70,10 +70,8 @@ const KeyFeatureBody = styled.div`
   color: var(--bs-gray-700);
 `
 
-export const KeyFeatures = () => {
-  const keyFeaturesData: any[] = KEY_FEATURES_DATA
-
-  return (
+export const KeyFeatures = () => 
+  (
     <SectionTemplate
       subheader='Key Features'
       header='Make Your Trip Your Way With Us'
@@ -81,8 +79,8 @@ export const KeyFeatures = () => {
       <KeyFeaturesSection>
         <Container>
         <Row>
-          {keyFeaturesData.map(({ id, icon, header, body }) => {
-            return (
+          {KEY_FEATURES_DATA.map(({ id, icon, header, body }) => 
+            (
               <Col md={3} key={id}>
                 <KeyFeatureContainer>
                   <KeyFeatureIconContainer>
@@ -94,10 +92,9 @@ export const KeyFeatures = () => {
                 </KeyFeatureContainer>
               </Col>
             )
-          })}
+          )}
         </Row>
         </Container>
       </KeyFeaturesSection>
     </SectionTemplate>
   )
-}
