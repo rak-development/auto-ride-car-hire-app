@@ -5,11 +5,13 @@ import styled from '@emotion/styled'
 
 import { device } from '../../devices-breakpoints'
 
-type sectionTemplateProps = {
-  bgMode: string
+type bgModeType = '--bs-gray-100'
+
+type SectionTemplateSectionProps = {
+  bgMode: bgModeType
 }
 
-const SectionTemplateSection = styled.section<sectionTemplateProps>`
+const SectionTemplateSection = styled.section<SectionTemplateSectionProps>`
   padding: 6.25rem 0;
   display: flex;
   flex-direction: column;
@@ -51,9 +53,9 @@ const SectionTemplateHeader = styled.p`
 `
 
 interface SectionTemplateProps {
-  subheader: string
-  header: string
-  bgMode: string
+  subheader: ReactNode
+  header: ReactNode
+  bgMode: bgModeType
   children: ReactNode
 }
 
