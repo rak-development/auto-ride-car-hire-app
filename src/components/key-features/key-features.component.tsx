@@ -18,7 +18,7 @@ const KeyFeaturesSection = styled.section`
 const KeyFeatureContainer = styled.div`
   margin-bottom: 2.8125rem;
 
-  @media ${device.lg} { 
+  @media ${device.lg} {
     padding-left: 1.875rem;
     padding-right: 1.875rem;
     margin-bottom: 2.8125rem;
@@ -58,7 +58,7 @@ const KeyFeatureHeader = styled.div`
   margin-bottom: 0.9375rem;
   color: var(--bs-gray-800);
 
-  @media ${device.lg} { 
+  @media ${device.lg} {
     font-size: 1.125rem;
   }
 `
@@ -70,31 +70,29 @@ const KeyFeatureBody = styled.div`
   color: var(--bs-gray-700);
 `
 
-export const KeyFeatures = () => 
-  (
-    <SectionTemplate
-      subheader='Key Features'
-      header='Make Your Trip Your Way With Us'
-      bgMode='--bs-white'>
-      <KeyFeaturesSection>
-        <Container>
+export const KeyFeatures = () => (
+  <SectionTemplate
+    subheader='Key Features'
+    header='Make Your Trip Your Way With Us'
+    bgMode='--bs-white'
+  >
+    <KeyFeaturesSection>
+      <Container>
         <Row>
-          {KEY_FEATURES_DATA.map(({ id, icon, header, body }) => 
-            (
-              <Col md={3} key={id}>
-                <KeyFeatureContainer>
-                  <KeyFeatureIconContainer>
-                    <SetIcon icon={icon} />
-                    <span />
-                  </KeyFeatureIconContainer>
-                  <KeyFeatureHeader>{header}</KeyFeatureHeader>
-                  <KeyFeatureBody>{body}</KeyFeatureBody>
-                </KeyFeatureContainer>
-              </Col>
-            )
-          )}
+          {KEY_FEATURES_DATA.map(({ id, icon, header, body }) => (
+            <Col md={3} key={id}>
+              <KeyFeatureContainer>
+                <KeyFeatureIconContainer>
+                  <SetIcon icon={icon} />
+                  <span />
+                </KeyFeatureIconContainer>
+                <KeyFeatureHeader>{header}</KeyFeatureHeader>
+                <KeyFeatureBody>{body}</KeyFeatureBody>
+              </KeyFeatureContainer>
+            </Col>
+          ))}
         </Row>
-        </Container>
-      </KeyFeaturesSection>
-    </SectionTemplate>
-  )
+      </Container>
+    </KeyFeaturesSection>
+  </SectionTemplate>
+)
