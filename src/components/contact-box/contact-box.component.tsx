@@ -73,8 +73,8 @@ const ContactBoxContentText = styled.div`
   }
 `
 
-export const ContactBox = () => {
-  return (
+export const ContactBox = () => 
+  (
     <Row>
       {CONTACT_BOX_DATA.map(({ title, text, icon }: FooterList) => (
         <Col md={4} key={title}>
@@ -94,4 +94,3 @@ export const ContactBox = () => {
       ))}
     </Row>
   )
-}

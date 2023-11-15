@@ -1,6 +1,7 @@
 import { type FC } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
+  type IconName,
   faChevronRight,
   faClock,
   faEnvelope,
@@ -16,28 +17,22 @@ const ElementIcon = styled(FontAwesomeIcon)`
   padding-right: 1.375rem;
 `
 
-// not sure how to solve the type for below
-const setElementIcon = (icon: any) => {
-  switch (icon) {
-    case 'fa-location-dot':
-      return faLocationDot
-    case 'fa-map-location-dot':
-      return faMapLocationDot
-    case 'fa-phone':
-      return faPhone
-    case 'fa-mobile-screen-button':
-      return faMobileScreenButton
-    case 'fa-envelope':
-      return faEnvelope
-    case 'fa-clock':
-      return faClock
-    default:
-      return faChevronRight
-  }
+const icons = {
+  'fa-location-dot': faLocationDot,
+  'fa-map-location-dot': faMapLocationDot,
+  'fa-phone': faPhone,
+  'fa-mobile-screen-button': faMobileScreenButton,
+  'fa-envelope': faEnvelope,
+  'fa-clock': faClock,
+  'fa-chevron-right': faChevronRight
+}
+
+const getElementIcon = (key: keyof typeof icons) => {
+  return icons[key];
 }
 
 interface SetIconProps {
-  icon: string | undefined
+  icon: any
 }
 
-export const SetIcon: FC<SetIconProps> = ({ icon }) => <ElementIcon icon={setElementIcon(icon)} />
+export const SetIcon: FC<SetIconProps> = ({ icon }) => <ElementIcon icon={getElementIcon(icon)} />
