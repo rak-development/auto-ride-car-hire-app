@@ -1,8 +1,8 @@
 import { type FC } from 'react'
 
-interface Test {
+interface NewLineTextProps {
   text: string
 }
 
-export const NewLineText: FC<Test> = ({ text }) =>
+export const NewLineText: FC<NewLineTextProps> = ({ text }) =>
   text.split('\n').map((text) => <div key={text}>{text}</div>)

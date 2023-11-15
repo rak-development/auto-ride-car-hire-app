@@ -8,6 +8,10 @@ import {
   faMapLocationDot,
   faMobileScreenButton,
   faPhone,
+  faCar,
+  faCoins,
+  faBus,
+  faRoadCircleExclamation,
 } from '@fortawesome/free-solid-svg-icons'
 
 import styled from '@emotion/styled'
@@ -31,6 +35,14 @@ const setElementIcon = (icon: any) => {
       return faEnvelope
     case 'fa-clock':
       return faClock
+    case 'fa-car':
+      return faCar
+    case 'fa-coins':
+      return faCoins
+    case 'fa-bus':
+      return faBus
+    case 'fa-road-circle-exclamation':
+      return faRoadCircleExclamation
     default:
       return faChevronRight
   }
