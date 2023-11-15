@@ -1,42 +1,42 @@
 [
   {
     "id": 1,
-    "image": "audiA8",
+    "image": "/assets/images/our-fleet/AutoRide-Audi-A8.jpg",
     "title": "Audi A8",
     "passengerNumber": 5,
     "luggageNumber": 6
   },
   {
     "id": 2,
-    "image": "audiQ7",
+    "image": "/assets/images/our-fleet/AutoRide-Audi-Q7.jpg",
     "title": "Audi Q7",
     "passengerNumber": 7,
     "luggageNumber": 10
   },
   {
     "id": 3,
-    "image": "bmw5",
+    "image": "/assets/images/our-fleet/AutoRide-BMW-5.jpg",
     "title": "BMW 5",
     "passengerNumber": 5,
     "luggageNumber": 5
   },
   {
     "id": 4,
-    "image": "bmwX5",
+    "image": "/assets/images/our-fleet/AutoRide-BMW-X5.jpg",
     "title": "BMW X5",
     "passengerNumber": 5,
     "luggageNumber": 8
   },
   {
     "id": 5,
-    "image": "mercedesE",
+    "image": "/assets/images/our-fleet/AutoRide-Mercedes-E.jpg",
     "title": "Mercedes E",
     "passengerNumber": 5,
     "luggageNumber": 5
   },
   {
     "id": 6,
-    "image": "mercedesGLE",
+    "image": "/assets/images/our-fleet/AutoRide-Mercedes-GLE.jpg",
     "title": "Mercedes GLE",
     "passengerNumber": 5,
     "luggageNumber": 8

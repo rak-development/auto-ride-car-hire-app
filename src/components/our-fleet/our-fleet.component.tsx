@@ -8,13 +8,10 @@ import { faSuitcaseRolling, faUser } from "@fortawesome/free-solid-svg-icons";
 import styled from "@emotion/styled";
 
 import { SectionTemplate } from "../section-template/section-template.component";
-import { device } from "../../devices-breakpoints";
 
 import OUR_FLEET_DATA from '../../our-fleet-data.json'
 
-import { OurFleetDataType } from "../../types/our-fleet-data-type";
-
-import audiA8 from '/src/assets/images/our-fleet/AutoRide-Audi-A8.jpg'
+import { device } from "../../devices-breakpoints";
 
 const OurFleetContainer = styled(Container)`
   margin-top: 5rem;
@@ -86,10 +83,10 @@ export const OurFleet = () => (
     bgMode='--bs-gray-100'>
     <OurFleetContainer>
       <OurFleetRow>
-        {OUR_FLEET_DATA.map(({id,image,title,passengerNumber,luggageNumber}: OurFleetDataType) => (
+        {OUR_FLEET_DATA.map(({id,image,title,passengerNumber,luggageNumber}) => (
           <Col md={4} key={id}>
             <OurFleetCard>
-              <OurFleetCardImage variant='top' src={audiA8} alt={title} />
+              <OurFleetCardImage variant='top' src={image} alt={title} />
               <OurFleetCardImageOverlay>
                 <OurFleetCardTitle>{title}</OurFleetCardTitle>
               </OurFleetCardImageOverlay>
