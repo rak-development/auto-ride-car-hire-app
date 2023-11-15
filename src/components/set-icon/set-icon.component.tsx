@@ -1,7 +1,6 @@
 import { type FC } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  type IconName,
   faChevronRight,
   faClock,
   faEnvelope,
@@ -32,7 +31,7 @@ const getElementIcon = (key: keyof typeof icons) => {
 }
 
 interface SetIconProps {
-  icon: any
+  icon: Parameters<typeof getElementIcon>[0]
 }
 
 export const SetIcon: FC<SetIconProps> = ({ icon }) => <ElementIcon icon={getElementIcon(icon)} />
