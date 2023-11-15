@@ -85,7 +85,7 @@ export const KeyFeatures = () =>
                 <KeyFeatureContainer>
                   <KeyFeatureIconContainer>
                     <SetIcon icon={icon} />
-                    <span></span>
+                    <span />
                   </KeyFeatureIconContainer>
                   <KeyFeatureHeader>{header}</KeyFeatureHeader>
                   <KeyFeatureBody>{body}</KeyFeatureBody>
