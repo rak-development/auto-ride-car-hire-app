@@ -11,7 +11,7 @@ import {
   faCar,
   faCoins,
   faBus,
-  faRoadCircleExclamation
+  faRoadCircleExclamation,
 } from '@fortawesome/free-solid-svg-icons'
 
 import styled from '@emotion/styled'
