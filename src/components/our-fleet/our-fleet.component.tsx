@@ -1,17 +1,17 @@
-import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Card from "react-bootstrap/Card";
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Card from 'react-bootstrap/Card'
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSuitcaseRolling, faUser } from "@fortawesome/free-solid-svg-icons";
-import styled from "@emotion/styled";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSuitcaseRolling, faUser } from '@fortawesome/free-solid-svg-icons'
+import styled from '@emotion/styled'
 
-import { SectionTemplate } from "../section-template/section-template.component";
+import { SectionTemplate } from '../section-template/section-template.component'
 
 import OUR_FLEET_DATA from '../../our-fleet-data.json'
 
-import { device } from "../../devices-breakpoints";
+import { device } from '../../devices-breakpoints'
 
 const OurFleetContainer = styled(Container)`
   margin-top: 5rem;
@@ -21,7 +21,7 @@ const OurFleetRow = styled(Row)`
   --bs-gutter-y: 3rem;
   --bs-gutter-x: 3rem;
 
-  @media ${device.md} { 
+  @media ${device.md} {
     --bs-gutter-y: 1.5rem;
     --bs-gutter-x: 1.5rem;
   }
@@ -77,13 +77,10 @@ const OurFleetCardLuggageCapacity = styled.div`
 `
 
 export const OurFleet = () => (
-  <SectionTemplate
-    subheader='Our Fleet'
-    header='Browse Our Limos'
-    bgMode='--bs-gray-100'>
+  <SectionTemplate subheader='Our Fleet' header='Browse Our Limos' bgMode='--bs-gray-100'>
     <OurFleetContainer>
       <OurFleetRow>
-        {OUR_FLEET_DATA.map(({id,image,title,passengerNumber,luggageNumber}) => (
+        {OUR_FLEET_DATA.map(({ id, image, title, passengerNumber, luggageNumber }) => (
           <Col md={4} key={id}>
             <OurFleetCard>
               <OurFleetCardImage variant='top' src={image} alt={title} />
