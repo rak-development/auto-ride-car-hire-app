@@ -1,20 +1,19 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Carousel from 'react-bootstrap/Carousel';
+import Carousel from 'react-bootstrap/Carousel'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComments } from '@fortawesome/free-solid-svg-icons';
+import { faComments } from '@fortawesome/free-solid-svg-icons'
 
-import styled from "@emotion/styled"
+import styled from '@emotion/styled'
 
 import imageUrl from '/src/assets/images/AutoRide-Testimonials.jpeg'
 
 import TESTIMONIALS_DATA from '../../testimonials-data.json'
-import { device } from '../../devices-breakpoints';
-
+import { device } from '../../devices-breakpoints'
 
 const TestimonialsWrapper = styled.div`
   background-color: var(--bs-gray-100);
@@ -37,8 +36,8 @@ const TestimonialsImageCol = styled(Col)`
   display: flex;
 `
 type ImageURLProps = {
-  imageUrl: string;
-};
+  imageUrl: string
+}
 
 const TestimonialsImage = styled.div<ImageURLProps>`
   padding: 7.5rem 0;
@@ -133,7 +132,7 @@ const TestimonialAuthor = styled.div`
 `
 
 export const Testimonials = () => {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(0)
 
   return (
     <TestimonialsWrapper>
@@ -142,7 +141,7 @@ export const Testimonials = () => {
           <TestimonialsSliderCol md={6}>
             <TestimonialsCarouselWrapper>
               <TheCarousel activeIndex={index} onSelect={setIndex} controls={false}>
-                {TESTIMONIALS_DATA.map(({id,text,author}) => (
+                {TESTIMONIALS_DATA.map(({ id, text, author }) => (
                   <Carousel.Item key={id}>
                     <Carousel.Caption>
                       <TestimonialIconWrapper>
