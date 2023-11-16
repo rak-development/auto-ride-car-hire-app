@@ -4,6 +4,7 @@ import { Introduction } from './components/introduction/introduction.component'
 import { WhatWeOffer } from './components/what-we-offer/what-we-offer.component'
 import { Testimonials } from './components/testimonials/testimonials.component'
 import { KeyFeatures } from './components/key-features/key-features.component'
+import { OurFleet } from './components/our-fleet/our-fleet.component'
 
 import './app.scss'
 
@@ -15,6 +16,7 @@ const App = () => (
       <WhatWeOffer />
       <Testimonials />
       <KeyFeatures />
+      <OurFleet />
     </main>
     <Footer />
   </>
