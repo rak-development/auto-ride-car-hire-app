@@ -57,7 +57,7 @@ const ContactBoxContentTitle = styled.div`
   text-transform: uppercase;
   line-height: 1.5rem;
   letter-spacing: 0.125rem;
-  color: var(--bs--gray-800);
+  color: var(--bs-gray-800);
   margin-bottom: 0.625rem;
 `
 
@@ -66,7 +66,7 @@ const ContactBoxContentText = styled.div`
   font-weight: 700;
   text-transform: none;
   line-height: 1.66rem;
-  color: var(--bs--gray-800);
+  color: var(--bs-gray-800);
 
   @media ${device.md} {
     font-size: 1.125rem;
