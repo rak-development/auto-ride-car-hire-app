@@ -1,8 +1,15 @@
-import { Header } from './components/header/header.component';
+import { useEffect, useState } from 'react';
+
+import { Header } from './components/header/header.component'
+import { Footer } from './components/footer/footer.component'
+import { Introduction } from './components/introduction/introduction.component'
+import { WhatWeOffer } from './components/what-we-offer/what-we-offer.component'
+import { Testimonials } from './components/testimonials/testimonials.component'
+import { KeyFeatures } from './components/key-features/key-features.component'
+import { OurFleet } from './components/our-fleet/our-fleet.component'
 import { ScrollToTop } from './components/scroll-to-top/scroll-to-top.component';
 
-import './app.scss';
-import { useEffect, useState } from 'react';
+import './app.scss'
 
 const App = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,7 +21,7 @@ const App = () => {
   }, [])
   
   const listenToScroll = () => {
-    let heightToHideFrom = 3000;
+    const heightToHideFrom = 3000;
     const winScroll = document.body.scrollTop || 
         document.documentElement.scrollTop;
 
@@ -24,17 +31,21 @@ const App = () => {
       setIsVisible(false);
     }  
   };
-  
+
   return (
     <>
       <Header />
       <main>
-        <h1 style={{ marginTop: 2000, marginBottom: 2000}}>Welcome to my app</h1>
-        {isVisible && <ScrollToTop />}
+        <Introduction />
+        <WhatWeOffer />
+        <Testimonials />
+        <KeyFeatures />
+        <OurFleet />
       </main>
-      <footer>Footer</footer>
+      <Footer />
+      {isVisible && <ScrollToTop />}
     </>
-  );
+  )
 }
 
-export default App;
+export default App
