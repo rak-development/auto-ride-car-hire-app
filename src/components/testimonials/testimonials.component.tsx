@@ -36,11 +36,11 @@ const TestimonialsImageCol = styled(Col)`
   padding: 0;
   display: flex;
 `
-type ImageURLprops = {
+type ImageURLProps = {
   imageUrl: string;
 };
 
-const TestimonialsImage = styled.div<ImageURLprops>`
+const TestimonialsImage = styled.div<ImageURLProps>`
   padding: 7.5rem 0;
   background-image: ${(imageProps) => `url(${imageProps.imageUrl})`};
   background-size: cover;
@@ -135,17 +135,13 @@ const TestimonialAuthor = styled.div`
 export const Testimonials = () => {
   const [index, setIndex] = useState(0);
 
-  const handleSelect = (selectedIndex: number) => {
-    setIndex(selectedIndex);
-  };
-
   return (
     <TestimonialsWrapper>
       <Container fluid>
         <Row>
           <TestimonialsSliderCol md={6}>
             <TestimonialsCarouselWrapper>
-              <TheCarousel activeIndex={index} onSelect={handleSelect} controls={false}>
+              <TheCarousel activeIndex={index} onSelect={setIndex} controls={false}>
                 {TESTIMONIALS_DATA.map(({id,text,author}) => (
                   <Carousel.Item key={id}>
                     <Carousel.Caption>
