@@ -5,9 +5,8 @@ import styled from '@emotion/styled'
 import CONTACT_BOX_DATA from '../../contact-box-data.json'
 
 import { device } from '../../devices-breakpoints'
-import { type FooterList } from '../../types/footer-list-types'
 
-import { SetIcon } from '../set-icon/set-icon.component'
+import { Icon } from '../icon/icon.component'
 import { NewLineText } from '../new-line-text/new-line-text.component'
 
 const ContactBoxWrapper = styled.div`
@@ -73,24 +72,23 @@ const ContactBoxContentText = styled.div`
   }
 `
 
-export const ContactBox = () => 
-  (
-    <Row>
-      {CONTACT_BOX_DATA.map(({ title, text, icon }: FooterList) => (
-        <Col md={4} key={title}>
-          <ContactBoxWrapper>
-            <ContactBoxIconSection>
-              <SetIcon icon={icon} />
-              <ContactBoxIconBackground />
-            </ContactBoxIconSection>
-            <ContactBoxContentSection aria-label={title}>
-              <ContactBoxContentTitle>{title}</ContactBoxContentTitle>
-              <ContactBoxContentText>
-                <NewLineText text={text} />
-              </ContactBoxContentText>
-            </ContactBoxContentSection>
-          </ContactBoxWrapper>
-        </Col>
-      ))}
-    </Row>
-  )
+export const ContactBox = () => (
+  <Row>
+    {CONTACT_BOX_DATA.map(({ title, text, icon }) => (
+      <Col md={4} key={title}>
+        <ContactBoxWrapper>
+          <ContactBoxIconSection>
+            <Icon icon={icon as Icon} />
+            <ContactBoxIconBackground />
+          </ContactBoxIconSection>
+          <ContactBoxContentSection aria-label={title}>
+            <ContactBoxContentTitle>{title}</ContactBoxContentTitle>
+            <ContactBoxContentText>
+              <NewLineText text={text} />
+            </ContactBoxContentText>
+          </ContactBoxContentSection>
+        </ContactBoxWrapper>
+      </Col>
+    ))}
+  </Row>
+)
