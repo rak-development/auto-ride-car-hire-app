@@ -14,24 +14,17 @@ import './app.scss'
 const App = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {   
+  useEffect(() => {
+    const listenToScroll = () => {
+      const heightToHideFrom = 2000;
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      setIsVisible(winScroll > heightToHideFrom);
+    }
     window.addEventListener('scroll', listenToScroll);
     return () => 
        window.removeEventListener('scroll', listenToScroll); 
-  }, [])
+  }, []);
   
-  const listenToScroll = () => {
-    const heightToHideFrom = 3000;
-    const winScroll = document.body.scrollTop || 
-        document.documentElement.scrollTop;
-
-    if (winScroll > heightToHideFrom) {  
-      !isVisible && setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }  
-  };
-
   return (
     <>
       <Header />

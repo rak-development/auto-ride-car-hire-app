@@ -24,7 +24,7 @@ const ScrollToTopButton = styled(Button)`
   }
 
   &:hover, &:active {
-    background-color: rgba(133,140,146,0.6) !important;
+    background-color: rgba(133,140,146,0.6);
   }
 `
 
@@ -32,7 +32,7 @@ export const ScrollToTop = () => {
   const scrollToTopHandler = () => window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
 
   return (
-    <ScrollToTopButton type='button' onClick={(_: React.MouseEvent<Element, MouseEvent>): void => scrollToTopHandler()}>
+    <ScrollToTopButton type='button' onClick={scrollToTopHandler}>
       <FontAwesomeIcon icon={faChevronUp} />
     </ScrollToTopButton>
   )
