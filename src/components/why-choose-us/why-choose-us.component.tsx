@@ -1,6 +1,4 @@
 import Container from "react-bootstrap/Container"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from "@fortawesome/free-solid-svg-icons"
 
 import styled from "@emotion/styled"
 
@@ -10,63 +8,70 @@ import { type CircleContentDataType } from "../../types/circle-content-data-type
 import { SectionTemplate } from "../section-template/section-template.component"
 
 import { device } from "../../devices-breakpoints"
+import { CoreValuesList } from "./core-values-list/core-values-list.component"
 
-const CoreValuesWrapper = styled.div`
+const CoreValuesCirclesWrapper = styled.div`
   @media ${device.xl} {
     margin-top: 2.5rem;
-    /* height: 43.75rem; */
+    height: 43.75rem;
+    position: relative;
   }
 `
 
-const CoreValuesHeader = styled.span`
-  text-transform: uppercase;
-  font-weight: 700;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  display: block;
-`
-
-const CoreValuesSubheader = styled.span`
-  text-transform: lowercase;
-`
-
-const CoreValuesList = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-`
-
-const CoreValuesListEl = styled.li`
+const CoreValuesCircle = styled.div`
+  top: 50%;
+  left: 50%;
   display: flex;
-  align-items: center;
-  padding: 0.5rem 0;
-`
-
-const CoreValuesListElIconWrapper = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-width: 0.125rem;
+  border-width: 0.0625rem;
+  position: absolute;
   border-style: solid;
   border-radius: 50%;
-  border-color: #e9ecef;
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: var(--bs-white);
-`
+  flex-direction: column;
+  justify-content: center;
 
-const CoreValuesListElIcon = styled(FontAwesomeIcon)`
-  width: 1.375rem;
-  height: 1.375rem;
-  display: block;
-  color: var(--bs-primary);
-`
+  &:first-of-type {
+    width: 21.25rem;
+    height: 21.25rem;
+    margin-left: -10.625rem;
+    margin-top: -10.625rem;
+    background-color: var(--bs-gray-200);
+    border: none;
+    padding: 3.125rem;
+    text-align: center;
 
-const CoreValuesListElTitle = styled.span`
-  font-size: 1.125rem;
-  font-weight: 300;
-  line-height: 1.875rem;
-  padding-left: 1.5rem;
+    span {
+      &:first-of-type {
+        font-size: 1.125rem;
+        font-weight: 700;
+        text-transform: none;
+        line-height: 1.66666em;
+        color: var(--bs-primary);
+        margin-bottom: 1.25rem;
+      }
+      &:last-of-type {
+        font-size: 1.375rem;
+        font-weight: 300;
+        line-height: 1.63636em;
+      }
+    }
+  }
+
+  &:nth-of-type(2) {
+    width: 31.875rem;
+    height: 31.875rem;
+    margin-left: -15.9375rem;
+    margin-top: -15.9375rem;
+    border-width: 0.125rem;
+    border-color: var(--bs-gray-200);
+  }
+
+  &:nth-of-type(3) {
+    width: 37.5rem;
+    height: 37.5rem;
+    margin-left: -18.75rem;
+    margin-top: -18.75rem;
+    border-color: var(--bs-gray-200);
+  }
 `
 
 export const WhyChooseUs = () => {
@@ -78,22 +83,21 @@ export const WhyChooseUs = () => {
       bgMode='--bs-white'
     >
       <Container>
-        <CoreValuesWrapper>
-          <CoreValuesHeader>
-            {coreValues.length} {header}
-            <CoreValuesSubheader> {subheader}</CoreValuesSubheader>
-          </CoreValuesHeader>
-          <CoreValuesList>
-            {coreValues.map(({title}) => (
-              <CoreValuesListEl key={title}>
-                <CoreValuesListElIconWrapper>
-                  <CoreValuesListElIcon icon={faCheck} />
-                </CoreValuesListElIconWrapper>
-                <CoreValuesListElTitle>{title}</CoreValuesListElTitle>
-              </CoreValuesListEl>
-            ))}
-          </CoreValuesList>
-        </CoreValuesWrapper>
+        <CoreValuesCirclesWrapper>
+          <CoreValuesCircle>
+            <span>{coreValues.length} {header}</span>
+            <span>{subheader}</span>
+          </CoreValuesCircle>
+          <CoreValuesCircle>
+            {/* {coreValues.map((el, index) => {
+              return (
+                <div key={el.id}></div>
+              )
+            })} */}
+          </CoreValuesCircle>
+          <CoreValuesCircle></CoreValuesCircle>
+        </CoreValuesCirclesWrapper>
+        <CoreValuesList header={header} subheader={subheader} coreValues={coreValues} />
       </Container>
     </SectionTemplate>
   )
