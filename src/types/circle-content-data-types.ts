@@ -1,4 +1,4 @@
-type CircleContentCoreValuesType = {
+export type CircleContentCoreValuesType = {
   id: number;
   title: string
 }
