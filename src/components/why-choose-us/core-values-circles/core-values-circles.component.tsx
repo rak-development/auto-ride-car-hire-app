@@ -69,6 +69,20 @@ const CoreValuesCircle = styled.div`
     border-color: var(--bs-gray-200);
   }
 `
+const CoreValuesCircleItemCircle = styled(FontAwesomeIcon)`
+  width: 1.75rem;
+  height: 1.75rem;
+  display: block;
+  color: var(--bs-primary); 
+`
+
+const CoreValuesCircleItemLabel = styled.span`
+  padding-left: 2.5rem;
+  color: var(--bs-gray-800);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+`
 
 const CoreValuesCircleItem = styled.div`
   position: absolute;
@@ -76,6 +90,44 @@ const CoreValuesCircleItem = styled.div`
   width: 100%;
   align-items: center;
   z-index: 1;
+
+  &.circle-item__text-left {
+    justify-content: end;
+    & > .circleWrapper {
+      order: 1;
+    }
+
+    & > .circleLabel {
+      order: 0;
+      padding-right: 2.5rem;
+      padding-left: 0;
+    }
+  }
+
+  &.circle-item__text-top {
+    flex-direction: column;
+
+    & > .circleWrapper {
+      order: 1;
+    }
+
+    & > .circleLabel {
+     order: 0;
+      padding-right: 0;
+      padding-left: 0;
+      padding-bottom: 2.5rem;
+    }
+  }
+
+  &.circle-item__text-bottom {
+    flex-direction: column;
+
+    & > .circleLabel {
+      padding-top: 2.5rem;
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
 `
 
 const CoreValuesCircleItemCircleWrapper = styled.div`
@@ -88,22 +140,9 @@ const CoreValuesCircleItemCircleWrapper = styled.div`
   border-style: solid;
   border-radius: 50%;
   border-color: var(--bs-gray-200);
+  background-color: var(--bs-white);
 `
 
-const CoreValuesCircleItemCircle = styled(FontAwesomeIcon)`
-  width: 1.75rem;
-  height: 1.75rem;
-  display: block;
-  color: var(--bs-primary);
-`
-
-const CoreValuesCircleItemLabel = styled.span`
-  padding-left: 2.5rem;
-  color: var(--bs-gray-800);
-  font-size: 1.125rem;
-  font-weight: 700;
-  text-transform: uppercase;
-`
 
 const prepareInitialPositions = (index: number, coreValues: CircleContentCoreValuesType[]) => {
   const div = 360 / coreValues.length
@@ -189,17 +228,15 @@ export const CoreValuesCircles = ({  header, subheader, coreValues }: CircleCont
       <CoreValuesCircle>
         {coreValues.map(({id, title}, index) => {
           const { textClassPosition, elementPosition } = getElementPosition(index, coreValues)
-          console.log('textClassPosition: ', textClassPosition)
-          console.log('elementPosition: ', elementPosition)
           return (
             <CoreValuesCircleItem 
               key={id}
               className={textClassPosition}
               style={{top: elementPosition.top, left: elementPosition.left }}>
-              <CoreValuesCircleItemCircleWrapper>
+              <CoreValuesCircleItemCircleWrapper className="circleWrapper">
                 <CoreValuesCircleItemCircle icon={faCheck} />
               </CoreValuesCircleItemCircleWrapper>
-              <CoreValuesCircleItemLabel>{title}</CoreValuesCircleItemLabel>
+              <CoreValuesCircleItemLabel className="circleLabel">{title}</CoreValuesCircleItemLabel>
             </CoreValuesCircleItem>
           )
         })}
