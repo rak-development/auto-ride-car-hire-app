@@ -1,10 +1,8 @@
 import styled from "@emotion/styled"
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import { device } from "../../../devices-breakpoints"
 import { type CircleContentCoreValuesType, type CircleContentDataType } from "../../../types/circle-content-data-types"
-import { faCheck } from "@fortawesome/free-solid-svg-icons"
+import { CoreValuesIcon } from "../core-values-icon/core-values-icon.component"
 
 const CoreValuesCirclesWrapper = styled.div`
   @media ${device.xl} {
@@ -69,12 +67,6 @@ const CoreValuesCircle = styled.div`
     border-color: var(--bs-gray-200);
   }
 `
-const CoreValuesCircleItemCircle = styled(FontAwesomeIcon)`
-  width: 1.75rem;
-  height: 1.75rem;
-  display: block;
-  color: var(--bs-primary); 
-`
 
 const CoreValuesCircleItemLabel = styled.span`
   padding-left: 2.5rem;
@@ -129,20 +121,6 @@ const CoreValuesCircleItem = styled.div`
     }
   }
 `
-
-const CoreValuesCircleItemCircleWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3.75rem;
-  height: 3.75rem;
-  border-width: 0.125rem;
-  border-style: solid;
-  border-radius: 50%;
-  border-color: var(--bs-gray-200);
-  background-color: var(--bs-white);
-`
-
 
 const prepareInitialPositions = (index: number, coreValues: CircleContentCoreValuesType[]) => {
   const div = 360 / coreValues.length
@@ -233,9 +211,7 @@ export const CoreValuesCircles = ({  header, subheader, coreValues }: CircleCont
               key={id}
               className={textClassPosition}
               style={{top: elementPosition.top, left: elementPosition.left }}>
-              <CoreValuesCircleItemCircleWrapper className="circleWrapper">
-                <CoreValuesCircleItemCircle icon={faCheck} />
-              </CoreValuesCircleItemCircleWrapper>
+              <CoreValuesIcon isResponsive={false} />
               <CoreValuesCircleItemLabel className="circleLabel">{title}</CoreValuesCircleItemLabel>
             </CoreValuesCircleItem>
           )
