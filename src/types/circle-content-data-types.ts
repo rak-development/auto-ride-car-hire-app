@@ -1,10 +1,10 @@
 export type CircleContentCoreValuesType = {
-  id: number;
+  id: number
   title: string
 }
 
 export type CircleContentDataType = {
-  header: string;
-  subheader: string;
+  header: string
+  subheader: string
   coreValues: CircleContentCoreValuesType[]
 }

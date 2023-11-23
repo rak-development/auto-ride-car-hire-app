@@ -1,11 +1,17 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled'
 
-import { device } from "../../../devices-breakpoints"
-import { type CircleContentCoreValuesType, type CircleContentDataType } from "../../../types/circle-content-data-types"
-import { CoreValuesIcon } from "../core-values-icon/core-values-icon.component"
+import { device } from '../../../devices-breakpoints'
+import {
+  type CircleContentCoreValuesType,
+  type CircleContentDataType,
+} from '../../../types/circle-content-data-types'
+import { CoreValuesIcon } from '../core-values-icon/core-values-icon.component'
 
 const CoreValuesCirclesWrapper = styled.div`
-  @media ${device.xl} {
+  display: none;
+
+  @media ${device.lg} {
+    display: block;
     margin-top: 2.5rem;
     height: 43.75rem;
     position: relative;
@@ -104,7 +110,7 @@ const CoreValuesCircleItem = styled.div`
     }
 
     & > .circleLabel {
-     order: 0;
+      order: 0;
       padding-right: 0;
       padding-left: 0;
       padding-bottom: 2.5rem;
@@ -148,7 +154,11 @@ const textPositionClasses = {
   textRightClass: 'circle-item__text-right',
 }
 
-const prepareTextPosition = (isOffsetTopBelow0: boolean, isOffsetBottom90: boolean, isOffsetRight: boolean) => {
+const prepareTextPosition = (
+  isOffsetTopBelow0: boolean,
+  isOffsetBottom90: boolean,
+  isOffsetRight: boolean,
+) => {
   const { textTopClass, textBottomClass, textLeftClass, textRightClass } = textPositionClasses
 
   if (isOffsetTopBelow0) {
@@ -164,7 +174,12 @@ const prepareTextPosition = (isOffsetTopBelow0: boolean, isOffsetBottom90: boole
   return textLeftClass
 }
 
-const prepareElementPosition = (totalOffset: number, x: number, y: number, textClassPosition: string) => {
+const prepareElementPosition = (
+  totalOffset: number,
+  x: number,
+  y: number,
+  textClassPosition: string,
+) => {
   const { textTopClass, textBottomClass, textLeftClass } = textPositionClasses
 
   let customY = y + totalOffset
@@ -196,23 +211,26 @@ const getElementPosition = (index: number, coreValues: CircleContentCoreValuesTy
   return { textClassPosition, elementPosition }
 }
 
-export const CoreValuesCircles = ({  header, subheader, coreValues }: CircleContentDataType) => {
+export const CoreValuesCircles = ({ header, subheader, coreValues }: CircleContentDataType) => {
   return (
     <CoreValuesCirclesWrapper>
       <CoreValuesCircle>
-        <span>{coreValues.length} {header}</span>
+        <span>
+          {coreValues.length} {header}
+        </span>
         <span>{subheader}</span>
       </CoreValuesCircle>
       <CoreValuesCircle>
-        {coreValues.map(({id, title}, index) => {
+        {coreValues.map(({ id, title }, index) => {
           const { textClassPosition, elementPosition } = getElementPosition(index, coreValues)
           return (
-            <CoreValuesCircleItem 
+            <CoreValuesCircleItem
               key={id}
               className={textClassPosition}
-              style={{top: elementPosition.top, left: elementPosition.left }}>
+              style={{ top: elementPosition.top, left: elementPosition.left }}
+            >
               <CoreValuesIcon isResponsive={false} />
-              <CoreValuesCircleItemLabel className="circleLabel">{title}</CoreValuesCircleItemLabel>
+              <CoreValuesCircleItemLabel className='circleLabel'>{title}</CoreValuesCircleItemLabel>
             </CoreValuesCircleItem>
           )
         })}

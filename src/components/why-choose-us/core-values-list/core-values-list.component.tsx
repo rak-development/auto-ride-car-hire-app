@@ -1,12 +1,13 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled'
 
-import { device } from "../../../devices-breakpoints"
-import { type CircleContentDataType } from "../../../types/circle-content-data-types"
-import { CoreValuesIcon } from "../core-values-icon/core-values-icon.component"
+import { device } from '../../../devices-breakpoints'
+import { type CircleContentDataType } from '../../../types/circle-content-data-types'
+import { CoreValuesIcon } from '../core-values-icon/core-values-icon.component'
 
 const CoreValuesListWrapper = styled.div`
-  @media ${device.xl} {
+  @media ${device.lg} {
     margin-top: 2.5rem;
+    display: none;
   }
 `
 
@@ -41,7 +42,7 @@ const CoreValuesListElTitle = styled.span`
   padding-left: 1.5rem;
 `
 
-export const CoreValuesList = ({  header, subheader, coreValues }: CircleContentDataType) => {
+export const CoreValuesList = ({ header, subheader, coreValues }: CircleContentDataType) => {
   return (
     <CoreValuesListWrapper>
       <CoreValuesListHeader>
@@ -49,7 +50,7 @@ export const CoreValuesList = ({  header, subheader, coreValues }: CircleContent
         <CoreValuesSubheader> {subheader}</CoreValuesSubheader>
       </CoreValuesListHeader>
       <CoreValuesListUL>
-        {coreValues.map(({title}) => (
+        {coreValues.map(({ title }) => (
           <CoreValuesListEl key={title}>
             <CoreValuesIcon isResponsive={true} />
             <CoreValuesListElTitle>{title}</CoreValuesListElTitle>
