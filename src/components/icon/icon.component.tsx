@@ -21,22 +21,22 @@ const ElementIcon = styled(FontAwesomeIcon)`
 `
 
 const icons = {
-  "fa-location-dot": faLocationDot,
-  "fa-map-location-dot": faMapLocationDot,
-  "fa-phone": faPhone,
-  "fa-mobile-screen-button": faMobileScreenButton,
-  "fa-envelope": faEnvelope,
-  "fa-clock": faClock,
-  "fa-car": faCar,
-  "fa-coins": faCoins,
-  "fa-bus": faBus,
-  "fa-road-circle-exclamation": faRoadCircleExclamation,
-  "fa-chevron-right": faChevronRight,
-};
+  'fa-location-dot': faLocationDot,
+  'fa-map-location-dot': faMapLocationDot,
+  'fa-phone': faPhone,
+  'fa-mobile-screen-button': faMobileScreenButton,
+  'fa-envelope': faEnvelope,
+  'fa-clock': faClock,
+  'fa-car': faCar,
+  'fa-coins': faCoins,
+  'fa-bus': faBus,
+  'fa-road-circle-exclamation': faRoadCircleExclamation,
+  'fa-chevron-right': faChevronRight,
+}
 
-export type Icon = keyof typeof icons;
+export type Icon = keyof typeof icons
 
-const getElementIcon = (icon: Icon) => icons[icon];
+const getElementIcon = (icon: Icon) => icons[icon]
 
 interface IconProps {
   icon: Icon
