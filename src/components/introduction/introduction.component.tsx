@@ -5,12 +5,10 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styled from '@emotion/styled'
 
-import {
-  useQuery,
-} from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
-import { z } from "zod";
+import { z } from 'zod'
 
 import { device } from '../../devices-breakpoints'
 
@@ -22,27 +20,27 @@ import { NewLineText } from '../new-line-text/new-line-text.component'
 
 const IntroductionData = z.object({
   title: z.string(),
-  content:  z.array(
+  content: z.array(
     z.object({
       id: z.number(),
       title: z.string(),
       text: z.string(),
-    })
+    }),
   ),
   images: z.array(
     z.object({
       id: z.number(),
       title: z.string(),
       image: z.string(),
-    })
+    }),
   ),
   quote: z.object({
     text: z.string(),
     author: z.string(),
-  })
-});
+  }),
+})
 
-type IntroductionData = z.infer<typeof IntroductionData>;
+type IntroductionData = z.infer<typeof IntroductionData>
 
 const IntroductionContainer = styled(Container)`
   padding-top: 6.25rem;
@@ -93,29 +91,26 @@ interface IntroductionLayoutProps {
   data: IntroductionData
 }
 
-const IntroductionLayout:FC<IntroductionLayoutProps> = ({data}) => {
+const IntroductionLayout: FC<IntroductionLayoutProps> = ({ data }) => {
   const { title, content, images, quote } = data
-    return (
-      <IntroductionRow>
-        <IntroductionCol md={4}>
-          <IntroductionTitle>
-            <NewLineText text={title} />
-          </IntroductionTitle>
-        </IntroductionCol>
-        <IntroductionContent content={content} />
-        <IntroductionImages images={images} />
-        <IntroductionQuote quote={quote} />
-      </IntroductionRow>
-    )
+  return (
+    <IntroductionRow>
+      <IntroductionCol md={4}>
+        <IntroductionTitle>
+          <NewLineText text={title} />
+        </IntroductionTitle>
+      </IntroductionCol>
+      <IntroductionContent content={content} />
+      <IntroductionImages images={images} />
+      <IntroductionQuote quote={quote} />
+    </IntroductionRow>
+  )
 }
 
 export const Introduction = () => {
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ['introductionData'],
-    queryFn: () =>
-      axios
-        .get('db/introduction-data.json')
-        .then((res) => res.data),
+    queryFn: () => axios.get('db/introduction-data.json').then((res) => res.data),
   })
 
   const isLoading = isPending || isFetching
@@ -123,9 +118,15 @@ export const Introduction = () => {
 
   return (
     <IntroductionContainer>
-      {isLoading && <IntroductionContentLoading>Introduction Content Loading...</IntroductionContentLoading>}
-      {isError && <IntroductionContentLoadingError>Ooops something went wrong...</IntroductionContentLoadingError>}
-      {!isLoading && !isError && <IntroductionLayout data={data} /> }
+      {isLoading && (
+        <IntroductionContentLoading>Introduction Content Loading...</IntroductionContentLoading>
+      )}
+      {isError && (
+        <IntroductionContentLoadingError>
+          Ooops something went wrong...
+        </IntroductionContentLoadingError>
+      )}
+      {!isLoading && !isError && <IntroductionLayout data={data} />}
     </IntroductionContainer>
   )
 }
