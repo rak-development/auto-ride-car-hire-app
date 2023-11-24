@@ -2,7 +2,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styled from '@emotion/styled'
 
-import CONTACT_BOX_DATA from '../../contact-box-data.json'
+import CONTACT_BOX_DATA from '../../db/contact-box-data.json'
 
 import { device } from '../../devices-breakpoints'
 

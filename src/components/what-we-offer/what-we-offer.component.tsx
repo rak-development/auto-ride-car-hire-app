@@ -7,7 +7,7 @@ import styled from '@emotion/styled'
 
 import { SectionTemplate } from '../section-template/section-template.component'
 
-import WHAT_WE_OFFER_DATA from '../../what-we-offer-data.json'
+import WHAT_WE_OFFER_DATA from '../../db/what-we-offer-data.json'
 
 import { device } from '../../devices-breakpoints'
 

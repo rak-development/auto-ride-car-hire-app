@@ -113,20 +113,17 @@ export const Introduction = () => {
     queryFn: () => axios.get('db/introduction-data.json').then((res) => res.data),
   })
 
-  const isLoading = isPending || isFetching
-  const isError = error !== null
-
   return (
     <IntroductionContainer>
-      {isLoading && (
+      {isPending && (
         <IntroductionContentLoading>Introduction Content Loading...</IntroductionContentLoading>
       )}
-      {isError && (
+      {error && (
         <IntroductionContentLoadingError>
           Ooops something went wrong...
         </IntroductionContentLoadingError>
       )}
-      {!isLoading && !isError && <IntroductionLayout data={data} />}
+      {!isPending && !error && <IntroductionLayout data={data} />}
     </IntroductionContainer>
   )
 }

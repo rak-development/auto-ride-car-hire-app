@@ -165,6 +165,10 @@ module.exports = {
         {
           from: path.resolve(environment.paths.source, 'assets'),
           to: path.resolve(environment.paths.output, 'assets')
+        },
+        {
+          from: path.resolve(environment.paths.source, 'db'),
+          to: path.resolve(environment.paths.output, 'db')
         }
       ],
     })
