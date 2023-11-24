@@ -12,7 +12,6 @@ import { z } from 'zod'
 
 import { device } from '../../devices-breakpoints'
 
-// import { type IntroductionDataType } from '../../types/introduction-data-types'
 import { IntroductionContent } from './introduction-content/introduction-content.component'
 import { IntroductionImages } from './introduction-images/introduction-images.component'
 import { IntroductionQuote } from './introduction-quote/introduction-quote.component'
@@ -108,7 +107,7 @@ const IntroductionLayout: FC<IntroductionLayoutProps> = ({ data }) => {
 }
 
 export const Introduction = () => {
-  const { isPending, error, data, isFetching } = useQuery({
+  const { isPending, error, data } = useQuery({
     queryKey: ['introductionData'],
     queryFn: () => axios.get('db/introduction-data.json').then((res) => res.data),
   })
