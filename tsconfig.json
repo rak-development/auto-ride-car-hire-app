@@ -14,5 +14,6 @@
     "noEmit": false,
     "typeRoots" : ["node_modules/@types", "src/types"],
     "resolveJsonModule": true,
+    "esModuleInterop": true
   },
 }
