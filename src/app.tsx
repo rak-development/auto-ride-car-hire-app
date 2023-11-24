@@ -1,20 +1,43 @@
+import { useEffect, useState } from 'react'
+
 import { Header } from './components/header/header.component'
 import { Footer } from './components/footer/footer.component'
 import { Introduction } from './components/introduction/introduction.component'
 import { WhatWeOffer } from './components/what-we-offer/what-we-offer.component'
+import { Testimonials } from './components/testimonials/testimonials.component'
+import { KeyFeatures } from './components/key-features/key-features.component'
+import { OurFleet } from './components/our-fleet/our-fleet.component'
+import { ScrollToTop } from './components/scroll-to-top/scroll-to-top.component'
 
 import './app.scss'
 
-const App = () => (
-  <>
-    <Header />
-    <main>
-      <Introduction />
-      <WhatWeOffer />
-      <h1>Welcome to my app</h1>
-    </main>
-    <Footer />
-  </>
-)
+const App = () => {
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const listenToScroll = () => {
+      const heightToHideFrom = 2000
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop
+      setIsVisible(winScroll > heightToHideFrom)
+    }
+    window.addEventListener('scroll', listenToScroll)
+    return () => window.removeEventListener('scroll', listenToScroll)
+  }, [])
+
+  return (
+    <>
+      <Header />
+      <main>
+        <Introduction />
+        <WhatWeOffer />
+        <Testimonials />
+        <KeyFeatures />
+        <OurFleet />
+      </main>
+      <Footer />
+      {isVisible && <ScrollToTop />}
+    </>
+  )
+}
 
 export default App
