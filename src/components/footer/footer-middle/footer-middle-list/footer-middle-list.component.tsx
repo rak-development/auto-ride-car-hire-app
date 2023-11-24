@@ -2,7 +2,7 @@ import { type FC } from 'react'
 import styled from '@emotion/styled'
 
 import { type FooterList } from '../../../../types/footer-list-types'
-import { SetIcon } from '../../../set-icon/set-icon.component'
+import { Icon } from '../../../icon/icon.component'
 
 const FooterMiddleListContainer = styled.ul`
   margin: 0;
@@ -31,7 +31,7 @@ export const FooterMiddleList: FC<FooterMiddleListProps> = ({ list }) => (
   <FooterMiddleListContainer>
     {list.map(({ text, icon }) => (
       <FooterMiddleListElement key={text}>
-        <SetIcon icon={icon} />
+        <Icon icon={icon as Icon} />
         {text}
       </FooterMiddleListElement>
     ))}
