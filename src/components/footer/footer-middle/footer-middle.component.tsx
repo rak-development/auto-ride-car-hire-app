@@ -6,8 +6,8 @@ import styled from '@emotion/styled'
 import { LogoGrey } from '../../logo-grey/logo-grey.component'
 import { FooterMiddleList } from './footer-middle-list/footer-middle-list.component'
 
-import SERVICES_LIST_DATA from '../../../db/services-list-data.json'
-import CONTACT_LIST_DATA from '../../../db/contact-list-data.json'
+import SERVICES_LIST_DATA from '../../../assets/db/services-list-data.json'
+import CONTACT_LIST_DATA from '../../../assets/db/contact-list-data.json'
 
 import { type FooterList } from '../../../types/footer-list-types'
 

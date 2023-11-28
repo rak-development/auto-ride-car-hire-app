@@ -12,7 +12,7 @@ import styled from '@emotion/styled'
 
 import imageUrl from '/src/assets/images/AutoRide-Testimonials.jpeg'
 
-import TESTIMONIALS_DATA from '../../db/testimonials-data.json'
+import TESTIMONIALS_DATA from '../../assets/db/testimonials-data.json'
 import { device } from '../../devices-breakpoints'
 
 const TestimonialsWrapper = styled.div`

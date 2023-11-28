@@ -17,7 +17,7 @@ import { IntroductionImages } from './introduction-images/introduction-images.co
 import { IntroductionQuote } from './introduction-quote/introduction-quote.component'
 import { NewLineText } from '../new-line-text/new-line-text.component'
 
-const IntroductionData = z.object({
+const introductionDataSchema = z.object({
   title: z.string(),
   content: z.array(
     z.object({
@@ -39,7 +39,7 @@ const IntroductionData = z.object({
   }),
 })
 
-type IntroductionData = z.infer<typeof IntroductionData>
+type IntroductionData = z.infer<typeof introductionDataSchema>
 
 const IntroductionContainer = styled(Container)`
   padding-top: 6.25rem;
@@ -106,12 +106,16 @@ const IntroductionLayout: FC<IntroductionLayoutProps> = ({ data }) => {
   )
 }
 
-export const Introduction = () => {
-  const { isPending, error, data } = useQuery({
-    queryKey: ['introductionData'],
-    queryFn: () => axios.get('db/introduction-data.json').then((res) => res.data),
-  })
+const introductionDataQuery = () =>  useQuery({
+  queryKey: ['introductionData'],
+  queryFn: () => axios.get('assets/db/introduction-data.json')
+      .then((res) => res.data)
+      .then(data => introductionDataSchema.parse(data)),
+})
 
+export const Introduction = () => {
+  const { isPending, error, data } = introductionDataQuery()
+  
   return (
     <IntroductionContainer>
       {isPending && (
