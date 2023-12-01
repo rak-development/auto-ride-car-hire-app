@@ -106,27 +106,30 @@ const IntroductionLayout: FC<IntroductionLayoutProps> = ({ data }) => {
   )
 }
 
-const introductionDataQuery = () =>  useQuery({
-  queryKey: ['introductionData'],
-  queryFn: () => axios.get('assets/db/introduction-data.json')
-      .then((res) => res.data)
-      .then(data => introductionDataSchema.parse(data)),
-})
+const useIntroductionDataQuery = () =>
+  useQuery({
+    queryKey: ['introductionData'],
+    queryFn: () =>
+      axios
+        .get('assets/db/introduction-data.json')
+        .then((res) => res.data)
+        .then((data) => introductionDataSchema.parse(data)),
+  })
 
 export const Introduction = () => {
-  const { isPending, error, data } = introductionDataQuery()
-  
+  const { status, data } = useIntroductionDataQuery()
+
   return (
     <IntroductionContainer>
-      {isPending && (
+      {status === 'pending' && (
         <IntroductionContentLoading>Introduction Content Loading...</IntroductionContentLoading>
       )}
-      {error && (
+      {status === 'error' && (
         <IntroductionContentLoadingError>
           Ooops something went wrong...
         </IntroductionContentLoadingError>
       )}
-      {!isPending && !error && <IntroductionLayout data={data} />}
+      {status === 'success' && <IntroductionLayout data={data} />}
     </IntroductionContainer>
   )
 }

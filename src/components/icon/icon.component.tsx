@@ -33,7 +33,7 @@ const icons = {
   'fa-bus': faBus,
   'fa-road-circle-exclamation': faRoadCircleExclamation,
   'fa-chevron-right': faChevronRight,
-  'fa-quote-left': faQuoteLeft
+  'fa-quote-left': faQuoteLeft,
 }
 
 export type Icon = keyof typeof icons
