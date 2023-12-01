@@ -1,11 +1,8 @@
 import styled from '@emotion/styled'
 
 import { device } from '../../../devices-breakpoints'
-import {
-  type CircleContentCoreValuesType,
-  type CircleContentDataType,
-} from '../../../types/circle-content-data-types'
-import { CoreValuesIcon } from '../core-values-icon/core-values-icon.component'
+import { type CircleContentDataType } from '../../../types/circle-content-data-types'
+import { CoreValuesCirclesData } from './core-values-circles-data/core-values-circles-data.component'
 
 const CoreValuesCirclesWrapper = styled.div`
   display: none;
@@ -74,143 +71,6 @@ const CoreValuesCircle = styled.div`
   }
 `
 
-const CoreValuesCircleItemLabel = styled.span`
-  padding-left: 2.5rem;
-  color: var(--bs-gray-800);
-  font-size: 1.125rem;
-  font-weight: 700;
-  text-transform: uppercase;
-`
-
-const CoreValuesCircleItem = styled.div`
-  position: absolute;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  z-index: 1;
-
-  &.circle-item__text-left {
-    justify-content: end;
-    & > .circleWrapper {
-      order: 1;
-    }
-
-    & > .circleLabel {
-      order: 0;
-      padding-right: 2.5rem;
-      padding-left: 0;
-    }
-  }
-
-  &.circle-item__text-top {
-    flex-direction: column;
-
-    & > .circleWrapper {
-      order: 1;
-    }
-
-    & > .circleLabel {
-      order: 0;
-      padding-right: 0;
-      padding-left: 0;
-      padding-bottom: 2.5rem;
-    }
-  }
-
-  &.circle-item__text-bottom {
-    flex-direction: column;
-
-    & > .circleLabel {
-      padding-top: 2.5rem;
-      padding-right: 0;
-      padding-left: 0;
-    }
-  }
-`
-
-const prepareInitialPositions = (index: number, coreValues: CircleContentCoreValuesType[]) => {
-  const div = 360 / coreValues.length
-  const radius = 255
-  const offsetToParentCenter = 255
-  const offsetToChildCenter = 32
-  const totalOffset = offsetToParentCenter - offsetToChildCenter
-  const contentCircleSize = 510
-  const tenPercentOfCircleSize = 90 / 100
-
-  const y = Math.sin(div * index * (Math.PI / 180)) * radius
-  const x = Math.cos(div * index * (Math.PI / 180)) * radius
-
-  const isOffsetRight = x + totalOffset >= offsetToParentCenter
-  const isOffsetTopBelow0 = y + totalOffset <= 0
-  const isOffsetBottom90 = y + totalOffset >= tenPercentOfCircleSize * contentCircleSize
-
-  return { totalOffset, x, y, isOffsetRight, isOffsetTopBelow0, isOffsetBottom90 }
-}
-
-const textPositionClasses = {
-  textTopClass: 'circle-item__text-top',
-  textBottomClass: 'circle-item__text-bottom',
-  textLeftClass: 'circle-item__text-left',
-  textRightClass: 'circle-item__text-right',
-}
-
-const prepareTextPosition = (
-  isOffsetTopBelow0: boolean,
-  isOffsetBottom90: boolean,
-  isOffsetRight: boolean,
-) => {
-  const { textTopClass, textBottomClass, textLeftClass, textRightClass } = textPositionClasses
-
-  if (isOffsetTopBelow0) {
-    return textTopClass
-  }
-  if (isOffsetBottom90) {
-    return textBottomClass
-  }
-  if (isOffsetRight) {
-    return textRightClass
-  }
-
-  return textLeftClass
-}
-
-const prepareElementPosition = (
-  totalOffset: number,
-  x: number,
-  y: number,
-  textClassPosition: string,
-) => {
-  const { textTopClass, textBottomClass, textLeftClass } = textPositionClasses
-
-  let customY = y + totalOffset
-  let customX = x + totalOffset
-
-  switch (textClassPosition) {
-    case textLeftClass:
-      customX = x - totalOffset
-      break
-    case textBottomClass:
-      customX = x
-      break
-    case textTopClass:
-      customY = y + (totalOffset - 60)
-      customX = x
-      break
-  }
-
-  return { top: customY, left: customX }
-}
-
-const getElementPosition = (index: number, coreValues: CircleContentCoreValuesType[]) => {
-  const { totalOffset, x, y, isOffsetRight, isOffsetTopBelow0, isOffsetBottom90 } =
-    prepareInitialPositions(index, coreValues)
-
-  const textClassPosition = prepareTextPosition(isOffsetTopBelow0, isOffsetBottom90, isOffsetRight)
-  const elementPosition = prepareElementPosition(totalOffset, x, y, textClassPosition)
-
-  return { textClassPosition, elementPosition }
-}
-
 export const CoreValuesCircles = ({ header, subheader, coreValues }: CircleContentDataType) => {
   return (
     <CoreValuesCirclesWrapper>
@@ -221,21 +81,9 @@ export const CoreValuesCircles = ({ header, subheader, coreValues }: CircleConte
         <span>{subheader}</span>
       </CoreValuesCircle>
       <CoreValuesCircle>
-        {coreValues.map(({ id, title }, index) => {
-          const { textClassPosition, elementPosition } = getElementPosition(index, coreValues)
-          return (
-            <CoreValuesCircleItem
-              key={id}
-              className={textClassPosition}
-              style={{ top: elementPosition.top, left: elementPosition.left }}
-            >
-              <CoreValuesIcon isResponsive={false} />
-              <CoreValuesCircleItemLabel className='circleLabel'>{title}</CoreValuesCircleItemLabel>
-            </CoreValuesCircleItem>
-          )
-        })}
+        <CoreValuesCirclesData coreValues={coreValues} />
       </CoreValuesCircle>
-      <CoreValuesCircle></CoreValuesCircle>
+      <CoreValuesCircle />
     </CoreValuesCirclesWrapper>
   )
 }

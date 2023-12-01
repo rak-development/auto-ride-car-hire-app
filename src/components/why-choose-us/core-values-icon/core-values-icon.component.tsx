@@ -2,11 +2,12 @@ import { type FC } from 'react'
 
 import styled from '@emotion/styled'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { Icon } from '../../icon/icon.component'
+import { type TextPositionType } from '../core-values-circles/core-values-circles-data/core-values-circles-data.component'
 
 type CoreValuesIconWrapperProps = {
   isResponsive: boolean
+  textPosition: TextPositionType
 }
 
 const CoreValuesIconWrapper = styled.div<CoreValuesIconWrapperProps>`
@@ -20,23 +21,35 @@ const CoreValuesIconWrapper = styled.div<CoreValuesIconWrapperProps>`
   border-radius: 50%;
   border-color: var(--bs-gray-200);
   background-color: var(--bs-white);
-`
 
-const CoreValuesIconElement = styled(FontAwesomeIcon)<CoreValuesIconWrapperProps>`
-  width: ${(props) => (props.isResponsive ? '1.375rem' : '1.75rem')};
-  height: ${(props) => (props.isResponsive ? '1.375rem' : '1.75rem')};
-  display: block;
-  color: var(--bs-primary);
+  svg {
+    width: ${(props) => (props.isResponsive ? '1.375rem' : '1.75rem')};
+    height: ${(props) => (props.isResponsive ? '1.375rem' : '1.75rem')};
+    display: block;
+    color: var(--bs-primary);
+    padding: 0;
+  }
 `
+// (props => {
+//   const { textPosition } = props
+//   if (textPosition === 'text-left') {
+//     // styling
+//   }
+// })
 
 interface CoreValuesIconProps {
   isResponsive: boolean
+  textPosition: TextPositionType
 }
 
-export const CoreValuesIcon: FC<CoreValuesIconProps> = ({ isResponsive }) => {
+export const CoreValuesIcon: FC<CoreValuesIconProps> = ({ isResponsive, textPosition }) => {
   return (
-    <CoreValuesIconWrapper isResponsive={isResponsive} className='circleWrapper'>
-      <CoreValuesIconElement isResponsive={isResponsive} icon={faCheck} />
+    <CoreValuesIconWrapper
+      isResponsive={isResponsive}
+      className='circleWrapper'
+      textPosition={textPosition}
+    >
+      <Icon icon={'fa-check' as Icon} />
     </CoreValuesIconWrapper>
   )
 }
