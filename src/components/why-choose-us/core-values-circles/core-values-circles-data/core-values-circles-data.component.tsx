@@ -1,103 +1,97 @@
 import { type FC } from 'react'
 
-import styled from '@emotion/styled'
-
 import { type CircleContentCoreValuesType } from '../../../../types/circle-content-data-types'
-import { CoreValuesIcon } from '../../core-values-icon/core-values-icon.component'
+import { CoreValuesCircleItem } from '../core-values-circle-item/core-values-circle-item.component'
 
 export type TextPositionType = 'text-top' | 'text-bottom' | 'text-left' | 'text-right'
 
-interface CoreValuesCircleItemProps {
-  textPosition: TextPositionType
-}
+// const CoreValuesCircleItemLabel = styled.span<CoreValuesCircleItemProps>((props) => {
+//   const { textPosition } = props
 
-const CoreValuesCircleItemLabel = styled.span<CoreValuesCircleItemProps>((props) => {
-  const { textPosition } = props
+//   if (textPosition === 'text-left') {
+//     return {
+//       paddingLeft: '2.5rem',
+//       color: 'var(--bs-gray-800)',
+//       fontSize: '1.125rem',
+//       fontWeight: '700',
+//       textTransform: 'uppercase',
+//     }
+//   } else if (textPosition === 'text-top') {
+//     return {
+//       paddingLeft: '2.5rem',
+//       color: 'var(--bs-gray-800)',
+//       fontSize: '1.125rem',
+//       fontWeight: '700',
+//       textTransform: 'uppercase',
+//     }
+//   } else if (textPosition === 'text-bottom') {
+//     return {
+//       paddingLeft: '2.5rem',
+//       color: 'var(--bs-gray-800)',
+//       fontSize: '1.125rem',
+//       fontWeight: '700',
+//       textTransform: 'uppercase',
+//     }
+//   } else {
+//     return {
+//       paddingLeft: '2.5rem',
+//       color: 'var(--bs-gray-800)',
+//       fontSize: '1.125rem',
+//       fontWeight: '700',
+//       textTransform: 'uppercase',
+//     }
+//   }
+// })
 
-  if (textPosition === 'text-left') {
-    return {
-      paddingLeft: '2.5rem',
-      color: 'var(--bs-gray-800)',
-      fontSize: '1.125rem',
-      fontWeight: '700',
-      textTransform: 'uppercase',
-    }
-  } else if (textPosition === 'text-top') {
-    return {
-      paddingLeft: '2.5rem',
-      color: 'var(--bs-gray-800)',
-      fontSize: '1.125rem',
-      fontWeight: '700',
-      textTransform: 'uppercase',
-    }
-  } else if (textPosition === 'text-bottom') {
-    return {
-      paddingLeft: '2.5rem',
-      color: 'var(--bs-gray-800)',
-      fontSize: '1.125rem',
-      fontWeight: '700',
-      textTransform: 'uppercase',
-    }
-  } else {
-    return {
-      paddingLeft: '2.5rem',
-      color: 'var(--bs-gray-800)',
-      fontSize: '1.125rem',
-      fontWeight: '700',
-      textTransform: 'uppercase',
-    }
-  }
-})
-
-const CoreValuesCircleItem = styled.div<CoreValuesCircleItemProps>((props) => {
-  const { textPosition } = props
-  if (textPosition === 'text-left') {
-    return {
-      position: 'absolute',
-      display: 'flex',
-      order: '0',
-      width: '100%',
-      alignItems: 'center',
-      zIndex: '1',
-      justifyContent: 'end',
-      paddingRight: '2.5rem',
-      paddingLeft: '0',
-    }
-  } else if (textPosition === 'text-top') {
-    return {
-      position: 'absolute',
-      display: 'flex',
-      order: '0',
-      width: '100%',
-      alignItems: 'center',
-      zIndex: '1',
-      flexDirection: 'column',
-      paddingRight: '0',
-      paddingLeft: '0',
-      paddingBottom: '2.5rem',
-    }
-  } else if (textPosition === 'text-bottom') {
-    return {
-      position: 'absolute',
-      display: 'flex',
-      width: '100%',
-      alignItems: 'center',
-      zIndex: '1',
-      flexDirection: 'column',
-      paddingTop: '2.5rem',
-      paddingRight: '0',
-      paddingLeft: '0',
-    }
-  } else {
-    return {
-      position: 'absolute',
-      display: 'flex',
-      width: '100%',
-      alignItems: 'center',
-      zIndex: '1',
-    }
-  }
-})
+// const CoreValuesCircleItem = styled.div<CoreValuesCircleItemProps>((props) => {
+//   const { textPosition } = props
+//   if (textPosition === 'text-left') {
+//     return {
+//       position: 'absolute',
+//       display: 'flex',
+//       order: '0',
+//       width: '100%',
+//       alignItems: 'center',
+//       zIndex: '1',
+//       justifyContent: 'end',
+//       paddingRight: '2.5rem',
+//       paddingLeft: '0',
+//     }
+//   } else if (textPosition === 'text-top') {
+//     return {
+//       position: 'absolute',
+//       display: 'flex',
+//       order: '0',
+//       width: '100%',
+//       alignItems: 'center',
+//       zIndex: '1',
+//       flexDirection: 'column',
+//       paddingRight: '0',
+//       paddingLeft: '0',
+//       paddingBottom: '2.5rem',
+//     }
+//   } else if (textPosition === 'text-bottom') {
+//     return {
+//       position: 'absolute',
+//       display: 'flex',
+//       width: '100%',
+//       alignItems: 'center',
+//       zIndex: '1',
+//       flexDirection: 'column',
+//       paddingTop: '2.5rem',
+//       paddingRight: '0',
+//       paddingLeft: '0',
+//     }
+//   } else {
+//     return {
+//       position: 'absolute',
+//       display: 'flex',
+//       width: '100%',
+//       alignItems: 'center',
+//       zIndex: '1',
+//     }
+//   }
+// })
 
 // const CoreValuesCircleItem = styled.div<CoreValuesCircleItemProps>`
 //   position: absolute;
@@ -201,7 +195,7 @@ const prepareElementPosition = (
   totalOffset: number,
   x: number,
   y: number,
-  textClassPosition: string,
+  textClassPosition: TextPositionType,
 ) => {
   const { textTopClass, textBottomClass, textLeftClass } = textPositionClasses
 
@@ -294,15 +288,9 @@ export const CoreValuesCirclesData: FC<CoreValuesCirclesDataProps> = ({ coreValu
         return (
           <CoreValuesCircleItem
             key={id}
-            className={textPosition}
             textPosition={textPosition}
-            style={{ top: elementPosition.top, left: elementPosition.left }}
-          >
-            <CoreValuesIcon isResponsive={false} textPosition={textPosition} />
-            <CoreValuesCircleItemLabel className='circleLabel' textPosition={textPosition}>
-              {title}
-            </CoreValuesCircleItemLabel>
-          </CoreValuesCircleItem>
+            elementPosition={elementPosition}
+            title={title} />
         )
       })}
     </>
