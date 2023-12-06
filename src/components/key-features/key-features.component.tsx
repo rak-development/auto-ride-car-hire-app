@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 
 import { SectionTemplate } from '../section-template/section-template.component'
 
-import KEY_FEATURES_DATA from '../../key-features-data.json'
+import KEY_FEATURES_DATA from '../../assets/db/key-features-data.json'
 import { device } from '../../devices-breakpoints'
 import { Icon } from '../icon/icon.component'
 
