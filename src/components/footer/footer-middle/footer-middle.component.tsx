@@ -3,13 +3,28 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styled from '@emotion/styled'
 
+import { z } from 'zod'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+
 import { LogoGrey } from '../../logo-grey/logo-grey.component'
 import { FooterMiddleList } from './footer-middle-list/footer-middle-list.component'
 
-import SERVICES_LIST_DATA from '../../../assets/db/services-list-data.json'
-import CONTACT_LIST_DATA from '../../../assets/db/contact-list-data.json'
+import { ContentLoading } from '../../content-loading/content-loading.component'
+import { ContentLoadingError } from '../../content-loading/content-loading-error/content-loading-error.components'
 
-import { type FooterList } from '../../../types/footer-list-types'
+export const servicesListDataSchema = z.array(
+  z.object({
+    text: z.string(),
+  }),
+)
+
+export const contactListDataSchema = z.array(
+  z.object({
+    text: z.string(),
+    icon: z.string(),
+  }),
+)
 
 const FooterMiddleWrapper = styled.div`
   background-color: var(--bs-gray-200);
@@ -45,10 +60,49 @@ const TitleBox = styled.div`
   }
 `
 
-export const FooterMiddle = () => {
-  const servicesList: FooterList[] = SERVICES_LIST_DATA
-  const contactList: FooterList[] = CONTACT_LIST_DATA
+const useServicesListDataQuery = () =>
+  useQuery({
+    queryKey: ['servicesListData'],
+    queryFn: () =>
+      axios
+        .get('assets/db/services-list-data.json')
+        .then((res) => res.data)
+        .then((data) => servicesListDataSchema.parse(data)),
+  })
 
+const ServicesListTemplate = () => {
+  const { status, data } = useServicesListDataQuery()
+  return (
+    <>
+      {status === 'pending' && <ContentLoading text='Contact Box Content Loading...' />}
+      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+      {status === 'success' && <FooterMiddleList data={data} />}
+    </>
+  )
+}
+
+const useContactListDataQuery = () =>
+  useQuery({
+    queryKey: ['contactListData'],
+    queryFn: () =>
+      axios
+        .get('assets/db/contact-list-data.json')
+        .then((res) => res.data)
+        .then((data) => contactListDataSchema.parse(data)),
+  })
+
+const ContactListTemplate = () => {
+  const { status, data } = useContactListDataQuery()
+  return (
+    <>
+      {status === 'pending' && <ContentLoading text='Contact Box Content Loading...' />}
+      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+      {status === 'success' && <FooterMiddleList data={data} />}
+    </>
+  )
+}
+
+export const FooterMiddle = () => {
   return (
     <FooterMiddleWrapper>
       <Container>
@@ -74,7 +128,7 @@ export const FooterMiddle = () => {
                 Our Services
                 <span />
               </TitleBox>
-              <FooterMiddleList list={servicesList} />
+              <ServicesListTemplate />
             </ContentBox>
           </Col>
           <Col md={4}>
@@ -83,7 +137,7 @@ export const FooterMiddle = () => {
                 Autoride
                 <span />
               </TitleBox>
-              <FooterMiddleList list={contactList} />
+              <ContactListTemplate />
             </ContentBox>
           </Col>
         </Row>

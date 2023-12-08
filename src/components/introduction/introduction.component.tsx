@@ -5,6 +5,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styled from '@emotion/styled'
 
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
 import { z } from 'zod'
 
 import { device } from '../../devices-breakpoints'
@@ -15,8 +17,6 @@ import { IntroductionQuote } from './introduction-quote/introduction-quote.compo
 import { NewLineText } from '../new-line-text/new-line-text.component'
 import { ContentLoading } from '../content-loading/content-loading.component'
 import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
-
-import { useDataQuery } from '../../helpers/useDataQuery'
 
 const introductionDataSchema = z.object({
   title: z.string(),
@@ -91,17 +91,22 @@ const IntroductionLayout: FC<IntroductionLayoutProps> = ({ data }) => {
   )
 }
 
-export const Introduction = () => {
-  const { status, data } = useDataQuery('introductionData', 'assets/db/introduction-data.json', introductionDataSchema)
+const useIntroductionDataQuery = () =>
+  useQuery({
+    queryKey: ['introductionData'],
+    queryFn: () =>
+      axios
+        .get('assets/db/introduction-data.json')
+        .then((res) => res.data)
+        .then((data) => introductionDataSchema.parse(data)),
+  })
 
+export const Introduction = () => {
+  const { status, data } = useIntroductionDataQuery()
   return (
     <IntroductionContainer>
-      {status === 'pending' && (
-        <ContentLoading text="Introduction Content Loading..." />
-      )}
-      {status === 'error' && (
-        <ContentLoadingError text="Ooops something went wrong..." />
-      )}
+      {status === 'pending' && <ContentLoading text='Introduction Content Loading...' />}
+      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
       {status === 'success' && <IntroductionLayout data={data} />}
     </IntroductionContainer>
   )

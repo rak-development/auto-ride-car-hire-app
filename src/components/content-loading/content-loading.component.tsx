@@ -1,6 +1,6 @@
-import { type FC } from "react"
+import { type FC } from 'react'
 
-import styled from "@emotion/styled"
+import styled from '@emotion/styled'
 
 const ContentLoadingWrapper = styled.div`
   font-size: 1.5rem;
@@ -14,10 +14,6 @@ interface ContentLoadingProps {
   text: string
 }
 
-export const ContentLoading: FC<ContentLoadingProps> = ({text}) => 
-   (
-    <ContentLoadingWrapper>
-      {text}
-    </ContentLoadingWrapper>
-  )
-
+export const ContentLoading: FC<ContentLoadingProps> = ({ text }) => (
+  <ContentLoadingWrapper>{text}</ContentLoadingWrapper>
+)

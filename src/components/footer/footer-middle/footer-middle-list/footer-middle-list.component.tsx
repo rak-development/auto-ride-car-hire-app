@@ -1,8 +1,10 @@
 import { type FC } from 'react'
 import styled from '@emotion/styled'
 
-import { type FooterList } from '../../../../types/footer-list-types'
+import { z } from 'zod'
+
 import { Icon } from '../../../icon/icon.component'
+import { type contactListDataSchema, type servicesListDataSchema } from '../footer-middle.component'
 
 const FooterMiddleListContainer = styled.ul`
   margin: 0;
@@ -23,17 +25,24 @@ const FooterMiddleListElement = styled.li`
   }
 `
 
+type ServicesListDataType = z.infer<typeof servicesListDataSchema>
+type ContactListDataType = z.infer<typeof contactListDataSchema>
+
 interface FooterMiddleListProps {
-  list: FooterList[]
+  data: ServicesListDataType | ContactListDataType
 }
 
-export const FooterMiddleList: FC<FooterMiddleListProps> = ({ list }) => (
+export const FooterMiddleList: FC<FooterMiddleListProps> = ({ data }) => (
   <FooterMiddleListContainer>
-    {list.map(({ text, icon }) => (
-      <FooterMiddleListElement key={text}>
-        <Icon icon={icon as Icon} />
-        {text}
-      </FooterMiddleListElement>
-    ))}
+    {data.map((el) => {
+      const { text } = el
+      const isIcon = 'icon' in el && el.icon
+      return (
+        <FooterMiddleListElement key={text}>
+          {isIcon && <Icon icon={isIcon as Icon} />}
+          {text}
+        </FooterMiddleListElement>
+      )
+    })}
   </FooterMiddleListContainer>
 )
