@@ -1,3 +1,4 @@
+import { type FC } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -5,11 +6,26 @@ import Card from 'react-bootstrap/Card'
 
 import styled from '@emotion/styled'
 
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { z } from 'zod'
+
 import { SectionTemplate } from '../section-template/section-template.component'
 
 import WHAT_WE_OFFER_DATA from '../../assets/db/what-we-offer-data.json'
 
 import { device } from '../../devices-breakpoints'
+
+const whatWeOfferDataSchema = z.array(
+  z.object({
+    id: z.number(),
+    colSize: z.number(),
+    title: z.string(),
+    image: z.string(),
+  }),
+)
+
+type WhatWeOfferDataType = z.infer<typeof whatWeOfferDataSchema>
 
 const WhatWeOfferContainer = styled(Container)`
   margin-top: 5rem;
@@ -60,6 +76,26 @@ const WhatWeOfferCardTitle = styled(Card.Title)`
     font-size: 1.125rem;
   }
 `
+
+const useWhatWeOfferDataQuery = () =>
+  useQuery({
+    queryKey: ['whatWeOfferData'],
+    queryFn: () =>
+      axios
+        .get('assets/db/what-we-offer.json')
+        .then((res) => res.data)
+        .then((data) => whatWeOfferDataSchema.parse(data)),
+  })
+
+interface WhatWeOfferDataTemplateProps {
+  data: WhatWeOfferDataType
+}
+
+const WhatWeOfferDataTemplate:FC<WhatWeOfferDataTemplateProps> = ({data}) => {
+  return (<></>)
+}
+
+
 export const WhatWeOffer = () => (
   <SectionTemplate
     subheader='What We Offer'
