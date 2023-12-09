@@ -1,24 +1,23 @@
 import { type FC } from 'react'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 
 import styled from '@emotion/styled'
 
 import { device } from '../../../devices-breakpoints'
 
 import { type IntroductionQuoteType } from '../../../types/introduction-data-types'
+import { Icon } from '../../icon/icon.component'
 
 const IntroductionQuoteWrapper = styled.div`
   margin-top: 1.875rem;
   text-align: center;
-`
 
-const IntroductionQuoteIcon = styled(FontAwesomeIcon)`
-  width: 2rem;
-  height: 2rem;
-  color: var(--bs-primary);
+  svg {
+    width: 2rem;
+    height: 2rem;
+    color: var(--bs-primary);
+  }
 `
 
 const IntroductionQuoteBlockquote = styled.blockquote`
@@ -56,7 +55,7 @@ export const IntroductionQuote: FC<IntroductionQuoteProps> = ({ quote }) => {
     <Row>
       <Col>
         <IntroductionQuoteWrapper>
-          <IntroductionQuoteIcon icon={faQuoteLeft} />
+          <Icon icon={'fa-quote-left' as const} />
           <IntroductionQuoteBlockquote>{quote.text}</IntroductionQuoteBlockquote>
           <IntroductionQuoteAuthor>{quote.author}</IntroductionQuoteAuthor>
         </IntroductionQuoteWrapper>

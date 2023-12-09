@@ -6,9 +6,9 @@ import styled from '@emotion/styled'
 
 import { SectionTemplate } from '../section-template/section-template.component'
 
-import KEY_FEATURES_DATA from '../../key-features-data.json'
+import KEY_FEATURES_DATA from '../../assets/db/key-features-data.json'
 import { device } from '../../devices-breakpoints'
-import { SetIcon } from '../set-icon/set-icon.component'
+import { Icon } from '../icon/icon.component'
 
 const KeyFeaturesSection = styled.section`
   padding-top: 6.875rem;
@@ -83,7 +83,7 @@ export const KeyFeatures = () => (
             <Col md={3} key={id}>
               <KeyFeatureContainer>
                 <KeyFeatureIconContainer>
-                  <SetIcon icon={icon} />
+                  <Icon icon={icon as Icon} />
                   <span />
                 </KeyFeatureIconContainer>
                 <KeyFeatureHeader>{header}</KeyFeatureHeader>
