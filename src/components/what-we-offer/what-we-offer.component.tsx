@@ -12,9 +12,9 @@ import { z } from 'zod'
 
 import { SectionTemplate } from '../section-template/section-template.component'
 
-import WHAT_WE_OFFER_DATA from '../../assets/db/what-we-offer-data.json'
-
 import { device } from '../../devices-breakpoints'
+import { ContentLoading } from '../content-loading/content-loading.component'
+import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
 
 const whatWeOfferDataSchema = z.array(
   z.object({
@@ -82,7 +82,7 @@ const useWhatWeOfferDataQuery = () =>
     queryKey: ['whatWeOfferData'],
     queryFn: () =>
       axios
-        .get('assets/db/what-we-offer.json')
+        .get('assets/db/what-we-offer-data.json')
         .then((res) => res.data)
         .then((data) => whatWeOfferDataSchema.parse(data)),
   })
@@ -91,30 +91,36 @@ interface WhatWeOfferDataTemplateProps {
   data: WhatWeOfferDataType
 }
 
-const WhatWeOfferDataTemplate:FC<WhatWeOfferDataTemplateProps> = ({data}) => {
-  return (<></>)
+const WhatWeOfferDataTemplate: FC<WhatWeOfferDataTemplateProps> = ({ data }) => {
+  return (
+    <WhatWeOfferRow>
+      {data.map(({ id, colSize, title, image }) => (
+        <Col md={colSize} key={id}>
+          <WhatWeOfferCard bg={'dark'}>
+            <WhatWeOfferImage variant='top' src={image} alt={title} />
+            <WhatWeOfferOverlay>
+              <WhatWeOfferCardTitle>{title}</WhatWeOfferCardTitle>
+            </WhatWeOfferOverlay>
+          </WhatWeOfferCard>
+        </Col>
+      ))}
+    </WhatWeOfferRow>
+  )
 }
 
+export const WhatWeOffer = () => {
+  const { status, data } = useWhatWeOfferDataQuery()
+  const isData = status != 'pending' && status != 'error'
+  const subheader = isData && 'What We Offer'
+  const header = isData && 'See What We Can Do for You'
 
-export const WhatWeOffer = () => (
-  <SectionTemplate
-    subheader='What We Offer'
-    header='See What We Can Do for You'
-    bgMode='--bs-gray-100'
-  >
-    <WhatWeOfferContainer>
-      <WhatWeOfferRow>
-        {WHAT_WE_OFFER_DATA.map(({ id, colSize, title, image }) => (
-          <Col md={colSize} key={id}>
-            <WhatWeOfferCard bg={'dark'}>
-              <WhatWeOfferImage variant='top' src={image} alt={title} />
-              <WhatWeOfferOverlay>
-                <WhatWeOfferCardTitle>{title}</WhatWeOfferCardTitle>
-              </WhatWeOfferOverlay>
-            </WhatWeOfferCard>
-          </Col>
-        ))}
-      </WhatWeOfferRow>
-    </WhatWeOfferContainer>
-  </SectionTemplate>
-)
+  return (
+    <SectionTemplate subheader={subheader} header={header} bgMode='--bs-gray-100'>
+      <WhatWeOfferContainer>
+        {status === 'pending' && <ContentLoading text='What We Offer Content Loading...' />}
+        {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+        {status === 'success' && <WhatWeOfferDataTemplate data={data} />}
+      </WhatWeOfferContainer>
+    </SectionTemplate>
+  )
+}

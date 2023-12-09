@@ -111,7 +111,7 @@ interface OurFleetTemplateProps {
 }
 
 const OurFleetDataTemplate: FC<OurFleetTemplateProps> = ({ data }) => (
-  <>
+  <OurFleetRow>
     {data.map(({ id, image, title, passengerNumber, luggageNumber }) => (
       <Col md={4} key={id}>
         <OurFleetCard>
@@ -132,7 +132,7 @@ const OurFleetDataTemplate: FC<OurFleetTemplateProps> = ({ data }) => (
         </OurFleetCard>
       </Col>
     ))}
-  </>
+  </OurFleetRow>
 )
 
 export const OurFleet = () => {
@@ -146,11 +146,7 @@ export const OurFleet = () => {
       <OurFleetContainer isData={isData}>
         {status === 'pending' && <ContentLoading text='Our Fleet Content Loading...' />}
         {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
-        {status === 'success' && (
-          <OurFleetRow>
-            <OurFleetDataTemplate data={data} />
-          </OurFleetRow>
-        )}
+        {status === 'success' && <OurFleetDataTemplate data={data} />}
       </OurFleetContainer>
     </SectionTemplate>
   )

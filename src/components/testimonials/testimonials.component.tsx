@@ -164,33 +164,34 @@ interface TestimonialsDataTemplateProps {
   data: TestimonialsDataType
 }
 
-const TestimonialsDataTemplate:FC<TestimonialsDataTemplateProps> = ({data}) => {
+const TestimonialsDataTemplate: FC<TestimonialsDataTemplateProps> = ({ data }) => {
   const [index, setIndex] = useState(0)
   return (
-  <Row>
-    <TestimonialsSliderCol md={6}>
-      <TestimonialsCarouselWrapper>
-        <TheCarousel activeIndex={index} onSelect={setIndex} controls={false}>
-          {data.map(({ id, text, author }) => (
-            <Carousel.Item key={id}>
-              <Carousel.Caption>
-                <TestimonialIconWrapper>
-                  <TestimonialIcon icon={faComments} />
-                  <TestimonialIconBackground />
-                </TestimonialIconWrapper>
-                <TestimonialQuote>{text}</TestimonialQuote>
-                <TestimonialAuthor>{author}</TestimonialAuthor>
-              </Carousel.Caption>
-            </Carousel.Item>
-          ))}
-        </TheCarousel>
-      </TestimonialsCarouselWrapper>
-    </TestimonialsSliderCol>
-    <TestimonialsImageCol md={6}>
-      <TestimonialsImage imageUrl={imageUrl} />
-    </TestimonialsImageCol>
-  </Row>                         
-)}
+    <Row>
+      <TestimonialsSliderCol md={6}>
+        <TestimonialsCarouselWrapper>
+          <TheCarousel activeIndex={index} onSelect={setIndex} controls={false}>
+            {data.map(({ id, text, author }) => (
+              <Carousel.Item key={id}>
+                <Carousel.Caption>
+                  <TestimonialIconWrapper>
+                    <TestimonialIcon icon={faComments} />
+                    <TestimonialIconBackground />
+                  </TestimonialIconWrapper>
+                  <TestimonialQuote>{text}</TestimonialQuote>
+                  <TestimonialAuthor>{author}</TestimonialAuthor>
+                </Carousel.Caption>
+              </Carousel.Item>
+            ))}
+          </TheCarousel>
+        </TestimonialsCarouselWrapper>
+      </TestimonialsSliderCol>
+      <TestimonialsImageCol md={6}>
+        <TestimonialsImage imageUrl={imageUrl} />
+      </TestimonialsImageCol>
+    </Row>
+  )
+}
 
 export const Testimonials = () => {
   const { status, data } = useTestimonialsDataQuery()

@@ -105,7 +105,7 @@ interface KeyFeaturesDataTemplateProps {
 }
 
 const KeyFeaturesDataTemplate: FC<KeyFeaturesDataTemplateProps> = ({ data }) => (
-  <>
+  <Row>
     {data.map(({ id, icon, header, body }) => (
       <Col md={3} key={id}>
         <KeyFeatureContainer>
@@ -118,7 +118,7 @@ const KeyFeaturesDataTemplate: FC<KeyFeaturesDataTemplateProps> = ({ data }) => 
         </KeyFeatureContainer>
       </Col>
     ))}
-  </>
+  </Row>
 )
 
 export const KeyFeatures = () => {
@@ -133,11 +133,7 @@ export const KeyFeatures = () => {
         <Container>
           {status === 'pending' && <ContentLoading text='Key Features Content Loading...' />}
           {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
-          {status === 'success' && (
-            <Row>
-              <KeyFeaturesDataTemplate data={data} />
-            </Row>
-          )}
+          {status === 'success' && <KeyFeaturesDataTemplate data={data} />}
         </Container>
       </KeyFeaturesSection>
     </SectionTemplate>
