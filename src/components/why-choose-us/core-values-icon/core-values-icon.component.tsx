@@ -14,8 +14,8 @@ const CoreValuesIconWrapper = styled.div<CoreValuesIconWrapperProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${(props) => (props.isResponsive ? '2.5rem' : '3.75rem')};
-  height: ${(props) => (props.isResponsive ? '2.5rem' : '3.75rem')};
+  width: ${({ isResponsive }) => (isResponsive ? '2.5rem' : '3.75rem')};
+  height: ${({ isResponsive }) => (isResponsive ? '2.5rem' : '3.75rem')};
   border-width: 0.125rem;
   border-style: solid;
   border-radius: 50%;
@@ -23,19 +23,13 @@ const CoreValuesIconWrapper = styled.div<CoreValuesIconWrapperProps>`
   background-color: var(--bs-white);
 
   svg {
-    width: ${(props) => (props.isResponsive ? '1.375rem' : '1.75rem')};
-    height: ${(props) => (props.isResponsive ? '1.375rem' : '1.75rem')};
+    width: ${({ isResponsive }) => (isResponsive ? '1.375rem' : '1.75rem')};
+    height: ${({ isResponsive }) => (isResponsive ? '1.375rem' : '1.75rem')};
     display: block;
     color: var(--bs-primary);
     padding: 0;
   }
 `
-// (props => {
-//   const { textPosition } = props
-//   if (textPosition === 'text-left') {
-//     // styling
-//   }
-// })
 
 interface CoreValuesIconProps {
   isResponsive: boolean

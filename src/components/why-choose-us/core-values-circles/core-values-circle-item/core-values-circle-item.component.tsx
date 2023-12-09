@@ -10,7 +10,7 @@ interface CoreValuesCircleItemStylesProps {
 }
 
 const getPaddingSize = (values: TextPositionType) => {
-  switch(values) {
+  switch (values) {
     case 'text-top':
       return '0 0 2.5rem 0'
     case 'text-bottom':
@@ -31,15 +31,15 @@ const CoreValuesCircleItemLabel = styled.span<CoreValuesCircleItemStylesProps>`
 `
 
 const getFlexDirection = (values: TextPositionType) => {
-    switch(values) {
-      case 'text-top':
-        return 'column-reverse'
-      case 'text-bottom':
-        return 'column'
-      case 'text-left':
-        return 'row-reverse'
-      case 'text-right':
-        return 'row'
+  switch (values) {
+    case 'text-top':
+      return 'column-reverse'
+    case 'text-bottom':
+      return 'column'
+    case 'text-left':
+      return 'row-reverse'
+    case 'text-right':
+      return 'row'
   }
 }
 
@@ -50,28 +50,30 @@ const CoreValuesCircleItemWrapper = styled.div<CoreValuesCircleItemStylesProps>`
   width: 100%;
   align-items: center;
   z-index: 1;
-  justify-content: ${({textPosition}) => (textPosition === 'text-left' ? 'end' : 'start')};
-  `
+  justify-content: ${({ textPosition }) => (textPosition === 'text-left' ? 'end' : 'start')};
+`
 
 interface CoreValuesCircleItemProps {
-  textPosition: TextPositionType,
+  textPosition: TextPositionType
   elementPosition: {
-    top: number,
+    top: number
     left: number
-  },
+  }
   title: string
 }
 
-export const CoreValuesCircleItem:FC<CoreValuesCircleItemProps> = ({textPosition, elementPosition, title}) => {
+export const CoreValuesCircleItem: FC<CoreValuesCircleItemProps> = ({
+  textPosition,
+  elementPosition,
+  title,
+}) => {
   return (
     <CoreValuesCircleItemWrapper
       textPosition={textPosition}
       style={{ top: elementPosition.top, left: elementPosition.left }}
     >
       <CoreValuesIcon isResponsive={false} textPosition={textPosition} />
-      <CoreValuesCircleItemLabel textPosition={textPosition}>
-        {title}
-      </CoreValuesCircleItemLabel>
+      <CoreValuesCircleItemLabel textPosition={textPosition}>{title}</CoreValuesCircleItemLabel>
     </CoreValuesCircleItemWrapper>
   )
 }

@@ -5,146 +5,6 @@ import { CoreValuesCircleItem } from '../core-values-circle-item/core-values-cir
 
 export type TextPositionType = 'text-top' | 'text-bottom' | 'text-left' | 'text-right'
 
-// const CoreValuesCircleItemLabel = styled.span<CoreValuesCircleItemProps>((props) => {
-//   const { textPosition } = props
-
-//   if (textPosition === 'text-left') {
-//     return {
-//       paddingLeft: '2.5rem',
-//       color: 'var(--bs-gray-800)',
-//       fontSize: '1.125rem',
-//       fontWeight: '700',
-//       textTransform: 'uppercase',
-//     }
-//   } else if (textPosition === 'text-top') {
-//     return {
-//       paddingLeft: '2.5rem',
-//       color: 'var(--bs-gray-800)',
-//       fontSize: '1.125rem',
-//       fontWeight: '700',
-//       textTransform: 'uppercase',
-//     }
-//   } else if (textPosition === 'text-bottom') {
-//     return {
-//       paddingLeft: '2.5rem',
-//       color: 'var(--bs-gray-800)',
-//       fontSize: '1.125rem',
-//       fontWeight: '700',
-//       textTransform: 'uppercase',
-//     }
-//   } else {
-//     return {
-//       paddingLeft: '2.5rem',
-//       color: 'var(--bs-gray-800)',
-//       fontSize: '1.125rem',
-//       fontWeight: '700',
-//       textTransform: 'uppercase',
-//     }
-//   }
-// })
-
-// const CoreValuesCircleItem = styled.div<CoreValuesCircleItemProps>((props) => {
-//   const { textPosition } = props
-//   if (textPosition === 'text-left') {
-//     return {
-//       position: 'absolute',
-//       display: 'flex',
-//       order: '0',
-//       width: '100%',
-//       alignItems: 'center',
-//       zIndex: '1',
-//       justifyContent: 'end',
-//       paddingRight: '2.5rem',
-//       paddingLeft: '0',
-//     }
-//   } else if (textPosition === 'text-top') {
-//     return {
-//       position: 'absolute',
-//       display: 'flex',
-//       order: '0',
-//       width: '100%',
-//       alignItems: 'center',
-//       zIndex: '1',
-//       flexDirection: 'column',
-//       paddingRight: '0',
-//       paddingLeft: '0',
-//       paddingBottom: '2.5rem',
-//     }
-//   } else if (textPosition === 'text-bottom') {
-//     return {
-//       position: 'absolute',
-//       display: 'flex',
-//       width: '100%',
-//       alignItems: 'center',
-//       zIndex: '1',
-//       flexDirection: 'column',
-//       paddingTop: '2.5rem',
-//       paddingRight: '0',
-//       paddingLeft: '0',
-//     }
-//   } else {
-//     return {
-//       position: 'absolute',
-//       display: 'flex',
-//       width: '100%',
-//       alignItems: 'center',
-//       zIndex: '1',
-//     }
-//   }
-// })
-
-// const CoreValuesCircleItem = styled.div<CoreValuesCircleItemProps>`
-//   position: absolute;
-//   display: flex;
-//   width: 100%;
-//   align-items: center;
-//   z-index: 1;
-
-//   ${(props) => (
-//     props.textPosition === 'text-left' && `
-//       position: relative
-//     `
-//   )}
-
-//   &.text-left {
-//     justify-content: end;
-//     & > .circleWrapper {
-//       order: 1;
-//     }
-
-//     & > .circleLabel {
-//       order: 0;
-//       padding-right: 2.5rem;
-//       padding-left: 0;
-//     }
-//   }
-
-//   &.text-top {
-//     flex-direction: column;
-
-//     & > .circleWrapper {
-//       order: 1;
-//     }
-
-//     & > .circleLabel {
-//       order: 0;
-//       padding-right: 0;
-//       padding-left: 0;
-//       padding-bottom: 2.5rem;
-//     }
-//   }
-
-//   &.text-bottom {
-//     flex-direction: column;
-
-//     & > .circleLabel {
-//       padding-top: 2.5rem;
-//       padding-right: 0;
-//       padding-left: 0;
-//     }
-//   }
-// `
-
 const prepareInitialPositions = (index: number, coreValues: CircleContentCoreValuesType[]) => {
   const div = 360 / coreValues.length
   const radius = 255
@@ -290,7 +150,8 @@ export const CoreValuesCirclesData: FC<CoreValuesCirclesDataProps> = ({ coreValu
             key={id}
             textPosition={textPosition}
             elementPosition={elementPosition}
-            title={title} />
+            title={title}
+          />
         )
       })}
     </>
