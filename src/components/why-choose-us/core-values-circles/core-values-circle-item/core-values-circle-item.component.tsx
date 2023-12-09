@@ -1,7 +1,6 @@
 import { type FC } from 'react'
 
 import styled from '@emotion/styled'
-import { css } from '@emotion/react'
 
 import { CoreValuesIcon } from '../../core-values-icon/core-values-icon.component'
 import { type TextPositionType } from '../core-values-circles-data/core-values-circles-data.component'
@@ -9,29 +8,50 @@ import { type TextPositionType } from '../core-values-circles-data/core-values-c
 interface CoreValuesCircleItemStylesProps {
   textPosition: TextPositionType
 }
-const CoreValuesCircleItemLabel = styled.span`
-  padding-left: 2.5rem;
+
+const getPaddingSize = (values: TextPositionType) => {
+  switch(values) {
+    case 'text-top':
+      return '0 0 2.5rem 0'
+    case 'text-bottom':
+      return '2.5rem 0 0 0'
+    case 'text-left':
+      return '0 2.5rem 0 0'
+    case 'text-right':
+      return '0 0 0 2.5rem'
+  }
+}
+
+const CoreValuesCircleItemLabel = styled.span<CoreValuesCircleItemStylesProps>`
+  padding: ${({ textPosition }) => getPaddingSize(textPosition)};
   color: var(--bs-gray-800);
   font-size: 1.125rem;
   font-weight: 700;
   text-transform: uppercase;
 `
 
+const getFlexDirection = (values: TextPositionType) => {
+    switch(values) {
+      case 'text-top':
+        return 'column-reverse'
+      case 'text-bottom':
+        return 'column'
+      case 'text-left':
+        return 'row-reverse'
+      case 'text-right':
+        return 'row'
+  }
+}
+
 const CoreValuesCircleItemWrapper = styled.div<CoreValuesCircleItemStylesProps>`
   position: absolute;
   display: flex;
-  flex-direction: ${({textPosition}) => (textPosition === 'text-top' || textPosition === 'text-bottom' ? 'column' : 'row')};
+  flex-direction: ${({ textPosition }) => getFlexDirection(textPosition)};
   width: 100%;
   align-items: center;
   z-index: 1;
   justify-content: ${({textPosition}) => (textPosition === 'text-left' ? 'end' : 'start')};
-
-  ${CoreValuesCircleItemLabel} {
-    order: ${({textPosition}) => (textPosition === 'text-left' ? '0' : '1')};
-  }
-`
-
-
+  `
 
 interface CoreValuesCircleItemProps {
   textPosition: TextPositionType,
@@ -49,7 +69,7 @@ export const CoreValuesCircleItem:FC<CoreValuesCircleItemProps> = ({textPosition
       style={{ top: elementPosition.top, left: elementPosition.left }}
     >
       <CoreValuesIcon isResponsive={false} textPosition={textPosition} />
-      <CoreValuesCircleItemLabel>
+      <CoreValuesCircleItemLabel textPosition={textPosition}>
         {title}
       </CoreValuesCircleItemLabel>
     </CoreValuesCircleItemWrapper>
