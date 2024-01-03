@@ -12,6 +12,7 @@ import {
   faMapLocationDot,
   faMobileScreenButton,
   faPhone,
+  faQuoteLeft,
   faRoadCircleExclamation,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -33,6 +34,7 @@ const icons = {
   'fa-bus': faBus,
   'fa-road-circle-exclamation': faRoadCircleExclamation,
   'fa-chevron-right': faChevronRight,
+  'fa-quote-left': faQuoteLeft,
   'fa-check': faCheck,
 }
 

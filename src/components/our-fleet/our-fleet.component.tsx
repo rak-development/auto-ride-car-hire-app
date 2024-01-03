@@ -9,7 +9,7 @@ import styled from '@emotion/styled'
 
 import { SectionTemplate } from '../section-template/section-template.component'
 
-import OUR_FLEET_DATA from '../../our-fleet-data.json'
+import OUR_FLEET_DATA from '../../assets/db/our-fleet-data.json'
 
 import { device } from '../../devices-breakpoints'
 

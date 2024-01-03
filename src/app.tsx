@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
 import { Header } from './components/header/header.component'
 import { Footer } from './components/footer/footer.component'
 import { Introduction } from './components/introduction/introduction.component'
@@ -11,6 +13,8 @@ import { OurFleet } from './components/our-fleet/our-fleet.component'
 import { ScrollToTop } from './components/scroll-to-top/scroll-to-top.component'
 
 import './app.scss'
+
+const queryClient = new QueryClient()
 
 const App = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -26,7 +30,7 @@ const App = () => {
   }, [])
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Header />
       <main>
         <Introduction />
@@ -38,7 +42,7 @@ const App = () => {
       </main>
       <Footer />
       {isVisible && <ScrollToTop />}
-    </>
+    </QueryClientProvider>
   )
 }
 
