@@ -9,44 +9,32 @@ interface CoreValuesCircleItemStylesProps {
   textPosition: TextPositionType
 }
 
-const getPaddingSize = (values: TextPositionType) => {
-  switch (values) {
-    case 'text-top':
-      return '0 0 2.5rem 0'
-    case 'text-bottom':
-      return '2.5rem 0 0 0'
-    case 'text-left':
-      return '0 2.5rem 0 0'
-    case 'text-right':
-      return '0 0 0 2.5rem'
-  }
+const paddingSizeMap: Record<TextPositionType, string> = {
+  'text-top': '0 0 2.5rem 0',
+  'text-bottom': '2.5rem 0 0 0',
+  'text-left': '0 2.5rem 0 0',
+  'text-right': '0 0 0 2.5rem',
+}
+
+const flexDirectionMap: Record<TextPositionType, string> = {
+  'text-top': 'column-reverse',
+  'text-bottom': 'column',
+  'text-left': 'row-reverse',
+  'text-right': 'row',
 }
 
 const CoreValuesCircleItemLabel = styled.span<CoreValuesCircleItemStylesProps>`
-  padding: ${({ textPosition }) => getPaddingSize(textPosition)};
+  padding: ${({ textPosition }) => paddingSizeMap[textPosition]};
   color: var(--bs-gray-800);
   font-size: 1.125rem;
   font-weight: 700;
   text-transform: uppercase;
 `
 
-const getFlexDirection = (values: TextPositionType) => {
-  switch (values) {
-    case 'text-top':
-      return 'column-reverse'
-    case 'text-bottom':
-      return 'column'
-    case 'text-left':
-      return 'row-reverse'
-    case 'text-right':
-      return 'row'
-  }
-}
-
 const CoreValuesCircleItemWrapper = styled.div<CoreValuesCircleItemStylesProps>`
   position: absolute;
   display: flex;
-  flex-direction: ${({ textPosition }) => getFlexDirection(textPosition)};
+  flex-direction: ${({ textPosition }) => flexDirectionMap[textPosition]};
   width: 100%;
   align-items: center;
   z-index: 1;

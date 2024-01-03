@@ -25,30 +25,10 @@ const prepareInitialPositions = (index: number, coreValues: CircleContentCoreVal
 }
 
 const textPositionClasses = {
-  textTopClass: 'text-top' as TextPositionType,
-  textBottomClass: 'text-bottom' as TextPositionType,
-  textLeftClass: 'text-left' as TextPositionType,
-  textRightClass: 'text-right' as TextPositionType,
-}
-
-const prepareTextPosition = (
-  isOffsetTopBelow0: boolean,
-  isOffsetBottom90: boolean,
-  isOffsetRight: boolean,
-) => {
-  const { textTopClass, textBottomClass, textLeftClass, textRightClass } = textPositionClasses
-
-  if (isOffsetTopBelow0) {
-    return textTopClass
-  }
-  if (isOffsetBottom90) {
-    return textBottomClass
-  }
-  if (isOffsetRight) {
-    return textRightClass
-  }
-
-  return textLeftClass
+  textTopClass: 'text-top' as const,
+  textBottomClass: 'text-bottom' as const,
+  textLeftClass: 'text-left' as const,
+  textRightClass: 'text-right' as const,
 }
 
 const prepareElementPosition = (
@@ -58,31 +38,25 @@ const prepareElementPosition = (
   textClassPosition: TextPositionType,
 ) => {
   const { textTopClass, textBottomClass, textLeftClass } = textPositionClasses
-
-  let customY = y + totalOffset
-  let customX = x + totalOffset
+  const customY = y + totalOffset
 
   switch (textClassPosition) {
     case textLeftClass:
-      customX = x - totalOffset
-      break
+      return { top: customY, left: x - totalOffset }
     case textBottomClass:
-      customX = x
-      break
+      return { top: customY, left: x }
     case textTopClass:
-      customY = y + (totalOffset - 60)
-      customX = x
-      break
+      return { top: y + (totalOffset - 60), left: x }
+    default:
+      return { top: customY, left: x + totalOffset }
   }
-
-  return { top: customY, left: customX }
 }
 
 const getElementPosition = (index: number, coreValues: CircleContentCoreValuesType[]) => {
   const { totalOffset, x, y, isOffsetRight, isOffsetTopBelow0, isOffsetBottom90 } =
     prepareInitialPositions(index, coreValues)
 
-  const textClassPosition = prepareTextPosition(isOffsetTopBelow0, isOffsetBottom90, isOffsetRight)
+  const textClassPosition = getTextPosition(isOffsetTopBelow0, isOffsetBottom90, isOffsetRight)
   const elementPosition = prepareElementPosition(totalOffset, x, y, textClassPosition)
 
   return { textClassPosition, elementPosition }
@@ -105,19 +79,17 @@ const getTextPosition = (
   isOffsetBottom90: boolean,
   isOffsetRight: boolean,
 ) => {
-  const { textTopClass, textBottomClass, textLeftClass, textRightClass } = textPositionClasses
-
   if (isOffsetTopBelow0) {
-    return textTopClass
+    return 'text-top'
   }
   if (isOffsetBottom90) {
-    return textBottomClass
+    return 'text-bottom'
   }
   if (isOffsetRight) {
-    return textRightClass
+    return 'text-right'
   }
 
-  return textLeftClass
+  return 'text-left'
 }
 
 interface CoreValuesCirclesDataProps {
