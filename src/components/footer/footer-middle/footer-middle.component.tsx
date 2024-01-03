@@ -13,18 +13,21 @@ import { FooterMiddleList } from './footer-middle-list/footer-middle-list.compon
 import { ContentLoading } from '../../content-loading/content-loading.component'
 import { ContentLoadingError } from '../../content-loading/content-loading-error/content-loading-error.components'
 
-export const servicesListDataSchema = z.array(
+const servicesListDataSchema = z.array(
   z.object({
     text: z.string(),
   }),
 )
 
-export const contactListDataSchema = z.array(
+const contactListDataSchema = z.array(
   z.object({
     text: z.string(),
     icon: z.string(),
   }),
 )
+
+export type ServicesListDataType = z.infer<typeof servicesListDataSchema>
+export type ContactListDataType = z.infer<typeof contactListDataSchema>
 
 const FooterMiddleWrapper = styled.div`
   background-color: var(--bs-gray-200);

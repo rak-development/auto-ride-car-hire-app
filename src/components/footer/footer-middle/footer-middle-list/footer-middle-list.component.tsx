@@ -1,10 +1,8 @@
 import { type FC } from 'react'
 import styled from '@emotion/styled'
 
-import { z } from 'zod'
-
 import { Icon } from '../../../icon/icon.component'
-import { type contactListDataSchema, type servicesListDataSchema } from '../footer-middle.component'
+import { type ServicesListDataType, type ContactListDataType } from '../footer-middle.component'
 
 const FooterMiddleListContainer = styled.ul`
   margin: 0;
@@ -24,9 +22,6 @@ const FooterMiddleListElement = styled.li`
     padding-top: 0;
   }
 `
-
-type ServicesListDataType = z.infer<typeof servicesListDataSchema>
-type ContactListDataType = z.infer<typeof contactListDataSchema>
 
 interface FooterMiddleListProps {
   data: ServicesListDataType | ContactListDataType
