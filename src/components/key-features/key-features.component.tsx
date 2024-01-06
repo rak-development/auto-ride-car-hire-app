@@ -123,7 +123,7 @@ const KeyFeaturesDataTemplate: FC<KeyFeaturesDataTemplateProps> = ({ data }) => 
 
 export const KeyFeatures = () => {
   const { status, data } = useKeyFeaturesDataQuery()
-  const isData = status != 'pending' && status != 'error'
+  const isData = status === 'success'
   const subheader = isData && 'Key Features'
   const header = isData && 'Make Your Trip Your Way With Us'
 

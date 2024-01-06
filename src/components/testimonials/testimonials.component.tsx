@@ -195,7 +195,7 @@ const TestimonialsDataTemplate: FC<TestimonialsDataTemplateProps> = ({ data }) =
 
 export const Testimonials = () => {
   const { status, data } = useTestimonialsDataQuery()
-  const isData = status != 'pending' && status != 'error'
+  const isData = status === 'success'
   return (
     <TestimonialsWrapper isData={!isData}>
       <Container fluid>

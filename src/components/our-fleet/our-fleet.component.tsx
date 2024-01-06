@@ -137,7 +137,7 @@ const OurFleetDataTemplate: FC<OurFleetTemplateProps> = ({ data }) => (
 
 export const OurFleet = () => {
   const { status, data } = useOurFleetDataQuery()
-  const isData = status != 'pending' && status != 'error'
+  const isData = status === 'success'
   const subheader = isData && 'Our Fleet'
   const header = isData && 'Browse Our Limos'
 

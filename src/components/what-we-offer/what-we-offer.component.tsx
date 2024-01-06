@@ -110,7 +110,7 @@ const WhatWeOfferDataTemplate: FC<WhatWeOfferDataTemplateProps> = ({ data }) => 
 
 export const WhatWeOffer = () => {
   const { status, data } = useWhatWeOfferDataQuery()
-  const isData = status != 'pending' && status != 'error'
+  const isData = status === 'success'
   const subheader = isData && 'What We Offer'
   const header = isData && 'See What We Can Do for You'
 
