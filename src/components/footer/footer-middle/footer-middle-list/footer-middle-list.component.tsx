@@ -31,7 +31,7 @@ export const FooterMiddleList: FC<FooterMiddleListProps> = ({ data }) => (
   <FooterMiddleListContainer>
     {data.map((el) => {
       const { text } = el
-      const isIcon = el.type === 'contact'
+      const isIcon = el.type === 'contact-data'
       return (
         <FooterMiddleListElement key={text}>
           {isIcon && <Icon icon={el.icon as Icon} />}

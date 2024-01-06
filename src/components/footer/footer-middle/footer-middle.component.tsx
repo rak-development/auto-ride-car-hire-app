@@ -15,14 +15,14 @@ import { ContentLoadingError } from '../../content-loading/content-loading-error
 
 const servicesListDataSchema = z.array(
   z.object({
-    type: z.literal('service'),
+    type: z.literal('service-data'),
     text: z.string(),
   }),
 )
 
 const contactListDataSchema = z.array(
   z.object({
-    type: z.literal('contact'),
+    type: z.literal('contact-data'),
     text: z.string(),
     icon: z.string(),
   }),
