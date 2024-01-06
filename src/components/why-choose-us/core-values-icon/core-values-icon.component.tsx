@@ -7,7 +7,7 @@ import { type TextPositionType } from '../core-values-circles/core-values-circle
 
 type CoreValuesIconWrapperProps = {
   isResponsive: boolean
-  textPosition: TextPositionType
+  $textPosition: TextPositionType
 }
 
 const CoreValuesIconWrapper = styled.div<CoreValuesIconWrapperProps>`
@@ -33,15 +33,15 @@ const CoreValuesIconWrapper = styled.div<CoreValuesIconWrapperProps>`
 
 interface CoreValuesIconProps {
   isResponsive: boolean
-  textPosition: TextPositionType
+  $textPosition: TextPositionType
 }
 
-export const CoreValuesIcon: FC<CoreValuesIconProps> = ({ isResponsive, textPosition }) => {
+export const CoreValuesIcon: FC<CoreValuesIconProps> = ({ isResponsive, $textPosition }) => {
   return (
     <CoreValuesIconWrapper
       isResponsive={isResponsive}
       className='circleWrapper'
-      textPosition={textPosition}
+      $textPosition={$textPosition}
     >
       <Icon icon={'fa-check' as Icon} />
     </CoreValuesIconWrapper>

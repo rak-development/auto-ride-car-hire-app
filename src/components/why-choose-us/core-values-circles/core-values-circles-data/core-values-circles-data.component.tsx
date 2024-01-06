@@ -120,7 +120,7 @@ export const CoreValuesCirclesData: FC<CoreValuesCirclesDataProps> = ({ coreValu
         return (
           <CoreValuesCircleItem
             key={id}
-            textPosition={textPosition}
+            $textPosition={textPosition}
             elementPosition={elementPosition}
             title={title}
           />

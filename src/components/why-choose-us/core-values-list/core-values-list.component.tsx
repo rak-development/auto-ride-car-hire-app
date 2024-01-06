@@ -52,7 +52,7 @@ export const CoreValuesList = ({ header, subheader, coreValues }: CircleContentD
       <CoreValuesListUL>
         {coreValues.map(({ title }) => (
           <CoreValuesListEl key={title}>
-            <CoreValuesIcon isResponsive={true} textPosition='text-right' />
+            <CoreValuesIcon isResponsive={true} $textPosition='text-right' />
             <CoreValuesListElTitle>{title}</CoreValuesListElTitle>
           </CoreValuesListEl>
         ))}
