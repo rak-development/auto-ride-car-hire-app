@@ -25,11 +25,11 @@ const prepareInitialPositions = (index: number, coreValues: CircleContentCoreVal
 }
 
 const textPositionClasses = {
-  textTopClass: 'text-top' as const,
-  textBottomClass: 'text-bottom' as const,
-  textLeftClass: 'text-left' as const,
-  textRightClass: 'text-right' as const,
-}
+  textTopClass: 'text-top',
+  textBottomClass: 'text-bottom',
+  textLeftClass: 'text-left',
+  textRightClass: 'text-right',
+} as const
 
 const prepareElementPosition = (
   totalOffset: number,
