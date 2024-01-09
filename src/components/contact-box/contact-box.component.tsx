@@ -1,13 +1,29 @@
+import { type FC } from 'react'
+
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styled from '@emotion/styled'
 
-import CONTACT_BOX_DATA from '../../assets/db/contact-box-data.json'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { z } from 'zod'
 
 import { device } from '../../devices-breakpoints'
 
 import { Icon } from '../icon/icon.component'
 import { NewLineText } from '../new-line-text/new-line-text.component'
+import { ContentLoading } from '../content-loading/content-loading.component'
+import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
+
+const contactBoxDataSchema = z.array(
+  z.object({
+    title: z.string(),
+    icon: z.string(),
+    text: z.string(),
+  }),
+)
+
+type ContactBoxDataType = z.infer<typeof contactBoxDataSchema>
 
 const ContactBoxWrapper = styled.div`
   display: flex;
@@ -72,9 +88,13 @@ const ContactBoxContentText = styled.div`
   }
 `
 
-export const ContactBox = () => (
-  <Row>
-    {CONTACT_BOX_DATA.map(({ title, text, icon }) => (
+interface ContactBoxLayoutProps {
+  data: ContactBoxDataType
+}
+
+const ContactBoxLayout: FC<ContactBoxLayoutProps> = ({ data }) => (
+  <>
+    {data.map(({ title, text, icon }) => (
       <Col md={4} key={title}>
         <ContactBoxWrapper>
           <ContactBoxIconSection>
@@ -90,5 +110,27 @@ export const ContactBox = () => (
         </ContactBoxWrapper>
       </Col>
     ))}
-  </Row>
+  </>
 )
+
+const useContactBoxDataQuery = () =>
+  useQuery({
+    queryKey: ['contactBoxData'],
+    queryFn: () =>
+      axios
+        .get('assets/db/contact-box-data.json')
+        .then((res) => res.data)
+        .then((data) => contactBoxDataSchema.parse(data)),
+  })
+
+export const ContactBox = () => {
+  const { status, data } = useContactBoxDataQuery()
+
+  return (
+    <Row>
+      {status === 'pending' && <ContentLoading text='Contact Box Content Loading...' />}
+      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+      {status === 'success' && <ContactBoxLayout data={data} />}
+    </Row>
+  )
+}

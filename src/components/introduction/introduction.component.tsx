@@ -7,7 +7,6 @@ import styled from '@emotion/styled'
 
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-
 import { z } from 'zod'
 
 import { device } from '../../devices-breakpoints'
@@ -16,6 +15,8 @@ import { IntroductionContent } from './introduction-content/introduction-content
 import { IntroductionImages } from './introduction-images/introduction-images.component'
 import { IntroductionQuote } from './introduction-quote/introduction-quote.component'
 import { NewLineText } from '../new-line-text/new-line-text.component'
+import { ContentLoading } from '../content-loading/content-loading.component'
+import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
 
 const introductionDataSchema = z.object({
   title: z.string(),
@@ -39,27 +40,11 @@ const introductionDataSchema = z.object({
   }),
 })
 
-type IntroductionData = z.infer<typeof introductionDataSchema>
+type IntroductionDataType = z.infer<typeof introductionDataSchema>
 
 const IntroductionContainer = styled(Container)`
   padding-top: 6.25rem;
   padding-bottom: 6.25rem;
-`
-
-const IntroductionContentLoading = styled.div`
-  font-size: 1.5rem;
-  text-align: center;
-  font-weight: 900;
-  line-height: 1.2em;
-  color: var(--bs-primary);
-`
-
-const IntroductionContentLoadingError = styled.div`
-  font-size: 1.5rem;
-  text-align: center;
-  font-weight: 900;
-  line-height: 1.2em;
-  color: var(--bs-red);
 `
 
 const IntroductionRow = styled(Row)`
@@ -87,7 +72,7 @@ const IntroductionTitle = styled.h1`
 `
 
 interface IntroductionLayoutProps {
-  data: IntroductionData
+  data: IntroductionDataType
 }
 
 const IntroductionLayout: FC<IntroductionLayoutProps> = ({ data }) => {
@@ -118,17 +103,10 @@ const useIntroductionDataQuery = () =>
 
 export const Introduction = () => {
   const { status, data } = useIntroductionDataQuery()
-
   return (
     <IntroductionContainer>
-      {status === 'pending' && (
-        <IntroductionContentLoading>Introduction Content Loading...</IntroductionContentLoading>
-      )}
-      {status === 'error' && (
-        <IntroductionContentLoadingError>
-          Ooops something went wrong...
-        </IntroductionContentLoadingError>
-      )}
+      {status === 'pending' && <ContentLoading text='Introduction Content Loading...' />}
+      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
       {status === 'success' && <IntroductionLayout data={data} />}
     </IntroductionContainer>
   )
