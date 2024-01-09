@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBus,
   faCar,
+  faCheck,
   faChevronRight,
   faClock,
   faCoins,
@@ -34,6 +35,7 @@ const icons = {
   'fa-road-circle-exclamation': faRoadCircleExclamation,
   'fa-chevron-right': faChevronRight,
   'fa-quote-left': faQuoteLeft,
+  'fa-check': faCheck,
 }
 
 export type Icon = keyof typeof icons
