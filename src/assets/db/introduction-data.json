@@ -1,0 +1,31 @@
+{
+  "title": "From Sedans \nto Coach \nBuses.",
+  "content": [
+    {
+      "id": 1,
+      "title": "Expect the Best",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in metus nibh. Suspendisse imperdiet, nulla ut dictum venenatis, nunc velit rhoncus neque, eu commodo augue sapien quis ipsum."
+    },
+    {
+      "id": 2,
+      "title": "Travel in Comfort",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in metus nibh. Suspendisse imperdiet, nulla ut dictum venenatis, nunc velit rhoncus neque, eu commodo augue sapien quis ipsum. Vivamus pharetra sagittis dolor sit amet malesuada. Morbi consequat aliquet dignissim."
+    }
+  ],
+  "images": [
+    {
+      "id": 1,
+      "title": "Welcome",
+      "image": "/assets/images/AutoRide-Introduction-01.jpeg"
+    },
+    {
+      "id": 2,
+      "title": "Car",
+      "image": "/assets/images/AutoRide-Introduction-02.jpeg"
+    }
+  ],
+  "quote": {
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras condimentum eros et tellus aliquet tincidunt.",
+    "author": "ANNA CRIADO - CHAIRMAN & CEO"
+  }
+}

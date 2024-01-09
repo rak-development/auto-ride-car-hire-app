@@ -25,18 +25,18 @@ form.querySelector('#discountCodeCheck').addEventListener('change', () => {
   discountCodeWrapper.classList.toggle('d-none')
 })
 
-form.addEventListener('submit', event => {
+form.addEventListener('submit', (event) => {
   event.preventDefault()
 
   if (form.checkValidity()) {
     const formData = new FormData(event.target)
-    const modalContent = buildModalContent(formData);
-    showModalWithContent(modalContent);
+    const modalContent = buildModalContent(formData)
+    showModalWithContent(modalContent)
   }
   form.classList.add('was-validated')
 })
 
-const buildModalContent = formData => {
+const buildModalContent = (formData) => {
   const data = {
     ['Pickup Location:']: formData.get('pickupLocation'),
     ['Drop-off Location:']: formData.get('dropOffLocation'),
@@ -45,7 +45,7 @@ const buildModalContent = formData => {
     ['Date To:']: formData.get('dropOffDate'),
     ['Time To:']: formData.get('dropOffTime'),
     ['Is driver over 25 years old?:']: formData.has('over25') ? 'Yes' : 'No',
-    ['Discount Code:']: formData.has('discountCodeCheck') && formData.get('discountCode')
+    ['Discount Code:']: formData.has('discountCodeCheck') && formData.get('discountCode'),
   }
 
   const container = document.createElement('div')
@@ -69,10 +69,10 @@ const buildModalContent = formData => {
   return container
 }
 
-const showModalWithContent = modalContent => {
+const showModalWithContent = (modalContent) => {
   const modal = new Modal(document.getElementById('submittedDetailsModal'), {})
   const modalBody = modal._element.querySelector('.modal-body')
-  
+
   modalBody.innerHTML = ''
   modalBody.appendChild(modalContent)
   modal.show()

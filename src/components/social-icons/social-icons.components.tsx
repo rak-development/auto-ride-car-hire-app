@@ -2,21 +2,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import styled from '@emotion/styled'
 
-import { device } from '../../devices-breakpoints';
+import { device } from '../../devices-breakpoints'
 
 const SocialIconsWrapper = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
 
-  @media ${device.md} { 
+  @media ${device.md} {
     justify-content: end;
   }
 `
 
 const SocialIcon = styled.div`
   margin: 0.3125rem 0.625rem 0.3125rem 0rem;
-`;
+`
 
 const SocialLink = styled.a`
   width: 2.5rem;
@@ -36,19 +36,27 @@ const SocialLink = styled.a`
   }
 `
 
-export const SocialIcons = () => {
-  return (
-    <SocialIconsWrapper>
-      <SocialIcon>
-        <SocialLink href='https://www.facebook.com/' target='_blank' aria-label='Facebook Link' rel='noopener noreferrer'>
-          <FontAwesomeIcon icon={faFacebookF} />
-        </SocialLink>
-      </SocialIcon>
-      <SocialIcon className='me-0'>
-        <SocialLink href='https://twitter.com/' target='_blank' aria-label='Twitter Link' rel='noopener noreferrer'>
-          <FontAwesomeIcon icon={faTwitter} />
-        </SocialLink>
-      </SocialIcon>
-    </SocialIconsWrapper>
-  )
-}
+export const SocialIcons = () => (
+  <SocialIconsWrapper>
+    <SocialIcon>
+      <SocialLink
+        href='https://www.facebook.com/'
+        target='_blank'
+        aria-label='Facebook Link'
+        rel='noopener noreferrer'
+      >
+        <FontAwesomeIcon icon={faFacebookF} />
+      </SocialLink>
+    </SocialIcon>
+    <SocialIcon className='me-0'>
+      <SocialLink
+        href='https://twitter.com/'
+        target='_blank'
+        aria-label='Twitter Link'
+        rel='noopener noreferrer'
+      >
+        <FontAwesomeIcon icon={faTwitter} />
+      </SocialLink>
+    </SocialIcon>
+  </SocialIconsWrapper>
+)
