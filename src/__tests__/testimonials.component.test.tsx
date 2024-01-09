@@ -1,11 +1,10 @@
 import React from "react";
-import { render, fireEvent, waitForElement } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
-
-import {Testimonials} from "../components/testimonials/testimonials.component";
+import { Testimonials } from "../components/testimonials/testimonials.component";
 
 describe("<Testimonials />", () => {
-  test("should display", async () => {
-    // ???
+  test("Loading Testimonials Component", async () => {
+    render(<Testimonials />)
   });
 });

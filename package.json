@@ -21,9 +21,7 @@
     "stats": "webpack --config configuration/webpack.prod.config.js --mode=production --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "ci": "start-server-and-test dev http://localhost:8000 cypress:run",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "ci": "start-server-and-test dev http://localhost:8000 cypress:run"
   },
   "repository": {
     "type": "git",
@@ -45,6 +43,7 @@
     "@tanstack/eslint-plugin-query": "^5.8.4",
     "@tanstack/react-query": "^5.8.4",
     "@testing-library/cypress": "^10.0.1",
+    "@testing-library/react": "^14.1.2",
     "@typescript-eslint/eslint-plugin": "^6.9.1",
     "@typescript-eslint/parser": "^6.9.1",
     "autoprefixer": "^10.4.14",
@@ -92,18 +91,13 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@testing-library/jest-dom": "^6.1.4",
-    "@testing-library/react": "^14.1.2",
-    "@types/jest": "^29.5.10",
     "@types/react": "^18.2.29",
     "@types/react-dom": "^18.2.14",
     "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
-    "jest": "^29.7.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.0",
     "react-dom": "^18.2.0",
-    "zod": "^3.22.4",
-    "ts-jest": "^29.1.1"
+    "zod": "^3.22.4"
   }
 }
