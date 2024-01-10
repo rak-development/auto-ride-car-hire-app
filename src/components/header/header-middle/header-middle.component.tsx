@@ -29,16 +29,16 @@ const NavItem = styled(Nav.Link)`
   line-height: 1.66rem;
   color: var(--bs-gray-700);
   font-size: 1rem;
-  padding-bottom: 0.625rem;
   text-decoration: none;
-  padding: 0.625rem 0.9375rem !important;
+  padding: 0.625rem 0.9375rem;
 
   &:last-child {
     padding-right: 0 !important;
   }
 
   @media ${device.xl} { 
-    padding: 0.625rem 1.4063rem !important;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
   }
 `
 
