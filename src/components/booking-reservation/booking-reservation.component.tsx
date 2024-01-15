@@ -40,8 +40,6 @@ const buildDataObject = (formData: FormData) => {
 
 export const BookingReservation = () => {
   const [validated, setValidated] = useState(false);
-  const [pickupTimeSelected, setPickupTimeSelected] = useState(timeOptions[0].value);
-  const [dropOffTimeSelected, setDropOffTime] = useState(timeOptions[0].value);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -49,15 +47,11 @@ export const BookingReservation = () => {
 
     if (form.checkValidity() === false) {
       event.stopPropagation();
-    }
-    setValidated(true);
-
-    if (validated) {
-      // submit the form
-      console.log('form valid')
+    } else {
       const dataObj = buildDataObject(new FormData(event.currentTarget))
       console.log(dataObj)
     }
+    setValidated(true);
   };
 
   return (
@@ -71,8 +65,7 @@ export const BookingReservation = () => {
             type="text"
             placeholder="Pickup Location"
           />
-          <BookingReservationFeedback type='valid' feedbackText='Looks good!' />
-          <BookingReservationFeedback type='invalid' feedbackText='Please provide a pickup location.' />
+          <BookingReservationFeedback invalidFeedbackText='Please provide a pickup location.' />
         </Form.Group>
         <Form.Group as={Col} md="6" controlId="dropOffLocation">
           <Form.Label>Drop-off Location</Form.Label>
@@ -82,8 +75,7 @@ export const BookingReservation = () => {
             type="text"
             placeholder="Drop-off Location"
           />
-          <BookingReservationFeedback type='valid' feedbackText='Looks good!' />
-          <BookingReservationFeedback type='invalid' feedbackText='Please provide a drop-off location.' />
+          <BookingReservationFeedback invalidFeedbackText='Please provide a drop-off location.' />
         </Form.Group>
       </Row>
       <Row className="mb-3">
@@ -94,24 +86,21 @@ export const BookingReservation = () => {
             required
             type='date'
           />
-          <BookingReservationFeedback type='valid' feedbackText='Looks good!' />
-          <BookingReservationFeedback type='invalid' feedbackText='Please provide a pick-up date.' />
+          <BookingReservationFeedback invalidFeedbackText='Please provide a pick-up date.' />
         </Form.Group>
         <Form.Group as={Col} md="3" controlId="pickupTime">
           <Form.Label>Pick-up Time</Form.Label>
           <Form.Select
             name="pickupTime"
-            required
-            value={pickupTimeSelected}
-            onChange={(event) => setPickupTimeSelected(event.target.value)}>
+            title="Label for Pick-up Time"
+            required>
             {timeOptions.map(option => (
               <option key={option.value} value={option.value}>
                 {option.text}
               </option>
             ))}
           </Form.Select>
-          <BookingReservationFeedback type='valid' feedbackText='Looks good!' />
-          <BookingReservationFeedback type='invalid' feedbackText='Please provide a pick-up time.' />
+          <BookingReservationFeedback invalidFeedbackText='Please provide a pick-up time.' />
         </Form.Group>
         <Form.Group as={Col} md="3" controlId="dropOffDate">
           <Form.Label>Date To</Form.Label>
@@ -120,24 +109,21 @@ export const BookingReservation = () => {
             required
             type='date'
           />
-          <BookingReservationFeedback type='valid' feedbackText='Looks good!' />
-          <BookingReservationFeedback type='invalid' feedbackText='Please provide a drop-off date.' />
+          <BookingReservationFeedback invalidFeedbackText='Please provide a drop-off date.' />
         </Form.Group>
         <Form.Group as={Col} md="3" controlId="dropOffTime">
           <Form.Label>Drop-off Time</Form.Label>
           <Form.Select
             name="dropOffTime"
-            required
-            value={dropOffTimeSelected}
-            onChange={(event) => setDropOffTime(event.target.value)}>
+            title="Label for Drop-off Time"
+            required>
             {timeOptions.map(option => (
               <option key={option.value} value={option.value}>
                 {option.text}
               </option>
             ))}
           </Form.Select>
-          <BookingReservationFeedback type='valid' feedbackText='Looks good!' />
-          <BookingReservationFeedback type='invalid' feedbackText='Please provide a drop-off time.' />
+          <BookingReservationFeedback invalidFeedbackText='Please provide a drop-off time.' />
         </Form.Group>
       </Row>
       <Row className="mb-3">
@@ -161,8 +147,7 @@ export const BookingReservation = () => {
             type="text"
             placeholder="Discount Code"
           />
-          <BookingReservationFeedback type='valid' feedbackText='Looks good!' />
-          <BookingReservationFeedback type='invalid' feedbackText='Please provide a pickup location.' />
+          <BookingReservationFeedback invalidFeedbackText='Please provide a pickup location.' />
         </Form.Group>
       </Row>
       <Button type="submit">Find Cars</Button>

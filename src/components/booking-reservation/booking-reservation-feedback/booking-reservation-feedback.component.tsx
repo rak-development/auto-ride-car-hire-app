@@ -1,17 +1,15 @@
 import { type FC } from 'react'
 import Form from 'react-bootstrap/Form';
 
-import { type FeedbackType } from 'react-bootstrap/esm/Feedback';
-
 interface BookingReservationFeedbackProps {
-  type: FeedbackType,
-  feedbackText: string
+  invalidFeedbackText: string
 }
 
-export const BookingReservationFeedback: FC<BookingReservationFeedbackProps> = ({type, feedbackText}) => {
+export const BookingReservationFeedback: FC<BookingReservationFeedbackProps> = ({invalidFeedbackText}) => {
   return (
-    <Form.Control.Feedback type={type}>
-      {feedbackText}
-    </Form.Control.Feedback>
+    <>
+      <Form.Control.Feedback type='valid'>Looks good!</Form.Control.Feedback>
+      <Form.Control.Feedback type='invalid'>{invalidFeedbackText}</Form.Control.Feedback>
+    </>
   )
 }
