@@ -1,10 +1,28 @@
 import { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod';
+
+
 import { BookingReservationFeedback } from './booking-reservation-feedback/booking-reservation-feedback.component';
+
+const bookingReservationSchema = z.object({
+  pickupLocation: z.string().min(1, { message: 'Required' }),
+  dropOffLocation: z.string().min(1, { message: 'Required' }),
+  pickupDate: z.string().min(1, { message: 'Required' }),
+  pickupTime: z.string().min(1, { message: 'Required' }),
+  dropOffDate: z.string().min(1, { message: 'Required' }),
+  dropOffTime: z.string().min(1, { message: 'Required' }),
+  isOver25: z.boolean(),
+  hasDiscountCode: z.boolean(),
+  discountCode: z.string(),
+}).required();
+type FormData = z.infer<typeof bookingReservationSchema>;
 
 const timeOptions = [
   {value: '', text: '--Please Select--'},
@@ -14,143 +32,125 @@ const timeOptions = [
   {value: '12:00', text: '12:00'},
 ];
 
-const buildDataObject = (formData: FormData) => {
-  const pickupLocation = formData.get('pickupLocation')
-  const dropOffLocation = formData.get('dropOffLocation')
-  const pickupDate = formData.get('pickupDate')
-  const pickupTime = formData.get('pickupTime')
-  const dropOffDate = formData.get('dropOffDate')
-  const dropOffTime = formData.get('dropOffTime')
-  const isOver25 = formData.get('isOver25') ? true : false
-  const hasDiscountCode = formData.get('hasDiscountCode') ? true : false
-  const discountCode = hasDiscountCode ? formData.get('discountCode') : ''
-
-  return {
-    pickupLocation,
-    dropOffLocation,
-    pickupDate,
-    pickupTime,
-    dropOffDate,
-    dropOffTime,
-    isOver25,
-    hasDiscountCode,
-    discountCode
-  }
-}
-
 export const BookingReservation = () => {
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.currentTarget;
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>({
+    resolver: zodResolver(bookingReservationSchema),
+  });
+  const onSubmit: SubmitHandler<FormData> = data => {
+    console.log(data);
+    // console.log(errors)
+  }
 
-    if (form.checkValidity() === false) {
-      event.stopPropagation();
-    } else {
-      const dataObj = buildDataObject(new FormData(event.currentTarget))
-      console.log(dataObj)
-    }
-    setValidated(true);
-  };
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const form = event.currentTarget;
+
+  //   if (form.checkValidity() === false) {
+  //     event.stopPropagation();
+  //   } else {
+  //     const dataObj = buildDataObject(new FormData(event.currentTarget))
+  //     console.log(dataObj)
+  //   }
+  //   setValidated(true);
+  // };
 
   return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="6" controlId="pickupLocation">
+    <Form noValidate validated={validated} onSubmit={handleSubmit(onSubmit)}>
+      <Row className='mb-3'>
+        <Form.Group as={Col} md='6' controlId='pickupLocation'>
           <Form.Label>Pickup Location</Form.Label>
           <Form.Control
-            name="pickupLocation"
-            required
-            type="text"
-            placeholder="Pickup Location"
+            type='text'
+            placeholder='Pickup Location'
+            {...register('pickupLocation', { required: true})}
           />
-          <BookingReservationFeedback invalidFeedbackText='Please provide a pickup location.' />
+          {errors.pickupLocation && <span>This field is required</span>}
+          {/* <BookingReservationFeedback invalidFeedbackText='Please provide a pickup location.' /> */}
         </Form.Group>
-        <Form.Group as={Col} md="6" controlId="dropOffLocation">
+        <Form.Group as={Col} md='6' controlId='dropOffLocation'>
           <Form.Label>Drop-off Location</Form.Label>
           <Form.Control
-            name="dropOffLocation"
-            required
-            type="text"
-            placeholder="Drop-off Location"
+            type='text'
+            placeholder='Drop-off Location'
+            {...register('dropOffLocation', { required: true})}
           />
-          <BookingReservationFeedback invalidFeedbackText='Please provide a drop-off location.' />
+          {errors.dropOffLocation && <span>This field is required</span>}
+          {/* <BookingReservationFeedback invalidFeedbackText='Please provide a drop-off location.' /> */}
         </Form.Group>
       </Row>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="3" controlId="pickupDate">
+      <Row className='mb-3'>
+        <Form.Group as={Col} md='3' controlId='pickupDate'>
           <Form.Label>Date From</Form.Label>
           <Form.Control
-            name="pickupDate"
-            required
             type='date'
+            {...register('pickupDate', { required: true})}
           />
-          <BookingReservationFeedback invalidFeedbackText='Please provide a pick-up date.' />
+          {errors.pickupDate && <span>This field is required</span>}
+          {/* <BookingReservationFeedback invalidFeedbackText='Please provide a pick-up date.' /> */}
         </Form.Group>
-        <Form.Group as={Col} md="3" controlId="pickupTime">
+        <Form.Group as={Col} md='3' controlId='pickupTime'>
           <Form.Label>Pick-up Time</Form.Label>
           <Form.Select
-            name="pickupTime"
-            title="Label for Pick-up Time"
-            required>
+            {...register('pickupTime', { required: true})}>
             {timeOptions.map(option => (
               <option key={option.value} value={option.value}>
                 {option.text}
               </option>
             ))}
           </Form.Select>
-          <BookingReservationFeedback invalidFeedbackText='Please provide a pick-up time.' />
+          {errors.pickupTime && <span>This field is required</span>}
+          {/* <BookingReservationFeedback invalidFeedbackText='Please provide a pick-up time.' /> */}
         </Form.Group>
-        <Form.Group as={Col} md="3" controlId="dropOffDate">
+        <Form.Group as={Col} md='3' controlId='dropOffDate'>
           <Form.Label>Date To</Form.Label>
           <Form.Control
-            name="dropOffDate"
-            required
             type='date'
+            {...register('dropOffDate', { required: true})}
           />
-          <BookingReservationFeedback invalidFeedbackText='Please provide a drop-off date.' />
+          {errors.dropOffDate && <span>This field is required</span>}
+          {/* <BookingReservationFeedback invalidFeedbackText='Please provide a drop-off date.' /> */}
         </Form.Group>
-        <Form.Group as={Col} md="3" controlId="dropOffTime">
+        <Form.Group as={Col} md='3' controlId='dropOffTime'>
           <Form.Label>Drop-off Time</Form.Label>
           <Form.Select
-            name="dropOffTime"
-            title="Label for Drop-off Time"
-            required>
+            {...register('dropOffTime', { required: true})}>
             {timeOptions.map(option => (
               <option key={option.value} value={option.value}>
                 {option.text}
               </option>
             ))}
           </Form.Select>
-          <BookingReservationFeedback invalidFeedbackText='Please provide a drop-off time.' />
+          {errors.dropOffTime && <span>This field is required</span>}
+          {/* <BookingReservationFeedback invalidFeedbackText='Please provide a drop-off time.' /> */}
         </Form.Group>
       </Row>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="isOver25">
+      <Row className='mb-3'>
+        <Form.Group as={Col} md='4' controlId='isOver25'>
           <Form.Check
-            name="isOver25"
-            label="Is driver over 25 years old?"
+            label='Is driver over 25 years old?'
+            {...register('isOver25')}
           />
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="hasDiscountCode">
+        <Form.Group as={Col} md='4' controlId='hasDiscountCode'>
           <Form.Check
-            name="hasDiscountCode"
-            label="I have discount code"
+            label='I have discount code'
+            {...register('hasDiscountCode')}
           />
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="discountCode">
+        <Form.Group as={Col} md='4' controlId='discountCode'>
           <Form.Label>Discount Code</Form.Label>
           <Form.Control
-            name="discountCode"
-            required
-            type="text"
-            placeholder="Discount Code"
+            type='text'
+            placeholder='Discount Code'
+            {...register('discountCode', { required: true})}
           />
-          <BookingReservationFeedback invalidFeedbackText='Please provide a pickup location.' />
+          {errors.discountCode && <span>This field is required</span>}
+          {/* <BookingReservationFeedback invalidFeedbackText='Please provide a discount code.' /> */}
         </Form.Group>
       </Row>
-      <Button type="submit">Find Cars</Button>
+      <Button type='submit'>Find Cars</Button>
     </Form>
   )
 }
