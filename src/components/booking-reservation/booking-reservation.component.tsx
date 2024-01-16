@@ -34,6 +34,7 @@ const timeOptions = [
 
 export const BookingReservation = () => {
   const [validated, setValidated] = useState(false);
+  const [isDiscountSelected, setDiscountSelected] = useState(false)
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(bookingReservationSchema),
@@ -139,16 +140,16 @@ export const BookingReservation = () => {
             {...register('hasDiscountCode')}
           />
         </Form.Group>
-        <Form.Group as={Col} md='4' controlId='discountCode'>
+        {isDiscountSelected && <Form.Group as={Col} md='4' controlId='discountCode'>
           <Form.Label>Discount Code</Form.Label>
           <Form.Control
             type='text'
             placeholder='Discount Code'
-            {...register('discountCode', { required: true})}
+            {...register('discountCode')}
           />
           {errors.discountCode && <span>This field is required</span>}
           {/* <BookingReservationFeedback invalidFeedbackText='Please provide a discount code.' /> */}
-        </Form.Group>
+        </Form.Group>}
       </Row>
       <Button type='submit'>Find Cars</Button>
     </Form>
