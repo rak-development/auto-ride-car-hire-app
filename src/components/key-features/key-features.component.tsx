@@ -1,17 +1,37 @@
+import { type FC } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 import styled from '@emotion/styled'
 
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { z } from 'zod'
+
 import { SectionTemplate } from '../section-template/section-template.component'
 
-import KEY_FEATURES_DATA from '../../assets/db/key-features-data.json'
 import { device } from '../../devices-breakpoints'
 import { Icon } from '../icon/icon.component'
+import { ContentLoading } from '../content-loading/content-loading.component'
+import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
 
-const KeyFeaturesSection = styled.section`
-  padding-top: 6.875rem;
+const keyFeaturesDataSchema = z.array(
+  z.object({
+    id: z.number(),
+    icon: z.string(),
+    header: z.string(),
+    body: z.string(),
+  }),
+)
+
+type KeyFeaturesDataType = z.infer<typeof keyFeaturesDataSchema>
+type KeyFeaturesSectionProps = {
+  isData: boolean
+}
+
+const KeyFeaturesSection = styled.section<KeyFeaturesSectionProps>`
+  padding-top: ${({ isData }) => (isData ? '6.875rem' : '0')};
   text-align: center;
 `
 
@@ -70,29 +90,52 @@ const KeyFeatureBody = styled.div`
   color: var(--bs-gray-700);
 `
 
-export const KeyFeatures = () => (
-  <SectionTemplate
-    subheader='Key Features'
-    header='Make Your Trip Your Way With Us'
-    bgMode='--bs-white'
-  >
-    <KeyFeaturesSection>
-      <Container>
-        <Row>
-          {KEY_FEATURES_DATA.map(({ id, icon, header, body }) => (
-            <Col md={3} key={id}>
-              <KeyFeatureContainer>
-                <KeyFeatureIconContainer>
-                  <Icon icon={icon as Icon} />
-                  <span />
-                </KeyFeatureIconContainer>
-                <KeyFeatureHeader>{header}</KeyFeatureHeader>
-                <KeyFeatureBody>{body}</KeyFeatureBody>
-              </KeyFeatureContainer>
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    </KeyFeaturesSection>
-  </SectionTemplate>
+const useKeyFeaturesDataQuery = () =>
+  useQuery({
+    queryKey: ['keyFeaturesData'],
+    queryFn: () =>
+      axios
+        .get('assets/db/key-features-data.json')
+        .then((res) => res.data)
+        .then((data) => keyFeaturesDataSchema.parse(data)),
+  })
+
+interface KeyFeaturesDataTemplateProps {
+  data: KeyFeaturesDataType
+}
+
+const KeyFeaturesDataTemplate: FC<KeyFeaturesDataTemplateProps> = ({ data }) => (
+  <Row>
+    {data.map(({ id, icon, header, body }) => (
+      <Col md={3} key={id}>
+        <KeyFeatureContainer>
+          <KeyFeatureIconContainer>
+            <Icon icon={icon as Icon} />
+            <span />
+          </KeyFeatureIconContainer>
+          <KeyFeatureHeader>{header}</KeyFeatureHeader>
+          <KeyFeatureBody>{body}</KeyFeatureBody>
+        </KeyFeatureContainer>
+      </Col>
+    ))}
+  </Row>
 )
+
+export const KeyFeatures = () => {
+  const { status, data } = useKeyFeaturesDataQuery()
+  const isData = status === 'success'
+  const subheader = isData && 'Key Features'
+  const header = isData && 'Make Your Trip Your Way With Us'
+
+  return (
+    <SectionTemplate subheader={subheader} header={header} bgMode='--bs-white'>
+      <KeyFeaturesSection isData={isData}>
+        <Container>
+          {status === 'pending' && <ContentLoading text='Key Features Content Loading...' />}
+          {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+          {status === 'success' && <KeyFeaturesDataTemplate data={data} />}
+        </Container>
+      </KeyFeaturesSection>
+    </SectionTemplate>
+  )
+}

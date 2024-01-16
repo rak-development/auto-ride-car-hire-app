@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { type FC, useState } from 'react'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -10,12 +10,31 @@ import { faComments } from '@fortawesome/free-solid-svg-icons'
 
 import styled from '@emotion/styled'
 
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { z } from 'zod'
+
 import imageUrl from '/src/assets/images/AutoRide-Testimonials.jpeg'
 
-import TESTIMONIALS_DATA from '../../assets/db/testimonials-data.json'
 import { device } from '../../devices-breakpoints'
+import { ContentLoading } from '../content-loading/content-loading.component'
+import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
 
-const TestimonialsWrapper = styled.div`
+const testimonialsDataSchema = z.array(
+  z.object({
+    id: z.number(),
+    text: z.string(),
+    author: z.string(),
+  }),
+)
+
+type TestimonialsDataType = z.infer<typeof testimonialsDataSchema>
+type TestimonialsWrapperProps = {
+  isData: boolean
+}
+
+const TestimonialsWrapper = styled.div<TestimonialsWrapperProps>`
+  padding: ${({ isData }) => (isData ? '6.875rem 0' : '0')};
   background-color: var(--bs-gray-100);
 `
 
@@ -131,35 +150,58 @@ const TestimonialAuthor = styled.div`
   padding-bottom: 13.125rem;
 `
 
-export const Testimonials = () => {
-  const [index, setIndex] = useState(0)
+const useTestimonialsDataQuery = () =>
+  useQuery({
+    queryKey: ['testimonialsData'],
+    queryFn: () =>
+      axios
+        .get('assets/db/testimonials-data.json')
+        .then((res) => res.data)
+        .then((data) => testimonialsDataSchema.parse(data)),
+  })
 
+interface TestimonialsDataTemplateProps {
+  data: TestimonialsDataType
+}
+
+const TestimonialsDataTemplate: FC<TestimonialsDataTemplateProps> = ({ data }) => {
+  const [index, setIndex] = useState(0)
   return (
-    <TestimonialsWrapper>
+    <Row>
+      <TestimonialsSliderCol md={6}>
+        <TestimonialsCarouselWrapper>
+          <TheCarousel activeIndex={index} onSelect={setIndex} controls={false}>
+            {data.map(({ id, text, author }) => (
+              <Carousel.Item key={id}>
+                <Carousel.Caption>
+                  <TestimonialIconWrapper>
+                    <TestimonialIcon icon={faComments} />
+                    <TestimonialIconBackground />
+                  </TestimonialIconWrapper>
+                  <TestimonialQuote>{text}</TestimonialQuote>
+                  <TestimonialAuthor>{author}</TestimonialAuthor>
+                </Carousel.Caption>
+              </Carousel.Item>
+            ))}
+          </TheCarousel>
+        </TestimonialsCarouselWrapper>
+      </TestimonialsSliderCol>
+      <TestimonialsImageCol md={6}>
+        <TestimonialsImage imageUrl={imageUrl} />
+      </TestimonialsImageCol>
+    </Row>
+  )
+}
+
+export const Testimonials = () => {
+  const { status, data } = useTestimonialsDataQuery()
+  const isData = status === 'success'
+  return (
+    <TestimonialsWrapper isData={!isData}>
       <Container fluid>
-        <Row>
-          <TestimonialsSliderCol md={6}>
-            <TestimonialsCarouselWrapper>
-              <TheCarousel activeIndex={index} onSelect={setIndex} controls={false}>
-                {TESTIMONIALS_DATA.map(({ id, text, author }) => (
-                  <Carousel.Item key={id}>
-                    <Carousel.Caption>
-                      <TestimonialIconWrapper>
-                        <TestimonialIcon icon={faComments} />
-                        <TestimonialIconBackground />
-                      </TestimonialIconWrapper>
-                      <TestimonialQuote>{text}</TestimonialQuote>
-                      <TestimonialAuthor>{author}</TestimonialAuthor>
-                    </Carousel.Caption>
-                  </Carousel.Item>
-                ))}
-              </TheCarousel>
-            </TestimonialsCarouselWrapper>
-          </TestimonialsSliderCol>
-          <TestimonialsImageCol md={6}>
-            <TestimonialsImage imageUrl={imageUrl} />
-          </TestimonialsImageCol>
-        </Row>
+        {status === 'pending' && <ContentLoading text='Testimonials Content Loading...' />}
+        {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+        {status === 'success' && <TestimonialsDataTemplate data={data} />}
       </Container>
     </TestimonialsWrapper>
   )

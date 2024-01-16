@@ -7,14 +7,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSuitcaseRolling, faUser } from '@fortawesome/free-solid-svg-icons'
 import styled from '@emotion/styled'
 
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { z } from 'zod'
+
 import { SectionTemplate } from '../section-template/section-template.component'
 
-import OUR_FLEET_DATA from '../../assets/db/our-fleet-data.json'
-
 import { device } from '../../devices-breakpoints'
+import { FC } from 'react'
+import { ContentLoading } from '../content-loading/content-loading.component'
+import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
 
-const OurFleetContainer = styled(Container)`
-  margin-top: 5rem;
+const ourFleetDataSchema = z.array(
+  z.object({
+    id: z.number(),
+    image: z.string(),
+    title: z.string(),
+    passengerNumber: z.number(),
+    luggageNumber: z.number(),
+  }),
+)
+
+type OurFleetDataType = z.infer<typeof ourFleetDataSchema>
+type OurFleetContainerProps = {
+  isData: boolean
+}
+
+const OurFleetContainer = styled(Container)<OurFleetContainerProps>`
+  margin-top: ${({ isData }) => (isData ? '5rem' : '0')};
 `
 
 const OurFleetRow = styled(Row)`
@@ -76,31 +96,58 @@ const OurFleetCardLuggageCapacity = styled.div`
   justify-content: center;
 `
 
-export const OurFleet = () => (
-  <SectionTemplate subheader='Our Fleet' header='Browse Our Limos' bgMode='--bs-gray-100'>
-    <OurFleetContainer>
-      <OurFleetRow>
-        {OUR_FLEET_DATA.map(({ id, image, title, passengerNumber, luggageNumber }) => (
-          <Col md={4} key={id}>
-            <OurFleetCard>
-              <OurFleetCardImage variant='top' src={image} alt={title} />
-              <OurFleetCardImageOverlay>
-                <OurFleetCardTitle>{title}</OurFleetCardTitle>
-              </OurFleetCardImageOverlay>
-              <OurFleetCardBody>
-                <OurFleetCardBodyRow>
-                  <FontAwesomeIcon icon={faUser} />
-                  <OurFleetCardLuggageCapacity>{passengerNumber}</OurFleetCardLuggageCapacity>
-                </OurFleetCardBodyRow>
-                <OurFleetCardBodyRow>
-                  <FontAwesomeIcon icon={faSuitcaseRolling} />
-                  <OurFleetCardLuggageCapacity>{luggageNumber}</OurFleetCardLuggageCapacity>
-                </OurFleetCardBodyRow>
-              </OurFleetCardBody>
-            </OurFleetCard>
-          </Col>
-        ))}
-      </OurFleetRow>
-    </OurFleetContainer>
-  </SectionTemplate>
+const useOurFleetDataQuery = () =>
+  useQuery({
+    queryKey: ['ourFleetData'],
+    queryFn: () =>
+      axios
+        .get('assets/db/our-fleet-data.json')
+        .then((res) => res.data)
+        .then((data) => ourFleetDataSchema.parse(data)),
+  })
+
+interface OurFleetTemplateProps {
+  data: OurFleetDataType
+}
+
+const OurFleetDataTemplate: FC<OurFleetTemplateProps> = ({ data }) => (
+  <OurFleetRow>
+    {data.map(({ id, image, title, passengerNumber, luggageNumber }) => (
+      <Col md={4} key={id}>
+        <OurFleetCard>
+          <OurFleetCardImage variant='top' src={image} alt={title} />
+          <OurFleetCardImageOverlay>
+            <OurFleetCardTitle>{title}</OurFleetCardTitle>
+          </OurFleetCardImageOverlay>
+          <OurFleetCardBody>
+            <OurFleetCardBodyRow>
+              <FontAwesomeIcon icon={faUser} />
+              <OurFleetCardLuggageCapacity>{passengerNumber}</OurFleetCardLuggageCapacity>
+            </OurFleetCardBodyRow>
+            <OurFleetCardBodyRow>
+              <FontAwesomeIcon icon={faSuitcaseRolling} />
+              <OurFleetCardLuggageCapacity>{luggageNumber}</OurFleetCardLuggageCapacity>
+            </OurFleetCardBodyRow>
+          </OurFleetCardBody>
+        </OurFleetCard>
+      </Col>
+    ))}
+  </OurFleetRow>
 )
+
+export const OurFleet = () => {
+  const { status, data } = useOurFleetDataQuery()
+  const isData = status === 'success'
+  const subheader = isData && 'Our Fleet'
+  const header = isData && 'Browse Our Limos'
+
+  return (
+    <SectionTemplate subheader={subheader} header={header} bgMode='--bs-gray-100'>
+      <OurFleetContainer isData={isData}>
+        {status === 'pending' && <ContentLoading text='Our Fleet Content Loading...' />}
+        {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+        {status === 'success' && <OurFleetDataTemplate data={data} />}
+      </OurFleetContainer>
+    </SectionTemplate>
+  )
+}
