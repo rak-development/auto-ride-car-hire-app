@@ -1,15 +1,10 @@
 import { type FC } from 'react'
-import Form from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form'
 
 interface BookingReservationFeedbackProps {
-  invalidFeedbackText: string
+  invalidFeedbackText: string | undefined
 }
 
-export const BookingReservationFeedback: FC<BookingReservationFeedbackProps> = ({invalidFeedbackText}) => {
-  return (
-    <>
-      <Form.Control.Feedback type='valid'>Looks good!</Form.Control.Feedback>
-      <Form.Control.Feedback type='invalid'>{invalidFeedbackText}</Form.Control.Feedback>
-    </>
-  )
-}
+export const BookingReservationFeedback: FC<BookingReservationFeedbackProps> = ({
+  invalidFeedbackText,
+}) => <Form.Control.Feedback type='invalid'>{invalidFeedbackText}</Form.Control.Feedback>

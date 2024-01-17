@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 
 import bannerSrc from './../../../assets/images/AutoRide-Banner.jpeg'
 
-import { BookingReservation } from '../../booking-reservation/booking-reservation.component';
+import { BookingReservation } from '../../booking-reservation/booking-reservation.component'
 
 const HeaderBottomBanner = styled.div`
   padding-top: 7.5rem;
