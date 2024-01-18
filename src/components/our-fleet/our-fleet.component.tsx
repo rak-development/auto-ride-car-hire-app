@@ -30,11 +30,11 @@ const ourFleetDataSchema = z.array(
 
 type OurFleetDataType = z.infer<typeof ourFleetDataSchema>
 type OurFleetContainerProps = {
-  isData: boolean
+  $isData: boolean
 }
 
 const OurFleetContainer = styled(Container)<OurFleetContainerProps>`
-  margin-top: ${({ isData }) => (isData ? '5rem' : '0')};
+  margin-top: ${({ $isData }) => ($isData ? '5rem' : '0')};
 `
 
 const OurFleetRow = styled(Row)`
@@ -143,7 +143,7 @@ export const OurFleet = () => {
 
   return (
     <SectionTemplate subheader={subheader} header={header} bgMode='--bs-gray-100'>
-      <OurFleetContainer isData={isData}>
+      <OurFleetContainer $isData={isData}>
         {status === 'pending' && <ContentLoading text='Our Fleet Content Loading...' />}
         {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
         {status === 'success' && <OurFleetDataTemplate data={data} />}

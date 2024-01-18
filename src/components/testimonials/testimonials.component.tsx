@@ -30,11 +30,11 @@ const testimonialsDataSchema = z.array(
 
 type TestimonialsDataType = z.infer<typeof testimonialsDataSchema>
 type TestimonialsWrapperProps = {
-  isData: boolean
+  $isData: boolean
 }
 
 const TestimonialsWrapper = styled.div<TestimonialsWrapperProps>`
-  padding: ${({ isData }) => (isData ? '6.875rem 0' : '0')};
+  padding: ${({ $isData }) => ($isData ? '6.875rem 0' : '0')};
   background-color: var(--bs-gray-100);
 `
 
@@ -197,7 +197,7 @@ export const Testimonials = () => {
   const { status, data } = useTestimonialsDataQuery()
   const isData = status === 'success'
   return (
-    <TestimonialsWrapper isData={!isData}>
+    <TestimonialsWrapper $isData={!isData}>
       <Container fluid>
         {status === 'pending' && <ContentLoading text='Testimonials Content Loading...' />}
         {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
