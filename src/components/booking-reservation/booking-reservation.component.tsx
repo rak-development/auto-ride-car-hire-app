@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
@@ -14,17 +13,47 @@ const bookingReservationSchema = z
   .object({
     pickupLocation: z.string().min(1, { message: 'Please provide a pickup location.' }),
     dropOffLocation: z.string().min(1, { message: 'Please provide a drop-off location.' }),
-    pickupDate: z.string().min(1, { message: 'Please provide a pick-up date.' }),
-    // pickupDate: z.date().min(new Date(), { message: 'Please provide a pick-up date.' }),
+    pickupDate: z.date().min(new Date(), { message: 'Please provide a pick-up date.' }).refine(
+      (val) => {
+        console.log('today: ', new Date())
+        console.log('future: ', new Date(val))
+        return new Date() < new Date(val)
+      },
+      (val) => ({ message: 'Date needs to be in the future' })
+    ),
     pickupTime: z.string().min(1, { message: 'Please provide a pick-up time.' }),
-    dropOffDate: z.string().min(1, { message: 'Please provide a drop-off date.' }),
-    // dropOffDate: z.date().min(new Date(), { message: 'Please provide a drop-off date.' }),
+    dropOffDate: z.date().min(new Date(), { message: 'Please provide a drop-off date.' }),
     dropOffTime: z.string().min(1, { message: 'Please provide a drop-off time.' }),
     isOver25: z.boolean(),
     hasDiscountCode: z.boolean(),
     discountCode: z.string(),
   })
   .required()
+  .refine((data) => {
+    const { pickupDate, pickupTime, dropOffDate, dropOffTime} = data
+
+    const today = new Date()
+    const newPickupDate = new Date(`${pickupDate}T${pickupTime}:00`)
+    const newDropOffDate = new Date(`${dropOffDate}T${dropOffTime}:00`)
+    console.log('today: ', today)
+    console.log('pickupDate: ', newPickupDate)
+    console.log('dropOffDate: ', newDropOffDate)
+
+    if (today > newPickupDate) {
+      // date needs to be in the future
+      return {
+        message: "Date needs to be in the future",
+        path: ["confirm"], // path of error
+      }
+    }
+
+    if (newPickupDate > newDropOffDate) {
+      // pickup date cannot be greater than drop off date
+    }
+
+  
+    console.log(data.pickupDate)
+  })
 type FormData = z.infer<typeof bookingReservationSchema>
 
 const timeOptions = [
@@ -36,7 +65,6 @@ const timeOptions = [
 ]
 
 export const BookingReservation = () => {
-  const [isDiscountSelected, setDiscountSelected] = useState(false)
 
   const {
     register,
@@ -47,47 +75,12 @@ export const BookingReservation = () => {
     resolver: zodResolver(bookingReservationSchema),
   })
 
-  useEffect(() => {
-    const discountCodeSubscription = watch((value) =>
-      setDiscountSelected(value.hasDiscountCode || false),
-    )
-    const bookingTimeSubscription = watch((value, { name, type }) => {
-      const { pickupDate, pickupTime, dropOffDate, dropOffTime } = value
-      if (pickupDate && pickupTime && dropOffDate && dropOffTime) {
-        const today = new Date()
-        const newPickupDate = new Date(`${pickupDate}T${pickupTime}:00`)
-        const newDropOffDate = new Date(`${dropOffDate}T${dropOffTime}:00`)
-        console.log('today: ', today)
-        console.log('pickupDate: ', newPickupDate)
-        console.log('dropOffDate: ', newDropOffDate)
+  const isDiscountSelected = watch('hasDiscountCode', false)
+  // console logs twice on page load
+  console.log('isDiscountSelected', isDiscountSelected)
 
-        if (today > newPickupDate) {
-          // date needs to be in the future
-        }
-
-        if (newPickupDate > newDropOffDate) {
-          // pickup date cannot be greater than drop off date
-        }
-      }
-    })
-
-    return () => {
-      discountCodeSubscription.unsubscribe()
-      bookingTimeSubscription.unsubscribe()
-    }
-  }, [watch])
-
-  // Callback version of watch.  It's your responsibility to unsubscribe when done.
-  // React.useEffect(() => {
-  //   const subscription = watch((value, { name, type }) =>
-  //     console.log(value, name, type)
-  //   )
-  //   return () => subscription.unsubscribe()
-  // }, [watch])
-
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<FormData> = data => {
     console.log(data)
-    // console.log(errors)
   }
 
   // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -137,7 +130,7 @@ export const BookingReservation = () => {
         <Form.Group as={Col} md='3' controlId='pickupDate'>
           <Form.Label>Date From</Form.Label>
           <Form.Control
-            {...register('pickupDate')}
+            {...register('pickupDate', {valueAsDate: true})}
             type='date'
             isValid={!errors.pickupDate && isSubmitted}
             isInvalid={!!errors.pickupDate}
@@ -166,7 +159,7 @@ export const BookingReservation = () => {
         <Form.Group as={Col} md='3' controlId='dropOffDate'>
           <Form.Label>Date To</Form.Label>
           <Form.Control
-            {...register('dropOffDate')}
+            {...register('dropOffDate', {valueAsDate: true})}
             type='date'
             isValid={!errors.dropOffDate && isSubmitted}
             isInvalid={!!errors.dropOffDate}
