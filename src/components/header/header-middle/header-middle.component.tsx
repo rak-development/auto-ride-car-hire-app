@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import styled from '@emotion/styled'
 
 import { LogoLight } from '../../logo-light/logo-light.component'
-import { device } from '../../../devices-breakpoints';
+import { device } from '../../../devices-breakpoints'
 
 const NavbarContainer = styled(Navbar)`
   background-color: var(--bs-white);
@@ -36,7 +36,7 @@ const NavItem = styled(Nav.Link)`
     padding-right: 0 !important;
   }
 
-  @media ${device.xl} { 
+  @media ${device.xl} {
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
   }

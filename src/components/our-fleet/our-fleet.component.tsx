@@ -1,4 +1,4 @@
-import Container from 'react-bootstrap/Container'
+import Container, { ContainerProps } from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
@@ -33,7 +33,11 @@ type OurFleetContainerProps = {
   $isData: boolean
 }
 
-const OurFleetContainer = styled(Container)<OurFleetContainerProps>`
+const OurFleetContainer = styled(
+  ({ $isData, ...props }: Omit<ContainerProps, 'as'> & OurFleetContainerProps) => (
+    <Container {...props} />
+  ),
+)<OurFleetContainerProps>`
   margin-top: ${({ $isData }) => ($isData ? '5rem' : '0')};
 `
 
