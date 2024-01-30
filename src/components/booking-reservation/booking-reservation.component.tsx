@@ -5,7 +5,8 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
 import { z } from "zod";
-import { subDays } from "date-fns/subDays";
+// is date-fns necessary?
+// import { subDays } from "date-fns/subDays";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BookingReservationFeedback } from "./booking-reservation-feedback/booking-reservation-feedback.component";
@@ -19,24 +20,24 @@ const bookingReservationSchema = z
       .string()
       .min(1, { message: "Please provide a drop-off location." }),
     pickupDate: z
-      .date()
-      .min(subDays(new Date(), 1), {
-        message: "Please provide a pick-up date.",
-      }),
-    pickupTime: z
-      .string()
-      .min(1, { message: "Please provide a pick-up time." }),
+      .date({ required_error: "Please provide a pick-up date."})
+      .min(new Date(), { message: "Pick-up date needs to be in the future" }),
     dropOffDate: z
-      .date()
-      .min(new Date(), { message: "Please provide a drop-off date." }),
-    dropOffTime: z
-      .string()
-      .min(1, { message: "Please provide a drop-off time." }),
+      .date({ required_error: "Please provide a drop-off date."})
+      .min(new Date(), { message: "Drop-off date needs to be in the future" }),
     isOver25: z.boolean(),
-    hasDiscountCode: z.boolean(),
-    discountCode: z.string().optional(),
+    hasDiscountCode: z.boolean().optional(),
+    discountCode: z.string(),
   })
   .superRefine((data, ctx) => {
+    if (data.pickupDate && data.dropOffDate && data.pickupDate > data.dropOffDate) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["dropOffDate"],
+        message: "Drop-off date needs to be greater than pick-up date",
+      });
+    }
+
     if (data.hasDiscountCode && !data.discountCode) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
@@ -46,14 +47,6 @@ const bookingReservationSchema = z
     }
   });
 type FormData = z.infer<typeof bookingReservationSchema>;
-
-const timeOptions = [
-  { value: "", text: "--Please Select--" },
-  { value: "9:00", text: "9:00" },
-  { value: "10:00", text: "10:00" },
-  { value: "11:00", text: "11:00" },
-  { value: "12:00", text: "12:00" },
-];
 
 export const BookingReservation = () => {
   const {
@@ -74,7 +67,7 @@ export const BookingReservation = () => {
   return (
     <Form noValidate onSubmit={handleSubmit(onSubmit)}>
       <Row className="mb-3">
-        <Form.Group as={Col} md="6" controlId="pickupLocation">
+        <Form.Group as={Col} md="8" controlId="pickupLocation">
           <Form.Label>Pickup Location</Form.Label>
           <Form.Control
             {...register("pickupLocation")}
@@ -89,7 +82,23 @@ export const BookingReservation = () => {
             />
           )}
         </Form.Group>
-        <Form.Group as={Col} md="6" controlId="dropOffLocation">
+        <Form.Group as={Col} md="4" controlId="pickupDate">
+          <Form.Label>Date From</Form.Label>
+          <Form.Control
+            {...register("pickupDate", { valueAsDate: true })}
+            type="datetime-local"
+            isValid={!errors.pickupDate && isSubmitted}
+            isInvalid={!!errors.pickupDate}
+          />
+          {errors.pickupDate && (
+            <BookingReservationFeedback
+              invalidFeedbackText={errors.pickupDate?.message}
+            />
+          )}
+        </Form.Group>
+      </Row>
+      <Row className="mb-3">
+        <Form.Group as={Col} md="8" controlId="dropOffLocation">
           <Form.Label>Drop-off Location</Form.Label>
           <Form.Control
             {...register("dropOffLocation")}
@@ -104,71 +113,17 @@ export const BookingReservation = () => {
             />
           )}
         </Form.Group>
-      </Row>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="3" controlId="pickupDate">
-          <Form.Label>Date From</Form.Label>
-          <Form.Control
-            {...register("pickupDate", { valueAsDate: true })}
-            type="date"
-            isValid={!errors.pickupDate && isSubmitted}
-            isInvalid={!!errors.pickupDate}
-          />
-          {errors.pickupDate && (
-            <BookingReservationFeedback
-              invalidFeedbackText={errors.pickupDate?.message}
-            />
-          )}
-        </Form.Group>
-        <Form.Group as={Col} md="3" controlId="pickupTime">
-          <Form.Label>Pick-up Time</Form.Label>
-          <Form.Select
-            {...register("pickupTime")}
-            isValid={!errors.pickupTime && isSubmitted}
-            isInvalid={!!errors.pickupTime}
-          >
-            {timeOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.text}
-              </option>
-            ))}
-          </Form.Select>
-          {errors.pickupTime && (
-            <BookingReservationFeedback
-              invalidFeedbackText={errors.pickupTime?.message}
-            />
-          )}
-        </Form.Group>
-        <Form.Group as={Col} md="3" controlId="dropOffDate">
+        <Form.Group as={Col} md="4" controlId="dropOffDate">
           <Form.Label>Date To</Form.Label>
           <Form.Control
             {...register("dropOffDate", { valueAsDate: true })}
-            type="date"
+            type="datetime-local"
             isValid={!errors.dropOffDate && isSubmitted}
             isInvalid={!!errors.dropOffDate}
           />
           {errors.dropOffDate && (
             <BookingReservationFeedback
               invalidFeedbackText={errors.dropOffDate?.message}
-            />
-          )}
-        </Form.Group>
-        <Form.Group as={Col} md="3" controlId="dropOffTime">
-          <Form.Label>Drop-off Time</Form.Label>
-          <Form.Select
-            {...register("dropOffTime")}
-            isValid={!errors.dropOffTime && isSubmitted}
-            isInvalid={!!errors.dropOffTime}
-          >
-            {timeOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.text}
-              </option>
-            ))}
-          </Form.Select>
-          {errors.dropOffTime && (
-            <BookingReservationFeedback
-              invalidFeedbackText={errors.dropOffTime?.message}
             />
           )}
         </Form.Group>
