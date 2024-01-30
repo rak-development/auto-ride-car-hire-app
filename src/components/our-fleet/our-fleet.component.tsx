@@ -1,4 +1,4 @@
-import Container from 'react-bootstrap/Container'
+import Container, { ContainerProps } from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
@@ -30,11 +30,15 @@ const ourFleetDataSchema = z.array(
 
 type OurFleetDataType = z.infer<typeof ourFleetDataSchema>
 type OurFleetContainerProps = {
-  isData: boolean
+  $isData: boolean
 }
 
-const OurFleetContainer = styled(Container)<OurFleetContainerProps>`
-  margin-top: ${({ isData }) => (isData ? '5rem' : '0')};
+const OurFleetContainer = styled(
+  ({ $isData, ...props }: Omit<ContainerProps, 'as'> & OurFleetContainerProps) => (
+    <Container {...props} />
+  ),
+)<OurFleetContainerProps>`
+  margin-top: ${({ $isData }) => ($isData ? '5rem' : '0')};
 `
 
 const OurFleetRow = styled(Row)`
@@ -143,7 +147,7 @@ export const OurFleet = () => {
 
   return (
     <SectionTemplate subheader={subheader} header={header} bgMode='--bs-gray-100'>
-      <OurFleetContainer isData={isData}>
+      <OurFleetContainer $isData={isData}>
         {status === 'pending' && <ContentLoading text='Our Fleet Content Loading...' />}
         {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
         {status === 'success' && <OurFleetDataTemplate data={data} />}
