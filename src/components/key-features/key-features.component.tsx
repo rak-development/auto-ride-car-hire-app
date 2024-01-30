@@ -27,11 +27,11 @@ const keyFeaturesDataSchema = z.array(
 
 type KeyFeaturesDataType = z.infer<typeof keyFeaturesDataSchema>
 type KeyFeaturesSectionProps = {
-  isData: boolean
+  $isData: boolean
 }
 
 const KeyFeaturesSection = styled.section<KeyFeaturesSectionProps>`
-  padding-top: ${({ isData }) => (isData ? '6.875rem' : '0')};
+  padding-top: ${({ $isData }) => ($isData ? '6.875rem' : '0')};
   text-align: center;
 `
 
@@ -129,7 +129,7 @@ export const KeyFeatures = () => {
 
   return (
     <SectionTemplate subheader={subheader} header={header} bgMode='--bs-white'>
-      <KeyFeaturesSection isData={isData}>
+      <KeyFeaturesSection $isData={isData}>
         <Container>
           {status === 'pending' && <ContentLoading text='Key Features Content Loading...' />}
           {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
