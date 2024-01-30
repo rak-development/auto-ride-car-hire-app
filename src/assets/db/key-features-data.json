@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "icon": "fa-car",
+    "header": "Safety First",
+    "body": "Experienced staff and professionally trained chauffeurs"
+  },
+  {
+    "id": 2,
+    "icon": "fa-coins",
+    "header": "Reasonable Rates",
+    "body": "We can offer you the right vehicle at the right price to fit your budget"
+  },
+  {
+    "id": 3,
+    "icon": "fa-bus",
+    "header": "Largest Fleet",
+    "body": "We offer an extensive fleet of vehicles including sedans, limousines and coach buses"
+  },
+  {
+    "id": 4,
+    "icon": "fa-road-circle-exclamation",
+    "header": "Nationwide Service",
+    "body": "We provide our transportation services nationwide"
+  }
+]

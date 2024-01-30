@@ -1,9 +1,15 @@
-import { useEffect, useState } from 'react';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+import { useForm, SubmitHandler } from "react-hook-form";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
+
+import { z } from "zod";
+// is date-fns necessary?
+// import { subDays } from "date-fns/subDays";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { BookingReservationFeedback } from "./booking-reservation-feedback/booking-reservation-feedback.component";
 
 import styled from '@emotion/styled';
 import ModalComponent from '../ui/modal/modal.component';
@@ -27,270 +33,168 @@ const BookingReservationFormGroup = styled(Form.Group)`
   justify-content: flex-end;
 `
 
-const BookingReservationFormButtonGroup = styled.div`
-  padding: 1.25rem;
-`
-
 const BookingReservationFormLabel = styled(Form.Label)`
   color: var(--bs-black);
 `
 
 const BookingReservationFormCheckbox = styled(Form.Check)`
   color: var(--bs-black);
-`  
+` 
 
-const timeOptions = ['9:00', '10:00', '11:00', '12:00']
+const BookingReservationFormButtonGroup = styled.div`
+  padding: 1.25rem;
+`
 
-const buildDateValue = (date: Date) => 
-  date.getFullYear().toString() + 
-  '-' + 
-  (date.getMonth() + 1).toString().padStart(2,'0') +
-  '-' + 
-  date.getDate().toString().padStart(2,'0')
+const bookingReservationSchema = z
+  .object({
+    pickupLocation: z
+      .string()
+      .min(1, { message: "Please provide a pickup location." }),
+    dropOffLocation: z
+      .string()
+      .min(1, { message: "Please provide a drop-off location." }),
+    pickupDate: z
+      .date({ required_error: "Please provide a pick-up date."})
+      .min(new Date(), { message: "Pick-up date needs to be in the future" }),
+    dropOffDate: z
+      .date({ required_error: "Please provide a drop-off date."})
+      .min(new Date(), { message: "Drop-off date needs to be in the future" }),
+    isOver25: z.boolean(),
+    // not working optional
+    hasDiscountCode: z.boolean().optional(),
+    discountCode: z.string(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.pickupDate && data.dropOffDate && data.pickupDate > data.dropOffDate) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["dropOffDate"],
+        message: "Drop-off date needs to be greater than pick-up date",
+      });
+    }
 
-
-const addTimeToDate = (time: string,  date: Date | undefined) => {
-  if (!time || !date) return
-  const [hrs, mins] = time.split(':')
-  date.setHours(parseInt(hrs))
-  date.setMinutes(parseInt(mins))
-  date.setSeconds(0);
-}
+    if (data.hasDiscountCode && !data.discountCode) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["discountCode"],
+        message: "Please provide a discount code.",
+      });
+    }
+  });
+type FormData = z.infer<typeof bookingReservationSchema>;
 
 export const BookingReservation = () => {
-  const today = new Date()
-  const [isDiscountSelected, setDiscountSelected] = useState(false)
-  const [isFormValidated, setFormValidated] = useState(false)
-  const [startDate, setStartDate] = useState<Date>(new Date())
-  const [startTime, setStartTime] = useState(timeOptions[0])
-  const [endDate, setEndDate] = useState<Date>()
-  const [endTime, setEndTime] = useState(timeOptions[0])
-  const [isStartDateValid, setStartDateValid] = useState(false)
-  const [isEndDateValid, setEndDateValid] = useState(false)
-  const [showModal, setShowModal] = useState(false)
-  const [modalDataObj, setModalDataObj] = useState({})
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitted },
+  } = useForm<FormData>({
+    resolver: zodResolver(bookingReservationSchema),
+  });
 
-  useEffect(() => {
-    // Handle start date and start time validation
-    addTimeToDate(startTime, startDate)
-    setStartDateValid(today < startDate)
+  const isDiscountSelected = watch("hasDiscountCode", false);
 
-    // Handle end date and end time validation
-    addTimeToDate(endTime, endDate || undefined)
-    setEndDateValid(endDate ? startDate < endDate : false)
-
-    setFormValidated(isStartDateValid && isEndDateValid)
-
-  }, [startDate, startTime, endDate, endTime])
-
-  const buildDataObject = (formData: any) => {
-    const pickupLocation = formData.get('pickupLocation')
-    const dropOffLocation = formData.get('dropOffLocation')
-    const pickupDate = formData.get('pickupDate')
-    const pickupTime = formData.get('pickupTime')
-    const dropOffDate = formData.get('dropOffDate')
-    const dropOffTime = formData.get('dropOffTime')
-    const isOver25 = formData.get('over25') ? 'Yes' : 'No'
-    const discountCodeCheck = formData.get('discountCodeCheck')
-    const discountCode = discountCodeCheck ? formData.get('discountCode') : ''
-  
-    const obj = {
-      'Pickup Location': pickupLocation,
-      'Drop-off': dropOffLocation,
-      'Pickup Date': pickupDate,
-      'Pickup Time': pickupTime,
-      'Drop-off Date': dropOffDate,
-      'Drop-off Time': dropOffTime,
-      'Is driver over 25 years old?': isOver25,
-      'Discount Code' : discountCodeCheck ? discountCode : ''
-    }
-    console.log(obj)
-    setModalDataObj(obj)
-  }
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = (event.currentTarget);
-    form.setAttribute('validated', (isStartDateValid && isEndDateValid).toString())
-    // console.log(form.checkValidity())
-    // console.log('isFormValidated', isFormValidated)
-    // console.log('isStartDateValid && isEndDateValid', isStartDateValid && isEndDateValid)
-
-    if (form.checkValidity() === false) {
-      setFormValidated(false);
-    } else {
-      setFormValidated(true);
-    }
-    buildDataObject(new FormData(event.target as any))
-    setShowModal(true)
-  };
-
-  const hideModalHandler = () => {
-    setShowModal(false)
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    console.log("form", data);
   };
 
   return (
-    <>
-      <BookingReservationForm noValidate validated={isFormValidated} onSubmit={handleSubmit}>
-        <Container>
-          <Row>
-            <BookingReservationFormCol md={6}>
-              <BookingReservationFormGroup controlId='pickupLocation'>
-                <BookingReservationFormLabel>Pickup Location</BookingReservationFormLabel>
-                <Form.Control type='text' name='pickupLocation' required />
-                <Form.Control.Feedback type='valid'>
-                  Looks good!
-                </Form.Control.Feedback>
-                <Form.Control.Feedback type='invalid'>
-                  Please provide a pickup location.
-                </Form.Control.Feedback>
-              </BookingReservationFormGroup>
-            </BookingReservationFormCol>
-            <BookingReservationFormCol md={6}>
-              <BookingReservationFormGroup controlId='dropOffLocation'>
-                <BookingReservationFormLabel>Drop-off Location</BookingReservationFormLabel>
-                <Form.Control type='text' name='dropOffLocation' required />
-                <Form.Control.Feedback type='valid'>
-                  Looks good!
-                </Form.Control.Feedback>
-                <Form.Control.Feedback type='invalid'>
-                  Please provide a drop-off location.
-                </Form.Control.Feedback>
-              </BookingReservationFormGroup>
-            </BookingReservationFormCol>
-            <BookingReservationFormCol md={6} lg={3}>
-              <BookingReservationFormGroup controlId='pickupDate'>
-                <BookingReservationFormLabel>Date From</BookingReservationFormLabel>
-                <Form.Control
-                  type='date'
-                  required
-                  name='pickupDate'
-                  value={buildDateValue(startDate)}
-                  onChange={event => setStartDate(new Date(event.target.value))}
-                  isInvalid={!isStartDateValid} 
-                  isValid={isStartDateValid}
-                  />
-                  <Form.Control.Feedback type='valid'>
-                    Looks good!
-                  </Form.Control.Feedback>
-                  <Form.Control.Feedback type='invalid'>
-                    Start date and time need to be in the future!
-                  </Form.Control.Feedback>
-              </BookingReservationFormGroup>
-            </BookingReservationFormCol>
-            <BookingReservationFormCol md={6} lg={3}>
-              {/* Select element must have an accessible name: Element has no title attributeMicrosoft Edge Tools axe/forms */}
-              <BookingReservationFormGroup controlId='pickupTime'>
-                <BookingReservationFormLabel aria-labelledby='Label for select pickup time'>Pick-up Time</BookingReservationFormLabel>
-                <Form.Select
-                  id='pickupTime' 
-                  name='pickupTime'
-                  aria-labelledby='Select for pickup time'
-                  title='Select for pickup time'
-                  value={startTime}
-                  onChange={event => setStartTime(event.target.value)}
-                  isInvalid={!isStartDateValid} 
-                  isValid={isStartDateValid}
-                  >
-                  {timeOptions.map(value => <option key={value} value={value}>{value}</option>)}
-                </Form.Select>
-                <Form.Control.Feedback type='valid'>
-                    Looks good!
-                </Form.Control.Feedback>
-                <Form.Control.Feedback type='invalid'>
-                  Start date and time need to be in the future!
-                </Form.Control.Feedback>
-              </BookingReservationFormGroup>
-            </BookingReservationFormCol>
-            <BookingReservationFormCol md={6} lg={3}>
-              <BookingReservationFormGroup controlId='dropOffDate'>
-                <BookingReservationFormLabel>Date To</BookingReservationFormLabel>
-                <Form.Control
-                  type='date'
-                  name='dropOffDate'
-                  required
-                  value={endDate ? buildDateValue(endDate) : 'dd/mm/yyyy'}
-                  onChange={event => setEndDate(new Date(event.target.value))}
-                  isInvalid={!isEndDateValid} 
-                  isValid={isEndDateValid}
-                  />
-                <Form.Control.Feedback type='valid'>
-                  Looks good!
-                </Form.Control.Feedback>
-                <Form.Control.Feedback type='invalid'>
-                  End date and time need to be greater than start date and time!
-                </Form.Control.Feedback>
-              </BookingReservationFormGroup>
-            </BookingReservationFormCol>
-            <BookingReservationFormCol md={6} lg={3}>
-              {/* Select element must have an accessible name: Element has no title attributeMicrosoft Edge Tools axe/forms */}
-              <BookingReservationFormGroup controlId='dropOffTime'>
-                <BookingReservationFormLabel aria-labelledby='Label for select drop-off time'>Drop-off Time</BookingReservationFormLabel>
-                <Form.Select
-                  id='dropOffTime'
-                  name='dropOffTime'
-                  aria-labelledby='Select for drop-ff time'
-                  title='Select for drop-ff time'
-                  value={endTime}
-                  onChange={event => setEndTime(event.target.value)}
-                  isInvalid={!isEndDateValid} 
-                  isValid={isEndDateValid}>
-                  {timeOptions.map(value => <option key={value} value={value}>{value}</option>)}
-                </Form.Select>
-                <Form.Control.Feedback type='valid'>
-                  Looks good!
-                </Form.Control.Feedback>
-                <Form.Control.Feedback type='invalid'>
-                  End date and time need to be greater than start date and time!
-                </Form.Control.Feedback>
-              </BookingReservationFormGroup>
-            </BookingReservationFormCol>
-            <BookingReservationFormCol md={4}>
-              <BookingReservationFormGroup controlId='over25'>
-                <BookingReservationFormCheckbox
-                  inline
-                  label='Is driver over 25 years old?'
-                  name='over25'
-                  type='checkbox'
-                  id='over25'
-                />
-              </BookingReservationFormGroup>
-            </BookingReservationFormCol>
-            <BookingReservationFormCol md={4}>
-              <BookingReservationFormGroup controlId='discountCodeCheck'>
-                <BookingReservationFormCheckbox
-                  inline
-                  label='I have discount code'
-                  name='discountCodeCheck'
-                  type='checkbox'
-                  id='discountCodeCheck'
-                  checked={isDiscountSelected} 
-                  onChange={() => setDiscountSelected(!isDiscountSelected)}
-                />
-              </BookingReservationFormGroup>
-            </BookingReservationFormCol>
-            {isDiscountSelected && <BookingReservationFormCol md={4}>
-              <BookingReservationFormGroup controlId='discountCode'>
-                <Form.Control placeholder='Discount Code' type='text' name='discountCode' required />
-                <Form.Control.Feedback type='valid'>
-                  Looks good!
-                </Form.Control.Feedback>
-                <Form.Control.Feedback type='invalid'>
-                  Please provide a discount code.
-                </Form.Control.Feedback>
-              </BookingReservationFormGroup>
-            </BookingReservationFormCol>}
-            <BookingReservationFormCol xs={12}>
-              <BookingReservationFormButtonGroup>
-                <Button type='submit'>Find Cars</Button>
-              </BookingReservationFormButtonGroup>
-            </BookingReservationFormCol>
-          </Row>
-        </Container>
-      </BookingReservationForm>
-      <ModalComponent showModal={showModal} onClose={hideModalHandler}>
-        {modalDataObj && Object.entries(modalDataObj).map(([key, value]: any) => <ModalElement key={key} qTitle={key} qAnswer={value} /> )}
-      </ModalComponent>
-    </>
-  )
-}
+    <BookingReservationForm noValidate onSubmit={handleSubmit(onSubmit)} className="container-fluid">
+      <Row>
+        <BookingReservationFormGroup as={BookingReservationFormCol} md="8" controlId="pickupLocation">
+          <BookingReservationFormLabel>Pickup Location</BookingReservationFormLabel>
+          <Form.Control
+            {...register("pickupLocation")}
+            type="text"
+            placeholder="Pickup Location"
+            isValid={!errors.pickupLocation && isSubmitted}
+            isInvalid={!!errors.pickupLocation}
+          />
+          {errors.pickupLocation && (
+            <BookingReservationFeedback
+              invalidFeedbackText={errors.pickupLocation?.message}
+            />
+          )}
+        </BookingReservationFormGroup>
+        <BookingReservationFormGroup as={BookingReservationFormCol} md="4" controlId="pickupDate">
+          <BookingReservationFormLabel>Date From</BookingReservationFormLabel>
+          <Form.Control
+            {...register("pickupDate", { valueAsDate: true })}
+            type="datetime-local"
+            isValid={!errors.pickupDate && isSubmitted}
+            isInvalid={!!errors.pickupDate}
+          />
+          {errors.pickupDate && (
+            <BookingReservationFeedback
+              invalidFeedbackText={errors.pickupDate?.message}
+            />
+          )}
+        </BookingReservationFormGroup>
+      </Row>
+      <Row>
+        <BookingReservationFormGroup as={BookingReservationFormCol} md="8" controlId="dropOffLocation">
+          <BookingReservationFormLabel>Drop-off Location</BookingReservationFormLabel>
+          <Form.Control
+            {...register("dropOffLocation")}
+            type="text"
+            placeholder="Drop-off Location"
+            isValid={!errors.dropOffLocation && isSubmitted}
+            isInvalid={!!errors.dropOffLocation}
+          />
+          {errors.dropOffLocation && (
+            <BookingReservationFeedback
+              invalidFeedbackText={errors.dropOffLocation?.message}
+            />
+          )}
+        </BookingReservationFormGroup>
+        <BookingReservationFormGroup as={BookingReservationFormCol} md="4" controlId="dropOffDate">
+          <BookingReservationFormLabel>Date To</BookingReservationFormLabel>
+          <Form.Control
+            {...register("dropOffDate", { valueAsDate: true })}
+            type="datetime-local"
+            isValid={!errors.dropOffDate && isSubmitted}
+            isInvalid={!!errors.dropOffDate}
+          />
+          {errors.dropOffDate && (
+            <BookingReservationFeedback
+              invalidFeedbackText={errors.dropOffDate?.message}
+            />
+          )}
+        </BookingReservationFormGroup>
+      </Row>
+      <Row className="mb-3 align-items-center">
+        <BookingReservationFormGroup as={Col} md="4" controlId="isOver25">
+          <BookingReservationFormCheckbox
+            label="Is driver over 25 years old?"
+            {...register("isOver25")}
+          />
+        </BookingReservationFormGroup>
+        <BookingReservationFormGroup as={Col} md="4" controlId="hasDiscountCode">
+          <BookingReservationFormCheckbox
+            label="I have discount code"
+            {...register("hasDiscountCode")}
+          />
+        </BookingReservationFormGroup>
+        {isDiscountSelected && (
+          <BookingReservationFormGroup as={Col} md="4" controlId="discountCode">
+            <BookingReservationFormLabel>Discount Code</BookingReservationFormLabel>
+            <Form.Control
+              {...register("discountCode")}
+              isValid={!errors.discountCode && isSubmitted}
+              isInvalid={!!errors.discountCode}
+              type="text"
+              placeholder="Discount Code"
+            />
+            <BookingReservationFeedback
+              invalidFeedbackText={errors.discountCode?.message}
+            />
+          </BookingReservationFormGroup>
+        )}
+      </Row>
+      <BookingReservationFormButtonGroup>
+        <Button type="submit">Find Cars</Button>
+      </BookingReservationFormButtonGroup>
+    </BookingReservationForm>
+  );
+};

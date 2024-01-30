@@ -1,18 +1,18 @@
-import Container from 'react-bootstrap/Container';
+import Container from 'react-bootstrap/Container'
 
 import styled from '@emotion/styled'
 
 import bannerSrc from './../../../assets/images/AutoRide-Banner.jpeg'
 
-import { BookingReservation } from '../../booking-reservation/booking-reservation.component';
+import { BookingReservation } from '../../booking-reservation/booking-reservation.component'
 
 const HeaderBottomBanner = styled.div`
-    padding-top: 7.5rem;
-    padding-bottom: 7.5rem;
-    background-image: url(${bannerSrc});
-    background-repeat: no-repeat;
-    background-size: cover;
-`;
+  padding-top: 7.5rem;
+  padding-bottom: 7.5rem;
+  background-image: url(${bannerSrc});
+  background-repeat: no-repeat;
+  background-size: cover;
+`
 
 const HeaderBottomContainer = styled(Container)`
   color: var(--bs-white);
@@ -45,15 +45,9 @@ export const HeaderBottom = () => {
   return (
     <HeaderBottomBanner>
       <HeaderBottomContainer>
-        <MainHeader>
-          Better journeys, by AutoRide
-        </MainHeader>
-        <SecondHeader>
-          Make the most of your car hire
-        </SecondHeader>
-        <SubHeader>
-          BOOK SMART. BOOK EARLY
-        </SubHeader>
+        <MainHeader>Better journeys, by AutoRide</MainHeader>
+        <SecondHeader>Make the most of your car hire</SecondHeader>
+        <SubHeader>BOOK SMART. BOOK EARLY</SubHeader>
         <BookingReservationComponent>
           <BookingReservation />
         </BookingReservationComponent>
