@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -84,6 +85,9 @@ const bookingReservationSchema = z
 type FormData = z.infer<typeof bookingReservationSchema>;
 
 export const BookingReservation = () => {
+  const [showModal, setShowModal] = useState(false)
+  const [modalDataObj, setModalDataObj] = useState({})
+
   const {
     register,
     handleSubmit,
@@ -97,104 +101,115 @@ export const BookingReservation = () => {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log("form", data);
+    setModalDataObj(data)
+    setShowModal(true)
+  };
+
+  const hideModalHandler = () => {
+    setShowModal(false)
   };
 
   return (
-    <BookingReservationForm noValidate onSubmit={handleSubmit(onSubmit)} className="container-fluid">
-      <Row>
-        <BookingReservationFormGroup as={BookingReservationFormCol} md="8" controlId="pickupLocation">
-          <BookingReservationFormLabel>Pickup Location</BookingReservationFormLabel>
-          <Form.Control
-            {...register("pickupLocation")}
-            type="text"
-            placeholder="Pickup Location"
-            isValid={!errors.pickupLocation && isSubmitted}
-            isInvalid={!!errors.pickupLocation}
-          />
-          {errors.pickupLocation && (
-            <BookingReservationFeedback
-              invalidFeedbackText={errors.pickupLocation?.message}
-            />
-          )}
-        </BookingReservationFormGroup>
-        <BookingReservationFormGroup as={BookingReservationFormCol} md="4" controlId="pickupDate">
-          <BookingReservationFormLabel>Date From</BookingReservationFormLabel>
-          <Form.Control
-            {...register("pickupDate", { valueAsDate: true })}
-            type="datetime-local"
-            isValid={!errors.pickupDate && isSubmitted}
-            isInvalid={!!errors.pickupDate}
-          />
-          {errors.pickupDate && (
-            <BookingReservationFeedback
-              invalidFeedbackText={errors.pickupDate?.message}
-            />
-          )}
-        </BookingReservationFormGroup>
-      </Row>
-      <Row>
-        <BookingReservationFormGroup as={BookingReservationFormCol} md="8" controlId="dropOffLocation">
-          <BookingReservationFormLabel>Drop-off Location</BookingReservationFormLabel>
-          <Form.Control
-            {...register("dropOffLocation")}
-            type="text"
-            placeholder="Drop-off Location"
-            isValid={!errors.dropOffLocation && isSubmitted}
-            isInvalid={!!errors.dropOffLocation}
-          />
-          {errors.dropOffLocation && (
-            <BookingReservationFeedback
-              invalidFeedbackText={errors.dropOffLocation?.message}
-            />
-          )}
-        </BookingReservationFormGroup>
-        <BookingReservationFormGroup as={BookingReservationFormCol} md="4" controlId="dropOffDate">
-          <BookingReservationFormLabel>Date To</BookingReservationFormLabel>
-          <Form.Control
-            {...register("dropOffDate", { valueAsDate: true })}
-            type="datetime-local"
-            isValid={!errors.dropOffDate && isSubmitted}
-            isInvalid={!!errors.dropOffDate}
-          />
-          {errors.dropOffDate && (
-            <BookingReservationFeedback
-              invalidFeedbackText={errors.dropOffDate?.message}
-            />
-          )}
-        </BookingReservationFormGroup>
-      </Row>
-      <Row className="mb-3 align-items-center">
-        <BookingReservationFormGroup as={Col} md="4" controlId="isOver25">
-          <BookingReservationFormCheckbox
-            label="Is driver over 25 years old?"
-            {...register("isOver25")}
-          />
-        </BookingReservationFormGroup>
-        <BookingReservationFormGroup as={Col} md="4" controlId="hasDiscountCode">
-          <BookingReservationFormCheckbox
-            label="I have discount code"
-            {...register("hasDiscountCode")}
-          />
-        </BookingReservationFormGroup>
-        {isDiscountSelected && (
-          <BookingReservationFormGroup as={Col} md="4" controlId="discountCode">
-            <BookingReservationFormLabel>Discount Code</BookingReservationFormLabel>
+    <>
+      <BookingReservationForm noValidate onSubmit={handleSubmit(onSubmit)} className="container-fluid">
+        <Row>
+          <BookingReservationFormGroup as={BookingReservationFormCol} md="8" controlId="pickupLocation">
+            <BookingReservationFormLabel>Pickup Location</BookingReservationFormLabel>
             <Form.Control
-              {...register("discountCode")}
-              isValid={!errors.discountCode && isSubmitted}
-              isInvalid={!!errors.discountCode}
+              {...register("pickupLocation")}
               type="text"
-              placeholder="Discount Code"
+              placeholder="Pickup Location"
+              isValid={!errors.pickupLocation && isSubmitted}
+              isInvalid={!!errors.pickupLocation}
             />
-            <BookingReservationFeedback
-              invalidFeedbackText={errors.discountCode?.message}
+            {errors.pickupLocation && (
+              <BookingReservationFeedback
+                invalidFeedbackText={errors.pickupLocation?.message}
+              />
+            )}
+          </BookingReservationFormGroup>
+          <BookingReservationFormGroup as={BookingReservationFormCol} md="4" controlId="pickupDate">
+            <BookingReservationFormLabel>Date From</BookingReservationFormLabel>
+            <Form.Control
+              {...register("pickupDate", { valueAsDate: true })}
+              type="datetime-local"
+              isValid={!errors.pickupDate && isSubmitted}
+              isInvalid={!!errors.pickupDate}
+            />
+            {errors.pickupDate && (
+              <BookingReservationFeedback
+                invalidFeedbackText={errors.pickupDate?.message}
+              />
+            )}
+          </BookingReservationFormGroup>
+        </Row>
+        <Row>
+          <BookingReservationFormGroup as={BookingReservationFormCol} md="8" controlId="dropOffLocation">
+            <BookingReservationFormLabel>Drop-off Location</BookingReservationFormLabel>
+            <Form.Control
+              {...register("dropOffLocation")}
+              type="text"
+              placeholder="Drop-off Location"
+              isValid={!errors.dropOffLocation && isSubmitted}
+              isInvalid={!!errors.dropOffLocation}
+            />
+            {errors.dropOffLocation && (
+              <BookingReservationFeedback
+                invalidFeedbackText={errors.dropOffLocation?.message}
+              />
+            )}
+          </BookingReservationFormGroup>
+          <BookingReservationFormGroup as={BookingReservationFormCol} md="4" controlId="dropOffDate">
+            <BookingReservationFormLabel>Date To</BookingReservationFormLabel>
+            <Form.Control
+              {...register("dropOffDate", { valueAsDate: true })}
+              type="datetime-local"
+              isValid={!errors.dropOffDate && isSubmitted}
+              isInvalid={!!errors.dropOffDate}
+            />
+            {errors.dropOffDate && (
+              <BookingReservationFeedback
+                invalidFeedbackText={errors.dropOffDate?.message}
+              />
+            )}
+          </BookingReservationFormGroup>
+        </Row>
+        <Row className="mb-3 align-items-center">
+          <BookingReservationFormGroup as={Col} md="4" controlId="isOver25">
+            <BookingReservationFormCheckbox
+              label="Is driver over 25 years old?"
+              {...register("isOver25")}
             />
           </BookingReservationFormGroup>
-        )}
-      </Row>
-      <BookingReservationFormButtonGroup>
-        <Button type="submit">Find Cars</Button>
-      </BookingReservationFormButtonGroup>
-    </BookingReservationForm>
+          <BookingReservationFormGroup as={Col} md="4" controlId="hasDiscountCode">
+            <BookingReservationFormCheckbox
+              label="I have discount code"
+              {...register("hasDiscountCode")}
+            />
+          </BookingReservationFormGroup>
+          {isDiscountSelected && (
+            <BookingReservationFormGroup as={Col} md="4" controlId="discountCode">
+              <BookingReservationFormLabel>Discount Code</BookingReservationFormLabel>
+              <Form.Control
+                {...register("discountCode")}
+                isValid={!errors.discountCode && isSubmitted}
+                isInvalid={!!errors.discountCode}
+                type="text"
+                placeholder="Discount Code"
+              />
+              <BookingReservationFeedback
+                invalidFeedbackText={errors.discountCode?.message}
+              />
+            </BookingReservationFormGroup>
+          )}
+        </Row>
+        <BookingReservationFormButtonGroup>
+          <Button type="submit">Find Cars</Button>
+        </BookingReservationFormButtonGroup>
+      </BookingReservationForm>
+      <ModalComponent showModal={showModal} onClose={hideModalHandler}>
+        {modalDataObj && Object.entries(modalDataObj).map(([key, value]: any) => <ModalElement key={key} qTitle={key} qAnswer={value} /> )}
+      </ModalComponent>
+    </>
   );
 };
