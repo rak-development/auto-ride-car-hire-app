@@ -11,7 +11,7 @@ const ModalComponent = ({children, showModal, onClose}: any) => {
   // const handleShow = () => setShow(true);
 
   return (
-    <>
+    // <>
       <Modal show={showModal} onHide={onClose}>
         <Modal.Header closeButton>
           <Modal.Title>Your submitted details</Modal.Title>
@@ -23,7 +23,7 @@ const ModalComponent = ({children, showModal, onClose}: any) => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    // </>
   )
 }
 

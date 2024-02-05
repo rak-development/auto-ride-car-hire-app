@@ -102,6 +102,7 @@ export const BookingReservation = () => {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log("form", data);
     setModalDataObj(data)
+    // console.log('modal data: ', modalDataObj)
     setShowModal(true)
   };
 
@@ -208,7 +209,7 @@ export const BookingReservation = () => {
         </BookingReservationFormButtonGroup>
       </BookingReservationForm>
       <ModalComponent showModal={showModal} onClose={hideModalHandler}>
-        {modalDataObj && Object.entries(modalDataObj).map(([key, value]: any) => <ModalElement key={key} qTitle={key} qAnswer={value} /> )}
+        {modalDataObj && Object.entries(modalDataObj).map(([key, value]: any) => <ModalElement key={key} title={key} answer={value} /> )}
       </ModalComponent>
     </>
   );
