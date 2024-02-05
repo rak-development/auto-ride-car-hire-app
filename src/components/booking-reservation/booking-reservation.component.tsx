@@ -51,6 +51,7 @@ type FormData = z.infer<typeof bookingReservationSchema>;
 export const BookingReservation = () => {
   const {
     register,
+    trigger,
     handleSubmit,
     watch,
     formState: { errors, isSubmitted },
@@ -138,7 +139,7 @@ export const BookingReservation = () => {
         <Form.Group as={Col} md="4" controlId="hasDiscountCode">
           <Form.Check
             label="I have discount code"
-            {...register("hasDiscountCode")}
+            {...register("hasDiscountCode", { onChange: (e) => trigger('discountCode') })}
           />
         </Form.Group>
         {isDiscountSelected && (
