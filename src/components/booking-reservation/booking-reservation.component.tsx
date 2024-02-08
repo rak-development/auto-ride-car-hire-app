@@ -9,6 +9,38 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BookingReservationFeedback } from "./booking-reservation-feedback/booking-reservation-feedback.component";
 
+import styled from '@emotion/styled';
+
+const BookingReservationForm = styled(Form)`
+  background-color: var(--bs-white);
+  border: 0.0625rem solid var(--bs-gray-200);
+`
+
+const BookingReservationFormCol = styled(Col)`
+  border-right: 0.0625rem solid var(--bs-gray-200);
+  border-bottom: 0.0625rem solid var(--bs-gray-200);
+`
+
+const BookingReservationFormGroup = styled(Form.Group)`
+  padding: 1.25rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+`
+
+const BookingReservationFormLabel = styled(Form.Label)`
+  color: var(--bs-black);
+`
+
+const BookingReservationFormCheckbox = styled(Form.Check)`
+  color: var(--bs-black);
+` 
+
+const BookingReservationFormButtonGroup = styled.div`
+  padding: 1.25rem;
+`
+
 const bookingReservationSchema = z
   .object({
     pickupLocation: z
@@ -64,10 +96,10 @@ export const BookingReservation = () => {
   };
 
   return (
-    <Form noValidate onSubmit={handleSubmit(onSubmit)}>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="8" controlId="pickupLocation">
-          <Form.Label>Pickup Location</Form.Label>
+    <BookingReservationForm noValidate onSubmit={handleSubmit(onSubmit)} className="container-fluid">
+      <Row>
+        <BookingReservationFormGroup as={BookingReservationFormCol} md="8" controlId="pickupLocation">
+          <BookingReservationFormLabel>Pickup Location</BookingReservationFormLabel>
           <Form.Control
             {...register("pickupLocation")}
             type="text"
@@ -80,9 +112,9 @@ export const BookingReservation = () => {
               invalidFeedbackText={errors.pickupLocation?.message}
             />
           )}
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="pickupDate">
-          <Form.Label>Date From</Form.Label>
+        </BookingReservationFormGroup>
+        <BookingReservationFormGroup as={BookingReservationFormCol} md="4" controlId="pickupDate">
+          <BookingReservationFormLabel>Date From</BookingReservationFormLabel>
           <Form.Control
             {...register("pickupDate", { valueAsDate: true })}
             type="datetime-local"
@@ -94,11 +126,11 @@ export const BookingReservation = () => {
               invalidFeedbackText={errors.pickupDate?.message}
             />
           )}
-        </Form.Group>
+        </BookingReservationFormGroup>
       </Row>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="8" controlId="dropOffLocation">
-          <Form.Label>Drop-off Location</Form.Label>
+      <Row>
+        <BookingReservationFormGroup as={BookingReservationFormCol} md="8" controlId="dropOffLocation">
+          <BookingReservationFormLabel>Drop-off Location</BookingReservationFormLabel>
           <Form.Control
             {...register("dropOffLocation")}
             type="text"
@@ -111,9 +143,9 @@ export const BookingReservation = () => {
               invalidFeedbackText={errors.dropOffLocation?.message}
             />
           )}
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="dropOffDate">
-          <Form.Label>Date To</Form.Label>
+        </BookingReservationFormGroup>
+        <BookingReservationFormGroup as={BookingReservationFormCol} md="4" controlId="dropOffDate">
+          <BookingReservationFormLabel>Date To</BookingReservationFormLabel>
           <Form.Control
             {...register("dropOffDate", { valueAsDate: true })}
             type="datetime-local"
@@ -125,24 +157,24 @@ export const BookingReservation = () => {
               invalidFeedbackText={errors.dropOffDate?.message}
             />
           )}
-        </Form.Group>
+        </BookingReservationFormGroup>
       </Row>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="isOver25">
-          <Form.Check
+      <Row className="mb-3 align-items-center">
+        <BookingReservationFormGroup as={Col} md="4" controlId="isOver25">
+          <BookingReservationFormCheckbox
             label="Is driver over 25 years old?"
             {...register("isOver25")}
           />
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="hasDiscountCode">
-          <Form.Check
+        </BookingReservationFormGroup>
+        <BookingReservationFormGroup as={Col} md="4" controlId="hasDiscountCode">
+          <BookingReservationFormCheckbox
             label="I have discount code"
             {...register("hasDiscountCode", { onChange: (e) => trigger('discountCode') })}
           />
-        </Form.Group>
+        </BookingReservationFormGroup>
         {isDiscountSelected && (
-          <Form.Group as={Col} md="4" controlId="discountCode">
-            <Form.Label>Discount Code</Form.Label>
+          <BookingReservationFormGroup as={Col} md="4" controlId="discountCode">
+            <BookingReservationFormLabel>Discount Code</BookingReservationFormLabel>
             <Form.Control
               {...register("discountCode")}
               isValid={!errors.discountCode && isSubmitted}
@@ -153,10 +185,12 @@ export const BookingReservation = () => {
             <BookingReservationFeedback
               invalidFeedbackText={errors.discountCode?.message}
             />
-          </Form.Group>
+          </BookingReservationFormGroup>
         )}
       </Row>
-      <Button type="submit">Find Cars</Button>
-    </Form>
+      <BookingReservationFormButtonGroup>
+        <Button type="submit">Find Cars</Button>
+      </BookingReservationFormButtonGroup>
+    </BookingReservationForm>
   );
 };
