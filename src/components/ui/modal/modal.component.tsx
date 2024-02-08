@@ -1,29 +1,26 @@
-import { useState } from 'react';
+import { ReactNode } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const ModalComponent = ({children, showModal, onClose}: any) => {
-  // const [show, setShow] = useState(false);
+interface ModalComponentProps {
+  children: ReactNode;
+  showModal: boolean | undefined;
+  onClose: (() => void) | undefined;
+}
 
-  // setShow(showModal)
-
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
-
+const ModalComponent = ({children, showModal, onClose}: ModalComponentProps) => {
   return (
-    // <>
-      <Modal show={showModal} onHide={onClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Your submitted details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{children}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={onClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    // </>
+    <Modal show={showModal} onHide={onClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Your submitted details</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>{children}</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onClose}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
   )
 }
 
