@@ -16,7 +16,7 @@ const SectionTemplateSection = styled.section<SectionTemplateSectionProps>`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: ${(sectionProps) => `var(${sectionProps.bgMode})`};
+  background-color: ${({ bgMode }) => `var(${bgMode})`};
 `
 
 const SectionTemplateContainer = styled(Container)`
