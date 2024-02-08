@@ -5,8 +5,6 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
 import { z } from "zod";
-// is date-fns necessary?
-// import { subDays } from "date-fns/subDays";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BookingReservationFeedback } from "./booking-reservation-feedback/booking-reservation-feedback.component";
@@ -58,9 +56,8 @@ const bookingReservationSchema = z
       .date({ required_error: "Please provide a drop-off date."})
       .min(new Date(), { message: "Drop-off date needs to be in the future" }),
     isOver25: z.boolean(),
-    // not working optional
-    hasDiscountCode: z.boolean().optional(),
-    discountCode: z.string(),
+    hasDiscountCode: z.boolean(),
+    discountCode: z.string().optional(),
   })
   .superRefine((data, ctx) => {
     if (data.pickupDate && data.dropOffDate && data.pickupDate > data.dropOffDate) {
@@ -84,6 +81,7 @@ type FormData = z.infer<typeof bookingReservationSchema>;
 export const BookingReservation = () => {
   const {
     register,
+    trigger,
     handleSubmit,
     watch,
     formState: { errors, isSubmitted },
@@ -171,7 +169,7 @@ export const BookingReservation = () => {
         <BookingReservationFormGroup as={Col} md="4" controlId="hasDiscountCode">
           <BookingReservationFormCheckbox
             label="I have discount code"
-            {...register("hasDiscountCode")}
+            {...register("hasDiscountCode", { onChange: (e) => trigger('discountCode') })}
           />
         </BookingReservationFormGroup>
         {isDiscountSelected && (
