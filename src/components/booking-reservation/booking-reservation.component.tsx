@@ -12,7 +12,6 @@ import { BookingReservationFeedback } from "./booking-reservation-feedback/booki
 
 import styled from '@emotion/styled';
 import ModalComponent from '../ui/modal/modal.component';
-import ModalElement from '../ui/modal/modal-element/modal-element.component';
 
 const BookingReservationForm = styled(Form)`
   background-color: var(--bs-white);
@@ -79,11 +78,11 @@ const bookingReservationSchema = z
       });
     }
   });
-type FormData = z.infer<typeof bookingReservationSchema>;
+export type FormData = z.infer<typeof bookingReservationSchema>;
 
 export const BookingReservation = () => {
   const [showModal, setShowModal] = useState(false)
-  const [modalDataObj, setModalDataObj] = useState({})
+  const [modalDataObj, setModalDataObj] = useState<FormData | null>(null)
 
   const {
     register,
@@ -204,13 +203,7 @@ export const BookingReservation = () => {
           <Button type="submit">Find Cars</Button>
         </BookingReservationFormButtonGroup>
       </BookingReservationForm>
-      <ModalComponent showModal={showModal} onClose={hideModalHandler}>
-        {modalDataObj && Object.entries(modalDataObj).map(([key, value]) => {
-          console.log('key: ', key)
-          console.log('value: ', value)
-          return <ModalElement key={key} title={key as any} answer={value as any} />} 
-        )}
-      </ModalComponent>
+      {modalDataObj && <ModalComponent showModal={showModal} onClose={hideModalHandler} formData={modalDataObj} />}
     </>
   );
 };
