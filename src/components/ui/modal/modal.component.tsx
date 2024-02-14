@@ -8,7 +8,7 @@ import ModalElement from './modal-element/modal-element.component';
 interface ModalComponentProps {
   formData: FormData;
   showModal: boolean | undefined;
-  onClose: (() => void) | undefined;
+  onClose: (() => void);
 }
 
 const ModalComponent = ({formData, showModal, onClose}: ModalComponentProps) => 
