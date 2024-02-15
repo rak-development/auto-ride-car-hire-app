@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 import { device } from '../../../devices-breakpoints'
 import { CoreValuesIcon } from '../core-values-icon/core-values-icon.component'
-import {type  WhyChooseUsDataType } from '../why-choose-us.component'
+import { type WhyChooseUsDataType } from '../why-choose-us.component'
 
 const CoreValuesListWrapper = styled.div`
   @media ${device.lg} {

@@ -17,9 +17,9 @@ const whyChooseUsDataSchema = z.object({
   coreValues: z.array(
     z.object({
       id: z.number(),
-      title: z.string()
+      title: z.string(),
     }),
-  )
+  ),
 })
 
 export type WhyChooseUsDataType = z.infer<typeof whyChooseUsDataSchema>
