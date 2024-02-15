@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 
 import styled from '@emotion/styled'
@@ -30,11 +31,24 @@ const ScrollToTopButton = styled(Button)`
 `
 
 export const ScrollToTop = () => {
+  const [isVisible, setIsVisible] = useState(false)
   const scrollToTopHandler = () => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
 
+  useEffect(() => {
+    const listenToScroll = () => {
+      const heightToHideFrom = 2000
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop
+      setIsVisible(winScroll > heightToHideFrom)
+    }
+    window.addEventListener('scroll', listenToScroll)
+    return () => window.removeEventListener('scroll', listenToScroll)
+  }, [])
+  
   return (
-    <ScrollToTopButton type='button' onClick={scrollToTopHandler}>
-      <FontAwesomeIcon icon={faChevronUp} />
-    </ScrollToTopButton>
+    <>
+      {isVisible &&  <ScrollToTopButton type='button' onClick={scrollToTopHandler}>
+        <FontAwesomeIcon icon={faChevronUp} />
+      </ScrollToTopButton>}
+    </>
   )
 }
