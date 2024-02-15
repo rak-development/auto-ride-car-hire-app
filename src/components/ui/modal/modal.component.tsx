@@ -23,8 +23,8 @@ const ModalComponent = ({formData, showModal, onClose}: ModalComponentProps) =>
         <ModalElement title="Drop-off Location" answer={formData.dropOffLocation} />
         <ModalElement title="Date To" answer={format(formData.dropOffDate, 'PPPppp')} />
         <ModalElement title="Is driver over 25 years old?" answer={formData.isOver25 ? 'Yes' : 'No'} />
-        <ModalElement title="I have discount code" answer={formData.dropOffLocation ? 'Yes' : 'No'} />
-        {formData.dropOffLocation && formData.discountCode && <ModalElement title="Discount code" answer={formData.discountCode} />}
+        <ModalElement title="I have discount code" answer={formData.hasDiscountCode ? 'Yes' : 'No'} />
+        {formData.hasDiscountCode && formData.discountCode && <ModalElement title="Discount code" answer={formData.discountCode} />}
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onClose}>
