@@ -12,11 +12,9 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "noEmit": false,
-    "typeRoots" : ["node_modules/@types", "src/types"],
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "types": ["vitest/globals"]
   },
-  "include": ["./src/tests/setup.ts", "./src/**/*", "./vitest.config.ts"],
-  "exclude": ["./src/**/*.test.tsx"]
+  "include": ["src", "./vitest.config.ts"],
 }
