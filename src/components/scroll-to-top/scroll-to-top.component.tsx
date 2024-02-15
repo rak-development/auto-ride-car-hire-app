@@ -33,7 +33,7 @@ export const ScrollToTop = () => {
   const scrollToTopHandler = () => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
 
   return (
-    <ScrollToTopButton id='scroll-to-top' type='button' onClick={scrollToTopHandler}>
+    <ScrollToTopButton aria-label='Scroll to top' type='button' onClick={scrollToTopHandler}>
       <FontAwesomeIcon icon={faChevronUp} />
     </ScrollToTopButton>
   )

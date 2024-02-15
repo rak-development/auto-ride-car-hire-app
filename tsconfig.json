@@ -15,6 +15,8 @@
     "typeRoots" : ["node_modules/@types", "src/types"],
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "types": ["vitest/globals", "node", "jest", "@testing-library/jest-dom"],
+    "types": ["vitest/globals"]
   },
+  "include": ["./src/tests/setup.ts", "./src/**/*", "./vitest.config.ts"],
+  "exclude": ["./src/**/*.test.tsx"]
 }

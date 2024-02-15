@@ -3,7 +3,7 @@ const { merge } = require('webpack-merge')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 
-const webpackConfiguration = require('../webpack.config')
+const webpackConfiguration = require('../webpack.config.cjs')
 
 module.exports = merge(webpackConfiguration, {
   mode: 'production',
