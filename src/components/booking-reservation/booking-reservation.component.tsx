@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -10,8 +10,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BookingReservationFeedback } from "./booking-reservation-feedback/booking-reservation-feedback.component";
 
-import styled from '@emotion/styled';
-import ModalComponent from '../ui/modal/modal.component';
+import styled from "@emotion/styled";
+import ModalComponent from "../ui/modal/modal.component";
 
 const BookingReservationForm = styled(Form)`
   background-color: var(--bs-white);
@@ -107,7 +107,7 @@ export const BookingReservation = () => {
 
   return (
     <>
-      <BookingReservationForm noValidate onSubmit={handleSubmit(onSubmit)} className="container-fluid">
+      <BookingReservationForm noValidate onSubmit={handleSubmit(onSubmit)} className="container-fluid" aria-label="Booking reservation form">
         <Row>
           <BookingReservationFormGroup as={BookingReservationFormCol} md="8" controlId="pickupLocation">
             <BookingReservationFormLabel>Pickup Location</BookingReservationFormLabel>
@@ -115,6 +115,7 @@ export const BookingReservation = () => {
               {...register("pickupLocation")}
               type="text"
               placeholder="Pickup Location"
+              aria-label="Pickup Location"
               isValid={!errors.pickupLocation && isSubmitted}
               isInvalid={!!errors.pickupLocation}
             />
@@ -129,6 +130,7 @@ export const BookingReservation = () => {
             <Form.Control
               {...register("pickupDate", { valueAsDate: true })}
               type="datetime-local"
+              aria-label="Pickup Date"
               isValid={!errors.pickupDate && isSubmitted}
               isInvalid={!!errors.pickupDate}
             />
@@ -146,6 +148,7 @@ export const BookingReservation = () => {
               {...register("dropOffLocation")}
               type="text"
               placeholder="Drop-off Location"
+              aria-label="Drop-off Location"
               isValid={!errors.dropOffLocation && isSubmitted}
               isInvalid={!!errors.dropOffLocation}
             />
@@ -174,13 +177,15 @@ export const BookingReservation = () => {
           <BookingReservationFormGroup as={Col} md="4" controlId="isOver25">
             <BookingReservationFormCheckbox
               label="Is driver over 25 years old?"
+              aria-label="Is driver over 25 years old?"
               {...register("isOver25")}
             />
           </BookingReservationFormGroup>
           <BookingReservationFormGroup as={Col} md="4" controlId="hasDiscountCode">
             <BookingReservationFormCheckbox
               label="I have discount code"
-              {...register("hasDiscountCode", { onChange: (e) => trigger('discountCode') })}
+              aria-label="I have discount code"
+              {...register("hasDiscountCode", { onChange: (e) => trigger("discountCode") })}
             />
           </BookingReservationFormGroup>
           {isDiscountSelected && (
@@ -191,6 +196,7 @@ export const BookingReservation = () => {
                 isValid={!errors.discountCode && isSubmitted}
                 isInvalid={!!errors.discountCode}
                 type="text"
+                aria-label="Discount Code"
                 placeholder="Discount Code"
               />
               <BookingReservationFeedback
@@ -200,7 +206,7 @@ export const BookingReservation = () => {
           )}
         </Row>
         <BookingReservationFormButtonGroup>
-          <Button type="submit">Find Cars</Button>
+          <Button type="submit" aria-label="Submit button">Find Cars</Button>
         </BookingReservationFormButtonGroup>
       </BookingReservationForm>
       {modalDataObj && <ModalComponent showModal={showModal} onClose={hideModalHandler} formData={modalDataObj} />}
