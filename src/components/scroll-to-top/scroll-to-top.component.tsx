@@ -31,6 +31,7 @@ const ScrollToTopButton = styled(Button)`
 
 export const ScrollToTop = () => {
   const scrollToTopHandler = () => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+
   return (
     <ScrollToTopButton type='button' onClick={scrollToTopHandler}>
       <FontAwesomeIcon icon={faChevronUp} />
