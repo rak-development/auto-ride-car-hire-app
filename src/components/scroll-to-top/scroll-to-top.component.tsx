@@ -16,10 +16,12 @@ const ScrollToTopButton = styled(Button)`
   align-items: center;
   justify-content: center;
   border: 0;
+  
   svg {
     width: 1.375rem;
     height: 1.375rem;
   }
+  
   &:hover,
   &:active {
     background-color: rgba(133, 140, 146, 0.6);
@@ -28,7 +30,6 @@ const ScrollToTopButton = styled(Button)`
 
 export const ScrollToTop = () => {
   const scrollToTopHandler = () => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-
   return (
     <ScrollToTopButton type='button' onClick={scrollToTopHandler}>
       <FontAwesomeIcon icon={faChevronUp} />

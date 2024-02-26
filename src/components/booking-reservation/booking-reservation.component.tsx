@@ -17,10 +17,12 @@ const BookingReservationForm = styled(Form)`
   background-color: var(--bs-white);
   border: 0.0625rem solid var(--bs-gray-200);
 `
+
 const BookingReservationFormCol = styled(Col)`
   border-right: 0.0625rem solid var(--bs-gray-200);
   border-bottom: 0.0625rem solid var(--bs-gray-200);
 `
+
 const BookingReservationFormGroup = styled(Form.Group)`
   padding: 1.25rem;
   height: 100%;
@@ -28,6 +30,7 @@ const BookingReservationFormGroup = styled(Form.Group)`
   flex-direction: column;
   justify-content: flex-end;
 `
+
 const BookingReservationFormLabel = styled(Form.Label)`
   color: var(--bs-black);
 `
@@ -80,6 +83,7 @@ export type FormData = z.infer<typeof bookingReservationSchema>;
 export const BookingReservation = () => {
   const [showModal, setShowModal] = useState(false)
   const [modalDataObj, setModalDataObj] = useState<FormData | null>(null)
+  
   const {
     register,
     trigger,

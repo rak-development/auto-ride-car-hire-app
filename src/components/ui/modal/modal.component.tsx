@@ -10,6 +10,7 @@ interface ModalComponentProps {
   showModal: boolean;
   onClose: (() => void);
 }
+
 const ModalComponent = ({formData, showModal, onClose}: ModalComponentProps) => 
  (
     <Modal show={showModal} onHide={onClose}>
@@ -32,4 +33,5 @@ const ModalComponent = ({formData, showModal, onClose}: ModalComponentProps) =>
       </Modal.Footer>
     </Modal>
   )
+  
 export default ModalComponent

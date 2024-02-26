@@ -6,6 +6,7 @@ import { CoreValuesCirclesData } from './core-values-circles-data/core-values-ci
 
 const CoreValuesCirclesWrapper = styled.div`
   display: none;
+  
   @media ${device.lg} {
     display: block;
     margin-top: 2.5rem;
@@ -23,6 +24,7 @@ const CoreValuesCircle = styled.div`
   border-radius: 50%;
   flex-direction: column;
   justify-content: center;
+
   &:first-of-type {
     width: 21.25rem;
     height: 21.25rem;
@@ -32,6 +34,7 @@ const CoreValuesCircle = styled.div`
     border: none;
     padding: 3.125rem;
     text-align: center;
+
     span {
       &:first-of-type {
         font-size: 1.125rem;
@@ -41,6 +44,7 @@ const CoreValuesCircle = styled.div`
         color: var(--bs-primary);
         margin-bottom: 1.25rem;
       }
+
       &:last-of-type {
         font-size: 1.375rem;
         font-weight: 300;
@@ -48,6 +52,7 @@ const CoreValuesCircle = styled.div`
       }
     }
   }
+
   &:nth-of-type(2) {
     width: 31.875rem;
     height: 31.875rem;
@@ -56,6 +61,7 @@ const CoreValuesCircle = styled.div`
     border-width: 0.125rem;
     border-color: var(--bs-gray-200);
   }
+
   &:nth-of-type(3) {
     width: 37.5rem;
     height: 37.5rem;
