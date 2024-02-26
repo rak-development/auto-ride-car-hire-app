@@ -103,6 +103,7 @@ const useIntroductionDataQuery = () =>
 
 export const Introduction = () => {
   const { status, data } = useIntroductionDataQuery()
+  
   return (
     <IntroductionContainer>
       {status === 'pending' && <ContentLoading text='Introduction Content Loading...' />}
