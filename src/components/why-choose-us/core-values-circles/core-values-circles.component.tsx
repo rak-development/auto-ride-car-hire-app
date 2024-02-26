@@ -45,7 +45,6 @@ const CoreValuesCircle = styled.div`
         color: var(--bs-primary);
         margin-bottom: 1.25rem;
       }
-
       &:last-of-type {
         font-size: 1.375rem;
         font-weight: 300;
