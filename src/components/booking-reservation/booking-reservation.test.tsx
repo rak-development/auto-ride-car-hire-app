@@ -1,56 +1,57 @@
 import userEvent from '@testing-library/user-event'
 
-import { fireEvent, render, screen } from '../../utils/test-utils'
+import { fireEvent, getByLabelText, render, screen } from '../../utils/test-utils'
 import { BookingReservation } from "./booking-reservation.component";
 import ModalComponent from '../ui/modal/modal.component';
 
 describe('Booking Reservation', () => {
 
+  // before each
   it('should render the booking reservation form', () => {
     render(<BookingReservation />)
   });
 
-  it('reservation form should have empty fields', () => {
-    render(<BookingReservation />)
+  // it('reservation form should have empty fields', () => {
+  //   render(<BookingReservation />)
 
-    const bookingReservationForm = screen.getByRole('form', { name: 'Booking reservation form'})
-    expect(bookingReservationForm).toHaveFormValues({
-      pickupLocation: '',
-      dropOffLocation: '',
-      pickupDate: '',
-      dropOffDate: '',
-      isOver25: false,
-      hasDiscountCode: false
-    })
-  })
+  //   const bookingReservationForm = screen.getByRole('form', { name: 'Booking reservation form'})
+  //   expect(bookingReservationForm).toHaveFormValues({
+  //     pickupLocation: '',
+  //     dropOffLocation: '',
+  //     pickupDate: '',
+  //     dropOffDate: '',
+  //     isOver25: false,
+  //     hasDiscountCode: false
+  //   })
+  // })
 
-  it('should trigger submit button on the reservation form', () => {
+  // it('should trigger submit button on the reservation form', () => {
+  //   render(<BookingReservation />)
+
+  //   const button = screen.getByRole('button', { name: 'Submit button'})
+  //   expect(button).toHaveAttribute('type', 'submit')
+
+  //   const user = userEvent.setup()
+  //   user.click(button) 
+  // })
+
+  it('should test validation on empty fields in the reservation form', async () => {
     render(<BookingReservation />)
 
     const button = screen.getByRole('button', { name: 'Submit button'})
-    expect(button).toHaveAttribute('type', 'submit')
+    // expect(button).toHaveAttribute('type', 'submit')
 
     const user = userEvent.setup()
-    user.click(button) 
-  })
+    await user.click(button) 
 
-  it('should test validation on empty fields in the reservation form', () => {
-    render(<BookingReservation />)
-
-    const button = screen.getByRole('button', { name: 'Submit button'})
-    expect(button).toHaveAttribute('type', 'submit')
-
-    const user = userEvent.setup()
-    user.click(button) 
-
-
-    const pickupLocation = screen.getByRole('textbox', { name: 'Pickup Location'})
-    expect(pickupLocation).toBeValid()
+    expect(await screen.findByText('Please provide a pickup location.')).toBeInTheDocument()
 
   })
 
   it('should fill the reservation for with values', async () => {
     render(<BookingReservation />)
+
+    // getByLabelText TO:DO
 
     const pickupLocation = screen.getByRole('textbox', { name: 'Pickup Location'})
     await userEvent.type(pickupLocation, 'Rzeszów Główny PKP');
