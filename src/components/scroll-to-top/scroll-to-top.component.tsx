@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button'
 
 import styled from '@emotion/styled'
+
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -16,12 +17,12 @@ const ScrollToTopButton = styled(Button)`
   align-items: center;
   justify-content: center;
   border: 0;
-  
+
   svg {
     width: 1.375rem;
     height: 1.375rem;
   }
-  
+
   &:hover,
   &:active {
     background-color: rgba(133, 140, 146, 0.6);

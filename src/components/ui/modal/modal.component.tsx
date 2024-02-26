@@ -33,5 +33,5 @@ const ModalComponent = ({formData, showModal, onClose}: ModalComponentProps) =>
       </Modal.Footer>
     </Modal>
   )
-  
+
 export default ModalComponent

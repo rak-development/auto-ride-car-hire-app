@@ -6,7 +6,7 @@ import { CoreValuesCirclesData } from './core-values-circles-data/core-values-ci
 
 const CoreValuesCirclesWrapper = styled.div`
   display: none;
-  
+
   @media ${device.lg} {
     display: block;
     margin-top: 2.5rem;
@@ -14,6 +14,7 @@ const CoreValuesCirclesWrapper = styled.div`
     position: relative;
   }
 `
+
 const CoreValuesCircle = styled.div`
   top: 50%;
   left: 50%;

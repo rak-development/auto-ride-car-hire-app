@@ -83,7 +83,7 @@ export type FormData = z.infer<typeof bookingReservationSchema>;
 export const BookingReservation = () => {
   const [showModal, setShowModal] = useState(false)
   const [modalDataObj, setModalDataObj] = useState<FormData | null>(null)
-  
+
   const {
     register,
     trigger,
