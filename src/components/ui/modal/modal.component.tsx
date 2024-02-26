@@ -6,9 +6,9 @@ import { type FormData } from '../../booking-reservation/booking-reservation.com
 import ModalElement from './modal-element/modal-element.component'
 
 interface ModalComponentProps {
-  formData: FormData
-  showModal: boolean | undefined
-  onClose: () => void
+  formData: FormData;
+  showModal: boolean;
+  onClose: (() => void);
 }
 
 const ModalComponent = ({formData, showModal, onClose}: ModalComponentProps) => 
@@ -24,7 +24,7 @@ const ModalComponent = ({formData, showModal, onClose}: ModalComponentProps) =>
         <ModalElement title="Date To" answer={format(formData.dropOffDate, 'PPPppp')} />
         <ModalElement title="Is driver over 25 years old?" answer={formData.isOver25 ? 'Yes' : 'No'} />
         <ModalElement title="I have discount code" answer={formData.hasDiscountCode ? 'Yes' : 'No'} />
-        {formData.hasDiscountCode && formData.discountCode && <ModalElement title="Discount code" answer={formData.discountCode} />}
+        {formData.discountCode && <ModalElement title="Discount code" answer={formData.discountCode} />}
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onClose}>
