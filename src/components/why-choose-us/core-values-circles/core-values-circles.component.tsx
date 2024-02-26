@@ -1,12 +1,11 @@
 import styled from '@emotion/styled'
 
 import { device } from '../../../devices-breakpoints'
-import { type WhyChooseUsDataType } from '../why-choose-us.component'
+import { type CircleContentDataType } from '../../../types/circle-content-data-types'
 import { CoreValuesCirclesData } from './core-values-circles-data/core-values-circles-data.component'
 
 const CoreValuesCirclesWrapper = styled.div`
   display: none;
-
   @media ${device.lg} {
     display: block;
     margin-top: 2.5rem;
@@ -14,7 +13,6 @@ const CoreValuesCirclesWrapper = styled.div`
     position: relative;
   }
 `
-
 const CoreValuesCircle = styled.div`
   top: 50%;
   left: 50%;
@@ -25,7 +23,6 @@ const CoreValuesCircle = styled.div`
   border-radius: 50%;
   flex-direction: column;
   justify-content: center;
-
   &:first-of-type {
     width: 21.25rem;
     height: 21.25rem;
@@ -35,7 +32,6 @@ const CoreValuesCircle = styled.div`
     border: none;
     padding: 3.125rem;
     text-align: center;
-
     span {
       &:first-of-type {
         font-size: 1.125rem;
@@ -52,7 +48,6 @@ const CoreValuesCircle = styled.div`
       }
     }
   }
-
   &:nth-of-type(2) {
     width: 31.875rem;
     height: 31.875rem;
@@ -61,7 +56,6 @@ const CoreValuesCircle = styled.div`
     border-width: 0.125rem;
     border-color: var(--bs-gray-200);
   }
-
   &:nth-of-type(3) {
     width: 37.5rem;
     height: 37.5rem;
@@ -71,7 +65,7 @@ const CoreValuesCircle = styled.div`
   }
 `
 
-export const CoreValuesCircles = ({ header, subheader, coreValues }: WhyChooseUsDataType) => {
+export const CoreValuesCircles = ({ header, subheader, coreValues }: CircleContentDataType) => {
   return (
     <CoreValuesCirclesWrapper>
       <CoreValuesCircle>

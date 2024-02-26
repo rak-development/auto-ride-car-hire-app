@@ -1,16 +1,15 @@
-import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
-import { format } from 'date-fns'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { format } from "date-fns";
 
-import { type FormData } from '../../booking-reservation/booking-reservation.component'
-import ModalElement from './modal-element/modal-element.component'
+import { type FormData } from '../../booking-reservation/booking-reservation.component';
+import ModalElement from './modal-element/modal-element.component';
 
 interface ModalComponentProps {
   formData: FormData;
   showModal: boolean;
   onClose: (() => void);
 }
-
 const ModalComponent = ({formData, showModal, onClose}: ModalComponentProps) => 
  (
     <Modal show={showModal} onHide={onClose}>
@@ -33,5 +32,4 @@ const ModalComponent = ({formData, showModal, onClose}: ModalComponentProps) =>
       </Modal.Footer>
     </Modal>
   )
-
 export default ModalComponent
