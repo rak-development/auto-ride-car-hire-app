@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
@@ -17,18 +17,6 @@ import './app.scss'
 const queryClient = new QueryClient()
 
 const App = () => {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const listenToScroll = () => {
-      const heightToHideFrom = 2000
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop
-      setIsVisible(winScroll > heightToHideFrom)
-    }
-    window.addEventListener('scroll', listenToScroll)
-    return () => window.removeEventListener('scroll', listenToScroll)
-  }, [])
-
   return (
     <QueryClientProvider client={queryClient}>
       <Header />
@@ -41,7 +29,7 @@ const App = () => {
         <OurFleet />
       </main>
       <Footer />
-      {isVisible && <ScrollToTop />}
+      <ScrollToTop />
     </QueryClientProvider>
   )
 }
