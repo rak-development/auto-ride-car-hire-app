@@ -28,15 +28,12 @@ interface WhyChooseUsLayoutProps {
   data: WhyChooseUsDataType
 }
 
-const WhyChooseUsLayout: FC<WhyChooseUsLayoutProps> = ({ data }) => {
-  const { header, subheader, coreValues } = data
-  return (
-    <Container>
-      <CoreValuesCircles header={header} subheader={subheader} coreValues={coreValues} />
-      <CoreValuesList header={header} subheader={subheader} coreValues={coreValues} />
-    </Container>
-  )
-}
+const WhyChooseUsLayout: FC<WhyChooseUsLayoutProps> = ({ data }) => (
+  <Container>
+    <CoreValuesCircles {...data} />
+    <CoreValuesList {...data} />
+  </Container>
+)
 
 const useWhyChooseUsDataQuery = () =>
   useQuery({
