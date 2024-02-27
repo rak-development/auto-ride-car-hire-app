@@ -1,23 +1,30 @@
 [
   {
+    "type": "service-data",
     "text": "Experiential Tours"
   },
   {
+    "type": "service-data",
     "text": "Wedding Limousine"
   },
   {
+    "type": "service-data",
     "text": "Corporate Travel"
   },
   {
+    "type": "service-data",
     "text": "Special Events"
   },
   {
+    "type": "service-data",
     "text": "Airport Transportation"
   },
   {
+    "type": "service-data",
     "text": "Nationwide Transportation"
   },
   {
+    "type": "service-data",
     "text": "Handicap Transportation"
   }
 ]

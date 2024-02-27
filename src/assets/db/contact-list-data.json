@@ -1,21 +1,26 @@
 [
   {
+    "type": "contact-data",
     "text": "Jasionka 942, 36-002 Jasionka",
     "icon": "fa-location-dot"
   },
   {
+    "type": "contact-data",
     "text": "(+48) 17 123 45 61",
     "icon": "fa-phone"
   },
   {
+    "type": "contact-data",
     "text": "123 456 789",
     "icon": "fa-mobile-screen-button"
   },
   {
+    "type": "contact-data",
     "text": "contact@autoride.com",
     "icon": "fa-envelope"
   },
   {
+    "type": "contact-data",
     "text": "24/7",
     "icon": "fa-clock"
   }
