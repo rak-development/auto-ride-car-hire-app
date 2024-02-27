@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 
 import { device } from '../../../devices-breakpoints'
-import { type CircleContentDataType } from '../../../types/circle-content-data-types'
 import { CoreValuesIcon } from '../core-values-icon/core-values-icon.component'
+import { type WhyChooseUsDataType } from '../why-choose-us.component'
 
 const CoreValuesListWrapper = styled.div`
   @media ${device.lg} {
@@ -42,7 +42,7 @@ const CoreValuesListElTitle = styled.span`
   padding-left: 1.5rem;
 `
 
-export const CoreValuesList = ({ header, subheader, coreValues }: CircleContentDataType) => {
+export const CoreValuesList = ({ header, subheader, coreValues }: WhyChooseUsDataType) => {
   return (
     <CoreValuesListWrapper>
       <CoreValuesListHeader>
