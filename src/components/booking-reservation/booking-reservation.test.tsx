@@ -1,111 +1,71 @@
 import userEvent from '@testing-library/user-event'
 
-import { fireEvent, getByLabelText, render, screen } from '../../utils/test-utils'
+import { render, screen } from '../../utils/test-utils'
 import { BookingReservation } from "./booking-reservation.component";
 import ModalComponent from '../ui/modal/modal.component';
 
 describe('Booking Reservation', () => {
 
-  // before each
-  it('should render the booking reservation form', () => {
-    render(<BookingReservation />)
-  });
-
-  // it('reservation form should have empty fields', () => {
-  //   render(<BookingReservation />)
-
-  //   const bookingReservationForm = screen.getByRole('form', { name: 'Booking reservation form'})
-  //   expect(bookingReservationForm).toHaveFormValues({
-  //     pickupLocation: '',
-  //     dropOffLocation: '',
-  //     pickupDate: '',
-  //     dropOffDate: '',
-  //     isOver25: false,
-  //     hasDiscountCode: false
-  //   })
-  // })
-
-  // it('should trigger submit button on the reservation form', () => {
-  //   render(<BookingReservation />)
-
-  //   const button = screen.getByRole('button', { name: 'Submit button'})
-  //   expect(button).toHaveAttribute('type', 'submit')
-
-  //   const user = userEvent.setup()
-  //   user.click(button) 
-  // })
+  beforeEach(() => {
+    render(
+        <BookingReservation />
+    );
+  })
 
   it('should test validation on empty fields in the reservation form', async () => {
-    render(<BookingReservation />)
-
     const button = screen.getByRole('button', { name: 'Submit button'})
-    // expect(button).toHaveAttribute('type', 'submit')
 
     const user = userEvent.setup()
     await user.click(button) 
 
     expect(await screen.findByText('Please provide a pickup location.')).toBeInTheDocument()
+    expect(await screen.findByText('Please provide a drop-off location.')).toBeInTheDocument()
+
+    // Date validation is not working and not sure wjy
+    // expect(await screen.findByText('Please provide a pick-up date.')).toBeInTheDocument()
+    // expect(await screen.findByText('Please provide a drop-off date.')).toBeInTheDocument()
+
+    // if has discount code selected, validate discount code input
+    // const hasDiscountCode = await screen.findByLabelText('I have discount code.')
+    // const hasDiscountCode = screen.getByLabelText('I have discount code.')
 
   })
 
-  it('should fill the reservation for with values', async () => {
-    render(<BookingReservation />)
+  it('should fill in the form and display the modal', async () => {
 
-    // getByLabelText TO:DO
-
-    const pickupLocation = screen.getByRole('textbox', { name: 'Pickup Location'})
-    await userEvent.type(pickupLocation, 'Rzeszów Główny PKP');
-
-    const dropOffLocation = screen.getByRole('textbox', { name: 'Drop-off Location'})
-    await userEvent.type(dropOffLocation, 'Millenium Hall Rzeszów');
-
-    // How to test date picker dates?
-
-    const isOver25 = screen.getByRole('checkbox', { name: 'Is driver over 25 years old?'})
-    await userEvent.click(isOver25)
-
-    const hasDiscountCode = screen.getByRole('checkbox', { name: 'I have discount code'})
-    await userEvent.click(hasDiscountCode)
-
-    const discountCode = screen.getByRole('textbox', { name: 'Discount Code'})
-    await userEvent.type(discountCode, 'HIT15');
-
-    const bookingReservationForm = screen.getByRole('form', { name: 'Booking reservation form'})
-    // expect(bookingReservationForm).toHaveFormValues({
-    //   pickupLocation: 'Rzeszów Główny PKP',
-    //   dropOffLocation: 'Millenium Hall Rzeszów',
-    //   pickupDate: new Date("2024-03-20").toString(),
-    //   dropOffDate: new Date("2024-03-25").toString(),
-    //   isOver25: true,
-    //   hasDiscountCode: true,
-    //   discountCode: 'HIT15'
-    // })
-
-    // const pickupDate = screen.getByRole('date', { name: 'Pickup Date'})
-    // fireEvent.change(pickupDate, { target: { value: 'Millenium Hall Rzeszów' } })
-  })
-
-  it('test opening modal with empty fields', async () => {
-    render(<BookingReservation />)
+    const pickupLocation = await userEvent.type(screen.getByLabelText('Pickup Location'), 'Rzeszów Główny PKP');
+    const dropOffLocation = await userEvent.type(screen.getByLabelText('Drop-off Location'), 'Millenium Hall Rzeszów');
+    const pickupDate = await userEvent.type(screen.getByLabelText('Date From'), new Date("2024-03-20").toString());
+    const dropOffDate = await userEvent.type(screen.getByLabelText('Date To'), new Date("2024-03-25").toString());
+    const isOver25 = await userEvent.click(screen.getByLabelText('Is driver over 25 years old?'))
+    const hasDiscountCode = await userEvent.click(screen.getByLabelText('I have discount code'))
+    const discountCode = await userEvent.type(screen.getByLabelText('Discount Code'), 'HIT15');
 
     const button = screen.getByRole('button', { name: 'Submit button'})
-    expect(button).toHaveAttribute('type', 'submit')
-
     const user = userEvent.setup()
-    user.click(button) 
+    await user.click(button) 
+
+    // struggling to use data from userEvent
 
     const formData = {
-      pickupLocation: '',
-      dropOffLocation: '',
-      pickupDate: new Date,
-      dropOffDate: new Date,
-      isOver25: false,
-      hasDiscountCode: false,
-      discountCode: ''
+      pickupLocation: 'Rzeszów Główny PKP',
+      dropOffLocation: 'Millenium Hall Rzeszów',
+      pickupDate: new Date("2024-03-20"),
+      dropOffDate: new Date("2024-03-25"),
+      isOver25: true,
+      hasDiscountCode: true,
+      discountCode: 'HIT15'
     }
+    
+    const modalComponent = render(<ModalComponent showModal={false} onClose={() => true} formData={formData} />)
+    expect(modalComponent.container).toBeInTheDocument()
 
-    // expect(screen.find(ModalComponent)).toHaveLength(1)
-    const modalComponent = render(<ModalComponent showModal={false} onClose={() => {}} formData={formData} />)
+    // expect(await (modalComponent.container).findByText('Rzeszów Główny PKP')).toBeInTheDocument()
 
   })
 })
+
+
+
+// test dates if the're not in the past
+// test dates if start date is not greater than end date

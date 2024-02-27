@@ -53,10 +53,10 @@ const bookingReservationSchema = z
       .min(1, { message: "Please provide a drop-off location." }),
     pickupDate: z
       .date({ required_error: "Please provide a pick-up date."})
-      .min(new Date(), { message: "Pick-up date needs to be in the future" }),
+      .min(new Date(), { message: "Pick-up date needs to be in the future." }),
     dropOffDate: z
       .date({ required_error: "Please provide a drop-off date."})
-      .min(new Date(), { message: "Drop-off date needs to be in the future" }),
+      .min(new Date(), { message: "Drop-off date needs to be in the future." }),
     isOver25: z.boolean(),
     hasDiscountCode: z.boolean(),
     discountCode: z.string().optional(),
