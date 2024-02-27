@@ -13,22 +13,28 @@ describe('Booking Reservation', () => {
   })
 
   it('should test validation on empty fields in the reservation form', async () => {
-    const button = screen.getByRole('button', { name: 'Submit button'})
-
+    const submitButton = screen.getByRole('button', { name: 'Find Cars'})
     const user = userEvent.setup()
-    await user.click(button) 
+    await user.click(submitButton)
 
     expect(await screen.findByText('Please provide a pickup location.')).toBeInTheDocument()
+
     expect(await screen.findByText('Please provide a drop-off location.')).toBeInTheDocument()
 
-    // Date validation is not working and not sure wjy
-    // expect(await screen.findByText('Please provide a pick-up date.')).toBeInTheDocument()
-    // expect(await screen.findByText('Please provide a drop-off date.')).toBeInTheDocument()
+    expect(await screen.findAllByText('Invalid date')).toHaveLength(2)
 
-    // if has discount code selected, validate discount code input
-    // const hasDiscountCode = await screen.findByLabelText('I have discount code.')
-    // const hasDiscountCode = screen.getByLabelText('I have discount code.')
+    const isOver25 = await screen.findByLabelText('Is driver over 25 years old?')
+    await user.click(isOver25)
+    expect(isOver25).toBeChecked()
 
+    const hasDiscountCode = await screen.findByLabelText('I have discount code')
+    await user.click(hasDiscountCode)
+    expect(isOver25).toBeChecked()
+
+    await user.click(submitButton)
+
+    // Not sure why the validation for discount code is not working:
+    // expect(await screen.findByText('Please provide a discount code.')).toBeInTheDocument()
   })
 
   it('should fill in the form and display the modal', async () => {
@@ -41,12 +47,7 @@ describe('Booking Reservation', () => {
     const hasDiscountCode = await userEvent.click(screen.getByLabelText('I have discount code'))
     const discountCode = await userEvent.type(screen.getByLabelText('Discount Code'), 'HIT15');
 
-    const button = screen.getByRole('button', { name: 'Submit button'})
-    const user = userEvent.setup()
-    await user.click(button) 
-
-    // struggling to use data from userEvent
-
+  // struggling to use data from userEvent
     const formData = {
       pickupLocation: 'Rzeszów Główny PKP',
       dropOffLocation: 'Millenium Hall Rzeszów',
@@ -56,11 +57,15 @@ describe('Booking Reservation', () => {
       hasDiscountCode: true,
       discountCode: 'HIT15'
     }
-    
+
+    const submitButton = screen.getByRole('button', { name: 'Find Cars'})
+    const user = userEvent.setup()
+    await user.click(submitButton)
+
     const modalComponent = render(<ModalComponent showModal={false} onClose={() => true} formData={formData} />)
     expect(modalComponent.container).toBeInTheDocument()
 
-    // expect(await (modalComponent.container).findByText('Rzeszów Główny PKP')).toBeInTheDocument()
+    // expect(await modalComponent.findByText('Rzeszów Główny PKP')).toHaveLength(2)
 
   })
 })
