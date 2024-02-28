@@ -206,7 +206,7 @@ export const BookingReservation = () => {
         </BookingReservationFormButtonGroup>
       </BookingReservationForm>
       {modalDataObj && (
-        <ModalComponent showModal={showModal} onClose={hideModalHandler} formData={modalDataObj} />
+        <ModalComponent data-testid="modal" showModal={showModal} onClose={hideModalHandler} formData={modalDataObj} />
       )}
     </>
   )

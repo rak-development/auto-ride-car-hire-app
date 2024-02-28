@@ -12,7 +12,7 @@ interface ModalComponentProps {
 }
 
 const ModalComponent = ({ formData, showModal, onClose }: ModalComponentProps) => (
-  <Modal show={showModal} onHide={onClose}>
+  <Modal show={showModal} onHide={onClose} data-testid="modal">
     <Modal.Header closeButton>
       <Modal.Title>Your submitted details</Modal.Title>
     </Modal.Header>
