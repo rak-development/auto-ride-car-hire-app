@@ -46,11 +46,13 @@ export const ScrollToTop = () => {
 
   return (
     <>
+      <div data-testid="scroll-to-top1">
       {isVisible && (
-        <ScrollToTopButton type='button' onClick={scrollToTopHandler}>
+        <ScrollToTopButton type='button' onClick={scrollToTopHandler} data-testid="scroll-to-top">
           <FontAwesomeIcon icon={faChevronUp} />
         </ScrollToTopButton>
       )}
+      </div>
     </>
   )
 }
