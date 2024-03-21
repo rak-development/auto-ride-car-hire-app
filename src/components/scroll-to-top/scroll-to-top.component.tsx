@@ -43,13 +43,13 @@ export const ScrollToTop = () => {
     return () => window.removeEventListener('scroll', listenToScroll)
   }, [])
 
-  if(!isVisible) {
+  if (!isVisible) {
     return null
   }
 
   return (
-        <ScrollToTopButton type='button' aria-label='Go to top' onClick={scrollToTopHandler}>
-          <FontAwesomeIcon icon={faChevronUp} />
-        </ScrollToTopButton>
+    <ScrollToTopButton type='button' aria-label='Go to top' onClick={scrollToTopHandler}>
+      <FontAwesomeIcon icon={faChevronUp} />
+    </ScrollToTopButton>
   )
 }

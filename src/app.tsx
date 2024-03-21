@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { Header } from './components/header/header.component'
@@ -19,7 +17,6 @@ const queryClient = new QueryClient()
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <div data-testid="custom-element">
       <Header />
       <main>
         <Introduction />
@@ -31,7 +28,6 @@ const App = () => {
       </main>
       <Footer />
       <ScrollToTop />
-      </div>
     </QueryClientProvider>
   )
 }
