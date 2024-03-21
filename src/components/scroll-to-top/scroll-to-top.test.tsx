@@ -1,15 +1,14 @@
 import userEvent from '@testing-library/user-event'
 import { render, screen, fireEvent } from '../../utils/test-utils'
 import { vi } from 'vitest'
-import React from "react";
 
-import App from './../../app'
+import { ScrollToTop } from './scroll-to-top.component';
 
 const wait = () => new Promise(res => setTimeout(res, 10));
 
 describe('ScrollToTop', () => {
   it('should not render the scroll to top button when scrollY < 2000', async () => {
-    render(<App />)
+    render(<ScrollToTop />)
 
     fireEvent.scroll(window, { target: { scrollY: 1999 } });
     await wait();
@@ -21,11 +20,16 @@ describe('ScrollToTop', () => {
     vi.spyOn(window, 'scrollTo').mockImplementation(scrollTo);
 
     const user = userEvent.setup();
-    render(<App />)
+    render(<ScrollToTop />)
 
     fireEvent.scroll(window, { target: { scrollY: 3000 } });
     await user.click(await screen.findByRole('button', { name: 'Go to top' }));
 
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'smooth' });
+  })
+
+  it('should not render the scroll after scrolling to top', async () => {
+    render(<ScrollToTop />)
+    expect(screen.queryByRole('button', { name: 'Go to top' })).not.toBeInTheDocument();
   })
 })
