@@ -25,15 +25,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rkrohne1991/co-financing-app.git"
+    "url": "git+https://github.com/rak-development/auto-ride-car-hire-app.git"
   },
   "keywords": [],
   "author": "Rafal Krohne",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rkrohne1991/co-financing-app/issues"
+    "url": "https://github.com/rak-development/auto-ride-car-hire-app/issues"
   },
-  "homepage": "https://github.com/rkrohne1991/co-financing-app#readme",
+  "homepage": "https://github.com/rak-development/auto-ride-car-hire-app#readme",
   "devDependencies": {
     "@babel/core": "^7.23.2",
     "@babel/eslint-parser": "^7.22.5",
