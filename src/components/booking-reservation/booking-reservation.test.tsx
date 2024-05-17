@@ -6,6 +6,15 @@ import { BookingReservation } from './booking-reservation.component'
 
 const dateFormatForForm = (dateObject: Date) => format(dateObject, "yyyy-MM-dd'T'HH:mm:ss")
 
+const typeInsideInput = async (labelText: string, value: string) =>
+  await userEvent.type(
+    screen.getByLabelText(labelText),
+    value
+  );
+
+const clickInsideInput = async (labelText: string) =>
+  await userEvent.click(screen.getByLabelText(labelText))
+
 describe('Booking Reservation', () => {
   beforeEach(() => {
     render(<BookingReservation />)
@@ -31,12 +40,12 @@ describe('Booking Reservation', () => {
       dropOffDate: addDays(new Date(), 10),
     }
 
-    await userEvent.type(screen.getByLabelText('Pickup Location'), formData.pickupLocation)
-    await userEvent.type(screen.getByLabelText('Drop-off Location'), formData.dropOffLocation)
-    await userEvent.type(screen.getByLabelText('Date From'), dateFormatForForm(formData.pickupDate))
-    await userEvent.type(screen.getByLabelText('Date To'), dateFormatForForm(formData.dropOffDate))
-    await userEvent.click(screen.getByLabelText('Is driver over 25 years old?'))
-    await userEvent.click(screen.getByLabelText('I have discount code'))
+    typeInsideInput('Pickup Location', formData.pickupLocation)
+    typeInsideInput('Drop-off Location', formData.dropOffLocation)
+    typeInsideInput('Date From', dateFormatForForm(formData.pickupDate))
+    typeInsideInput('Date To', dateFormatForForm(formData.dropOffDate))
+    clickInsideInput('Is driver over 25 years old?')
+    clickInsideInput('I have discount code')
 
     expect(await screen.findByText('Please provide a discount code.')).toBeInTheDocument()
   })
@@ -54,13 +63,13 @@ describe('Booking Reservation', () => {
 
     const user = userEvent.setup()
 
-    await user.type(screen.getByLabelText('Pickup Location'), formData.pickupLocation)
-    await user.type(screen.getByLabelText('Drop-off Location'), formData.dropOffLocation)
-    await user.type(screen.getByLabelText('Date From'), dateFormatForForm(formData.pickupDate))
-    await user.type(screen.getByLabelText('Date To'), dateFormatForForm(formData.dropOffDate))
-    await user.click(screen.getByLabelText('Is driver over 25 years old?'))
-    await user.click(screen.getByLabelText('I have discount code'))
-    await user.type(screen.getByLabelText('Discount Code'), formData.discountCode)
+    typeInsideInput('Pickup Location', formData.pickupLocation)
+    typeInsideInput('Drop-off Location', formData.dropOffLocation)
+    typeInsideInput('Date From', dateFormatForForm(formData.pickupDate))
+    typeInsideInput('Date To', dateFormatForForm(formData.dropOffDate))
+    clickInsideInput('Is driver over 25 years old?')
+    clickInsideInput('I have discount code')
+    typeInsideInput('Discount Code', formData.discountCode)
 
     const submitButton = screen.getByRole('button', { name: 'Find Cars' })
     await user.click(submitButton)
@@ -96,10 +105,10 @@ describe('Booking Reservation', () => {
 
     const user = userEvent.setup()
 
-    await user.type(screen.getByLabelText('Pickup Location'), formData.pickupLocation)
-    await user.type(screen.getByLabelText('Drop-off Location'), formData.dropOffLocation)
-    await user.type(screen.getByLabelText('Date From'), dateFormatForForm(formData.pickupDate))
-    await user.type(screen.getByLabelText('Date To'), dateFormatForForm(formData.dropOffDate))
+    typeInsideInput('Pickup Location', formData.pickupLocation)
+    typeInsideInput('Drop-off Location', formData.dropOffLocation)
+    typeInsideInput('Date From', dateFormatForForm(formData.pickupDate))
+    typeInsideInput('Date To', dateFormatForForm(formData.dropOffDate))
 
     const submitButton = screen.getByRole('button', { name: 'Find Cars' })
     await user.click(submitButton)
@@ -117,10 +126,10 @@ describe('Booking Reservation', () => {
 
     const user = userEvent.setup()
 
-    await user.type(screen.getByLabelText('Pickup Location'), formData.pickupLocation)
-    await user.type(screen.getByLabelText('Drop-off Location'), formData.dropOffLocation)
-    await user.type(screen.getByLabelText('Date From'), dateFormatForForm(formData.pickupDate))
-    await user.type(screen.getByLabelText('Date To'), dateFormatForForm(formData.dropOffDate))
+    typeInsideInput('Pickup Location', formData.pickupLocation)
+    typeInsideInput('Drop-off Location', formData.dropOffLocation)
+    typeInsideInput('Date From', dateFormatForForm(formData.pickupDate))
+    typeInsideInput('Date To', dateFormatForForm(formData.dropOffDate))
 
     const submitButton = screen.getByRole('button', { name: 'Find Cars' })
     await user.click(submitButton)
@@ -138,10 +147,10 @@ describe('Booking Reservation', () => {
 
     const user = userEvent.setup()
 
-    await user.type(screen.getByLabelText('Pickup Location'), formData.pickupLocation)
-    await user.type(screen.getByLabelText('Drop-off Location'), formData.dropOffLocation)
-    await user.type(screen.getByLabelText('Date From'), dateFormatForForm(formData.pickupDate))
-    await user.type(screen.getByLabelText('Date To'), dateFormatForForm(formData.dropOffDate))
+    typeInsideInput('Pickup Location', formData.pickupLocation)
+    typeInsideInput('Drop-off Location', formData.dropOffLocation)
+    typeInsideInput('Date From', dateFormatForForm(formData.pickupDate))
+    typeInsideInput('Date To', dateFormatForForm(formData.dropOffDate))
 
     const submitButton = screen.getByRole('button', { name: 'Find Cars' })
     await user.click(submitButton)
