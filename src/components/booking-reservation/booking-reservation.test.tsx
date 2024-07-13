@@ -12,6 +12,56 @@ const typeInsideInput = async (labelText: string, value: string) =>
     value
   );
 
+type FormData = {
+  pickupLocation?: string
+  dropOffLocation?: string
+  pickupDate?: Date
+  dropOffDate?: Date
+}
+
+type FormDataObject = {
+  [key:string]: {
+    pickupLocation?: string
+    dropOffLocation?: string
+    pickupDate?: Date
+    dropOffDate?: Date
+  };
+}
+
+type test = {
+  formData: {
+    pickupLocation: string,
+    dropOffLocation: string,
+    pickupDate: Date,
+    dropOffDate: Date
+  }
+}
+
+// const fillInForm = async (
+//   formData: {
+//     pickupLocation: string,
+//     dropOffLocation: string,
+//     pickupDate: Date,
+//     dropOffDate: Date
+//   }
+// ) => {
+//   await userEvent.type(screen.getByLabelText('Pickup Location'), formData.pickupLocation)
+//   await userEvent.type(screen.getByLabelText('Drop-off Location'), formData.dropOffLocation)
+//   await userEvent.type(screen.getByLabelText('Date From'), dateFormatForForm(formData.pickupDate))
+//   await userEvent.type(screen.getByLabelText('Date To'), dateFormatForForm(formData.dropOffDate))
+//   await userEvent.click(screen.getByLabelText('Is driver over 25 years old?'))
+//   await userEvent.click(screen.getByLabelText('I have discount code'))
+// }
+
+const fillInForm = async (formData: FormData) => {
+  await userEvent.type(screen.getByLabelText('Pickup Location'), formData.pickupLocation)
+  await userEvent.type(screen.getByLabelText('Drop-off Location'), formData.dropOffLocation)
+  await userEvent.type(screen.getByLabelText('Date From'), dateFormatForForm(formData.pickupDate))
+  await userEvent.type(screen.getByLabelText('Date To'), dateFormatForForm(formData.dropOffDate))
+  await userEvent.click(screen.getByLabelText('Is driver over 25 years old?'))
+  await userEvent.click(screen.getByLabelText('I have discount code'))
+}
+
 const clickInsideInput = async (labelText: string) =>
   await userEvent.click(screen.getByLabelText(labelText))
 
@@ -33,19 +83,14 @@ describe('Booking Reservation', () => {
   })
 
   it('should test validation on discount code', async () => {
-    const formData = {
+    const formData: FormData = {
       pickupLocation: 'Rzeszów Główny PKP',
       dropOffLocation: 'Millenium Hall Rzeszów',
       pickupDate: addDays(new Date(), 5),
       dropOffDate: addDays(new Date(), 10),
     }
 
-    typeInsideInput('Pickup Location', formData.pickupLocation)
-    typeInsideInput('Drop-off Location', formData.dropOffLocation)
-    typeInsideInput('Date From', dateFormatForForm(formData.pickupDate))
-    typeInsideInput('Date To', dateFormatForForm(formData.dropOffDate))
-    clickInsideInput('Is driver over 25 years old?')
-    clickInsideInput('I have discount code')
+    fillInForm(formData)
 
     expect(await screen.findByText('Please provide a discount code.')).toBeInTheDocument()
   })
