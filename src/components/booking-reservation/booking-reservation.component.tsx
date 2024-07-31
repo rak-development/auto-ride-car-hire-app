@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
+import { useTranslation } from 'react-i18next'
 
 import { z } from 'zod'
 
@@ -79,6 +80,7 @@ export type FormData = z.infer<typeof bookingReservationSchema>
 export const BookingReservation = () => {
   const [showModal, setShowModal] = useState(false)
   const [modalDataObj, setModalDataObj] = useState<FormData | null>(null)
+  const { t } = useTranslation()
 
   const {
     register,
@@ -114,11 +116,11 @@ export const BookingReservation = () => {
             md='8'
             controlId='pickupLocation'
           >
-            <BookingReservationFormLabel>Pickup Location</BookingReservationFormLabel>
+            <BookingReservationFormLabel>{t('pickupLocation')}</BookingReservationFormLabel>
             <Form.Control
               {...register('pickupLocation')}
               type='text'
-              placeholder='Pickup Location'
+              placeholder={t('pickupLocation')}
               isValid={!errors.pickupLocation && isSubmitted}
               isInvalid={!!errors.pickupLocation}
             />
@@ -127,7 +129,7 @@ export const BookingReservation = () => {
             )}
           </BookingReservationFormGroup>
           <BookingReservationFormGroup as={BookingReservationFormCol} md='4' controlId='pickupDate'>
-            <BookingReservationFormLabel>Date From</BookingReservationFormLabel>
+            <BookingReservationFormLabel>{t('pickupDate')}</BookingReservationFormLabel>
             <Form.Control
               {...register('pickupDate', { valueAsDate: true })}
               type='datetime-local'
@@ -145,11 +147,11 @@ export const BookingReservation = () => {
             md='8'
             controlId='dropOffLocation'
           >
-            <BookingReservationFormLabel>Drop-off Location</BookingReservationFormLabel>
+            <BookingReservationFormLabel>{t('dropOffLocation')}</BookingReservationFormLabel>
             <Form.Control
               {...register('dropOffLocation')}
               type='text'
-              placeholder='Drop-off Location'
+              placeholder={t('dropOffLocation')}
               isValid={!errors.dropOffLocation && isSubmitted}
               isInvalid={!!errors.dropOffLocation}
             />
@@ -162,7 +164,7 @@ export const BookingReservation = () => {
             md='4'
             controlId='dropOffDate'
           >
-            <BookingReservationFormLabel>Date To</BookingReservationFormLabel>
+            <BookingReservationFormLabel>{t('dropOffDate')}</BookingReservationFormLabel>
             <Form.Control
               {...register('dropOffDate', { valueAsDate: true })}
               type='datetime-local'
@@ -176,33 +178,30 @@ export const BookingReservation = () => {
         </Row>
         <Row className='mb-3 align-items-center'>
           <BookingReservationFormGroup as={Col} md='4' controlId='isOver25'>
-            <BookingReservationFormCheckbox
-              label='Is driver over 25 years old?'
-              {...register('isOver25')}
-            />
+            <BookingReservationFormCheckbox label={t('isDriver25')} {...register('isOver25')} />
           </BookingReservationFormGroup>
           <BookingReservationFormGroup as={Col} md='4' controlId='hasDiscountCode'>
             <BookingReservationFormCheckbox
-              label='I have discount code'
+              label={t('discountCodeQuestion')}
               {...register('hasDiscountCode', { onChange: (e) => trigger('discountCode') })}
             />
           </BookingReservationFormGroup>
           {isDiscountSelected && (
             <BookingReservationFormGroup as={Col} md='4' controlId='discountCode'>
-              <BookingReservationFormLabel>Discount Code</BookingReservationFormLabel>
+              <BookingReservationFormLabel>{t('discountCode')}</BookingReservationFormLabel>
               <Form.Control
                 {...register('discountCode')}
                 isValid={!errors.discountCode && isSubmitted}
                 isInvalid={!!errors.discountCode}
                 type='text'
-                placeholder='Discount Code'
+                placeholder={t('discountCode')}
               />
               <BookingReservationFeedback invalidFeedbackText={errors.discountCode?.message} />
             </BookingReservationFormGroup>
           )}
         </Row>
         <BookingReservationFormButtonGroup>
-          <Button type='submit'>Find Cars</Button>
+          <Button type='submit'>{t('submitButton')}</Button>
         </BookingReservationFormButtonGroup>
       </BookingReservationForm>
       {modalDataObj && (

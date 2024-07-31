@@ -1,9 +1,9 @@
 import { type FC, useState } from 'react'
-
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Carousel from 'react-bootstrap/Carousel'
+import { useTranslation } from 'react-i18next'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments } from '@fortawesome/free-solid-svg-icons'
@@ -194,13 +194,14 @@ const TestimonialsDataTemplate: FC<TestimonialsDataTemplateProps> = ({ data }) =
 }
 
 export const Testimonials = () => {
+  const { t } = useTranslation()
   const { status, data } = useTestimonialsDataQuery()
   const isData = status === 'success'
   return (
     <TestimonialsWrapper $isData={!isData}>
       <Container fluid>
-        {status === 'pending' && <ContentLoading text='Testimonials Content Loading...' />}
-        {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+        {status === 'pending' && <ContentLoading text={t('contentLoadingTestimonials')} />}
+        {status === 'error' && <ContentLoadingError text={t('contentLoadingError')} />}
         {status === 'success' && <TestimonialsDataTemplate data={data} />}
       </Container>
     </TestimonialsWrapper>

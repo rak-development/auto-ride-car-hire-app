@@ -1,0 +1,34 @@
+{
+  "header": "Podstawowe wartości",
+  "subheader": "To czyni nas najlepszą firmą transportową w okolicy",
+  "coreValues": [
+    {
+      "id": 1,
+      "title": "OBSŁUGA KLIENTA NAJWYŻSZEJ JAKOŚCI"
+    },
+    {
+      "id": 2,
+      "title": "CZYSTE I DOBRZE UTRZYMANE POJAZDY"
+    },
+    {
+      "id": 3,
+      "title": "INNOWACYJNE WYKORZYSTANIE TECHNOLOGII"
+    },
+    {
+      "id": 4,
+      "title": "PUNKTUALNOŚĆ I PRAWDZIWOŚĆ"
+    },
+    {
+      "id": 5,
+      "title": "DĄŻENIE DO CIĄGŁEJ DOSKONAŁOŚCI"
+    },
+    {
+      "id": 6,
+      "title": "BEZPIECZEŃSTWO NASZYM NAJWYŻSZYYM PRIORYTETEM"
+    },
+    {
+      "id": 7,
+      "title": "WYSOKO WYSZKOLENI, PROFESJONALNI KIEROWCY"
+    }
+  ]
+}

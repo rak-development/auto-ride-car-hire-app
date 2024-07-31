@@ -1,5 +1,6 @@
 import { type FC } from 'react'
 import Container from 'react-bootstrap/Container'
+import { useTranslation } from 'react-i18next'
 
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
@@ -10,6 +11,7 @@ import { CoreValuesList } from './core-values-list/core-values-list.component'
 import { CoreValuesCircles } from './core-values-circles/core-values-circles.component'
 import { ContentLoading } from '../content-loading/content-loading.component'
 import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
+import { type LanguageExtensionTypes } from '../../types/language-extension-types'
 
 const whyChooseUsDataSchema = z.object({
   header: z.string(),
@@ -35,26 +37,30 @@ const WhyChooseUsLayout: FC<WhyChooseUsLayoutProps> = ({ data }) => (
   </Container>
 )
 
-const useWhyChooseUsDataQuery = () =>
+const useWhyChooseUsDataQuery = (languageExtension: LanguageExtensionTypes) =>
   useQuery({
-    queryKey: ['whyChooseUsData'],
+    queryKey: ['whyChooseUsData', languageExtension],
     queryFn: () =>
       axios
-        .get('assets/db/circle-content-data.json')
+        .get(`assets/db/circle-content-data-${languageExtension}.json`)
         .then((res) => res.data)
         .then((data) => whyChooseUsDataSchema.parse(data)),
   })
 
 export const WhyChooseUs = () => {
-  const { status, data } = useWhyChooseUsDataQuery()
+  const {
+    i18n: { language },
+    t,
+  } = useTranslation()
+  const { status, data } = useWhyChooseUsDataQuery(language as LanguageExtensionTypes)
+  const isData = status === 'success'
+  const subheader = isData && t('whyChooseUsSubheader')
+  const header = isData && t('whyChooseUsHeader')
+
   return (
-    <SectionTemplate
-      subheader='Why Choose Us'
-      header='Proudly Serving the Oakland Area Since 2007'
-      bgMode='--bs-white'
-    >
-      {status === 'pending' && <ContentLoading text='Introduction Content Loading...' />}
-      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+    <SectionTemplate subheader={subheader} header={header} bgMode='--bs-white'>
+      {status === 'pending' && <ContentLoading text={t('contentLoadingWhyChooseUs')} />}
+      {status === 'error' && <ContentLoadingError text={t('contentLoadingError')} />}
       {status === 'success' && <WhyChooseUsLayout data={data} />}
     </SectionTemplate>
   )

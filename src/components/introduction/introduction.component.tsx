@@ -1,4 +1,5 @@
 import { type FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -17,6 +18,7 @@ import { IntroductionQuote } from './introduction-quote/introduction-quote.compo
 import { NewLineText } from '../new-line-text/new-line-text.component'
 import { ContentLoading } from '../content-loading/content-loading.component'
 import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
+import { type LanguageExtensionTypes } from '../../types/language-extension-types'
 
 const introductionDataSchema = z.object({
   title: z.string(),
@@ -91,22 +93,26 @@ const IntroductionLayout: FC<IntroductionLayoutProps> = ({ data }) => {
   )
 }
 
-const useIntroductionDataQuery = () =>
+const useIntroductionDataQuery = (languageExtension: LanguageExtensionTypes) =>
   useQuery({
-    queryKey: ['introductionData'],
+    queryKey: ['introductionData', languageExtension],
     queryFn: () =>
       axios
-        .get('assets/db/introduction-data.json')
+        .get(`assets/db/introduction-data-${languageExtension}.json`)
         .then((res) => res.data)
         .then((data) => introductionDataSchema.parse(data)),
   })
 
 export const Introduction = () => {
-  const { status, data } = useIntroductionDataQuery()
+  const {
+    i18n: { language },
+    t,
+  } = useTranslation()
+  const { status, data } = useIntroductionDataQuery(language as LanguageExtensionTypes)
   return (
     <IntroductionContainer>
-      {status === 'pending' && <ContentLoading text='Introduction Content Loading...' />}
-      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+      {status === 'pending' && <ContentLoading text={t('contentLoadingIntroduction')} />}
+      {status === 'error' && <ContentLoadingError text={t('contentLoadingError')} />}
       {status === 'success' && <IntroductionLayout data={data} />}
     </IntroductionContainer>
   )

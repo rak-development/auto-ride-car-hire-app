@@ -1,4 +1,5 @@
 import Container from 'react-bootstrap/Container'
+import { useTranslation } from 'react-i18next'
 
 import styled from '@emotion/styled'
 
@@ -42,12 +43,14 @@ const BookingReservationComponent = styled.div`
 `
 
 export const HeaderBottom = () => {
+  const { t } = useTranslation()
+
   return (
     <HeaderBottomBanner>
       <HeaderBottomContainer>
-        <MainHeader>Better journeys, by AutoRide</MainHeader>
-        <SecondHeader>Make the most of your car hire</SecondHeader>
-        <SubHeader>BOOK SMART. BOOK EARLY</SubHeader>
+        <MainHeader>{t('mainHeader')}</MainHeader>
+        <SecondHeader>{t('secondHeader')}</SecondHeader>
+        <SubHeader>{t('subHeader')}</SubHeader>
         <BookingReservationComponent>
           <BookingReservation />
         </BookingReservationComponent>

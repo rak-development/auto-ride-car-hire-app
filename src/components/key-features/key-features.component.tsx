@@ -2,6 +2,7 @@ import { type FC } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import { useTranslation } from 'react-i18next'
 
 import styled from '@emotion/styled'
 
@@ -15,6 +16,7 @@ import { device } from '../../devices-breakpoints'
 import { Icon } from '../icon/icon.component'
 import { ContentLoading } from '../content-loading/content-loading.component'
 import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
+import { type LanguageExtensionTypes } from '../../types/language-extension-types'
 
 const keyFeaturesDataSchema = z.array(
   z.object({
@@ -90,12 +92,12 @@ const KeyFeatureBody = styled.div`
   color: var(--bs-gray-700);
 `
 
-const useKeyFeaturesDataQuery = () =>
+const useKeyFeaturesDataQuery = (languageExtension: LanguageExtensionTypes) =>
   useQuery({
-    queryKey: ['keyFeaturesData'],
+    queryKey: ['keyFeaturesData', languageExtension],
     queryFn: () =>
       axios
-        .get('assets/db/key-features-data.json')
+        .get(`assets/db/key-features-data-${languageExtension}.json`)
         .then((res) => res.data)
         .then((data) => keyFeaturesDataSchema.parse(data)),
   })
@@ -122,17 +124,21 @@ const KeyFeaturesDataTemplate: FC<KeyFeaturesDataTemplateProps> = ({ data }) => 
 )
 
 export const KeyFeatures = () => {
-  const { status, data } = useKeyFeaturesDataQuery()
+  const {
+    i18n: { language },
+    t,
+  } = useTranslation()
+  const { status, data } = useKeyFeaturesDataQuery(language as LanguageExtensionTypes)
   const isData = status === 'success'
-  const subheader = isData && 'Key Features'
-  const header = isData && 'Make Your Trip Your Way With Us'
+  const subheader = isData && t('keyFeaturesSubheader')
+  const header = isData && t('keyFeaturesHeader')
 
   return (
     <SectionTemplate subheader={subheader} header={header} bgMode='--bs-white'>
       <KeyFeaturesSection $isData={isData}>
         <Container>
-          {status === 'pending' && <ContentLoading text='Key Features Content Loading...' />}
-          {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+          {status === 'pending' && <ContentLoading text={t('contentLoadingKeyFeatures')} />}
+          {status === 'error' && <ContentLoadingError text={t('contentLoadingError')} />}
           {status === 'success' && <KeyFeaturesDataTemplate data={data} />}
         </Container>
       </KeyFeaturesSection>

@@ -31,7 +31,7 @@
   "author": "Rafal Krohne",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rak-development/auto-ride-car-hire-app/issues"
+    "url": "https://github.com/rak-development/co-financing-app/issues"
   },
   "homepage": "https://github.com/rak-development/auto-ride-car-hire-app#readme",
   "devDependencies": {
@@ -97,10 +97,14 @@
     "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
     "date-fns": "^3.3.1",
+    "i18next": "^23.10.0",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "i18next-http-backend": "^2.5.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",
+    "react-i18next": "^14.0.5",
     "zod": "^3.22.4"
   }
 }
