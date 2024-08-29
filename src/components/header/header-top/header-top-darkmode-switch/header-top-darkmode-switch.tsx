@@ -1,11 +1,24 @@
 import { useState } from "react";
+import Button from 'react-bootstrap/Button'
+import styled from '@emotion/styled'
 
-export const HeaderTopDarkmodeSwitch = () => {
+const ButtonSwitch = styled(Button)`
+  background-color: var(--bs-gray-100);
+`
+
+export const HeaderTopDarkModeSwitch = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
-    setIsDarkMode((prevMode) => !prevMode);
+    setIsDarkMode(!isDarkMode);
+    const htmlElement = document.querySelector('html');
+    if (htmlElement === null) return
+    htmlElement.setAttribute('data-bs-theme', !isDarkMode ? 'dark' : 'light');
   };
 
-  return <div>Hello World</div>;
+  return (
+    <ButtonSwitch variant="primary" onClick={toggleDarkMode}>
+    {isDarkMode ? '🌙' : '🔆'}
+  </ButtonSwitch>
+  )
 };

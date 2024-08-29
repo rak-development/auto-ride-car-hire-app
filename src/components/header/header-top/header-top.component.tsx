@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container'
 import { HeaderTopContactDetails } from './header-top-contact-details/header-top-contact-details.component'
 import { SocialIcons } from '../../social-icons/social-icons.components'
 import { device } from '../../../devices-breakpoints'
-import { HeaderTopDarkmodeSwitch } from './header-top-darkmode-switch/header-top-darkmode-switch'
+import { HeaderTopDarkModeSwitch } from './header-top-darkmode-switch/header-top-darkmode-switch'
 
 const HeaderTopWrapper = styled.div`
   background-color: var(--bs-gray-100);
@@ -30,7 +30,7 @@ export const HeaderTop = () => {
         <HeaderTopContactDetails />
         <div className='d-md-flex'>
           <SocialIcons />
-          <HeaderTopDarkmodeSwitch />
+          <HeaderTopDarkModeSwitch />
         </div>
       </HeaderTopContainer>
     </HeaderTopWrapper>
