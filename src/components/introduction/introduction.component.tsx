@@ -105,8 +105,12 @@ export const Introduction = () => {
   const { status, data } = useIntroductionDataQuery()
   return (
     <IntroductionContainer>
-      {status === 'pending' && <ContentLoading text='Introduction Content Loading...' />}
-      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+      {status === 'pending' && (
+        <ContentLoading text='Introduction Content Loading...' />
+      )}
+      {status === 'error' && (
+        <ContentLoadingError text='Ooops something went wrong...' />
+      )}
       {status === 'success' && <IntroductionLayout data={data} />}
     </IntroductionContainer>
   )

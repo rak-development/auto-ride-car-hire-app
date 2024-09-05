@@ -79,8 +79,12 @@ const ServicesListTemplate = () => {
   const { status, data } = useServicesListDataQuery()
   return (
     <>
-      {status === 'pending' && <ContentLoading text='Contact Box Content Loading...' />}
-      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+      {status === 'pending' && (
+        <ContentLoading text='Contact Box Content Loading...' />
+      )}
+      {status === 'error' && (
+        <ContentLoadingError text='Ooops something went wrong...' />
+      )}
       {status === 'success' && <FooterMiddleList data={data} />}
     </>
   )
@@ -100,8 +104,12 @@ const ContactListTemplate = () => {
   const { status, data } = useContactListDataQuery()
   return (
     <>
-      {status === 'pending' && <ContentLoading text='Contact Box Content Loading...' />}
-      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+      {status === 'pending' && (
+        <ContentLoading text='Contact Box Content Loading...' />
+      )}
+      {status === 'error' && (
+        <ContentLoadingError text='Ooops something went wrong...' />
+      )}
       {status === 'success' && <FooterMiddleList data={data} />}
     </>
   )
@@ -119,8 +127,9 @@ export const FooterMiddle = () => {
                 <span />
               </TitleBox>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sodales libero et varius
-                commodo. Phasellus tristique magna sit amet aliquet mollis.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                sodales libero et varius commodo. Phasellus tristique magna sit
+                amet aliquet mollis.
               </p>
               <p>
                 <LogoGrey />

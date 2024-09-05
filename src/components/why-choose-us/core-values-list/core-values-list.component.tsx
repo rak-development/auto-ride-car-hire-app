@@ -42,7 +42,11 @@ const CoreValuesListElTitle = styled.span`
   padding-left: 1.5rem;
 `
 
-export const CoreValuesList = ({ header, subheader, coreValues }: WhyChooseUsDataType) => {
+export const CoreValuesList = ({
+  header,
+  subheader,
+  coreValues,
+}: WhyChooseUsDataType) => {
   return (
     <CoreValuesListWrapper>
       <CoreValuesListHeader>
