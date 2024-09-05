@@ -11,6 +11,7 @@ type FormData = {
   dropOffLocation: string
   pickupDate: Date
   dropOffDate: Date,
+  isDiscountCodeSelected: boolean,
   discountCode?: string
 }
 
@@ -20,15 +21,15 @@ const fillInForm = async (formData: FormData, user: UserEvent) => {
   await user.type(screen.getByLabelText('Date From'), dateFormatForForm(formData.pickupDate))
   await user.type(screen.getByLabelText('Date To'), dateFormatForForm(formData.dropOffDate))
   await user.click(screen.getByLabelText('Is driver over 25 years old?'))
-  await user.click(screen.getByLabelText('I have discount code'))
+  
+  if (formData.isDiscountCodeSelected) {
+    await user.click(screen.getByLabelText('I have discount code'))
+  }
 
   if (formData.discountCode) {
     await user.type(screen.getByLabelText('Discount Code'), formData.discountCode)
   }
 }
-
-const clickInsideInput = async (labelText: string) =>
-  await userEvent.click(screen.getByLabelText(labelText))
 
 describe('Booking Reservation', () => {
   beforeEach(() => {
@@ -54,109 +55,111 @@ describe('Booking Reservation', () => {
       pickupLocation: 'Rzeszów Główny PKP',
       dropOffLocation: 'Millenium Hall Rzeszów',
       pickupDate: addDays(new Date(), 5),
-      dropOffDate: addDays(new Date(), 10)
+      dropOffDate: addDays(new Date(), 10),
+      isDiscountCodeSelected: true,
     }
 
     const user = userEvent.setup()
-    fillInForm(formData, user)
+    await fillInForm(formData, user)
 
     expect(await screen.findByText('Please provide a discount code.')).toBeInTheDocument()
   })
 
-  // not working
-  // it('should test filling in the form', async () => {
-  //   expect(screen.queryByRole('modal')).not.toBeInTheDocument()
+  // working
+  it('should test filling in the form', async () => {
+    expect(screen.queryByRole('modal')).not.toBeInTheDocument()
 
-  //   const formData = {
-  //     pickupLocation: 'Rzeszów Główny PKP',
-  //     dropOffLocation: 'Millenium Hall Rzeszów',
-  //     pickupDate: addDays(new Date(), 5),
-  //     dropOffDate: addDays(new Date(), 10),
-  //     discountCode: 'HIT15',
-  //   }
+    const formData = {
+      pickupLocation: 'Rzeszów Główny PKP',
+      dropOffLocation: 'Millenium Hall Rzeszów',
+      pickupDate: addDays(new Date(), 5),
+      dropOffDate: addDays(new Date(), 10),
+      isDiscountCodeSelected: true,
+      discountCode: 'HIT15',
+    }
 
-  //   const user = userEvent.setup()
+    const user = userEvent.setup()
 
-  //   fillInForm(formData, user)
+    await fillInForm(formData, user)
 
-  //   const submitButton = screen.getByRole('button', { name: 'Find Cars' })
-  //   await user.click(submitButton)
+    const submitButton = screen.getByRole('button', { name: 'Find Cars' })
+    await user.click(submitButton)
 
-  //   // expect(screen.queryByRole('dialog')).toBeInTheDocument()
+    const modal = await screen.findByRole('dialog')
+    expect(modal).toBeInTheDocument()
 
-  //   const modal = screen.queryByRole('modal')
-  //   expect(modal).toBeInTheDocument()
+    expect(screen.getByText('Pickup Location : Rzeszów Główny PKP')).toBeInTheDocument()
+    expect(screen.getByText('Drop-off Location : Millenium Hall Rzeszów')).toBeInTheDocument()
+    expect(
+      screen.getByText(`Date From : ${format(formData.pickupDate, 'PPPppp')}`),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText(`Date To : ${format(formData.dropOffDate, 'PPPppp')}`),
+    ).toBeInTheDocument()
 
-  //   // expect(screen.getByText('Pickup Location : Rzeszów Główny PKP')).toBeInTheDocument()
-  //   // expect(screen.getByText('Drop-off Location : Millenium Hall Rzeszów')).toBeInTheDocument()
-  //   // expect(
-  //   //   screen.getByText(`Date From : ${format(formData.pickupDate, 'PPPppp')}`),
-  //   // ).toBeInTheDocument()
-  //   // expect(
-  //   //   screen.getByText(`Date To : ${format(formData.dropOffDate, 'PPPppp')}`),
-  //   // ).toBeInTheDocument()
+    expect(screen.getByText('Is driver over 25 years old? : Yes')).toBeInTheDocument()
+    expect(screen.getByText('I have discount code : Yes')).toBeInTheDocument()
+    expect(screen.getByText(`Discount code : ${formData.discountCode}`)).toBeInTheDocument()
 
-  //   // expect(screen.getByText('Is driver over 25 years old? : Yes')).toBeInTheDocument()
-  //   // expect(screen.getByText('I have discount code : Yes')).toBeInTheDocument()
-  //   // expect(screen.getByText(`Discount code : ${formData.discountCode}`)).toBeInTheDocument()
+    const closeButton = screen.getAllByRole('button', { name: 'Close' })[1]
+    await user.click(closeButton)
+    expect(screen.queryByRole('dialog', { hidden: true })).not.toBeInTheDocument()
+  })
 
-  //   // const closeButton = screen.getAllByRole('button', { name: 'Close' })[1]
-  //   // await user.click(closeButton)
-  //   // expect(screen.queryByRole('dialog', { hidden: true })).not.toBeInTheDocument()
-  // })
+  // working
+  it('should test pick-up date validation if date is in the past', async () => {
+    const formData = {
+      pickupLocation: 'Rzeszów Główny PKP',
+      dropOffLocation: 'Millenium Hall Rzeszów',
+      pickupDate: subDays(new Date(), 2),
+      dropOffDate: addDays(new Date(), 2),
+      isDiscountCodeSelected: true,
+    }
 
-  // it('should test pick-up date validation if date is in the past', async () => {
-  //   const formData = {
-  //     pickupLocation: 'Rzeszów Główny PKP',
-  //     dropOffLocation: 'Millenium Hall Rzeszów',
-  //     pickupDate: subDays(new Date(), 2),
-  //     dropOffDate: addDays(new Date(), 2),
-  //   }
+    const user = userEvent.setup()
 
-  //   const user = userEvent.setup()
-  //   fillInForm(formData, user)
+    await fillInForm(formData, user)
 
-  //   const submitButton = screen.getByRole('button', { name: 'Find Cars' })
-  //   await user.click(submitButton)
+    const submitButton = screen.getByRole('button', { name: 'Find Cars' })
+    await user.click(submitButton)
+    expect(await screen.findByText('Pick-up date needs to be in the future.')).toBeInTheDocument()
+  })
 
-  //   screen.debug()
-  //   // screen.debug(screen.getByTestId('test'))
+  it('should test drop-off date validation if date is in the past', async () => {
+    const formData = {
+      pickupLocation: 'Rzeszów Główny PKP',
+      dropOffLocation: 'Millenium Hall Rzeszów',
+      pickupDate: addDays(new Date(), 2),
+      dropOffDate: subDays(new Date(), 2),
+      isDiscountCodeSelected: true,
+    }
 
+    const user = userEvent.setup()
 
-  // //   // expect(await screen.findByText('Pick-up date needs to be in the future.')).toBeInTheDocument()
-  // })
+    await fillInForm(formData, user)
 
-  // it('should test drop-off date validation if date is in the past', async () => {
-  //   const formData = {
-  //     pickupLocation: 'Rzeszów Główny PKP',
-  //     dropOffLocation: 'Millenium Hall Rzeszów',
-  //     pickupDate: addDays(new Date(), 2),
-  //     dropOffDate: subDays(new Date(), 2),
-  //   }
+    const submitButton = screen.getByRole('button', { name: 'Find Cars' })
+    await user.click(submitButton)
+    expect(await screen.findByText('Drop-off date needs to be in the future.')).toBeInTheDocument()
+  })
 
-  //   const user = userEvent.setup()
+  it('should test drop-off date validation if date is not greater than pick-up date', async () => {
+    const formData = {
+      pickupLocation: 'Rzeszów Główny PKP',
+      dropOffLocation: 'Millenium Hall Rzeszów',
+      pickupDate: addDays(new Date(), 10),
+      dropOffDate: addDays(new Date(), 8),
+      isDiscountCodeSelected: true,
+    }
 
-  //   const submitButton = screen.getByRole('button', { name: 'Find Cars' })
-  //   await user.click(submitButton)
+    const user = userEvent.setup()
 
-  //   expect(await screen.findByText('Drop-off date needs to be in the future')).toBeInTheDocument()
-  // })
+    await fillInForm(formData, user)
 
-  // it('should test drop-off date validation if date is not greater than pick-up date', async () => {
-  //   const formData = {
-  //     pickupLocation: 'Rzeszów Główny PKP',
-  //     dropOffLocation: 'Millenium Hall Rzeszów',
-  //     pickupDate: addDays(new Date(), 10),
-  //     dropOffDate: addDays(new Date(), 8),
-  //   }
-
-  //   const user = userEvent.setup()
-
-  //   const submitButton = screen.getByRole('button', { name: 'Find Cars' })
-  //   await user.click(submitButton)
-
-  //   expect(
-  //     await screen.findByText('Drop-off date needs to be greater than pick-up date'),
-  //   ).toBeInTheDocument()
-  // })
+    const submitButton = screen.getByRole('button', { name: 'Find Cars' })
+    await user.click(submitButton)
+    expect(
+      await screen.findByText('Drop-off date needs to be greater than pick-up date'),
+    ).toBeInTheDocument()
+  })
 })
