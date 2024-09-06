@@ -15,6 +15,7 @@ node_modules
 !.storybook
 !.npmrc
 !.prettierignore
+!.prettierrc
 
 cypress/screenshots
 

@@ -104,7 +104,9 @@ interface KeyFeaturesDataTemplateProps {
   data: KeyFeaturesDataType
 }
 
-const KeyFeaturesDataTemplate: FC<KeyFeaturesDataTemplateProps> = ({ data }) => (
+const KeyFeaturesDataTemplate: FC<KeyFeaturesDataTemplateProps> = ({
+  data,
+}) => (
   <Row>
     {data.map(({ id, icon, header, body }) => (
       <Col md={3} key={id}>
@@ -131,8 +133,12 @@ export const KeyFeatures = () => {
     <SectionTemplate subheader={subheader} header={header} bgMode='--bs-white'>
       <KeyFeaturesSection $isData={isData}>
         <Container>
-          {status === 'pending' && <ContentLoading text='Key Features Content Loading...' />}
-          {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+          {status === 'pending' && (
+            <ContentLoading text='Key Features Content Loading...' />
+          )}
+          {status === 'error' && (
+            <ContentLoadingError text='Ooops something went wrong...' />
+          )}
           {status === 'success' && <KeyFeaturesDataTemplate data={data} />}
         </Container>
       </KeyFeaturesSection>

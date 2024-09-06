@@ -71,7 +71,11 @@ const CoreValuesCircle = styled.div`
   }
 `
 
-export const CoreValuesCircles = ({ header, subheader, coreValues }: CircleContentDataType) => {
+export const CoreValuesCircles = ({
+  header,
+  subheader,
+  coreValues,
+}: CircleContentDataType) => {
   return (
     <CoreValuesCirclesWrapper>
       <CoreValuesCircle>

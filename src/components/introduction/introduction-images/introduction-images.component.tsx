@@ -23,7 +23,9 @@ interface IntroductionContentProps {
   images: IntroductionImagesType[]
 }
 
-export const IntroductionImages: FC<IntroductionContentProps> = ({ images }) => {
+export const IntroductionImages: FC<IntroductionContentProps> = ({
+  images,
+}) => {
   return (
     <IntroductionImagesRow>
       {images.map(({ id, title, image }) => (

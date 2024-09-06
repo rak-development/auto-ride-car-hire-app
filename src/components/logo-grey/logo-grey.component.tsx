@@ -10,4 +10,6 @@ const Logo = styled.img`
   max-width: 100%;
 `
 
-export const LogoGrey = () => <Logo id='logo' src={logoSrc} alt='AutoRide-Logo' />
+export const LogoGrey = () => (
+  <Logo id='logo' src={logoSrc} alt='AutoRide-Logo' />
+)

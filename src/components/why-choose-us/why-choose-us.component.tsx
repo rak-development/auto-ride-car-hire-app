@@ -51,10 +51,13 @@ export const WhyChooseUs = () => {
     <SectionTemplate
       subheader='Why Choose Us'
       header='Proudly Serving the Oakland Area Since 2007'
-      bgMode='--bs-white'
-    >
-      {status === 'pending' && <ContentLoading text='Introduction Content Loading...' />}
-      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+      bgMode='--bs-white'>
+      {status === 'pending' && (
+        <ContentLoading text='Introduction Content Loading...' />
+      )}
+      {status === 'error' && (
+        <ContentLoadingError text='Ooops something went wrong...' />
+      )}
       {status === 'success' && <WhyChooseUsLayout data={data} />}
     </SectionTemplate>
   )

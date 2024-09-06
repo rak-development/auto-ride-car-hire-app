@@ -32,7 +32,8 @@ const ScrollToTopButton = styled(Button)`
 
 export const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false)
-  const scrollToTopHandler = () => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  const scrollToTopHandler = () =>
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
 
   useEffect(() => {
     const listenToScroll = () => {

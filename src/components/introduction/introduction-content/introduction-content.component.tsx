@@ -24,7 +24,9 @@ interface IntroductionContentProps {
   content: IntroductionContentType[]
 }
 
-export const IntroductionContent: FC<IntroductionContentProps> = ({ content }) => (
+export const IntroductionContent: FC<IntroductionContentProps> = ({
+  content,
+}) => (
   <>
     {content.map(({ title, text }) => {
       const colSize = content.length === 1 ? 8 : 4

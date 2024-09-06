@@ -2,7 +2,10 @@ import { type FC } from 'react'
 import styled from '@emotion/styled'
 
 import { Icon } from '../../../icon/icon.component'
-import { type ServicesListDataType, type ContactListDataType } from '../footer-middle.component'
+import {
+  type ServicesListDataType,
+  type ContactListDataType,
+} from '../footer-middle.component'
 
 const FooterMiddleListContainer = styled.ul`
   margin: 0;

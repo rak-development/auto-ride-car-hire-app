@@ -67,8 +67,7 @@ export const HeaderMiddle = () => (
         data-bs-target='#navbarNav'
         aria-controls='navbarNav'
         aria-expanded='false'
-        aria-label='Toggle navigation'
-      >
+        aria-label='Toggle navigation'>
         <span className='navbar-toggler-icon'></span>
       </NavToggler>
       <NavbarCollapse id='navbarNav'>

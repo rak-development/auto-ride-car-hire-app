@@ -128,8 +128,12 @@ export const ContactBox = () => {
 
   return (
     <Row>
-      {status === 'pending' && <ContentLoading text='Contact Box Content Loading...' />}
-      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+      {status === 'pending' && (
+        <ContentLoading text='Contact Box Content Loading...' />
+      )}
+      {status === 'error' && (
+        <ContentLoadingError text='Ooops something went wrong...' />
+      )}
       {status === 'success' && <ContactBoxLayout data={data} />}
     </Row>
   )
