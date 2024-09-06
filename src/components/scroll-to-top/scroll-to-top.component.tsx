@@ -49,7 +49,10 @@ export const ScrollToTop = () => {
   }
 
   return (
-    <ScrollToTopButton type='button' aria-label='Go to top' onClick={scrollToTopHandler}>
+    <ScrollToTopButton
+      type='button'
+      aria-label='Go to top'
+      onClick={scrollToTopHandler}>
       <FontAwesomeIcon icon={faChevronUp} />
     </ScrollToTopButton>
   )

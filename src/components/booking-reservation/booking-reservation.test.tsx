@@ -4,30 +4,46 @@ import { addDays, subDays, format } from 'date-fns'
 import { render, screen } from '../../utils/test-utils'
 import { BookingReservation } from './booking-reservation.component'
 
-const dateFormatForForm = (dateObject: Date) => format(dateObject, "yyyy-MM-dd'T'HH:mm:ss")
+const dateFormatForForm = (dateObject: Date) =>
+  format(dateObject, "yyyy-MM-dd'T'HH:mm:ss")
 
 type FormData = {
   pickupLocation: string
   dropOffLocation: string
   pickupDate: Date
-  dropOffDate: Date,
-  isDiscountCodeSelected: boolean,
+  dropOffDate: Date
+  isDiscountCodeSelected: boolean
   discountCode?: string
 }
 
 const fillInForm = async (formData: FormData, user: UserEvent) => {
-  await user.type(screen.getByLabelText('Pickup Location'), formData.pickupLocation)
-  await user.type(screen.getByLabelText('Drop-off Location'), formData.dropOffLocation)
-  await user.type(screen.getByLabelText('Date From'), dateFormatForForm(formData.pickupDate))
-  await user.type(screen.getByLabelText('Date To'), dateFormatForForm(formData.dropOffDate))
+  await user.type(
+    screen.getByLabelText('Pickup Location'),
+    formData.pickupLocation,
+  )
+  await user.type(
+    screen.getByLabelText('Drop-off Location'),
+    formData.dropOffLocation,
+  )
+  await user.type(
+    screen.getByLabelText('Date From'),
+    dateFormatForForm(formData.pickupDate),
+  )
+  await user.type(
+    screen.getByLabelText('Date To'),
+    dateFormatForForm(formData.dropOffDate),
+  )
   await user.click(screen.getByLabelText('Is driver over 25 years old?'))
-  
+
   if (formData.isDiscountCodeSelected) {
     await user.click(screen.getByLabelText('I have discount code'))
   }
 
   if (formData.discountCode) {
-    await user.type(screen.getByLabelText('Discount Code'), formData.discountCode)
+    await user.type(
+      screen.getByLabelText('Discount Code'),
+      formData.discountCode,
+    )
   }
 }
 
@@ -36,20 +52,22 @@ describe('Booking Reservation', () => {
     render(<BookingReservation />)
   })
 
-  // working
   it('should test validation on empty fields in the reservation form', async () => {
     const submitButton = screen.getByRole('button', { name: 'Find Cars' })
     const user = userEvent.setup()
     await user.click(submitButton)
 
-    expect(await screen.findByText('Please provide a pickup location.')).toBeInTheDocument()
+    expect(
+      await screen.findByText('Please provide a pickup location.'),
+    ).toBeInTheDocument()
 
-    expect(await screen.findByText('Please provide a drop-off location.')).toBeInTheDocument()
+    expect(
+      await screen.findByText('Please provide a drop-off location.'),
+    ).toBeInTheDocument()
 
     expect(await screen.findAllByText('Invalid date')).toHaveLength(2)
   })
 
-  // working
   it('should test validation on discount code', async () => {
     const formData: FormData = {
       pickupLocation: 'Rzeszów Główny PKP',
@@ -62,10 +80,11 @@ describe('Booking Reservation', () => {
     const user = userEvent.setup()
     await fillInForm(formData, user)
 
-    expect(await screen.findByText('Please provide a discount code.')).toBeInTheDocument()
+    expect(
+      await screen.findByText('Please provide a discount code.'),
+    ).toBeInTheDocument()
   })
 
-  // working
   it('should test filling in the form', async () => {
     expect(screen.queryByRole('modal')).not.toBeInTheDocument()
 
@@ -88,8 +107,12 @@ describe('Booking Reservation', () => {
     const modal = await screen.findByRole('dialog')
     expect(modal).toBeInTheDocument()
 
-    expect(screen.getByText('Pickup Location : Rzeszów Główny PKP')).toBeInTheDocument()
-    expect(screen.getByText('Drop-off Location : Millenium Hall Rzeszów')).toBeInTheDocument()
+    expect(
+      screen.getByText('Pickup Location : Rzeszów Główny PKP'),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText('Drop-off Location : Millenium Hall Rzeszów'),
+    ).toBeInTheDocument()
     expect(
       screen.getByText(`Date From : ${format(formData.pickupDate, 'PPPppp')}`),
     ).toBeInTheDocument()
@@ -97,16 +120,21 @@ describe('Booking Reservation', () => {
       screen.getByText(`Date To : ${format(formData.dropOffDate, 'PPPppp')}`),
     ).toBeInTheDocument()
 
-    expect(screen.getByText('Is driver over 25 years old? : Yes')).toBeInTheDocument()
+    expect(
+      screen.getByText('Is driver over 25 years old? : Yes'),
+    ).toBeInTheDocument()
     expect(screen.getByText('I have discount code : Yes')).toBeInTheDocument()
-    expect(screen.getByText(`Discount code : ${formData.discountCode}`)).toBeInTheDocument()
+    expect(
+      screen.getByText(`Discount code : ${formData.discountCode}`),
+    ).toBeInTheDocument()
 
     const closeButton = screen.getAllByRole('button', { name: 'Close' })[1]
     await user.click(closeButton)
-    expect(screen.queryByRole('dialog', { hidden: true })).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('dialog', { hidden: true }),
+    ).not.toBeInTheDocument()
   })
 
-  // working
   it('should test pick-up date validation if date is in the past', async () => {
     const formData = {
       pickupLocation: 'Rzeszów Główny PKP',
@@ -122,7 +150,9 @@ describe('Booking Reservation', () => {
 
     const submitButton = screen.getByRole('button', { name: 'Find Cars' })
     await user.click(submitButton)
-    expect(await screen.findByText('Pick-up date needs to be in the future.')).toBeInTheDocument()
+    expect(
+      await screen.findByText('Pick-up date needs to be in the future.'),
+    ).toBeInTheDocument()
   })
 
   it('should test drop-off date validation if date is in the past', async () => {
@@ -140,7 +170,9 @@ describe('Booking Reservation', () => {
 
     const submitButton = screen.getByRole('button', { name: 'Find Cars' })
     await user.click(submitButton)
-    expect(await screen.findByText('Drop-off date needs to be in the future.')).toBeInTheDocument()
+    expect(
+      await screen.findByText('Drop-off date needs to be in the future.'),
+    ).toBeInTheDocument()
   })
 
   it('should test drop-off date validation if date is not greater than pick-up date', async () => {
@@ -159,7 +191,9 @@ describe('Booking Reservation', () => {
     const submitButton = screen.getByRole('button', { name: 'Find Cars' })
     await user.click(submitButton)
     expect(
-      await screen.findByText('Drop-off date needs to be greater than pick-up date'),
+      await screen.findByText(
+        'Drop-off date needs to be greater than pick-up date',
+      ),
     ).toBeInTheDocument()
   })
 })
