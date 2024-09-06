@@ -34,7 +34,10 @@ type OurFleetContainerProps = {
 }
 
 const OurFleetContainer = styled(
-  ({ $isData, ...props }: Omit<ContainerProps, 'as'> & OurFleetContainerProps) => (
+  ({
+    $isData,
+    ...props
+  }: Omit<ContainerProps, 'as'> & OurFleetContainerProps) => (
     <Container {...props} />
   ),
 )<OurFleetContainerProps>`
@@ -126,11 +129,15 @@ const OurFleetDataTemplate: FC<OurFleetTemplateProps> = ({ data }) => (
           <OurFleetCardBody>
             <OurFleetCardBodyRow>
               <FontAwesomeIcon icon={faUser} />
-              <OurFleetCardLuggageCapacity>{passengerNumber}</OurFleetCardLuggageCapacity>
+              <OurFleetCardLuggageCapacity>
+                {passengerNumber}
+              </OurFleetCardLuggageCapacity>
             </OurFleetCardBodyRow>
             <OurFleetCardBodyRow>
               <FontAwesomeIcon icon={faSuitcaseRolling} />
-              <OurFleetCardLuggageCapacity>{luggageNumber}</OurFleetCardLuggageCapacity>
+              <OurFleetCardLuggageCapacity>
+                {luggageNumber}
+              </OurFleetCardLuggageCapacity>
             </OurFleetCardBodyRow>
           </OurFleetCardBody>
         </OurFleetCard>
@@ -146,10 +153,17 @@ export const OurFleet = () => {
   const header = isData && 'Browse Our Limos'
 
   return (
-    <SectionTemplate subheader={subheader} header={header} bgMode='--bs-gray-100'>
+    <SectionTemplate
+      subheader={subheader}
+      header={header}
+      bgMode='--bs-gray-100'>
       <OurFleetContainer $isData={isData}>
-        {status === 'pending' && <ContentLoading text='Our Fleet Content Loading...' />}
-        {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+        {status === 'pending' && (
+          <ContentLoading text='Our Fleet Content Loading...' />
+        )}
+        {status === 'error' && (
+          <ContentLoadingError text='Ooops something went wrong...' />
+        )}
         {status === 'success' && <OurFleetDataTemplate data={data} />}
       </OurFleetContainer>
     </SectionTemplate>

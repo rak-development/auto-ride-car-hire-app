@@ -36,13 +36,15 @@ interface CoreValuesIconProps {
   $textPosition: TextPositionType
 }
 
-export const CoreValuesIcon: FC<CoreValuesIconProps> = ({ isResponsive, $textPosition }) => {
+export const CoreValuesIcon: FC<CoreValuesIconProps> = ({
+  isResponsive,
+  $textPosition,
+}) => {
   return (
     <CoreValuesIconWrapper
       isResponsive={isResponsive}
       className='circleWrapper'
-      $textPosition={$textPosition}
-    >
+      $textPosition={$textPosition}>
       <Icon icon={'fa-check' as Icon} />
     </CoreValuesIconWrapper>
   )

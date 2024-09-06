@@ -56,7 +56,9 @@ export const IntroductionQuote: FC<IntroductionQuoteProps> = ({ quote }) => {
       <Col>
         <IntroductionQuoteWrapper>
           <Icon icon={'fa-quote-left' as const} />
-          <IntroductionQuoteBlockquote>{quote.text}</IntroductionQuoteBlockquote>
+          <IntroductionQuoteBlockquote>
+            {quote.text}
+          </IntroductionQuoteBlockquote>
           <IntroductionQuoteAuthor>{quote.author}</IntroductionQuoteAuthor>
         </IntroductionQuoteWrapper>
       </Col>

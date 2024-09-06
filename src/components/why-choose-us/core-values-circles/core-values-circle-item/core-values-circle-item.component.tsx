@@ -38,7 +38,8 @@ const CoreValuesCircleItemWrapper = styled.div<CoreValuesCircleItemStylesProps>`
   width: 100%;
   align-items: center;
   z-index: 1;
-  justify-content: ${({ $textPosition }) => ($textPosition === 'text-left' ? 'end' : 'start')};
+  justify-content: ${({ $textPosition }) =>
+    $textPosition === 'text-left' ? 'end' : 'start'};
 `
 
 interface CoreValuesCircleItemProps {
@@ -58,10 +59,11 @@ export const CoreValuesCircleItem: FC<CoreValuesCircleItemProps> = ({
   return (
     <CoreValuesCircleItemWrapper
       $textPosition={$textPosition}
-      style={{ top: elementPosition.top, left: elementPosition.left }}
-    >
+      style={{ top: elementPosition.top, left: elementPosition.left }}>
       <CoreValuesIcon isResponsive={false} $textPosition={$textPosition} />
-      <CoreValuesCircleItemLabel $textPosition={$textPosition}>{title}</CoreValuesCircleItemLabel>
+      <CoreValuesCircleItemLabel $textPosition={$textPosition}>
+        {title}
+      </CoreValuesCircleItemLabel>
     </CoreValuesCircleItemWrapper>
   )
 }

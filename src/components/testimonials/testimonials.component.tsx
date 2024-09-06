@@ -164,7 +164,9 @@ interface TestimonialsDataTemplateProps {
   data: TestimonialsDataType
 }
 
-const TestimonialsDataTemplate: FC<TestimonialsDataTemplateProps> = ({ data }) => {
+const TestimonialsDataTemplate: FC<TestimonialsDataTemplateProps> = ({
+  data,
+}) => {
   const [index, setIndex] = useState(0)
   return (
     <Row>
@@ -199,8 +201,12 @@ export const Testimonials = () => {
   return (
     <TestimonialsWrapper $isData={!isData}>
       <Container fluid>
-        {status === 'pending' && <ContentLoading text='Testimonials Content Loading...' />}
-        {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+        {status === 'pending' && (
+          <ContentLoading text='Testimonials Content Loading...' />
+        )}
+        {status === 'error' && (
+          <ContentLoadingError text='Ooops something went wrong...' />
+        )}
         {status === 'success' && <TestimonialsDataTemplate data={data} />}
       </Container>
     </TestimonialsWrapper>
