@@ -108,11 +108,17 @@ export const Introduction = () => {
     i18n: { language },
     t,
   } = useTranslation()
-  const { status, data } = useIntroductionDataQuery(language as LanguageExtensionTypes)
+  const { status, data } = useIntroductionDataQuery(
+    language as LanguageExtensionTypes,
+  )
   return (
     <IntroductionContainer>
-      {status === 'pending' && <ContentLoading text={t('contentLoadingIntroduction')} />}
-      {status === 'error' && <ContentLoadingError text={t('contentLoadingError')} />}
+      {status === 'pending' && (
+        <ContentLoading text={t('contentLoadingIntroduction')} />
+      )}
+      {status === 'error' && (
+        <ContentLoadingError text={t('contentLoadingError')} />
+      )}
       {status === 'success' && <IntroductionLayout data={data} />}
     </IntroductionContainer>
   )

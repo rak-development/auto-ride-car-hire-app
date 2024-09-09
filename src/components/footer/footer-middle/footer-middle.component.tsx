@@ -82,11 +82,17 @@ const ServicesListTemplate = () => {
     i18n: { language },
     t,
   } = useTranslation()
-  const { status, data } = useServicesListDataQuery(language as LanguageExtensionTypes)
+  const { status, data } = useServicesListDataQuery(
+    language as LanguageExtensionTypes,
+  )
   return (
     <>
-      {status === 'pending' && <ContentLoading text={t('contentLoadingServicesList')} />}
-      {status === 'error' && <ContentLoadingError text={t('contentLoadingError')} />}
+      {status === 'pending' && (
+        <ContentLoading text={t('contentLoadingServicesList')} />
+      )}
+      {status === 'error' && (
+        <ContentLoadingError text={t('contentLoadingError')} />
+      )}
       {status === 'success' && <FooterMiddleList data={data} />}
     </>
   )
@@ -107,8 +113,12 @@ const ContactListTemplate = () => {
   const { status, data } = useContactListDataQuery()
   return (
     <>
-      {status === 'pending' && <ContentLoading text={t('contentLoadingContactList')} />}
-      {status === 'error' && <ContentLoadingError text={t('contentLoadingError')} />}
+      {status === 'pending' && (
+        <ContentLoading text={t('contentLoadingContactList')} />
+      )}
+      {status === 'error' && (
+        <ContentLoadingError text={t('contentLoadingError')} />
+      )}
       {status === 'success' && <FooterMiddleList data={data} />}
     </>
   )

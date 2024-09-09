@@ -117,7 +117,9 @@ export const WhatWeOffer = () => {
     i18n: { language },
     t,
   } = useTranslation()
-  const { status, data } = useWhatWeOfferDataQuery(language as LanguageExtensionTypes)
+  const { status, data } = useWhatWeOfferDataQuery(
+    language as LanguageExtensionTypes,
+  )
   const isData = status === 'success'
   const subheader = isData && t('whatWeOfferSubheader')
   const header = isData && t('whatWeOfferHeader')
@@ -128,8 +130,12 @@ export const WhatWeOffer = () => {
       header={header}
       bgMode='--bs-gray-100'>
       <WhatWeOfferContainer>
-        {status === 'pending' && <ContentLoading text={t('contentLoadingWhatWeOffer')} />}
-        {status === 'error' && <ContentLoadingError text={t('contentLoadingError')} />}
+        {status === 'pending' && (
+          <ContentLoading text={t('contentLoadingWhatWeOffer')} />
+        )}
+        {status === 'error' && (
+          <ContentLoadingError text={t('contentLoadingError')} />
+        )}
         {status === 'success' && <WhatWeOfferDataTemplate data={data} />}
       </WhatWeOfferContainer>
     </SectionTemplate>

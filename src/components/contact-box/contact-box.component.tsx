@@ -124,23 +124,30 @@ const useContactBoxDataQuery = (languageExtension: LanguageExtensionTypes) =>
         .then((data) => contactBoxDataSchema.parse(data)),
   })
 
-  const useCurrentLanguage = () => {
-    const { i18n: { language }, t  } = useTranslation();
-   
-    return {
-      language: language as LanguageExtensionTypes,
-      t
-    };
+const useCurrentLanguage = () => {
+  const {
+    i18n: { language },
+    t,
+  } = useTranslation()
+
+  return {
+    language: language as LanguageExtensionTypes,
+    t,
   }
+}
 
 export const ContactBox = () => {
-  const {language, t} = useCurrentLanguage();
+  const { language, t } = useCurrentLanguage()
   const { status, data } = useContactBoxDataQuery(language)
 
   return (
     <Row>
-      {status === 'pending' && <ContentLoading text={t('contentLoadingContactBox')} />}
-      {status === 'error' && <ContentLoadingError text={t('contentLoadingError')} />}
+      {status === 'pending' && (
+        <ContentLoading text={t('contentLoadingContactBox')} />
+      )}
+      {status === 'error' && (
+        <ContentLoadingError text={t('contentLoadingError')} />
+      )}
       {status === 'success' && <ContactBoxLayout data={data} />}
     </Row>
   )

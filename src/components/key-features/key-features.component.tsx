@@ -130,7 +130,9 @@ export const KeyFeatures = () => {
     i18n: { language },
     t,
   } = useTranslation()
-  const { status, data } = useKeyFeaturesDataQuery(language as LanguageExtensionTypes)
+  const { status, data } = useKeyFeaturesDataQuery(
+    language as LanguageExtensionTypes,
+  )
   const isData = status === 'success'
   const subheader = isData && t('keyFeaturesSubheader')
   const header = isData && t('keyFeaturesHeader')

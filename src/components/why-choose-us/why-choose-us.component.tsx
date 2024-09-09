@@ -53,24 +53,27 @@ export const WhyChooseUs = () => {
     i18n: { language },
     t,
   } = useTranslation()
-  const { status, data } = useWhyChooseUsDataQuery(language as LanguageExtensionTypes)
+  const { status, data } = useWhyChooseUsDataQuery(
+    language as LanguageExtensionTypes,
+  )
   const isData = status === 'success'
   const subheader = isData && t('whyChooseUsSubheader')
   const header = isData && t('whyChooseUsHeader')
 
   if (data) {
-
     console.log(data)
-    console.log('test below');
-    console.log(
-      t(data.header, {count: 2})
-    )
+    console.log('test below')
+    console.log(t(data.header, { count: 2 }))
   }
 
   return (
     <SectionTemplate subheader={subheader} header={header} bgMode='--bs-white'>
-      {status === 'pending' && <ContentLoading text={t('contentLoadingWhyChooseUs')} />}
-      {status === 'error' && <ContentLoadingError text={t('contentLoadingError')} />}
+      {status === 'pending' && (
+        <ContentLoading text={t('contentLoadingWhyChooseUs')} />
+      )}
+      {status === 'error' && (
+        <ContentLoadingError text={t('contentLoadingError')} />
+      )}
       {status === 'success' && <WhyChooseUsLayout data={data} />}
     </SectionTemplate>
   )

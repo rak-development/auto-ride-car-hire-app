@@ -160,8 +160,12 @@ export const OurFleet = () => {
       header={header}
       bgMode='--bs-gray-100'>
       <OurFleetContainer $isData={isData}>
-        {status === 'pending' && <ContentLoading text='Our Fleet Content Loading...' />}
-        {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+        {status === 'pending' && (
+          <ContentLoading text='Our Fleet Content Loading...' />
+        )}
+        {status === 'error' && (
+          <ContentLoadingError text='Ooops something went wrong...' />
+        )}
         {status === 'success' && <OurFleetDataTemplate data={data} />}
       </OurFleetContainer>
     </SectionTemplate>
