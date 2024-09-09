@@ -32,8 +32,7 @@ export const HeaderTopLanguageSelector = () => {
       defaultValue={i18n.language}
       onChange={onChangeLang}
       title='Language Selector'
-      aria-label='Language Selector'
-    >
+      aria-label='Language Selector'>
       {LANGUAGES.map(({ code }) => (
         <option key={code} value={code}>
           {code.toUpperCase()}
