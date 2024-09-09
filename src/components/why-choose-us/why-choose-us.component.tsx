@@ -48,6 +48,7 @@ const useWhyChooseUsDataQuery = (languageExtension: LanguageExtensionTypes) =>
   })
 
 export const WhyChooseUs = () => {
+  // console.log('why choose us')
   const {
     i18n: { language },
     t,
@@ -56,6 +57,15 @@ export const WhyChooseUs = () => {
   const isData = status === 'success'
   const subheader = isData && t('whyChooseUsSubheader')
   const header = isData && t('whyChooseUsHeader')
+
+  if (data) {
+
+    console.log(data)
+    console.log('test below');
+    console.log(
+      t(data.header, {count: 2})
+    )
+  }
 
   return (
     <SectionTemplate subheader={subheader} header={header} bgMode='--bs-white'>

@@ -124,12 +124,18 @@ const useContactBoxDataQuery = (languageExtension: LanguageExtensionTypes) =>
         .then((data) => contactBoxDataSchema.parse(data)),
   })
 
+  const useCurrentLanguage = () => {
+    const { i18n: { language }, t  } = useTranslation();
+   
+    return {
+      language: language as LanguageExtensionTypes,
+      t
+    };
+  }
+
 export const ContactBox = () => {
-  const {
-    i18n: { language },
-    t,
-  } = useTranslation()
-  const { status, data } = useContactBoxDataQuery(language as LanguageExtensionTypes)
+  const {language, t} = useCurrentLanguage();
+  const { status, data } = useContactBoxDataQuery(language)
 
   return (
     <Row>
