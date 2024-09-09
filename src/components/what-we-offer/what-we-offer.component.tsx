@@ -93,7 +93,9 @@ interface WhatWeOfferDataTemplateProps {
   data: WhatWeOfferDataType
 }
 
-const WhatWeOfferDataTemplate: FC<WhatWeOfferDataTemplateProps> = ({ data }) => {
+const WhatWeOfferDataTemplate: FC<WhatWeOfferDataTemplateProps> = ({
+  data,
+}) => {
   return (
     <WhatWeOfferRow>
       {data.map(({ id, colSize, title, image }) => (
@@ -121,7 +123,10 @@ export const WhatWeOffer = () => {
   const header = isData && t('whatWeOfferHeader')
 
   return (
-    <SectionTemplate subheader={subheader} header={header} bgMode='--bs-gray-100'>
+    <SectionTemplate
+      subheader={subheader}
+      header={header}
+      bgMode='--bs-gray-100'>
       <WhatWeOfferContainer>
         {status === 'pending' && <ContentLoading text={t('contentLoadingWhatWeOffer')} />}
         {status === 'error' && <ContentLoadingError text={t('contentLoadingError')} />}

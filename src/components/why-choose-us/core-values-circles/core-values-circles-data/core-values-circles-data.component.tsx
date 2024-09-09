@@ -3,9 +3,16 @@ import { type FC } from 'react'
 import { type CircleContentCoreValuesType } from '../../../../types/circle-content-data-types'
 import { CoreValuesCircleItem } from '../core-values-circle-item/core-values-circle-item.component'
 
-export type TextPositionType = 'text-top' | 'text-bottom' | 'text-left' | 'text-right'
+export type TextPositionType =
+  | 'text-top'
+  | 'text-bottom'
+  | 'text-left'
+  | 'text-right'
 
-const prepareInitialPositions = (index: number, coreValues: CircleContentCoreValuesType[]) => {
+const prepareInitialPositions = (
+  index: number,
+  coreValues: CircleContentCoreValuesType[],
+) => {
   const div = 360 / coreValues.length
   const radius = 255
   const offsetToParentCenter = 255
@@ -19,9 +26,17 @@ const prepareInitialPositions = (index: number, coreValues: CircleContentCoreVal
 
   const isOffsetRight = x + totalOffset >= offsetToParentCenter
   const isOffsetTopBelow0 = y + totalOffset <= 0
-  const isOffsetBottom90 = y + totalOffset >= tenPercentOfCircleSize * contentCircleSize
+  const isOffsetBottom90 =
+    y + totalOffset >= tenPercentOfCircleSize * contentCircleSize
 
-  return { totalOffset, x, y, isOffsetRight, isOffsetTopBelow0, isOffsetBottom90 }
+  return {
+    totalOffset,
+    x,
+    y,
+    isOffsetRight,
+    isOffsetTopBelow0,
+    isOffsetBottom90,
+  }
 }
 
 const textPositionClasses = {
@@ -52,12 +67,30 @@ const prepareElementPosition = (
   }
 }
 
-const getElementPosition = (index: number, coreValues: CircleContentCoreValuesType[]) => {
-  const { totalOffset, x, y, isOffsetRight, isOffsetTopBelow0, isOffsetBottom90 } =
-    prepareInitialPositions(index, coreValues)
+const getElementPosition = (
+  index: number,
+  coreValues: CircleContentCoreValuesType[],
+) => {
+  const {
+    totalOffset,
+    x,
+    y,
+    isOffsetRight,
+    isOffsetTopBelow0,
+    isOffsetBottom90,
+  } = prepareInitialPositions(index, coreValues)
 
-  const textClassPosition = getTextPosition(isOffsetTopBelow0, isOffsetBottom90, isOffsetRight)
-  const elementPosition = prepareElementPosition(totalOffset, x, y, textClassPosition)
+  const textClassPosition = getTextPosition(
+    isOffsetTopBelow0,
+    isOffsetBottom90,
+    isOffsetRight,
+  )
+  const elementPosition = prepareElementPosition(
+    totalOffset,
+    x,
+    y,
+    textClassPosition,
+  )
 
   return { textClassPosition, elementPosition }
 }
@@ -96,7 +129,9 @@ interface CoreValuesCirclesDataProps {
   coreValues: CircleContentCoreValuesType[]
 }
 
-export const CoreValuesCirclesData: FC<CoreValuesCirclesDataProps> = ({ coreValues }) => {
+export const CoreValuesCirclesData: FC<CoreValuesCirclesDataProps> = ({
+  coreValues,
+}) => {
   return (
     <>
       {coreValues.map(({ id, title }, index: number) => {
@@ -113,9 +148,14 @@ export const CoreValuesCirclesData: FC<CoreValuesCirclesDataProps> = ({ coreValu
 
         const isOffsetRight = x + totalOffset >= offsetToParentCenter
         const isOffsetTopBelow0 = y + totalOffset <= 0
-        const isOffsetBottom90 = y + totalOffset >= tenPercentOfCircleSize * contentCircleSize
+        const isOffsetBottom90 =
+          y + totalOffset >= tenPercentOfCircleSize * contentCircleSize
 
-        const textPosition = getTextPosition(isOffsetTopBelow0, isOffsetBottom90, isOffsetRight)
+        const textPosition = getTextPosition(
+          isOffsetTopBelow0,
+          isOffsetBottom90,
+          isOffsetRight,
+        )
 
         return (
           <CoreValuesCircleItem

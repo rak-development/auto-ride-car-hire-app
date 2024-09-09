@@ -127,8 +127,9 @@ export const FooterMiddle = () => {
                 <span />
               </TitleBox>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sodales libero et varius
-                commodo. Phasellus tristique magna sit amet aliquet mollis.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                sodales libero et varius commodo. Phasellus tristique magna sit
+                amet aliquet mollis.
               </p>
               <p>
                 <LogoGrey />

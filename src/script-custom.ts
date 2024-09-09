@@ -1,1 +1,2 @@
-export const replaceBrTagWithNewLine = (text: string) => text.replace(/<br\s*[\/]?>/gi, '\n')
+export const replaceBrTagWithNewLine = (text: string) =>
+  text.replace(/<br\s*[\/]?>/gi, '\n')
