@@ -239,7 +239,7 @@ export const BookingReservation = () => {
           )}
         </Row>
         <BookingReservationFormButtonGroup>
-          <Button type='submit'>{t('submitButton')}</Button>
+          <Button type='submit'>{t('submitButton', {count: 2})}</Button>
         </BookingReservationFormButtonGroup>
       </BookingReservationForm>
       {modalDataObj && (

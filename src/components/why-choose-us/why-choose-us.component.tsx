@@ -60,12 +60,6 @@ export const WhyChooseUs = () => {
   const subheader = isData && t('whyChooseUsSubheader')
   const header = isData && t('whyChooseUsHeader')
 
-  if (data) {
-    console.log(data)
-    console.log('test below')
-    console.log(t(data.header, { count: 2 }))
-  }
-
   return (
     <SectionTemplate subheader={subheader} header={header} bgMode='--bs-white'>
       {status === 'pending' && (
