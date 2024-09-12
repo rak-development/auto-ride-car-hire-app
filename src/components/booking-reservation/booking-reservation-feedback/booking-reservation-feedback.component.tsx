@@ -5,6 +5,10 @@ interface BookingReservationFeedbackProps {
   invalidFeedbackText: string | undefined
 }
 
-export const BookingReservationFeedback: FC<BookingReservationFeedbackProps> = ({
-  invalidFeedbackText,
-}) => <Form.Control.Feedback type='invalid'>{invalidFeedbackText}</Form.Control.Feedback>
+export const BookingReservationFeedback: FC<
+  BookingReservationFeedbackProps
+> = ({ invalidFeedbackText }) => (
+  <Form.Control.Feedback type='invalid'>
+    {invalidFeedbackText}
+  </Form.Control.Feedback>
+)

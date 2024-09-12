@@ -43,8 +43,7 @@ export const SocialIcons = () => (
         href='https://www.facebook.com/'
         target='_blank'
         aria-label='Facebook Link'
-        rel='noopener noreferrer'
-      >
+        rel='noopener noreferrer'>
         <FontAwesomeIcon icon={faFacebookF} />
       </SocialLink>
     </SocialIcon>
@@ -53,8 +52,7 @@ export const SocialIcons = () => (
         href='https://twitter.com/'
         target='_blank'
         aria-label='Twitter Link'
-        rel='noopener noreferrer'
-      >
+        rel='noopener noreferrer'>
         <FontAwesomeIcon icon={faTwitter} />
       </SocialLink>
     </SocialIcon>

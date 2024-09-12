@@ -1,5 +1,9 @@
 import styled from '@emotion/styled'
-import { faLocationDot, faMobileScreenButton, faClock } from '@fortawesome/free-solid-svg-icons'
+import {
+  faLocationDot,
+  faMobileScreenButton,
+  faClock,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { device } from '../../../../devices-breakpoints'
