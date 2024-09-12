@@ -48,7 +48,6 @@ const useWhyChooseUsDataQuery = (languageExtension: LanguageExtensionTypes) =>
   })
 
 export const WhyChooseUs = () => {
-  // console.log('why choose us')
   const {
     i18n: { language },
     t,
