@@ -38,21 +38,22 @@ export const ScrollToTop = () => {
   useEffect(() => {
     const listenToScroll = () => {
       const heightToHideFrom = 2000
-      const winScroll =
-        document.body.scrollTop || document.documentElement.scrollTop
-      setIsVisible(winScroll > heightToHideFrom)
+      setIsVisible(window.scrollY > heightToHideFrom)
     }
     window.addEventListener('scroll', listenToScroll)
     return () => window.removeEventListener('scroll', listenToScroll)
   }, [])
 
+  if (!isVisible) {
+    return null
+  }
+
   return (
-    <>
-      {isVisible && (
-        <ScrollToTopButton type='button' onClick={scrollToTopHandler}>
-          <FontAwesomeIcon icon={faChevronUp} />
-        </ScrollToTopButton>
-      )}
-    </>
+    <ScrollToTopButton
+      type='button'
+      aria-label='Go to top'
+      onClick={scrollToTopHandler}>
+      <FontAwesomeIcon icon={faChevronUp} />
+    </ScrollToTopButton>
   )
 }
