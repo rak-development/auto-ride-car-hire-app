@@ -5,6 +5,7 @@ import { HeaderTopContactDetails } from './header-top-contact-details/header-top
 import { SocialIcons } from '../../social-icons/social-icons.components'
 import { device } from '../../../devices-breakpoints'
 import { HeaderTopLanguageSelector } from './header-top-language-selector/header-top-language-selector.component'
+import { HeaderTopDarkModeSwitch } from './header-top-darkmode-switch/header-top-darkmode-switch.component'
 
 const HeaderTopWrapper = styled.div`
   background-color: var(--bs-gray-100);
