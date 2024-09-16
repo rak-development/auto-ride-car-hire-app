@@ -32,25 +32,28 @@ const ScrollToTopButton = styled(Button)`
 
 export const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false)
-  const scrollToTopHandler = () => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  const scrollToTopHandler = () =>
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
 
   useEffect(() => {
     const listenToScroll = () => {
       const heightToHideFrom = 2000
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop
-      setIsVisible(winScroll > heightToHideFrom)
+      setIsVisible(window.scrollY > heightToHideFrom)
     }
     window.addEventListener('scroll', listenToScroll)
     return () => window.removeEventListener('scroll', listenToScroll)
   }, [])
 
+  if (!isVisible) {
+    return null
+  }
+
   return (
-    <>
-      {isVisible && (
-        <ScrollToTopButton type='button' onClick={scrollToTopHandler}>
-          <FontAwesomeIcon icon={faChevronUp} />
-        </ScrollToTopButton>
-      )}
-    </>
+    <ScrollToTopButton
+      type='button'
+      aria-label='Go to top'
+      onClick={scrollToTopHandler}>
+      <FontAwesomeIcon icon={faChevronUp} />
+    </ScrollToTopButton>
   )
 }

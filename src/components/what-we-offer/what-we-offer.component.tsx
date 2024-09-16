@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
+import { useTranslation } from 'react-i18next'
 
 import styled from '@emotion/styled'
 
@@ -15,6 +16,7 @@ import { SectionTemplate } from '../section-template/section-template.component'
 import { device } from '../../devices-breakpoints'
 import { ContentLoading } from '../content-loading/content-loading.component'
 import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
+import { type LanguageExtensionTypes } from '../../types/language-extension-types'
 
 const whatWeOfferDataSchema = z.array(
   z.object({
@@ -77,12 +79,12 @@ const WhatWeOfferCardTitle = styled(Card.Title)`
   }
 `
 
-const useWhatWeOfferDataQuery = () =>
+const useWhatWeOfferDataQuery = (languageExtension: LanguageExtensionTypes) =>
   useQuery({
-    queryKey: ['whatWeOfferData'],
+    queryKey: ['whatWeOfferData', languageExtension],
     queryFn: () =>
       axios
-        .get('assets/db/what-we-offer-data.json')
+        .get(`assets/db/what-we-offer-data-${languageExtension}.json`)
         .then((res) => res.data)
         .then((data) => whatWeOfferDataSchema.parse(data)),
   })
@@ -91,7 +93,9 @@ interface WhatWeOfferDataTemplateProps {
   data: WhatWeOfferDataType
 }
 
-const WhatWeOfferDataTemplate: FC<WhatWeOfferDataTemplateProps> = ({ data }) => {
+const WhatWeOfferDataTemplate: FC<WhatWeOfferDataTemplateProps> = ({
+  data,
+}) => {
   return (
     <WhatWeOfferRow>
       {data.map(({ id, colSize, title, image }) => (
@@ -109,16 +113,29 @@ const WhatWeOfferDataTemplate: FC<WhatWeOfferDataTemplateProps> = ({ data }) => 
 }
 
 export const WhatWeOffer = () => {
-  const { status, data } = useWhatWeOfferDataQuery()
+  const {
+    i18n: { language },
+    t,
+  } = useTranslation()
+  const { status, data } = useWhatWeOfferDataQuery(
+    language as LanguageExtensionTypes,
+  )
   const isData = status === 'success'
-  const subheader = isData && 'What We Offer'
-  const header = isData && 'See What We Can Do for You'
+  const subheader = isData && t('whatWeOfferSubheader')
+  const header = isData && t('whatWeOfferHeader')
 
   return (
-    <SectionTemplate subheader={subheader} header={header} bgMode='--bs-gray-100'>
+    <SectionTemplate
+      subheader={subheader}
+      header={header}
+      bgMode='--bs-gray-100'>
       <WhatWeOfferContainer>
-        {status === 'pending' && <ContentLoading text='What We Offer Content Loading...' />}
-        {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+        {status === 'pending' && (
+          <ContentLoading text={t('contentLoadingWhatWeOffer')} />
+        )}
+        {status === 'error' && (
+          <ContentLoadingError text={t('contentLoadingError')} />
+        )}
         {status === 'success' && <WhatWeOfferDataTemplate data={data} />}
       </WhatWeOfferContainer>
     </SectionTemplate>

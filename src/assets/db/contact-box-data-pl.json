@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Adres",
+    "icon": "fa-map-location-dot",
+    "text": "Jasionka 942, 36-002 Jasionka"
+  },
+  {
+    "title": "Telefony",
+    "icon": "fa-phone",
+    "text": "REZERWACJA: 123 456 789 \nBIURO: (+48) 17 123 45 61"
+  },
+  {
+    "title": "Godziny otwarcia",
+    "icon": "fa-clock",
+    "text": "24/7"
+  }
+]

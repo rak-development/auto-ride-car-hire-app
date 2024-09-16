@@ -1,8 +1,8 @@
 import { type FC } from 'react'
-
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styled from '@emotion/styled'
+import { useTranslation } from 'react-i18next'
 
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
@@ -14,6 +14,7 @@ import { Icon } from '../icon/icon.component'
 import { NewLineText } from '../new-line-text/new-line-text.component'
 import { ContentLoading } from '../content-loading/content-loading.component'
 import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
+import { type LanguageExtensionTypes } from '../../types/language-extension-types'
 
 const contactBoxDataSchema = z.array(
   z.object({
@@ -113,23 +114,40 @@ const ContactBoxLayout: FC<ContactBoxLayoutProps> = ({ data }) => (
   </>
 )
 
-const useContactBoxDataQuery = () =>
+const useContactBoxDataQuery = (languageExtension: LanguageExtensionTypes) =>
   useQuery({
-    queryKey: ['contactBoxData'],
+    queryKey: ['contactBoxData', languageExtension],
     queryFn: () =>
       axios
-        .get('assets/db/contact-box-data.json')
+        .get(`assets/db/contact-box-data-${languageExtension}.json`)
         .then((res) => res.data)
         .then((data) => contactBoxDataSchema.parse(data)),
   })
 
+const useCurrentLanguage = () => {
+  const {
+    i18n: { language },
+    t,
+  } = useTranslation()
+
+  return {
+    language: language as LanguageExtensionTypes,
+    t,
+  }
+}
+
 export const ContactBox = () => {
-  const { status, data } = useContactBoxDataQuery()
+  const { language, t } = useCurrentLanguage()
+  const { status, data } = useContactBoxDataQuery(language)
 
   return (
     <Row>
-      {status === 'pending' && <ContentLoading text='Contact Box Content Loading...' />}
-      {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+      {status === 'pending' && (
+        <ContentLoading text={t('contentLoadingContactBox')} />
+      )}
+      {status === 'error' && (
+        <ContentLoadingError text={t('contentLoadingError')} />
+      )}
       {status === 'success' && <ContactBoxLayout data={data} />}
     </Row>
   )

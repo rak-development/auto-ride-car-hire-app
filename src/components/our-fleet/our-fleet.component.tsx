@@ -2,6 +2,7 @@ import Container, { ContainerProps } from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
+import { useTranslation } from 'react-i18next'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSuitcaseRolling, faUser } from '@fortawesome/free-solid-svg-icons'
@@ -34,7 +35,10 @@ type OurFleetContainerProps = {
 }
 
 const OurFleetContainer = styled(
-  ({ $isData, ...props }: Omit<ContainerProps, 'as'> & OurFleetContainerProps) => (
+  ({
+    $isData,
+    ...props
+  }: Omit<ContainerProps, 'as'> & OurFleetContainerProps) => (
     <Container {...props} />
   ),
 )<OurFleetContainerProps>`
@@ -126,11 +130,15 @@ const OurFleetDataTemplate: FC<OurFleetTemplateProps> = ({ data }) => (
           <OurFleetCardBody>
             <OurFleetCardBodyRow>
               <FontAwesomeIcon icon={faUser} />
-              <OurFleetCardLuggageCapacity>{passengerNumber}</OurFleetCardLuggageCapacity>
+              <OurFleetCardLuggageCapacity>
+                {passengerNumber}
+              </OurFleetCardLuggageCapacity>
             </OurFleetCardBodyRow>
             <OurFleetCardBodyRow>
               <FontAwesomeIcon icon={faSuitcaseRolling} />
-              <OurFleetCardLuggageCapacity>{luggageNumber}</OurFleetCardLuggageCapacity>
+              <OurFleetCardLuggageCapacity>
+                {luggageNumber}
+              </OurFleetCardLuggageCapacity>
             </OurFleetCardBodyRow>
           </OurFleetCardBody>
         </OurFleetCard>
@@ -140,16 +148,24 @@ const OurFleetDataTemplate: FC<OurFleetTemplateProps> = ({ data }) => (
 )
 
 export const OurFleet = () => {
+  const { t } = useTranslation()
   const { status, data } = useOurFleetDataQuery()
   const isData = status === 'success'
-  const subheader = isData && 'Our Fleet'
-  const header = isData && 'Browse Our Limos'
+  const subheader = isData && t('ourFleetSubheader')
+  const header = isData && t('ourFleetHeader')
 
   return (
-    <SectionTemplate subheader={subheader} header={header} bgMode='--bs-gray-100'>
+    <SectionTemplate
+      subheader={subheader}
+      header={header}
+      bgMode='--bs-gray-100'>
       <OurFleetContainer $isData={isData}>
-        {status === 'pending' && <ContentLoading text='Our Fleet Content Loading...' />}
-        {status === 'error' && <ContentLoadingError text='Ooops something went wrong...' />}
+        {status === 'pending' && (
+          <ContentLoading text='Our Fleet Content Loading...' />
+        )}
+        {status === 'error' && (
+          <ContentLoadingError text='Ooops something went wrong...' />
+        )}
         {status === 'success' && <OurFleetDataTemplate data={data} />}
       </OurFleetContainer>
     </SectionTemplate>

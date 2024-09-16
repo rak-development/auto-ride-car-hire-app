@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import { useTranslation } from 'react-i18next'
 
 import styled from '@emotion/styled'
 
@@ -55,34 +56,37 @@ const NavToggler = styled(Navbar.Toggle)`
   }
 `
 
-export const HeaderMiddle = () => (
-  <NavbarContainer expand='xl'>
-    <Container>
-      <HomeButton href='#'>
-        <LogoLight />
-      </HomeButton>
-      <NavToggler
-        type='button'
-        data-bs-toggle='collapse'
-        data-bs-target='#navbarNav'
-        aria-controls='navbarNav'
-        aria-expanded='false'
-        aria-label='Toggle navigation'
-      >
-        <span className='navbar-toggler-icon'></span>
-      </NavToggler>
-      <NavbarCollapse id='navbarNav'>
-        <Nav>
-          <NavItem className='active' aria-current='page' href='#'>
-            Home
-          </NavItem>
-          <NavItem href='#'>Our Fleet</NavItem>
-          <NavItem href='#'>Service Rates</NavItem>
-          <NavItem href='#'>News</NavItem>
-          <NavItem href='#'>About Us</NavItem>
-          <NavItem href='#'>Contact Us</NavItem>
-        </Nav>
-      </NavbarCollapse>
-    </Container>
-  </NavbarContainer>
-)
+export const HeaderMiddle = () => {
+  const { t } = useTranslation()
+
+  return (
+    <NavbarContainer expand='xl'>
+      <Container>
+        <HomeButton href='#'>
+          <LogoLight />
+        </HomeButton>
+        <NavToggler
+          type='button'
+          data-bs-toggle='collapse'
+          data-bs-target='#navbarNav'
+          aria-controls='navbarNav'
+          aria-expanded='false'
+          aria-label='Toggle navigation'>
+          <span className='navbar-toggler-icon'></span>
+        </NavToggler>
+        <NavbarCollapse id='navbarNav'>
+          <Nav>
+            <NavItem className='active' aria-current='page' href='#'>
+              {t('home')}
+            </NavItem>
+            <NavItem href='#'>{t('ourFleet')}</NavItem>
+            <NavItem href='#'>{t('serviceRates')}</NavItem>
+            <NavItem href='#'>{t('news')}</NavItem>
+            <NavItem href='#'>{t('about')}</NavItem>
+            <NavItem href='#'>{t('contactUs')}</NavItem>
+          </Nav>
+        </NavbarCollapse>
+      </Container>
+    </NavbarContainer>
+  )
+}

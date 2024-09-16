@@ -46,4 +46,6 @@ interface IconProps {
   icon: Icon
 }
 
-export const Icon: FC<IconProps> = ({ icon }) => <ElementIcon icon={getElementIcon(icon)} />
+export const Icon: FC<IconProps> = ({ icon }) => (
+  <ElementIcon icon={getElementIcon(icon)} />
+)

@@ -12,7 +12,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 
-const environment = require('./configuration/environment')
+const environment = require('./configuration/environment.cjs')
 
 const templateFiles = fs.readdirSync(environment.paths.source)
   .filter((file) => ['.html', '.ejs'].includes(path.extname(file).toLowerCase())).map((filename) => ({

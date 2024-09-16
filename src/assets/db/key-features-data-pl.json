@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "icon": "fa-car",
+    "header": "Bezpieczeństwo przede wszystkim",
+    "body": "Doświadczona kadra i profesjonalnie przeszkoleni kierowcy"
+  },
+  {
+    "id": 2,
+    "icon": "fa-coins",
+    "header": "Rozsądne stawki",
+    "body": "Oferujemy odpowiedni pojazd w odpowiedniej cenie, aby dopasować się do Twojego budżetu"
+  },
+  {
+    "id": 3,
+    "icon": "fa-bus",
+    "header": "Największa flota",
+    "body": "Dysponujemy rozbudowaną flotą pojazdów obejmującą sedany, limuzyny oraz autokary"
+  },
+  {
+    "id": 4,
+    "icon": "fa-road-circle-exclamation",
+    "header": "Ogólnonarodowy serwis",
+    "body": "Nasze usługi transportowe świadczymy na terenie całego kraju"
+  }
+]
