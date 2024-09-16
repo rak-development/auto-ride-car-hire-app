@@ -3,6 +3,10 @@ import { createRoot } from 'react-dom/client'
 
 import App from './app'
 
+import './i18n'
+
+import './i18n'
+
 let appReady = Promise.resolve();
 
 console.log('appReady: ', appReady)
