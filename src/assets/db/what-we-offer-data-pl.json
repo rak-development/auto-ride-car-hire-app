@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "colSize": 6,
+    "title": "Transfer lotniczy",
+    "image": "/assets/images/what-we-offer/AutoRide-Airport-Transfer.jpg"
+  },
+  {
+    "id": 2,
+    "colSize": 6,
+    "title": "Transport na całym świecie",
+    "image": "/assets/images/what-we-offer/AutoRide-Worldwide-Transportation.jpg"
+  },
+  {
+    "id": 3,
+    "colSize": 6,
+    "title": "Podróż służbowa",
+    "image": "/assets/images/what-we-offer/AutoRide-Corporate-Travel.jpg"
+  },
+  {
+    "id": 4,
+    "colSize": 3,
+    "title": "Usługa czarterowa",
+    "image": "/assets/images/what-we-offer/AutoRide-Charter-Service.jpg"
+  },
+  {
+    "id": 5,
+    "colSize": 3,
+    "title": "Specjalne wydarzenia",
+    "image": "/assets/images/what-we-offer/AutoRide-Special-Event-Limousine.jpg"
+  }
+]

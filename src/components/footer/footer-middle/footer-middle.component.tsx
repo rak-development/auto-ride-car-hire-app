@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styled from '@emotion/styled'
+import { useTranslation } from 'react-i18next'
 
 import { z } from 'zod'
 import { useQuery } from '@tanstack/react-query'
@@ -12,6 +13,7 @@ import { FooterMiddleList } from './footer-middle-list/footer-middle-list.compon
 
 import { ContentLoading } from '../../content-loading/content-loading.component'
 import { ContentLoadingError } from '../../content-loading/content-loading-error/content-loading-error.components'
+import { type LanguageExtensionTypes } from '../../../types/language-extension-types'
 
 const servicesListDataSchema = z.array(
   z.object({
@@ -65,25 +67,31 @@ const TitleBox = styled.div`
   }
 `
 
-const useServicesListDataQuery = () =>
+const useServicesListDataQuery = (languageExtension: LanguageExtensionTypes) =>
   useQuery({
-    queryKey: ['servicesListData'],
+    queryKey: ['servicesListData', languageExtension],
     queryFn: () =>
       axios
-        .get('assets/db/services-list-data.json')
+        .get(`assets/db/services-list-data-${languageExtension}.json`)
         .then((res) => res.data)
         .then((data) => servicesListDataSchema.parse(data)),
   })
 
 const ServicesListTemplate = () => {
-  const { status, data } = useServicesListDataQuery()
+  const {
+    i18n: { language },
+    t,
+  } = useTranslation()
+  const { status, data } = useServicesListDataQuery(
+    language as LanguageExtensionTypes,
+  )
   return (
     <>
       {status === 'pending' && (
-        <ContentLoading text='Contact Box Content Loading...' />
+        <ContentLoading text={t('contentLoadingServicesList')} />
       )}
       {status === 'error' && (
-        <ContentLoadingError text='Ooops something went wrong...' />
+        <ContentLoadingError text={t('contentLoadingError')} />
       )}
       {status === 'success' && <FooterMiddleList data={data} />}
     </>
@@ -101,14 +109,15 @@ const useContactListDataQuery = () =>
   })
 
 const ContactListTemplate = () => {
+  const { t } = useTranslation()
   const { status, data } = useContactListDataQuery()
   return (
     <>
       {status === 'pending' && (
-        <ContentLoading text='Contact Box Content Loading...' />
+        <ContentLoading text={t('contentLoadingContactList')} />
       )}
       {status === 'error' && (
-        <ContentLoadingError text='Ooops something went wrong...' />
+        <ContentLoadingError text={t('contentLoadingError')} />
       )}
       {status === 'success' && <FooterMiddleList data={data} />}
     </>
@@ -116,6 +125,7 @@ const ContactListTemplate = () => {
 }
 
 export const FooterMiddle = () => {
+  const { t } = useTranslation()
   return (
     <FooterMiddleWrapper>
       <Container>
@@ -123,7 +133,7 @@ export const FooterMiddle = () => {
           <Col md={4}>
             <ContentBox>
               <TitleBox>
-                About
+                {t('about')}
                 <span />
               </TitleBox>
               <p>
@@ -139,7 +149,7 @@ export const FooterMiddle = () => {
           <Col md={4}>
             <ContentBox>
               <TitleBox>
-                Our Services
+                {t('ourServices')}
                 <span />
               </TitleBox>
               <ServicesListTemplate />

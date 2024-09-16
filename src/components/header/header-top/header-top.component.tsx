@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container'
 import { HeaderTopContactDetails } from './header-top-contact-details/header-top-contact-details.component'
 import { SocialIcons } from '../../social-icons/social-icons.components'
 import { device } from '../../../devices-breakpoints'
+import { HeaderTopLanguageSelector } from './header-top-language-selector/header-top-language-selector.component'
 
 const HeaderTopWrapper = styled.div`
   background-color: var(--bs-gray-100);
@@ -27,7 +28,10 @@ export const HeaderTop = () => {
     <HeaderTopWrapper>
       <HeaderTopContainer>
         <HeaderTopContactDetails />
-        <SocialIcons />
+        <div className='d-md-flex'>
+          <SocialIcons />
+          <HeaderTopLanguageSelector />
+        </div>
       </HeaderTopContainer>
     </HeaderTopWrapper>
   )

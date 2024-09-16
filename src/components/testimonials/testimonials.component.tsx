@@ -1,9 +1,9 @@
 import { type FC, useState } from 'react'
-
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Carousel from 'react-bootstrap/Carousel'
+import { useTranslation } from 'react-i18next'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments } from '@fortawesome/free-solid-svg-icons'
@@ -196,6 +196,7 @@ const TestimonialsDataTemplate: FC<TestimonialsDataTemplateProps> = ({
 }
 
 export const Testimonials = () => {
+  const { t } = useTranslation()
   const { status, data } = useTestimonialsDataQuery()
   const isData = status === 'success'
   return (
