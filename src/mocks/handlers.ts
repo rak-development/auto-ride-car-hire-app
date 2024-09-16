@@ -1,20 +1,27 @@
 import { http, HttpResponse } from 'msw'
+import { STATUS } from '../constants'
 
 export const handlers = [
-  /**
-   * Example of a request handler—function that captures a request
-   * and declares which mocked response to return upon match.
-   * @see https://mswjs.io/docs/basics/request-handler
-   */
-  http.get('https://github.com/octocat', ({ request, params, cookies }) => {
-    return HttpResponse.json(
+  http.get('http://localhost:8000/api/getStatus', () => {
+    return HttpResponse.json({
+      isActive: STATUS.ACTIVE,
+    })
+  }),
+  http.get('/api/users', () => {
+    return HttpResponse.json([
       {
-        message: 'Mocked response',
+        id: 'c7b3d8e0-5e0b-4b0f-8b3a-3b9f4b3d3b3d',
+        firstName: 'John',
+        lastName: 'Maverick',
       },
-      {
-        status: 202,
-        statusText: 'Mocked status',
-      },
-    )
+    ])
+  }),
+  http.post('/api/messages', async ({ request }) => {
+    const authToken = request.headers.get('Authorization')
+    if (!authToken) {
+      return HttpResponse.json({ msg: 'Unauthorized' }, { status: 401 })
+    }
+    const requestBody = await request.json()
+    return HttpResponse.json({ msg: 'Hello World' }, { status: 200 })
   }),
 ]

@@ -13,3 +13,8 @@ export const LANGUAGES = [
   { label: 'English', code: 'en' },
   { label: 'Polish', code: 'pl' },
 ] as LanguageData
+
+export enum STATUS {
+  ACTIVE = 'ACTIVE',
+  OFFLINE = 'OFFLINE',
+}
