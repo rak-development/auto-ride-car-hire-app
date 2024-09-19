@@ -4,6 +4,11 @@ import styled from '@emotion/styled'
 
 const ButtonSwitch = styled(Button)`
   background-color: var(--bs-gray-100);
+  border: none;
+
+  :hover {  
+    background-color: var(--bs-btn-hover-bg);
+  }
 `
 
 export const HeaderTopDarkModeSwitch = () => {
