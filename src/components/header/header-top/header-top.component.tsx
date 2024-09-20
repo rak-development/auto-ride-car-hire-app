@@ -8,7 +8,7 @@ import { HeaderTopLanguageSelector } from './header-top-language-selector/header
 import { HeaderTopDarkModeSwitch } from './header-top-darkmode-switch/header-top-darkmode-switch.component'
 
 const HeaderTopWrapper = styled.div`
-  background-color: var(--bs-gray-100);
+  background-color: var(--bs-header-top-wrapper);
 `
 
 const HeaderTopContainer = styled(Container)`

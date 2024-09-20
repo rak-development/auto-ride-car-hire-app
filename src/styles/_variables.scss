@@ -15,6 +15,13 @@ $gray-800: #2C3E50 !default;
 // scss-docs-start theme-color-variables
 $primary:       #8A3C05;
 $black:         #000;
+$headerTopWrapper:  $gray-100 !default;
+
+$theme-colors: (
+    "primary": $primary,
+    "black":                $black,
+    "header-top-wrapper":  $headerTopWrapper
+);
 
 // Typography
 //
@@ -31,3 +38,15 @@ $h5-font-size:                $font-size-base * 1.125 !default;
 // Navbar
 
 $navbar-nav-link-padding-x:         1.4063rem !default;
+
+// $test-color: #f00;
+
+// scss-docs-start theme-color-variables
+// $test:      #3fb247;
+// scss-docs-end theme-color-variables
+
+// scss-docs-start theme-colors-map
+// $theme-colors: (
+//   "$test":  #3fb247
+// );
+// scss-docs-end theme-colors-map
