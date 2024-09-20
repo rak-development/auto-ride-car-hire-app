@@ -14,7 +14,7 @@ module.exports = merge(webpackConfiguration, {
   /* Development Server Configuration */
   devServer: {
     static: {
-      directory: environment.paths.output,
+      directory: environment.paths.public,
       publicPath: '/',
       watch: true
     },
