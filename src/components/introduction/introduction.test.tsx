@@ -1,32 +1,29 @@
 import { render } from '../../utils/test-utils'
-
 import { Introduction } from './introduction.component'
 
 import { http, HttpResponse } from 'msw'
-import { setupWorker } from 'msw/browser'
+import { setupServer } from "msw/node";
 
-// const worker = setupWorker(
-//   http.get('https://github.com/octocat', ({ request, params, cookies }) => {
-//     return HttpResponse.json(
-//       {
-//         message: 'Mocked response',
-//       },
-//       {
-//         status: 202,
-//         statusText: 'Mocked status',
-//       },
-//     )
-//   }),
-// )
+const server = setupServer(
+    http.get("assets/db/introduction-data-en.json", () => {
+        return HttpResponse.json({greeting: 'hello there'})
+    })
+);
 
-// await worker.start()
+describe('Introduction Data', () => {
+    beforeAll(() => server.listen())
+    afterEach(() => server.resetHandlers())
+    afterAll(() => server.close())
 
-// describe('Introduction Data', () => {
-//   // beforeEach(() => {
-//   //   render(<Introduction />)
-//   // })
+    test("displays data from backend", async () => {
+        server.use(
+            http.get('assets/db/introduction-data-en.json', () => {
+              return new HttpResponse(null, {status: 404})
+            }),
+          )
 
-//   it('should fetch introduction data', async () => {
-//     // render(<Introduction />)
-//   })
-// })
+        //   render(<Introduction />)
+      console.log('server: ', server.listen())
+    });
+
+})
