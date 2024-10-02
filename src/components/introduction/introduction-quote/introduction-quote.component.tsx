@@ -22,6 +22,7 @@ const IntroductionQuoteWrapper = styled.div`
 
 const IntroductionQuoteBlockquote = styled.blockquote`
   font-size: 1.1875rem;
+  color: var(--bs-blockquote-text-color);
   font-weight: 300;
   line-height: 1.42857em;
   margin: 0.625rem auto 0;
@@ -38,7 +39,7 @@ const IntroductionQuoteBlockquote = styled.blockquote`
 
 const IntroductionQuoteAuthor = styled.div`
   font-size: 0.875rem;
-  color: var(--bs-gray-800);
+  color: var(--bs-blockquote-author-text-color);
   margin-top: 1.875rem;
   font-weight: 400;
   text-transform: uppercase;

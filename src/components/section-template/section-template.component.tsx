@@ -5,7 +5,7 @@ import styled from '@emotion/styled'
 
 import { device } from '../../devices-breakpoints'
 
-type bgModeType = '--bs-gray-100' | '--bs-white'
+type bgModeType = '--bs-gray-100' | '--bs-white' | '--bs-what-we-offer-bg-color' | '--bs-why-choose-us-bg-color' | '--bs-key-features-bg-color' | '--bs-our-fleet-bg-color'
 
 type SectionTemplateSectionProps = {
   bgMode: bgModeType
@@ -39,7 +39,7 @@ const SectionTemplateSubheader = styled.p`
 const SectionTemplateHeader = styled.p`
   font-size: 1.75rem;
   margin-top: 0.625rem;
-  color: var(--bs--gray-800);
+  color: var(--bs-section-template-header-color);
   font-weight: 300;
   margin-bottom: 0;
 

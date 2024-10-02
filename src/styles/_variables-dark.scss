@@ -1,62 +1,27 @@
 [data-bs-theme=dark] {
   
-  --bs-gray-100: #343a40;
+  --bs-body-bg: #f8f9fa;
+  --bs-header-top-wrapper-bg-color: #343a40;
+  --bs-header-top-wrapper-font-color: #fff;
+  --bs-navbar-links-color: #343a40;
+  --bs-navbar-background: #f8f9fa;
+  --bs-introduction-header-color: #343a40;
+  --bs-introduction-text-color: #343a40;
+  --bs-blockquote-text-color: #343a40;
+  --bs-blockquote-author-text-color: #343a40;
+  --bs-what-we-offer-bg-color: #343a40;
+  --bs-why-choose-us-bg-color: #f8f9fa;
+  --bs-core-values-text-color: #343a40;
+  --bs-testimonials-bg-color: #343a40;
+  --bs-testimonial-text-color: #fff;
+  --bs-testimonial-indicator-border-color: #fff;
+  --bs-key-features-bg-color: #f8f9fa;
+  --bs-key-features-feature-header-text-color: #343a40;
+  --bs-key-features-feature-text-color: #343a40;
+  --bs-our-fleet-bg-color: #343a40;
+  --bs-footer-bottom-bg-color: #f8f9fa;
 
-  .css-15qcayf,
-  .css-1xbfm8l {
-    background-color: #343a40;
-  }
-
-  .css-1vxz6i5 {
-    background-color: #fff;
-  }
-
-  .css-1okz6i,
-  .css-qvd5tr {
-    color: #343a40;
-  }
-
-  .css-817cot,
-  .css-8yhudb,
-  .css-sprmfv,
-  .css-3bl9os,
-  .css-1wo9tfh,
-  .css-1s3e04r, 
-  .css-1xwhksd,
-  .css-1ii8ovu,
-  .css-5im5ej svg,
-  .css-1cbrzxm,
-  .css-1okz6i,
-  .css-1883qzq,
-  .css-jy7ri6,
-  .css-jy7ri6,
-  .css-jt76fk,
-  .css-rc23kv,
-  .css-rc23kv,
-  .css-1b5uppx,
-  .css-ed63me svg,
-  .css-17z9b77 {
-    color: #fff;
-  }
-
-  .css-1lrhpq {
-    background-color: #f8f9fa;
-  }
-
-  .navbar-nav .nav-link.active {
+  .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
     color: var(--bs-black);
-  }
-
-  .btn-primary {
-    background-color: #fff;
-    color: #343a40;
-  }
-
-  .css-1cbrzxm {
-    color: var(--bs-primary);
-  }
-
-  .css-ed63me span {
-    background-color: var(--bs-primary);
   }
 }

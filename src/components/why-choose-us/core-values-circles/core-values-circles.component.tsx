@@ -47,6 +47,7 @@ const CoreValuesCircle = styled.div`
       }
       &:last-of-type {
         font-size: 1.375rem;
+        color: var(--bs-core-values-text-color);
         font-weight: 300;
         line-height: 1.63636em;
       }

@@ -9,9 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { device } from '../../../../devices-breakpoints'
 
 const ContactContainer = styled.div`
-  color: var(--bs-gray-800);
-  font-size: 0.9375rem;
-
   @media ${device.md} {
     display: flex;
   }

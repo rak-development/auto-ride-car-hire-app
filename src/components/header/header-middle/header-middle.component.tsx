@@ -9,7 +9,7 @@ import { LogoLight } from '../../logo-light/logo-light.component'
 import { device } from '../../../devices-breakpoints'
 
 const NavbarContainer = styled(Navbar)`
-  background-color: var(--bs-white);
+  background-color: var(--bs-navbar-background);
   padding-top: 0;
   padding-bottom: 0;
 `
@@ -28,7 +28,7 @@ const HomeButton = styled(Navbar.Brand)`
 const NavItem = styled(Nav.Link)`
   text-transform: uppercase;
   line-height: 1.66rem;
-  color: var(--bs-gray-700);
+  color: var(--bs-navbar-links-color);
   font-size: 1rem;
   text-decoration: none;
   padding: 0.625rem 0.9375rem;

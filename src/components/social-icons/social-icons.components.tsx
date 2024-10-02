@@ -24,7 +24,7 @@ const SocialLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--bs-gray-800);
+  color: inherit;
   transition: all 200ms ease;
 
   svg {
