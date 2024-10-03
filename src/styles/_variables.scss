@@ -38,6 +38,9 @@ $keyFeaturesFeatureTextColor: $gray-700 !default;
 $ourFleetBgColor: $gray-100 !default;
 $footerBottomBgColor: $white !default;
 $footerBottomTextColor: $gray-800 !default;
+$contactBoxTextColor: $gray-800 !default;
+$footerMiddleContentBoxTitleColor: $gray-800 !default;
+$footerMiddleContentBoxTextColor: $gray-700 !default;
 
 $theme-colors: (
     "primary": $primary,
@@ -62,7 +65,10 @@ $theme-colors: (
     "key-features-feature-text-color": $keyFeaturesFeatureTextColor,
     "our-fleet-bg-color": $ourFleetBgColor,
     "footer-bottom-bg-color": $footerBottomBgColor,
-    "footer-bottom-text-color": $footerBottomTextColor
+    "footer-bottom-text-color": $footerBottomTextColor,
+    "contact-box-text-color": $contactBoxTextColor,
+    "footer-middle-content-box-title-color": $footerMiddleContentBoxTitleColor,
+    "footer-middle-content-box-text-color": $footerMiddleContentBoxTextColor,
 );
 
 // Typography
