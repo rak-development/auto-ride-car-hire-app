@@ -1,0 +1,29 @@
+[data-bs-theme=dark] {
+  
+  --bs-body-bg: #f8f9fa;
+  --bs-header-top-wrapper-bg-color: #343a40;
+  --bs-header-top-wrapper-font-color: #fff;
+  --bs-navbar-links-color: #343a40;
+  --bs-navbar-background: #f8f9fa;
+  --bs-introduction-header-color: #343a40;
+  --bs-introduction-text-color: #343a40;
+  --bs-blockquote-text-color: #343a40;
+  --bs-blockquote-author-text-color: #343a40;
+  --bs-what-we-offer-bg-color: #343a40;
+  --bs-why-choose-us-bg-color: #f8f9fa;
+  --bs-core-values-text-color: #343a40;
+  --bs-testimonials-bg-color: #343a40;
+  --bs-testimonial-text-color: #fff;
+  --bs-testimonial-indicator-border-color: #fff;
+  --bs-key-features-bg-color: #f8f9fa;
+  --bs-key-features-feature-header-text-color: #343a40;
+  --bs-key-features-feature-text-color: #343a40;
+  --bs-our-fleet-bg-color: #343a40;
+  --bs-footer-bottom-bg-color: #f8f9fa;
+  --bs-contact-box-text-color: #343a40;
+  --bs-footer-middle-title-box-text-color: #343a40;
+
+  .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: var(--bs-black);
+  }
+}

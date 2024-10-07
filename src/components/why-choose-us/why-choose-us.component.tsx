@@ -60,7 +60,7 @@ export const WhyChooseUs = () => {
   const header = isData && t('whyChooseUsHeader')
 
   return (
-    <SectionTemplate subheader={subheader} header={header} bgMode='--bs-white'>
+    <SectionTemplate subheader={subheader} header={header} bgMode='--bs-why-choose-us-bg-color'>
       {status === 'pending' && (
         <ContentLoading text={t('contentLoadingWhyChooseUs')} />
       )}

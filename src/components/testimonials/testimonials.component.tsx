@@ -35,7 +35,7 @@ type TestimonialsWrapperProps = {
 
 const TestimonialsWrapper = styled.div<TestimonialsWrapperProps>`
   padding: ${({ $isData }) => ($isData ? '6.875rem 0' : '0')};
-  background-color: var(--bs-gray-100);
+  background-color: var(--bs-testimonials-bg-color);
 `
 
 const TestimonialsSliderCol = styled(Col)`
@@ -84,7 +84,7 @@ const TheCarousel = styled(Carousel)`
     border-width: 0.125rem;
     border-style: solid;
     border-radius: 0.6875rem;
-    border-color: var(--bs-gray-500);
+    border-color: var(--bs-testimonial-indicator-border-color);
     display: block;
   }
 
@@ -132,7 +132,7 @@ const TestimonialQuote = styled.div`
   font-weight: 300;
   line-height: 1.63636em;
   padding: 0.625rem 0;
-  color: var(--bs-black);
+  color: var(--bs-testimonial-text-color);
 
   @media ${device.lg} {
     font-size: 1.375rem;
@@ -146,7 +146,7 @@ const TestimonialAuthor = styled.div`
   line-height: 1.125rem;
   letter-spacing: 0.125rem;
   margin-top: 1.875rem;
-  color: var(--bs-black);
+  color: var(--bs-testimonial-text-color);
   padding-bottom: 13.125rem;
 `
 

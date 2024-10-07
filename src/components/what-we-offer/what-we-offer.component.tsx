@@ -128,7 +128,7 @@ export const WhatWeOffer = () => {
     <SectionTemplate
       subheader={subheader}
       header={header}
-      bgMode='--bs-gray-100'>
+      bgMode='--bs-what-we-offer-bg-color'>
       <WhatWeOfferContainer>
         {status === 'pending' && (
           <ContentLoading text={t('contentLoadingWhatWeOffer')} />

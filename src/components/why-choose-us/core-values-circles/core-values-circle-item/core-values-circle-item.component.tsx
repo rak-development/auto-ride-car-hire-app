@@ -25,7 +25,7 @@ const flexDirectionMap: Record<TextPositionType, string> = {
 
 const CoreValuesCircleItemLabel = styled.span<CoreValuesCircleItemStylesProps>`
   padding: ${({ $textPosition }) => paddingSizeMap[$textPosition]};
-  color: var(--bs-gray-800);
+  color: var(--bs-core-values-text-color);
   font-size: 1.125rem;
   font-weight: 700;
   text-transform: uppercase;

@@ -78,7 +78,7 @@ const KeyFeatureHeader = styled.div`
   line-height: 1.66rem;
   margin-top: 1.875rem;
   margin-bottom: 0.9375rem;
-  color: var(--bs-gray-800);
+  color: var(--bs-key-features-feature-header-text-color);
 
   @media ${device.lg} {
     font-size: 1.125rem;
@@ -89,7 +89,7 @@ const KeyFeatureBody = styled.div`
   font-size: 1.125rem;
   font-weight: 300;
   line-height: 1.875rem;
-  color: var(--bs-gray-700);
+  color: var(--bs-key-features-feature-text-color);
 `
 
 const useKeyFeaturesDataQuery = (languageExtension: LanguageExtensionTypes) =>
@@ -138,7 +138,7 @@ export const KeyFeatures = () => {
   const header = isData && t('keyFeaturesHeader')
 
   return (
-    <SectionTemplate subheader={subheader} header={header} bgMode='--bs-white'>
+    <SectionTemplate subheader={subheader} header={header} bgMode='--bs-key-features-bg-color'>
       <KeyFeaturesSection $isData={isData}>
         <Container>
           {status === 'pending' && (

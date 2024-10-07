@@ -5,9 +5,12 @@ import { HeaderTopContactDetails } from './header-top-contact-details/header-top
 import { SocialIcons } from '../../social-icons/social-icons.components'
 import { device } from '../../../devices-breakpoints'
 import { HeaderTopLanguageSelector } from './header-top-language-selector/header-top-language-selector.component'
+import { HeaderTopDarkModeSwitch } from './header-top-darkmode-switch/header-top-darkmode-switch.component'
 
 const HeaderTopWrapper = styled.div`
-  background-color: var(--bs-gray-100);
+  background-color: var(--bs-header-top-wrapper-bg-color);
+  color: var(--bs-header-top-wrapper-font-color);
+  font-size: 0.9375rem;
 `
 
 const HeaderTopContainer = styled(Container)`
@@ -23,14 +26,17 @@ const HeaderTopContainer = styled(Container)`
   }
 `
 
-export const HeaderTop = () => {
+export const HeaderTop = ({test}: any) => {
   return (
     <HeaderTopWrapper>
       <HeaderTopContainer>
         <HeaderTopContactDetails />
         <div className='d-md-flex'>
+          <div className='d-md-flex'>
           <SocialIcons />
           <HeaderTopLanguageSelector />
+        </div>
+          <HeaderTopDarkModeSwitch test={test} />
         </div>
       </HeaderTopContainer>
     </HeaderTopWrapper>

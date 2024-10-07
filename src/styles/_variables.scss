@@ -15,6 +15,61 @@ $gray-800: #2C3E50 !default;
 // scss-docs-start theme-color-variables
 $primary:       #8A3C05;
 $black:         #000;
+$white:         #fff;
+
+$headerTopWrapperBgColor:  $gray-100 !default;
+$headerTopWrapperFontColor:  $gray-800 !default;
+$navBarLinksColor:  $gray-700 !default;
+$navBarBackground:  $white !default;
+$introductionHeaderColor:  $gray-800 !default;
+$introductionTextColor:  $gray-700 !default;
+$blockquoteTextColor:  $gray-800 !default;
+$blockquoteAuthorTextColor:  $gray-800 !default;
+$whatWeOfferBgColor:  $gray-100 !default;
+$sectionTemplateHeaderColor:  $gray-800 !default;
+$whyChooseUsBgColor:  $white !default;
+$coreValuesTextColor: $gray-800 !default;
+$testimonialsBgColor: $gray-100 !default;
+$testimonialTextColor: $black !default;
+$testimonialIndicatorBorderColor: $gray-500 !default;
+$keyFeaturesBgColor: $white !default;
+$keyFeaturesFeatureHeaderTextColor: $gray-800 !default;
+$keyFeaturesFeatureTextColor: $gray-700 !default;
+$ourFleetBgColor: $gray-100 !default;
+$footerBottomBgColor: $white !default;
+$footerBottomTextColor: $gray-800 !default;
+$contactBoxTextColor: $gray-800 !default;
+$footerMiddleContentBoxTitleColor: $gray-800 !default;
+$footerMiddleContentBoxTextColor: $gray-700 !default;
+
+$theme-colors: (
+    "primary": $primary,
+    "black":                $black,
+    "header-top-wrapper-bg-color":  $headerTopWrapperBgColor,
+    "header-top-wrapper-font-color":  $headerTopWrapperFontColor,
+    "navbar-links-color":  $navBarLinksColor,
+    "navbar-background":  $navBarBackground,
+    "introduction-header-color":  $introductionHeaderColor,
+    "introduction-text-color":  $introductionTextColor,
+    "blockquote-text-color":  $blockquoteTextColor,
+    "blockquote-author-text-color":  $blockquoteAuthorTextColor,
+    "what-we-offer-bg-color":  $whatWeOfferBgColor,
+    "section-template-header-color":  $sectionTemplateHeaderColor,
+    "why-choose-us-bg-color":  $whyChooseUsBgColor,
+    "core-values-text-color": $coreValuesTextColor,
+    "testimonials-bg-color": $testimonialsBgColor,
+    "testimonial-text-color": $testimonialTextColor,
+    "testimonial-indicator-border-color": $testimonialIndicatorBorderColor,
+    "key-features-bg-color": $keyFeaturesBgColor,
+    "key-features-feature-header-text-color": $keyFeaturesFeatureHeaderTextColor,
+    "key-features-feature-text-color": $keyFeaturesFeatureTextColor,
+    "our-fleet-bg-color": $ourFleetBgColor,
+    "footer-bottom-bg-color": $footerBottomBgColor,
+    "footer-bottom-text-color": $footerBottomTextColor,
+    "contact-box-text-color": $contactBoxTextColor,
+    "footer-middle-content-box-title-color": $footerMiddleContentBoxTitleColor,
+    "footer-middle-content-box-text-color": $footerMiddleContentBoxTextColor,
+);
 
 // Typography
 //
@@ -31,3 +86,15 @@ $h5-font-size:                $font-size-base * 1.125 !default;
 // Navbar
 
 $navbar-nav-link-padding-x:         1.4063rem !default;
+
+// $test-color: #f00;
+
+// scss-docs-start theme-color-variables
+// $test:      #3fb247;
+// scss-docs-end theme-color-variables
+
+// scss-docs-start theme-colors-map
+// $theme-colors: (
+//   "$test":  #3fb247
+// );
+// scss-docs-end theme-colors-map

@@ -8,6 +8,8 @@ import { device } from '../../../devices-breakpoints'
 
 const FooterBottomWrapper = styled.div`
   font-size: 0.9375rem;
+  color: var(--bs-footer-bottom-text-color);
+  background-color: var(--bs-footer-bottom-bg-color);
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 

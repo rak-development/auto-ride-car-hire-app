@@ -38,7 +38,7 @@ const FooterMiddleWrapper = styled.div`
 `
 
 const ContentBox = styled.div`
-  color: var(--bs-gray-700);
+  color: var(--bs-footer-middle-content-box-text-color);
   margin-bottom: 2.5rem;
 
   p {
@@ -55,7 +55,7 @@ const TitleBox = styled.div`
   font-weight: 400;
   text-transform: uppercase;
   line-height: 1.5rem;
-  color: var(--bs-gray-800);
+  color: var(--bs-footer-middle-content-box-title-color);
   margin-bottom: 1.875rem;
 
   span {

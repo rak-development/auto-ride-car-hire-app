@@ -158,7 +158,7 @@ export const OurFleet = () => {
     <SectionTemplate
       subheader={subheader}
       header={header}
-      bgMode='--bs-gray-100'>
+      bgMode='--bs-our-fleet-bg-color'>
       <OurFleetContainer $isData={isData}>
         {status === 'pending' && (
           <ContentLoading text='Our Fleet Content Loading...' />
