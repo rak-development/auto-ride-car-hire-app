@@ -12,23 +12,49 @@ import { ScrollToTop } from './components/scroll-to-top/scroll-to-top.component'
 
 import './app.scss'
 
+import { createContext, useContext } from 'react'
+import ThemeProvider from './context/theme-context'
+import { ThemeContextType } from './types/theme-context-types'
+import { ThemeContext } from './context/theme-context'
+
 const queryClient = new QueryClient()
 
+// const themes = {
+//   light: {
+//     foreground: "#000000",
+//     background: "#eeeeee"
+//   },
+//   dark: {
+//     foreground: "#ffffff",
+//     background: "#222222"
+//   }
+// };
+
+// const ThemeContext = createContext(themes.light);
+
 const App = () => {
+  console.log('App')
+  const { setThemeMode } = useContext(ThemeContext) as ThemeContextType;
+  // console.log(setThemeMode)
+  
   return (
-    <QueryClientProvider client={queryClient}>
-      <Header />
-      <main>
-        <Introduction />
-        <WhatWeOffer />
-        <WhyChooseUs />
-        <Testimonials />
-        <KeyFeatures />
-        <OurFleet />
-      </main>
-      <Footer />
-      <ScrollToTop />
-    </QueryClientProvider>
+    <ThemeProvider>
+    {/* // <ThemeContext.Provider value={themes.dark}> */}
+      <QueryClientProvider client={queryClient}>
+        <Header test={ThemeContext} />
+        <main>
+          <Introduction />
+          <WhatWeOffer />
+          <WhyChooseUs />
+          <Testimonials />
+          <KeyFeatures />
+          <OurFleet />
+        </main>
+        <Footer />
+        <ScrollToTop />
+      </QueryClientProvider>
+    {/* // </ThemeContext.Provider> */}
+    </ThemeProvider>
   )
 }
 

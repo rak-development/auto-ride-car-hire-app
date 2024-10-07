@@ -26,7 +26,7 @@ const HeaderTopContainer = styled(Container)`
   }
 `
 
-export const HeaderTop = () => {
+export const HeaderTop = ({test}: any) => {
   return (
     <HeaderTopWrapper>
       <HeaderTopContainer>
@@ -36,7 +36,7 @@ export const HeaderTop = () => {
           <SocialIcons />
           <HeaderTopLanguageSelector />
         </div>
-          <HeaderTopDarkModeSwitch />
+          <HeaderTopDarkModeSwitch test={test} />
         </div>
       </HeaderTopContainer>
     </HeaderTopWrapper>
