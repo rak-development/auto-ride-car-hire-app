@@ -20,7 +20,7 @@ import { ContentLoading } from '../content-loading/content-loading.component'
 import { ContentLoadingError } from '../content-loading/content-loading-error/content-loading-error.components'
 import { type LanguageExtensionTypes } from '../../types/language-extension-types'
 
-const introductionDataSchema = z.object({
+export const introductionDataSchema = z.object({
   title: z.string(),
   content: z.array(
     z.object({
